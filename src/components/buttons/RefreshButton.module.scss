@@ -1,0 +1,25 @@
+.btnUpdate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.rotate {
+  animation: refreshRotate 0.5s linear infinite;
+}
+
+@keyframes refreshRotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(400deg);
+  }
+}
