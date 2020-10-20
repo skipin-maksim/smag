@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/smag/static/css/main.7a7cabe3.chunk.css",
+    "main.js": "/smag/static/js/main.2fd0625f.chunk.js",
+    "main.js.map": "/smag/static/js/main.2fd0625f.chunk.js.map",
+    "runtime-main.js": "/smag/static/js/runtime-main.c0069826.js",
+    "runtime-main.js.map": "/smag/static/js/runtime-main.c0069826.js.map",
+    "static/css/2.3d72dcb8.chunk.css": "/smag/static/css/2.3d72dcb8.chunk.css",
+    "static/js/2.2631a129.chunk.js": "/smag/static/js/2.2631a129.chunk.js",
+    "static/js/2.2631a129.chunk.js.map": "/smag/static/js/2.2631a129.chunk.js.map",
+    "index.html": "/smag/index.html",
+    "precache-manifest.2f6b223a1fa0ec96f72348b9584cce8c.js": "/smag/precache-manifest.2f6b223a1fa0ec96f72348b9584cce8c.js",
+    "service-worker.js": "/smag/service-worker.js",
+    "static/css/2.3d72dcb8.chunk.css.map": "/smag/static/css/2.3d72dcb8.chunk.css.map",
+    "static/css/main.7a7cabe3.chunk.css.map": "/smag/static/css/main.7a7cabe3.chunk.css.map",
+    "static/js/2.2631a129.chunk.js.LICENSE.txt": "/smag/static/js/2.2631a129.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c0069826.js",
+    "static/css/2.3d72dcb8.chunk.css",
+    "static/js/2.2631a129.chunk.js",
+    "static/css/main.7a7cabe3.chunk.css",
+    "static/js/main.2fd0625f.chunk.js"
+  ]
+}
