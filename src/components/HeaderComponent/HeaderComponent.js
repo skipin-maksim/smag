@@ -13,11 +13,10 @@ function HeaderComponent({ tabsList, removeTabs }) {
       <ul className={s.lineListTabs}>
         {tabsList.map(tab => {
           return (
-            <li className={s.tab}>
+            <li className={s.tab} key={tab.name}>
               <NavLink
                 exact
                 to={tab.path}
-                key={tab.name}
                 className={s.tab}
                 activeClassName={s.tabActive}
               >

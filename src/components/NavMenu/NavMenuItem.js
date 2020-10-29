@@ -2,8 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import tabsActions from '../../redux/tabs/tabsActions';
-import tabsSelectors from '../../redux/tabs/tabsSelectors';
+import { tabsSelectors, tabsActions } from '../../redux/tabs/';
 
 import s from './NavMenu.module.scss';
 
