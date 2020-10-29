@@ -1,11 +1,11 @@
 {
-  "name": "smag",
+  "name": "",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://skipin-maksim.github.io/smag",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -15,9 +15,14 @@
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-beforeunload": "^2.3.0",
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^3.1.14",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "toastr": "^2.1.4"
   },
   "scripts": {
@@ -26,7 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p",
+    "server": "json-server -d 300 -p 2000 -w db.json"
   },
   "eslintConfig": {
     "extends": "react-app"

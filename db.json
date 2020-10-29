@@ -1,0 +1,50 @@
+{
+  "contractors": [
+    {
+      "id": 1,
+      "firstName": "Максим",
+      "secondName": "Скипин",
+      "thirdName": "Сергеевич",
+      "phoneNumber": "+38 066 202 53 90",
+      "phoneNumberTwo": "+98 066 202 53 90",
+      "email": "maks@gmail.com",
+      "city": "Бровары",
+      "newPostNumber": 13,
+      "debt": 0
+    }
+  ],
+  "goods": [
+    {
+      "art": 85080,
+      "prices": {
+        "retail": 20,
+        "wholesale": 35
+      },
+      "dimensions": "20х20х50"
+    },
+    {
+      "art": 85081,
+      "prices": {
+        "retail": 25,
+        "wholesale": 40
+      },
+      "dimensions": "20х20х50"
+    },
+    {
+      "art": 85082,
+      "prices": {
+        "retail": 30,
+        "wholesale": 45
+      },
+      "dimensions": "20х20х50"
+    },
+    {
+      "art": 85083,
+      "prices": {
+        "retail": 35,
+        "wholesale": 50
+      },
+      "dimensions": "20х20х50"
+    }
+  ]
+}

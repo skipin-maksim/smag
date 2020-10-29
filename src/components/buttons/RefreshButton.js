@@ -12,13 +12,20 @@ export default function RefreshButton({
 }) {
   return (
     <Tooltip title={tooltipText} arrow>
-      <button className={s.btnUpdate} type="button" onClick={onRefreshFunction}>
-        {isRotate && (
-          <Autorenew className={s.rotate} style={{ fontSize: size }} />
-        )}
+      <span>
+        <button
+          className={s.btnUpdate}
+          type="button"
+          onClick={onRefreshFunction}
+          disabled={isRotate}
+        >
+          {isRotate && (
+            <Autorenew className={s.rotate} style={{ fontSize: size }} />
+          )}
 
-        {!isRotate && <Autorenew style={{ fontSize: size }} />}
-      </button>
+          {!isRotate && <Autorenew style={{ fontSize: size }} />}
+        </button>
+      </span>
     </Tooltip>
   );
 }
