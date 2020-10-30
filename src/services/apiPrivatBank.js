@@ -1,14 +1,14 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://api.privatbank.ua/';
+
 const pickUpCurrencyData = async () => {
   try {
-    const result = await axios.get(
-      `https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5`,
-    );
+    const { data } = await axios.get(`p24api/pubinfo?json&exchange&coursid=5`);
 
-    return result.data;
+    return data;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return [];
   }
 };
