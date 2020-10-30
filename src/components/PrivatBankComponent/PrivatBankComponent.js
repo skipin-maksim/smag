@@ -9,7 +9,10 @@ import RefreshButton from '../buttons/RefreshButton';
 export default class PrivatComponent extends Component {
   state = {
     allDataPrivatBank: {},
-    useDataPrivatBank: { sale: 0, buy: 0 },
+    useDataPrivatBank: {
+      usd: { ccy: 'USD', sale: '??', buy: '??' },
+      eur: { ccy: 'EUR', sale: '??', buy: '??' },
+    },
     isLoader: false,
   };
 
@@ -21,14 +24,26 @@ export default class PrivatComponent extends Component {
     this.setState({ isLoader: true });
 
     const exchangeRatesData = await pickUpCurrencyData();
-    console.log(exchangeRatesData);
 
     if (exchangeRatesData) {
-      const sliceData = exchangeRatesData.map(item => {
-        const buy = item.buy.slice(-0, -3);
-        const sale = item.sale.slice(-0, -3);
+      // изначально пустой объект. Функция getSlicePrice записывает в объект нужные валюты, переданные вторым аргументом внутри массива (передавать как строку - имя валюты в любом регистре)
+      const sliceData = {};
 
-        return { ...item, buy, sale };
+      const getSlicePrice = (item, currencyNames) => {
+        return currencyNames.map(name => {
+          if (item.ccy === name.toUpperCase()) {
+            const buy = item.buy.slice(-0, -3);
+            const sale = item.sale.slice(-0, -3);
+
+            return (sliceData[name.toLowerCase()] = { ...item, buy, sale });
+          }
+
+          return item;
+        });
+      };
+
+      exchangeRatesData.map(item => {
+        return getSlicePrice(item, ['usd', 'eur']);
       });
 
       this.setState({
@@ -41,38 +56,29 @@ export default class PrivatComponent extends Component {
   };
 
   render() {
-    const { allDataPrivatBank, useDataPrivatBank, isLoader } = this.state;
-    const isShowPanel = allDataPrivatBank.length > 0;
+    const { useDataPrivatBank, isLoader } = this.state;
 
     return (
       <>
-        {isShowPanel && (
-          <div className={s.privatWrapper}>
-            <div className={s.privatBlock}>
-              {!isLoader && (
-                <>
-                  <Currency
-                    useDataPrivatBank={useDataPrivatBank}
-                    currency={1}
-                  />
-                  <Currency
-                    useDataPrivatBank={useDataPrivatBank}
-                    currency={0}
-                  />
-                </>
-              )}
+        <div className={s.privatWrapper}>
+          <div className={s.privatBlock}>
+            {!isLoader && (
+              <>
+                <Currency viewDetails={useDataPrivatBank.usd} />
+                <Currency viewDetails={useDataPrivatBank.eur} />
+              </>
+            )}
 
-              {isLoader && 'Загрузка...'}
-            </div>
-
-            <RefreshButton
-              onRefreshFunction={this.getExchangeRatesData}
-              size={20}
-              tooltipText="Обновить курс"
-              isRotate={isLoader}
-            />
+            {isLoader && 'Загрузка...'}
           </div>
-        )}
+
+          <RefreshButton
+            onRefreshFunction={this.getExchangeRatesData}
+            size={20}
+            tooltipText="Обновить курс"
+            isRotate={isLoader}
+          />
+        </div>
       </>
     );
   }

@@ -2,15 +2,16 @@ import React from 'react';
 
 import s from './PrivatBankComponent.module.scss';
 
-export default function Currency({ currency, useDataPrivatBank }) {
+export default function Currency({ viewDetails }) {
+  console.log(viewDetails);
   return (
     <div className={s.currency}>
-      <div className={s.name}>{useDataPrivatBank[currency].ccy} - </div>
+      <div className={s.name}>{viewDetails.ccy} - </div>
       <div className={s.buy}>
-        Покупка <span>{useDataPrivatBank[currency].buy}</span>
+        Покупка <span>{viewDetails.buy}</span>
       </div>
       <div className={s.sale}>
-        Продажа <span>{useDataPrivatBank[currency].sale}</span>
+        Продажа <span>{viewDetails.sale}</span>
       </div>
     </div>
   );
