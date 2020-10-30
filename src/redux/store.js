@@ -1,11 +1,32 @@
-import { configureStore } from '@reduxjs/toolkit';
-
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import tabsReducer from './tabs/tabsReducer';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
-const store = configureStore({
+const tabsPersistConfig = {
+  key: 'tabs',
+  storage,
+  whitelist: ['items'],
+};
+
+export const store = configureStore({
   reducer: {
-    tabs: tabsReducer,
+    tabs: persistReducer(tabsPersistConfig, tabsReducer),
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
 });
 
-export default store;
+export const persistor = persistStore(store);
