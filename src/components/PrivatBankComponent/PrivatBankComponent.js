@@ -6,13 +6,14 @@ import s from './PrivatBankComponent.module.scss';
 import Currency from './Currency';
 import RefreshButton from '../buttons/RefreshButton';
 
-export default class PrivatComponent extends Component {
+const initDataPrivat = {
+  usd: { ccy: 'USD', sale: '??', buy: '??' },
+  eur: { ccy: 'EUR', sale: '??', buy: '??' },
+};
+class PrivatComponent extends Component {
   state = {
     allDataPrivatBank: {},
-    useDataPrivatBank: {
-      usd: { ccy: 'USD', sale: '??', buy: '??' },
-      eur: { ccy: 'EUR', sale: '??', buy: '??' },
-    },
+    useDataPrivatBank: { ...initDataPrivat },
     isLoader: false,
   };
 
@@ -29,8 +30,8 @@ export default class PrivatComponent extends Component {
       // изначально пустой объект. Функция getSlicePrice записывает в объект нужные валюты, переданные вторым аргументом внутри массива (передавать как строку - имя валюты в любом регистре)
       const sliceData = {};
 
-      const getSlicePrice = (item, currencyNames) => {
-        return currencyNames.map(name => {
+      const getSlicePrice = (item, currencyArray) => {
+        return currencyArray.map(name => {
           if (item.ccy === name.toUpperCase()) {
             const buy = item.buy.slice(-0, -3);
             const sale = item.sale.slice(-0, -3);
@@ -83,3 +84,5 @@ export default class PrivatComponent extends Component {
     );
   }
 }
+
+export default PrivatComponent;

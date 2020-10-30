@@ -3,7 +3,6 @@ import React from 'react';
 import s from './PrivatBankComponent.module.scss';
 
 export default function Currency({ viewDetails }) {
-  console.log(viewDetails);
   return (
     <div className={s.currency}>
       <div className={s.name}>{viewDetails.ccy} - </div>
