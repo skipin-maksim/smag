@@ -9,9 +9,8 @@ import RefreshButton from '../buttons/RefreshButton';
 export default class PrivatComponent extends Component {
   state = {
     allDataPrivatBank: {},
+    useDataPrivatBank: { sale: 0, buy: 0 },
     isLoader: false,
-    sale: 1,
-    buy: 1,
   };
 
   componentDidMount() {
@@ -22,40 +21,42 @@ export default class PrivatComponent extends Component {
     this.setState({ isLoader: true });
 
     const exchangeRatesData = await pickUpCurrencyData();
+    console.log(exchangeRatesData);
 
-    const newData = exchangeRatesData.map(item => {
-      item.buy = item.buy.slice(-0, -3);
-      item.sale = item.sale.slice(-0, -3);
+    if (exchangeRatesData) {
+      const sliceData = exchangeRatesData.map(item => {
+        const buy = item.buy.slice(-0, -3);
+        const sale = item.sale.slice(-0, -3);
 
-      return item;
-    });
+        return { ...item, buy, sale };
+      });
 
-    this.setState({
-      allDataPrivatBank: newData,
-      sale: newData[1].sale,
-      buy: newData[1].buy,
-    });
+      this.setState({
+        allDataPrivatBank: exchangeRatesData,
+        useDataPrivatBank: sliceData,
+      });
+    }
 
     this.setState({ isLoader: false });
   };
 
   render() {
-    const { allDataPrivatBank, isLoader } = this.state;
-    const isData = allDataPrivatBank.length > 0;
+    const { allDataPrivatBank, useDataPrivatBank, isLoader } = this.state;
+    const isShowPanel = allDataPrivatBank.length > 0;
 
     return (
       <>
-        {isData && (
+        {isShowPanel && (
           <div className={s.privatWrapper}>
             <div className={s.privatBlock}>
               {!isLoader && (
                 <>
                   <Currency
-                    allDataPrivatBank={allDataPrivatBank}
+                    useDataPrivatBank={useDataPrivatBank}
                     currency={1}
                   />
                   <Currency
-                    allDataPrivatBank={allDataPrivatBank}
+                    useDataPrivatBank={useDataPrivatBank}
                     currency={0}
                   />
                 </>
