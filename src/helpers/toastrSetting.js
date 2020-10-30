@@ -1,4 +1,5 @@
 import toastr from 'toastr';
+import 'toastr/build/toastr.css';
 
 export const notification = (toastr.options = {
   closeButton: true,
