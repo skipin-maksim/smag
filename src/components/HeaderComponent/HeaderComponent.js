@@ -1,34 +1,35 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import tabsSelectors from '../../redux/tabs/tabsSelectors';
-import tabsActions from '../../redux/tabs/tabsActions';
+import { tabsSelectors, tabsActions, tabsOperations } from '../../redux/tabs/';
 
 import s from './HeaderComponent.module.scss';
 
-function HeaderComponent({ tabsList, removeTabs }) {
+function HeaderComponent({ tabsList, removeTabs, testRemove }) {
   return (
     <header className={s.headerLineTabs}>
       <ul className={s.lineListTabs}>
-        {tabsList.map(tab => {
+        {tabsList.map(({ name, path }) => {
           return (
-            <li className={s.tabLi} key={tab.name}>
+            <li className={s.tabLi} key={name}>
               <NavLink
                 exact
-                to={tab.path}
+                to={path}
                 className={s.tab}
                 activeClassName={s.tabActive}
               >
-                {tab.name}
+                {name}
               </NavLink>
-              <button
-                onClick={() => removeTabs(tab.name)}
+              <Link
+                to="/"
+                // onClick={() => removeTabs({ name, tabsList })}
+                onClick={() => testRemove(name)}
                 className={s.tabCloseBtn}
                 type="button"
               >
                 <span className="visually-hidden">close button</span>
-              </button>
+              </Link>
             </li>
           );
         })}
@@ -43,6 +44,7 @@ const mSTP = state => ({
 
 const mDTP = {
   removeTabs: tabsActions.removeTabs,
+  testRemove: tabsOperations.getTabsList,
 };
 
 export default connect(mSTP, mDTP)(HeaderComponent);

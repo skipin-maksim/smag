@@ -58,6 +58,7 @@ class PrivatComponent extends Component {
 
   render() {
     const { useDataPrivatBank, isLoader } = this.state;
+    const isUseData = useDataPrivatBank;
 
     return (
       <>
@@ -65,8 +66,19 @@ class PrivatComponent extends Component {
           <div className={s.privatBlock}>
             {!isLoader && (
               <>
-                <Currency viewDetails={useDataPrivatBank.usd} />
-                <Currency viewDetails={useDataPrivatBank.eur} />
+                {isUseData && (
+                  <>
+                    <Currency viewDetails={useDataPrivatBank.usd} />
+                    <Currency viewDetails={useDataPrivatBank.eur} />
+                  </>
+                )}
+
+                {!isUseData && (
+                  <>
+                    <Currency viewDetails={initDataPrivat.usd} />
+                    <Currency viewDetails={initDataPrivat.eur} />
+                  </>
+                )}
               </>
             )}
 

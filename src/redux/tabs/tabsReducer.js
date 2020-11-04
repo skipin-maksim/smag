@@ -18,7 +18,13 @@ const items = createReducer(initialStateItem, {
   [tabsActions.removeTabs]: (state, { payload }) => {
     if (state.length === 1) return;
 
-    return state.filter(item => item.name !== payload);
+    return state.filter((item, idx) => {
+      if (item.name === payload.name) {
+        console.log(payload.items[idx - 1]);
+      }
+
+      return item.name !== payload.name;
+    });
   },
 });
 
