@@ -56,9 +56,13 @@ class PrivatComponent extends Component {
     this.setState({ isLoader: false });
   };
 
+  checkFetchCurrencyData = () => {
+    if (this.state.useDataPrivatBank) return true;
+  };
+
   render() {
     const { useDataPrivatBank, isLoader } = this.state;
-    const isUseData = useDataPrivatBank;
+    const isUseData = this.checkFetchCurrencyData();
 
     return (
       <>
