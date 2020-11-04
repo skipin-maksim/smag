@@ -13,7 +13,7 @@
       "debt": 0
     }
   ],
-  "goods": [
+  "products": [
     {
       "art": 85080,
       "prices": {
@@ -45,6 +45,17 @@
         "wholesale": 50
       },
       "dimensions": "20х20х50"
+    }
+  ],
+  "orders": [
+    {
+      "id": 0,
+      "name": "",
+      "positions": 0,
+      "totalQuantity": 0,
+      "sum": 0,
+      "prepayment": 0,
+      "products": []
     }
   ]
 }

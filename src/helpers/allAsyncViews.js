@@ -13,7 +13,9 @@ const AsyncContractorsPage = lazy(() =>
   import('../views/ContractorsPage' /* webpackChunkName: "contractors-page" */),
 );
 const AsyncOrdersPage = lazy(() =>
-  import('../views/OrdersPage' /* webpackChunkName: "orders-page" */),
+  import(
+    '../views/OrdersPage/OrdersPage' /* webpackChunkName: "orders-page" */
+  ),
 );
 
 export default {

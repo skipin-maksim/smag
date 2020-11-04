@@ -1,0 +1,27 @@
+.orderPage {
+  padding: 36px;
+}
+
+.ordersSettings {
+  display: flex;
+}
+
+.ordersSearch {
+}
+
+.settingButtons {
+}
+
+.settingButton {
+  &.addBtn {
+  }
+  &.changeBtn {
+  }
+  &.removeBtn {
+  }
+}
+
+.orderWrapper {
+  padding: 0 15px;
+  background-color: #fff;
+}
