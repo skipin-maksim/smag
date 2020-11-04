@@ -6,7 +6,7 @@ import { tabsSelectors, tabsActions } from '../../redux/tabs/';
 
 import s from './NavMenu.module.scss';
 
-function NavMenuItem({ item, addTabs }) {
+function NavMenuItem({ item, addTab }) {
   const { name, path, icon } = item;
 
   return (
@@ -16,7 +16,7 @@ function NavMenuItem({ item, addTabs }) {
         to={path}
         className={s.navItemLink}
         activeClassName={s.navItemLinkActive}
-        onClick={() => addTabs({ name, path })}
+        onClick={() => addTab({ name, path })}
         name={name}
       >
         <div className={s.iconItem}>{icon}</div>
@@ -31,7 +31,7 @@ const mSTP = state => ({
 });
 
 const mDTP = {
-  addTabs: tabsActions.addTabs,
+  addTab: tabsActions.addTab,
 };
 
 export default connect(mSTP, mDTP)(NavMenuItem);

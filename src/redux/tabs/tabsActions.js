@@ -1,9 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const addTabs = createAction('tabs/addTabs');
-const removeTabs = createAction('tabs/removeTabs');
+const addTab = createAction('tabs/addTab');
+const removeTab = createAction('tabs/removeTab');
 
 export default {
-  addTabs,
-  removeTabs,
+  addTab,
+  removeTab,
 };

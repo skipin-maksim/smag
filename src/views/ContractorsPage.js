@@ -1,6 +1,5 @@
 import React from 'react';
 
-export default function ContractorsPage({ history }) {
-  // console.log(history);
+export default function ContractorsPage() {
   return <div className="testViews">ContractorsPage</div>;
 }

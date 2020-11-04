@@ -5,7 +5,7 @@ import { tabsActions } from './';
 
 const initialStateItem = [{ name: 'Главная', path: '/' }];
 
-const addTabs = (state, payload) => {
+const addTab = (state, payload) => {
   const isTabs = state.find(item => item.name === payload.name);
 
   if (!isTabs) return [...state, payload];
@@ -14,17 +14,11 @@ const addTabs = (state, payload) => {
 };
 
 const items = createReducer(initialStateItem, {
-  [tabsActions.addTabs]: (state, { payload }) => addTabs(state, payload),
-  [tabsActions.removeTabs]: (state, { payload }) => {
+  [tabsActions.addTab]: (state, { payload }) => addTab(state, payload),
+  [tabsActions.removeTab]: (state, { payload }) => {
     if (state.length === 1) return;
 
-    return state.filter((item, idx) => {
-      if (item.name === payload.name) {
-        console.log(payload.items[idx - 1]);
-      }
-
-      return item.name !== payload.name;
-    });
+    return state.filter(item => item.name !== payload);
   },
 });
 
