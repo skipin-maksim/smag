@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import tabsReducer from './tabs/tabsReducer';
+import { tabsReducer } from './tabs/';
+import { ordersReducer } from './orders/';
 import {
   persistStore,
   persistReducer,
@@ -21,6 +22,7 @@ const tabsPersistConfig = {
 export const store = configureStore({
   reducer: {
     tabs: persistReducer(tabsPersistConfig, tabsReducer),
+    numOrder: ordersReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

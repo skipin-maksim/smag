@@ -1,4 +1,5 @@
 {
+  "numorder": { "valueNum": 4, "valueStr": "00004" },
   "contractors": [
     {
       "id": 1,
@@ -49,12 +50,13 @@
   ],
   "orders": [
     {
-      "id": 0,
-      "name": "",
-      "positions": 0,
-      "totalQuantity": 0,
-      "sum": 0,
-      "prepayment": 0,
+      "id": 1,
+      "numOrder": null,
+      "name": "sdfsdfdf",
+      "positions": 10,
+      "totalQuantity": 100,
+      "sum": 1000,
+      "prepayment": 100,
       "products": []
     }
   ]

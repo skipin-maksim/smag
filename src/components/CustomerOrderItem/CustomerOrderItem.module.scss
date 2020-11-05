@@ -1,0 +1,49 @@
+.customerOrderItem {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.whithLine {
+  background-color: #fff;
+}
+
+.greyLine {
+  background-color: rgb(243, 243, 243);
+}
+
+.num {
+  width: 4%;
+  text-align: left;
+}
+
+.name {
+  padding-left: 30px;
+  position: relative;
+  width: 46%;
+
+  & .checkboxItem {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+  }
+}
+
+.positions {
+  width: 12%;
+}
+
+.quantity {
+  width: 12%;
+}
+
+.sum {
+  width: 12%;
+}
+
+.prepayment {
+  width: 12%;
+}

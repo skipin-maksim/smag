@@ -4,6 +4,20 @@
 
 .ordersSettings {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  margin-bottom: 36px;
+}
+
+.contractorsBlock {
+  display: flex;
+  align-items: center;
+  width: 300px;
+
+  & input {
+    width: 90%;
+  }
 }
 
 .ordersSearch {
@@ -13,6 +27,9 @@
 }
 
 .settingButton {
+  width: 55px;
+  margin: 0 3px;
+
   &.addBtn {
   }
   &.changeBtn {
@@ -24,4 +41,55 @@
 .orderWrapper {
   padding: 0 15px;
   background-color: #fff;
+}
+
+.windowOrders {
+  padding: 0 15px 45px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
+}
+
+.customerOrderTitletLine {
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #1c2b4a;
+  color: #fff;
+}
+
+.customerOrderList {
+  min-height: 500px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);
+}
+
+.numSpan {
+  width: 4%;
+  text-align: left;
+}
+
+.nameSpan {
+  padding-left: 30px;
+  width: 46%;
+}
+
+.positionsSpan {
+  width: 12%;
+}
+
+.quantitySpan {
+  width: 12%;
+}
+
+.sumSpan {
+  width: 12%;
+}
+
+.prepaymentSpan {
+  width: 12%;
 }
