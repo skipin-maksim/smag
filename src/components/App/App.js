@@ -14,6 +14,7 @@ import MainComponent from '../MainComponent/MainComponent';
 class App extends React.Component {
   componentDidMount() {
     this.props.getCerrentNumOrder();
+    this.props.getAllOrders();
   }
 
   render() {
@@ -34,6 +35,7 @@ class App extends React.Component {
 
 const mDTP = {
   getCerrentNumOrder: ordersOperations.getCurrentNumOrder,
+  getAllOrders: ordersOperations.getAllOrders,
 };
 
 export default connect(null, mDTP)(App);

@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { ordersSelectors } from '../../redux/orders';
 
 import s from './CustomerOrderItem.module.scss';
 
-export default class CustomerOrderItem extends Component {
-  lineColorPick = idx => (idx % 2 === 0 ? s.whithLine : s.greyLine);
+function CustomerOrderItem({ idx, orderItem }) {
+  const lineColorPick = idx => (idx % 2 === 0 ? s.whithLine : s.greyLine);
 
-  render() {
-    return (
-      <li className={`${s.customerOrderItem} ${this.lineColorPick(1)}`}>
-        <span className={s.num}> 1</span>
-        <span className={s.name}>
-          <input type="checkbox" className={s.checkboxItem} />
-          Григоренко Алексей Романович
-        </span>
-        <span className={s.positions}>10 000</span>
-        <span className={s.quantity}>1 500</span>
-        <span className={s.sum}>50 000</span>
-        <span className={s.prepayment}>10 000</span>
-      </li>
-    );
-  }
+  const { name, positions, quantity, sum, prepayment } = orderItem;
+  return (
+    <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
+      <span className={s.num}>{idx + 1}</span>
+      <span className={s.name}>
+        <input type="checkbox" className={s.checkboxItem} />
+        {name}
+      </span>
+      <span className={s.positions}>{positions}</span>
+      <span className={s.quantity}>{quantity}</span>
+      <span className={s.sum}>{sum}</span>
+      <span className={s.prepayment}>{prepayment}</span>
+    </li>
+  );
 }
+
+const mSTP = (state, ownProps) => ({
+  orderItem: ordersSelectors.getOrderById(state, ownProps.id),
+});
+
+export default connect(mSTP)(CustomerOrderItem);

@@ -53,13 +53,14 @@
   outline: none;
   transition: all 0.2s linear;
 
-  &:hover {
-    transform: translateY(-50%) scale(1.3);
+  &:hover::before {
+    background-color: #de6a73;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
   }
 
-  &:hover::before,
   &:hover::after {
     background-color: #de6a73;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
   }
 
   &::before,

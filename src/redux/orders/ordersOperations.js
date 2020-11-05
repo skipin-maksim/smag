@@ -18,4 +18,18 @@ const getCurrentNumOrder = () => async dispatch => {
   }
 };
 
-export default { getCurrentNumOrder };
+const getAllOrders = () => async dispatch => {
+  dispatch(ordersActions.getAllOrdersRequest());
+
+  try {
+    const { data } = await axios('/orders');
+
+    console.log('orders:', data);
+
+    dispatch(ordersActions.getAllOrdersSuccess(data));
+  } catch (error) {
+    dispatch(ordersActions.getAllOrdersError(error));
+  }
+};
+
+export default { getCurrentNumOrder, getAllOrders };

@@ -21,6 +21,15 @@ const numOrder = createReducer(
   },
 );
 
+const allOrders = createReducer([], {
+  // [ordersActions.addOrder]: (state, { payload }) => {},
+  [ordersActions.getAllOrdersSuccess]: (state, { payload }) => [
+    ...state,
+    ...payload,
+  ],
+});
+
 export default combineReducers({
+  allOrders,
   numOrder,
 });

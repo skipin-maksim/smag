@@ -22,7 +22,7 @@ const tabsPersistConfig = {
 export const store = configureStore({
   reducer: {
     tabs: persistReducer(tabsPersistConfig, tabsReducer),
-    numOrder: ordersReducer,
+    orders: ordersReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

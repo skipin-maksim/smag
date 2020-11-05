@@ -12,8 +12,8 @@
 
 .contractorsBlock {
   display: flex;
-  align-items: center;
   width: 300px;
+  color: #fff;
 
   & input {
     width: 90%;
@@ -21,21 +21,51 @@
 }
 
 .ordersSearch {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .settingButtons {
+  display: flex;
+  align-items: center;
 }
 
 .settingButton {
-  width: 55px;
-  margin: 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1c2b4a;
+  transition: all 0.25s linear;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #283a5e;
+  }
 
   &.addBtn {
+    width: 55px;
+    margin: 0 3px;
   }
   &.changeBtn {
+    width: 55px;
+    margin: 0 3px;
   }
   &.removeBtn {
+    width: 55px;
+    margin: 0 3px;
   }
+}
+
+.dotsBtn {
+  width: 40px;
+  border: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .orderWrapper {

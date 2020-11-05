@@ -8,7 +8,14 @@ const numOrderRequest = createAction('order/numOrderRequest');
 const numOrderSuccess = createAction('order/numOrderSuccess');
 const numOrderError = createAction('order/numOrderError');
 
+const getAllOrdersRequest = createAction('order/getAllOrderRequest');
+const getAllOrdersSuccess = createAction('order/getAllOrderSuccess');
+const getAllOrdersError = createAction('order/getAllOrderError');
+
 export default {
+  getAllOrdersRequest,
+  getAllOrdersSuccess,
+  getAllOrdersError,
   numOrderRequest,
   numOrderSuccess,
   numOrderError,
