@@ -6,7 +6,7 @@ import { tabsSelectors, tabsActions } from '../../redux/tabs/';
 
 import s from './NavMenu.module.scss';
 
-function NavMenuItem({ item, addTab }) {
+const NavMenuItem = ({ item, addTab }) => {
   const { name, path, icon } = item;
 
   return (
@@ -24,7 +24,7 @@ function NavMenuItem({ item, addTab }) {
       </NavLink>
     </li>
   );
-}
+};
 
 const mSTP = state => ({
   tabsList: tabsSelectors.getTabsList(state),

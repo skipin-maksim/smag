@@ -12,12 +12,26 @@ export default function MainComponent() {
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path={routes.HomePage} component={path.AsyncHomePage} />
+
           <Route path={routes.SalesPage} component={path.AsyncSalesPage} />
-          <Route path={routes.OrdersPage} component={path.AsyncOrdersPage} />
+
+          <Route
+            exact
+            path={routes.OrdersPage}
+            component={path.AsyncOrdersPage}
+          />
+
+          <Route
+            exact
+            path={routes.OrderItemPage}
+            component={path.AsyncOrderItemPage}
+          />
+
           <Route
             path={routes.ExhibitionsPage}
             component={path.AsyncExhibitionsPage}
           />
+
           <Route
             path={routes.ContractorsPage}
             component={path.AsyncContractorsPage}

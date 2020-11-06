@@ -4,4 +4,5 @@ export default {
   SalesPage: '/sales',
   ContractorsPage: '/contractors',
   OrdersPage: '/orders',
+  OrderItemPage: '/orders/:orderId',
 };
