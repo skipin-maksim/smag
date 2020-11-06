@@ -12,7 +12,6 @@ const initDataPrivat = {
 };
 class PrivatComponent extends Component {
   state = {
-    allDataPrivatBank: {},
     useDataPrivatBank: { ...initDataPrivat },
     isLoader: false,
   };
@@ -26,43 +25,14 @@ class PrivatComponent extends Component {
 
     const exchangeRatesData = await pickUpCurrencyData();
 
-    if (exchangeRatesData) {
-      // изначально пустой объект. Функция getSlicePrice записывает в объект нужные валюты, переданные вторым аргументом внутри массива (передавать как строку - имя валюты в любом регистре)
-      const sliceData = {};
-
-      const getSlicePrice = (item, currencyArray) => {
-        return currencyArray.map(name => {
-          if (item.ccy === name.toUpperCase()) {
-            const buy = item.buy.slice(-0, -3);
-            const sale = item.sale.slice(-0, -3);
-
-            return (sliceData[name.toLowerCase()] = { ...item, buy, sale });
-          }
-
-          return item;
-        });
-      };
-
-      exchangeRatesData.map(item => {
-        return getSlicePrice(item, ['usd', 'eur']);
-      });
-
-      this.setState({
-        allDataPrivatBank: exchangeRatesData,
-        useDataPrivatBank: sliceData,
-      });
-    }
-
-    this.setState({ isLoader: false });
-  };
-
-  checkFetchCurrencyData = () => {
-    if (this.state.useDataPrivatBank) return true;
+    this.setState({
+      useDataPrivatBank: { ...initDataPrivat, ...exchangeRatesData },
+      isLoader: false,
+    });
   };
 
   render() {
     const { useDataPrivatBank, isLoader } = this.state;
-    const isUseData = this.checkFetchCurrencyData();
 
     return (
       <>
@@ -70,19 +40,8 @@ class PrivatComponent extends Component {
           <div className={s.privatBlock}>
             {!isLoader && (
               <>
-                {isUseData && (
-                  <>
-                    <Currency viewDetails={useDataPrivatBank.usd} />
-                    <Currency viewDetails={useDataPrivatBank.eur} />
-                  </>
-                )}
-
-                {!isUseData && (
-                  <>
-                    <Currency viewDetails={initDataPrivat.usd} />
-                    <Currency viewDetails={initDataPrivat.eur} />
-                  </>
-                )}
+                <Currency viewDetails={useDataPrivatBank.usd} />
+                <Currency viewDetails={useDataPrivatBank.eur} />
               </>
             )}
 

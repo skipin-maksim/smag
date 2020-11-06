@@ -9,7 +9,23 @@ const pickUpCurrencyData = async () => {
   try {
     const { data } = await axios.get(`p24api/pubinfo?json&exchange&coursid=5`);
 
-    return data;
+    if (data) {
+      const updatedData = {};
+
+      data
+        .filter(item => item.ccy === 'USD' || item.ccy === 'EUR')
+        .map(item => {
+          item.buy = item.buy.slice(-0, -3);
+          item.sale = item.sale.slice(-0, -3);
+
+          if (item.ccy === 'USD') updatedData.usd = { ...item };
+          if (item.ccy === 'EUR') updatedData.eur = { ...item };
+
+          return item;
+        });
+
+      return updatedData;
+    }
   } catch (err) {
     console.error(err);
 
