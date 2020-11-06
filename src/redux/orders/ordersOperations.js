@@ -2,9 +2,11 @@ import axios from 'axios';
 
 import { ordersActions } from './';
 
-axios.defaults.baseURL = 'http://localhost:2000';
+const changeBaseUrl = () => (axios.defaults.baseURL = 'http://localhost:2000');
 
 const getCurrentNumOrder = () => async dispatch => {
+  changeBaseUrl();
+
   dispatch(ordersActions.numOrderRequest());
 
   try {
@@ -19,6 +21,8 @@ const getCurrentNumOrder = () => async dispatch => {
 };
 
 const getAllOrders = () => async dispatch => {
+  changeBaseUrl();
+
   dispatch(ordersActions.getAllOrdersRequest());
 
   try {

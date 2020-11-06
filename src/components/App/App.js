@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { ordersOperations } from '../../redux/orders/';
 
-// import PrivatBankComponent from '../PrivatBankComponent/PrivatBankComponent';
+import PrivatBankComponent from '../PrivatBankComponent/PrivatBankComponent';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import AsideComponent from '../AsideComponent/AsideComponent';
 import Layout from '../Layout/Layout';
@@ -26,7 +26,7 @@ class App extends React.Component {
           <HeaderComponent />
           <MainComponent />
         </div>
-        {/* <PrivatBankComponent /> */}
+        <PrivatBankComponent />
       </Layout>
       // </Beforeunload>
     );
