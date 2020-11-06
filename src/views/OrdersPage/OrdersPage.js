@@ -7,18 +7,14 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import {
-  ordersActions,
-  ordersOperations,
-  ordersSelectors,
-} from '../../redux/orders';
+import { ordersActions, ordersSelectors } from '../../redux/orders';
 import CustomerOrderItem from '../../components/CustomerOrderItem/CustomerOrderItem';
 
 import s from './OrdersPage.module.scss';
 
 class OrdersPage extends React.Component {
   handleAddLineProduct = () => {
-    this.props.addOrder();
+    // this.props.addOrder();
   };
 
   render() {
@@ -54,7 +50,7 @@ class OrdersPage extends React.Component {
             <Tooltip title={'Изменить заказ'} arrow>
               <button
                 type="button"
-                onClick={this.handleAddLineProduct}
+                // onClick={this.handleAddLineProduct}
                 className={`${s.settingButton} ${s.changeBtn}`}
               >
                 <EditIcon style={{ color: '#D19A66', fontSize: 21 }} />
@@ -65,7 +61,7 @@ class OrdersPage extends React.Component {
             <Tooltip title={'Удалить заказ'} arrow>
               <button
                 type="button"
-                onClick={this.handleAddLineProduct}
+                // onClick={this.handleAddLineProduct}
                 className={`${s.settingButton} ${s.removeBtn}`}
               >
                 <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
@@ -102,8 +98,7 @@ const mSTP = state => ({
 });
 
 const mDTP = {
-  addOrder: ordersActions.addOrder,
-  getAllOrders: ordersOperations.getAllOrders,
+  // addOrder: ordersActions.addOrder,
 };
 
 export default connect(mSTP, mDTP)(OrdersPage);

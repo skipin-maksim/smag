@@ -3,30 +3,32 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import { ordersActions } from './';
 
-const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
+const initNumOrder = { valueNum: 0, valueStr: '0' };
 
-const numOrder = createReducer(
-  { valueNum: 0, valueStr: '0' },
-  {
-    [ordersActions.addOrder]: (state, { payload }) => {
-      const customNumber = editCustomNumber(state.valueNum);
+const addOrder = state => {
+  const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
 
-      return { valueNum: state.valueNum + 1, valueStr: customNumber };
-    },
-    [ordersActions.numOrderSuccess]: (state, { payload }) => payload,
-    // [tabsActions.removeTab]: (state, { payload }) => {
-    //   if (state.length === 1) return;
-    //   return state.filter(item => item.name !== payload);
-    // },
-  },
-);
+  return {
+    valueNum: state.valueNum + 1,
+    valueStr: editCustomNumber(state.valueNum),
+  };
+};
+const getAllOrdersSuccess = (state, payload) => [...state, ...payload];
+
+const numOrder = createReducer(initNumOrder, {
+  [ordersActions.addOrder]: (state, _) => addOrder(state),
+  [ordersActions.numOrderSuccess]: (_, { payload }) => payload,
+  [ordersActions.saveOrder]: () => {},
+  // [tabsActions.removeTab]: (state, { payload }) => {
+  //   if (state.length === 1) return;
+  //   return state.filter(item => item.name !== payload);
+  // },
+});
 
 const allOrders = createReducer([], {
   // [ordersActions.addOrder]: (state, { payload }) => {},
-  [ordersActions.getAllOrdersSuccess]: (state, { payload }) => [
-    ...state,
-    ...payload,
-  ],
+  [ordersActions.getAllOrdersSuccess]: (state, { payload }) =>
+    getAllOrdersSuccess(state, payload),
 });
 
 export default combineReducers({
