@@ -17,21 +17,19 @@ import s from './OrdersPage.module.scss';
 class OrdersPage extends React.Component {
   handleAddLineProduct = () => {
     // this.props.addOrder();
-    const { valueStr: currentOrder } = this.props.currentOrder;
+    // const { valueStr: currentOrder } = this.props.currentOrder;
 
     this.props.addTab({
-      name: `Заказ №${currentOrder}`,
-      path: `/orders/${currentOrder}`,
+      name: 'Заказ № ***?',
+      path: '/orders/new-order',
     });
   };
 
   render() {
     const {
       ordersList,
-      currentOrder: { valueStr: currentOrder },
+      // currentOrder: { valueStr: currentOrder },
     } = this.props;
-
-    console.log(currentOrder);
 
     return (
       <div className={s.orderPage}>
@@ -51,7 +49,7 @@ class OrdersPage extends React.Component {
           <div className={s.settingButtons}>
             <Tooltip title={'Добавить заказ'} arrow>
               <Link
-                to={`orders/${currentOrder}`}
+                to={'orders/new-order'}
                 onClick={this.handleAddLineProduct}
                 className={`${s.settingButton} ${s.addBtn}`}
               >
