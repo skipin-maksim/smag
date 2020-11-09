@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import { ordersActions, ordersSelectors } from '../../redux/orders';
+import { ordersSelectors } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
 import CustomerOrderItem from '../../components/CustomerOrderItem/CustomerOrderItem';
 

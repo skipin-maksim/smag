@@ -9,17 +9,21 @@ export default class LineOrderProduct extends Component {
         <input type="checkbox" className={s.checkboxItem} />
 
         <span className={s.numSpan}>1</span>
-        <input type="text" placeholder="art" className={s.artSpan} />
-        <input type="text" placeholder="color" className={s.colorSpan} />
+        <input type="text" placeholder="art" className={s.nameSpan} />
+        <input type="text" placeholder="color" className={s.positionsSpan} />
         <input
           type="number"
           placeholder="quantity"
           className={s.quantitySpan}
         />
-        {/* //TODO }
-        {/* <input type="text" placeholder="price" className={s.priceSpan} /> */}
-        <input type="text" placeholder="discount" className={s.discountSpan} />
-        <input type="text" placeholder="total sum" className={s.sumSpan} />
+
+        <input type="text" placeholder="price" className={s.priceSpan} />
+        <input type="text" placeholder="discount" className={s.sumSpan} />
+        <input
+          type="text"
+          placeholder="total sum"
+          className={s.prepaymentSpan}
+        />
         <input type="text" placeholder="note" className={s.noteSpan} />
       </div>
     );

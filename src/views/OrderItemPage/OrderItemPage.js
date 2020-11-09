@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
@@ -53,6 +53,7 @@ export default function OrderItemPage() {
         <span className={s.nameSpan}>Артикул</span>
         <span className={s.positionsSpan}>Цвет</span>
         <span className={s.quantitySpan}>Количество</span>
+        <span className={s.priceSpan}>Цена</span>
         <span className={s.sumSpan}>Скидка </span>
         <span className={s.prepaymentSpan}>Сумма</span>
         <span className={s.noteSpan}>Примечание</span>
