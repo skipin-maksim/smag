@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const changeBaseUrl = () =>
-  (axios.defaults.baseURL = 'https://api.rivatbank.ua/');
+  (axios.defaults.baseURL = 'https://api.privatbank.ua/');
 
 const pickUpCurrencyData = async () => {
   changeBaseUrl();
