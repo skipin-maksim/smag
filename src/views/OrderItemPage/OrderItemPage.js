@@ -51,11 +51,11 @@ export default function OrderItemPage() {
       <div className={s.customerOrderTitletLine}>
         <span className={s.numSpan}>№</span>
         <span className={s.nameSpan}>Артикул</span>
-        <span className={s.positionsSpan}>Цвет</span>
+        <span className={`${s.colorSpan} ${s.colorSpanText}`}>Цвет</span>
         <span className={s.quantitySpan}>Количество</span>
         <span className={s.priceSpan}>Цена</span>
-        <span className={s.sumSpan}>Скидка </span>
-        <span className={s.prepaymentSpan}>Сумма</span>
+        <span className={s.discountSpan}>Скидка </span>
+        <span className={s.sumSpan}>Сумма</span>
         <span className={s.noteSpan}>Примечание</span>
       </div>
       <div className={s.windowOrders}>

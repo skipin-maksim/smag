@@ -141,14 +141,18 @@
   width: 15%;
 }
 
-.positionsSpan {
+.colorSpan {
   width: 31%;
 }
 
 .quantitySpan,
 .priceSpan,
+.discountSpan,
 .sumSpan,
-.prepaymentSpan,
 .noteSpan {
   width: 10%;
+}
+
+.colorSpanText {
+  width: 30%;
 }

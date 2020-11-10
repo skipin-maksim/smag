@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import colorsList from '../../data/colorsList';
 
 export default function LineOrderProduct() {
   const [checkbox, setCheckbox] = useState(false);
@@ -15,6 +17,8 @@ export default function LineOrderProduct() {
   const [colorValue, setColorValue] = useState('');
   const handleColorValue = evt => {
     setColorValue(evt.target.value);
+
+    if (colorValue) return; /* colorValue = unused const! */
   };
 
   const [numberValue, setNumberValue] = useState('');
@@ -57,12 +61,21 @@ export default function LineOrderProduct() {
         value={artValue}
         className={s.nameSpan}
       />
-      <input
-        type="text"
-        placeholder="цвет"
-        onChange={handleColorValue}
-        value={colorValue}
-        className={s.positionsSpan}
+      <Autocomplete
+        className={s.colorSpan}
+        style={{ textAlign: 'center' }}
+        // id="free-solo-demo"
+        // freeSolo
+        options={colorsList.map(option => option.title)}
+        renderInput={params => (
+          <div ref={params.InputProps.ref}>
+            <input
+              type="text"
+              {...params.inputProps}
+              onBlur={handleColorValue}
+            />
+          </div>
+        )}
       />
       <input
         type="number"
@@ -83,14 +96,14 @@ export default function LineOrderProduct() {
         placeholder="скидка"
         onChange={handleDiscountValue}
         value={discountValue}
-        className={s.sumSpan}
+        className={s.discountSpan}
       />
       <input
         type="number"
         placeholder="number"
         onChange={handleSumValue}
         value={sumValue}
-        className={s.prepaymentSpan}
+        className={s.sumSpan}
       />
       <input
         type="text"
