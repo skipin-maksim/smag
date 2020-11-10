@@ -59,12 +59,14 @@ export default function OrderItemPage() {
         <span className={s.noteSpan}>Примечание</span>
       </div>
       <div className={s.windowOrders}>
-        <ul className={s.customerOrderList}>
-          <LineOrderProduct />
-          {/* {ordersList.map((item, idx) => {
+        <form>
+          <ul className={s.customerOrderList}>
+            <LineOrderProduct />
+            {/* {ordersList.map((item, idx) => {
             return <CustomerOrderItem key={item.id} idx={idx} id={item.id} />;
           })} */}
-        </ul>
+          </ul>
+        </form>
       </div>
 
       <div className={s.orderWrapper}></div>

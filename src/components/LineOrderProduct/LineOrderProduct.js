@@ -43,7 +43,7 @@ export default function LineOrderProduct() {
   };
 
   return (
-    <form className={s.lineProduct}>
+    <div className={s.lineProduct}>
       <span className={s.numSpan}>1</span>
       <input
         type="checkbox"
@@ -99,6 +99,6 @@ export default function LineOrderProduct() {
         value={noteValue}
         className={s.noteSpan}
       />
-    </form>
+    </div>
   );
 }
