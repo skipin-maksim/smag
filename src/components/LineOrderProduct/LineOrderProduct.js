@@ -1,78 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { ordersActions, ordersSelectors } from '../../redux/orders';
 import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
+
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
 
-export default function LineOrderProduct() {
-  const [checkbox, setCheckbox] = useState(false);
-  const handleCheckBox = () => {
-    setCheckbox(!checkbox);
-  };
-
-  const [artValue, setArtValue] = useState('');
-  const handleArtValue = evt => {
-    setArtValue(evt.target.value);
-  };
-
-  const [colorValue, setColorValue] = useState('');
-  const handleColorValue = evt => {
-    setColorValue(evt.target.value);
-
-    if (colorValue) return; /* colorValue = unused const! */
-  };
-
-  const [numberValue, setNumberValue] = useState('');
-  const handleNumberValue = evt => {
-    setNumberValue(evt.target.value);
-  };
-
-  const [priceValue, setPriceValue] = useState('');
-  const handlePriceValue = evt => {
-    setPriceValue(evt.target.value);
-  };
-
-  const [discountValue, setDiscountValue] = useState('');
-  const handleDiscountValue = evt => {
-    setDiscountValue(evt.target.value);
-  };
-
-  const [sumValue, setSumValue] = useState('');
-  const handleSumValue = evt => {
-    setSumValue(evt.target.value);
-  };
-
-  const [noteValue, setNoteValue] = useState('');
-  const handleNoteValue = evt => {
-    setNoteValue(evt.target.value);
-  };
+const LineOrderProduct = ({ onChangeInput, ...props }) => {
+  const { id, art, quantity, price, discount, sum, note, colorDefault } = props;
 
   return (
-    <div className={s.lineProduct}>
+    <li className={s.lineProduct}>
       <span className={s.numSpan}>1</span>
-      <input
-        type="checkbox"
-        onChange={handleCheckBox}
-        className={s.checkboxItem}
-      />
+      <input type="checkbox" className={s.checkboxItem} />
       <input
         type="text"
         placeholder="артикул"
-        onChange={handleArtValue}
-        value={artValue}
+        onBlur={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        value={art}
+        name="art"
         className={s.nameSpan}
       />
       <Autocomplete
+        defaultValue={colorDefault}
         className={s.colorSpan}
         style={{ textAlign: 'center' }}
-        // id="free-solo-demo"
-        // freeSolo
         options={colorsList.map(option => option.title)}
         renderInput={params => (
           <div ref={params.InputProps.ref}>
             <input
               type="text"
+              name="color"
+              value={params.inputProps.value}
+              onBlur={({ target }) =>
+                onChangeInput({
+                  ...params.inputProps,
+                  name: target.name,
+                  id: id,
+                })
+              }
               {...params.inputProps}
-              onBlur={handleColorValue}
             />
           </div>
         )}
@@ -80,38 +49,65 @@ export default function LineOrderProduct() {
       <input
         type="number"
         placeholder="количество"
-        onChange={handleNumberValue}
-        value={numberValue}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        name="quantity"
+        value={quantity}
         className={s.quantitySpan}
       />
       <input
         type="number"
         placeholder="цена"
-        onChange={handlePriceValue}
-        value={priceValue}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        name="price"
+        value={price}
         className={s.priceSpan}
+        disabled
       />
       <input
         type="number"
         placeholder="скидка"
-        onChange={handleDiscountValue}
-        value={discountValue}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        name="discount"
+        value={discount}
         className={s.discountSpan}
       />
       <input
         type="number"
         placeholder="number"
-        onChange={handleSumValue}
-        value={sumValue}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        name="sum"
+        value={sum}
         className={s.sumSpan}
+        disabled
       />
       <input
         type="text"
         placeholder="заметка"
-        onChange={handleNoteValue}
-        value={noteValue}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        name="note"
+        value={note}
         className={s.noteSpan}
       />
-    </div>
+    </li>
   );
-}
+};
+
+const mSTP = (state, { id }) => ({
+  getProductLineById: ordersSelectors.getProductLineById(state, id),
+});
+const mDTP = (dispatch, { id }) => ({
+  onChangeInput: values =>
+    dispatch(ordersActions.changeLineProductInput({ id, ...values })),
+});
+
+export default connect(mSTP, mDTP)(LineOrderProduct);

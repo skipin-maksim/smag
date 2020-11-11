@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ordersActions, ordersSelectors } from '../../redux/orders';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
-// import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import LineOrderProduct from '../../components/LineOrderProduct/LineOrderProduct';
 import s from './OrderItemPage.module.scss';
 
-export default function OrderItemPage() {
+const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
+  const handleAddLineProduct = () => {
+    console.log('hi');
+    console.log(onCreateLineProduct({}));
+  };
+
+  console.log(allProducts);
+
   return (
     <div className={s.orderPage}>
       <div className={s.ordersSettings}>
@@ -25,14 +32,13 @@ export default function OrderItemPage() {
 
         <div className={s.settingButtons}>
           <Tooltip title={'Добавить товар'} arrow>
-            <Link
-              to={`/`}
-              // onClick={this.handleAddLineProduct}
+            <button
+              onClick={handleAddLineProduct}
               className={`${s.settingButton} ${s.addBtn}`}
             >
               <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
               <div className="visually-hidden">Добавить заказ</div>
-            </Link>
+            </button>
           </Tooltip>
 
           <Tooltip title={'Удалить товар'} arrow>
@@ -61,10 +67,15 @@ export default function OrderItemPage() {
       <div className={s.windowOrders}>
         <form>
           <ul className={s.customerOrderList}>
-            <LineOrderProduct />
-            {/* {ordersList.map((item, idx) => {
-            return <CustomerOrderItem key={item.id} idx={idx} id={item.id} />;
-          })} */}
+            {allProducts.map((item, idx) => {
+              return (
+                <LineOrderProduct
+                  key={item.id}
+                  id={item.id}
+                  colorDefault={item.color}
+                />
+              );
+            })}
           </ul>
         </form>
       </div>
@@ -72,4 +83,13 @@ export default function OrderItemPage() {
       <div className={s.orderWrapper}></div>
     </div>
   );
-}
+};
+
+const mSTP = state => ({
+  allProducts: ordersSelectors.getAllProducts(state),
+});
+const mDTP = {
+  onCreateLineProduct: ordersActions.createLineProduct,
+};
+
+export default connect(mSTP, mDTP)(OrderItemPage);

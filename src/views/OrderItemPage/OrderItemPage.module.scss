@@ -151,6 +151,10 @@
 .sumSpan,
 .noteSpan {
   width: 10%;
+
+  &:disabled {
+    background-color: transparent;
+  }
 }
 
 .colorSpanText {

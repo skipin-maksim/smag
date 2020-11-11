@@ -4,6 +4,28 @@ import { createReducer } from '@reduxjs/toolkit';
 import { ordersActions } from './';
 
 const initNumOrder = { valueNum: 0, valueStr: '0' };
+const initAllProducts = [
+  {
+    id: 1,
+    art: '',
+    color: 'черный (nero)',
+    quantity: '',
+    price: '',
+    discount: '',
+    sum: '',
+    note: '',
+  },
+  {
+    id: 2,
+    art: '',
+    color: 'красный (rosso)',
+    quantity: '',
+    price: '',
+    discount: '',
+    sum: '',
+    note: '',
+  },
+];
 
 const addOrder = state => {
   const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
@@ -31,7 +53,22 @@ const allOrders = createReducer([], {
     getAllOrdersSuccess(state, payload),
 });
 
+const allProducts = createReducer(initAllProducts, {
+  [ordersActions.createLineProduct]: (state, { payload }) => ({
+    ...state,
+    ...payload,
+  }),
+  [ordersActions.changeLineProductInput]: (state, { payload }) => {
+    return state.map(item => {
+      return item.id === payload.id
+        ? { ...item, [payload.name]: payload.value }
+        : item;
+    });
+  },
+});
+
 export default combineReducers({
   allOrders,
+  allProducts,
   numOrder,
 });
