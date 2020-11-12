@@ -1,13 +1,10 @@
 import axios from 'axios';
 
-const changeBaseUrl = () =>
-  (axios.defaults.baseURL = 'https://api.privatbank.ua/');
-
 const pickUpCurrencyData = async () => {
-  changeBaseUrl();
+  axios.defaults.baseURL = 'https://api.privatbank.ua/';
 
   try {
-    const { data } = await axios.get(`p24api/pubinfo?json&exchange&coursid=5`);
+    const { data } = await axios(`p24api/pubinfo?json&exchange&coursid=5`);
 
     if (data) {
       const updatedData = {};

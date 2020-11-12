@@ -2,15 +2,13 @@ import axios from 'axios';
 
 import { ordersActions } from './';
 
-const changeBaseUrl = () => (axios.defaults.baseURL = 'http://localhost:2000');
+const baseUrl = 'http://localhost:2000';
 
 const getCurrentNumOrder = () => async dispatch => {
-  changeBaseUrl();
-
   dispatch(ordersActions.numOrderRequest());
 
   try {
-    const { data } = await axios('/numorder');
+    const { data } = await axios(`${baseUrl}/numorder`);
 
     console.log('numOrder:', data);
 
@@ -21,12 +19,10 @@ const getCurrentNumOrder = () => async dispatch => {
 };
 
 const getAllOrders = () => async dispatch => {
-  changeBaseUrl();
-
   dispatch(ordersActions.getAllOrdersRequest());
 
   try {
-    const { data } = await axios('/orders');
+    const { data } = await axios(`${baseUrl}/orders`);
 
     console.log('orders:', data);
 
@@ -37,12 +33,10 @@ const getAllOrders = () => async dispatch => {
 };
 
 const getPriceByArt = art => async dispatch => {
-  changeBaseUrl();
-
   dispatch(ordersActions.getPriceByArtRequest());
 
   try {
-    const { data } = await axios(`/products/${art}`);
+    const { data } = await axios(`${baseUrl}/products/${art}`);
 
     dispatch(ordersActions.getPriceByArtSuccess(data));
   } catch (error) {
