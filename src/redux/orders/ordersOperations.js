@@ -37,6 +37,8 @@ const getAllOrders = () => async dispatch => {
 };
 
 const getPriceByArt = art => async dispatch => {
+  changeBaseUrl();
+
   dispatch(ordersActions.getPriceByArtRequest());
 
   try {
