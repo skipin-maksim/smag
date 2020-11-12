@@ -1,4 +1,5 @@
 export default [
+  { title: 'выберите цвет' },
   { title: 'красный (rosso)' },
   { title: 'черный (nero)' },
   { title: 'белый (bianco)' },

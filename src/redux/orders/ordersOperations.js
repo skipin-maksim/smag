@@ -36,4 +36,17 @@ const getAllOrders = () => async dispatch => {
   }
 };
 
-export default { getCurrentNumOrder, getAllOrders };
+const getPriceByArt = art => async dispatch => {
+  dispatch(ordersActions.getPriceByArtRequest());
+
+  try {
+    const { data } = await axios(`/products/${art}`);
+
+    dispatch(ordersActions.getPriceByArtSuccess(data));
+  } catch (error) {
+    console.error(error);
+    dispatch(ordersActions.getPriceByArtError(error));
+  }
+};
+
+export default { getCurrentNumOrder, getAllOrders, getPriceByArt };

@@ -8,7 +8,7 @@ const initAllProducts = [
   {
     id: 1,
     art: '',
-    color: 'черный (nero)',
+    color: '',
     quantity: '',
     price: '',
     discount: '',
@@ -18,7 +18,7 @@ const initAllProducts = [
   {
     id: 2,
     art: '',
-    color: 'красный (rosso)',
+    color: '',
     quantity: '',
     price: '',
     discount: '',
@@ -36,19 +36,20 @@ const addOrder = state => {
   };
 };
 const getAllOrdersSuccess = (state, payload) => [...state, ...payload];
+const changeLineProductInput = (state, payload) =>
+  state.map(item => {
+    return item.id === payload.id
+      ? { ...item, [payload.name]: payload.value }
+      : item;
+  });
 
 const numOrder = createReducer(initNumOrder, {
   [ordersActions.addOrder]: (state, _) => addOrder(state),
   [ordersActions.numOrderSuccess]: (_, { payload }) => payload,
   [ordersActions.saveOrder]: () => {},
-  // [tabsActions.removeTab]: (state, { payload }) => {
-  //   if (state.length === 1) return;
-  //   return state.filter(item => item.name !== payload);
-  // },
 });
 
 const allOrders = createReducer([], {
-  // [ordersActions.addOrder]: (state, { payload }) => {},
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) =>
     getAllOrdersSuccess(state, payload),
 });
@@ -58,13 +59,14 @@ const allProducts = createReducer(initAllProducts, {
     ...state,
     ...payload,
   }),
-  [ordersActions.changeLineProductInput]: (state, { payload }) => {
-    return state.map(item => {
-      return item.id === payload.id
-        ? { ...item, [payload.name]: payload.value }
+  [ordersActions.changeLineProductInput]: (state, { payload }) =>
+    changeLineProductInput(state, payload),
+  [ordersActions.getPriceByArtSuccess]: (state, { payload }) =>
+    state.map(item => {
+      return item.art === payload.art
+        ? { ...item, price: payload.prices.wholesale }
         : item;
-    });
-  },
+    }),
 });
 
 export default combineReducers({

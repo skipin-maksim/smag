@@ -4,6 +4,10 @@ const getAllOrdersRequest = createAction('order/getAllOrderRequest');
 const getAllOrdersSuccess = createAction('order/getAllOrderSuccess');
 const getAllOrdersError = createAction('order/getAllOrderError');
 
+const getPriceByArtRequest = createAction('order/getPriceByArtRequest');
+const getPriceByArtSuccess = createAction('order/getPriceByArtSuccess');
+const getPriceByArtError = createAction('order/getPriceByArtError');
+
 const addOrder = createAction('order/addOrder');
 const removeOrder = createAction('order/removeOrder');
 const editOrder = createAction('order/editOrder');
@@ -20,6 +24,10 @@ export default {
   getAllOrdersRequest,
   getAllOrdersSuccess,
   getAllOrdersError,
+
+  getPriceByArtRequest,
+  getPriceByArtSuccess,
+  getPriceByArtError,
 
   numOrderRequest,
   numOrderSuccess,

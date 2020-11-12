@@ -68,13 +68,7 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
         <form>
           <ul className={s.customerOrderList}>
             {allProducts.map((item, idx) => {
-              return (
-                <LineOrderProduct
-                  key={item.id}
-                  id={item.id}
-                  colorDefault={item.color}
-                />
-              );
+              return <LineOrderProduct key={item.id} id={item.id} />;
             })}
           </ul>
         </form>

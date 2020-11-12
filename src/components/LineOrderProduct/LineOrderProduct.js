@@ -1,13 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ordersActions, ordersSelectors } from '../../redux/orders';
+import {
+  ordersActions,
+  ordersOperations,
+  ordersSelectors,
+} from '../../redux/orders';
 import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
 
-const LineOrderProduct = ({ onChangeInput, ...props }) => {
-  const { id, art, quantity, price, discount, sum, note, colorDefault } = props;
+const LineOrderProduct = ({
+  onChangeInput,
+  onGetArticlePrice,
+
+  ...props
+}) => {
+  const { id, getProductLineById } = props;
+
+  const handleArticle = (artValue, name) => {
+    onChangeInput({ value: artValue, name });
+
+    onGetArticlePrice(artValue);
+  };
 
   return (
     <li className={s.lineProduct}>
@@ -16,15 +31,15 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
       <input
         type="text"
         placeholder="артикул"
-        onBlur={({ target }) =>
-          onChangeInput({ value: target.value, name: target.name })
-        }
-        value={art}
+        onChange={({ target }) => handleArticle(target.value, target.name)}
+        value={getProductLineById.art}
         name="art"
         className={s.nameSpan}
       />
       <Autocomplete
-        defaultValue={colorDefault}
+        defaultValue={
+          getProductLineById.color ? getProductLineById.color : 'выберите цвет'
+        }
         className={s.colorSpan}
         style={{ textAlign: 'center' }}
         options={colorsList.map(option => option.title)}
@@ -53,7 +68,7 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
           onChangeInput({ value: target.value, name: target.name })
         }
         name="quantity"
-        value={quantity}
+        value={getProductLineById.quantity}
         className={s.quantitySpan}
       />
       <input
@@ -63,7 +78,7 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
           onChangeInput({ value: target.value, name: target.name })
         }
         name="price"
-        value={price}
+        value={getProductLineById.price}
         className={s.priceSpan}
         disabled
       />
@@ -74,7 +89,7 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
           onChangeInput({ value: target.value, name: target.name })
         }
         name="discount"
-        value={discount}
+        value={getProductLineById.discount}
         className={s.discountSpan}
       />
       <input
@@ -84,7 +99,7 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
           onChangeInput({ value: target.value, name: target.name })
         }
         name="sum"
-        value={sum}
+        value={getProductLineById.sum}
         className={s.sumSpan}
         disabled
       />
@@ -95,7 +110,7 @@ const LineOrderProduct = ({ onChangeInput, ...props }) => {
           onChangeInput({ value: target.value, name: target.name })
         }
         name="note"
-        value={note}
+        value={getProductLineById.note}
         className={s.noteSpan}
       />
     </li>
@@ -108,6 +123,8 @@ const mSTP = (state, { id }) => ({
 const mDTP = (dispatch, { id }) => ({
   onChangeInput: values =>
     dispatch(ordersActions.changeLineProductInput({ id, ...values })),
+
+  onGetArticlePrice: art => dispatch(ordersOperations.getPriceByArt(art)),
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

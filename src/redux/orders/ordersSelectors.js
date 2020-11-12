@@ -8,7 +8,7 @@ const getCurrentOrderNum = state => state.orders.numOrder;
 const getAllProducts = state => state.orders.allProducts;
 
 const getProductLineById = (state, id) =>
-  state.orders.allProducts.find(item => item.id === id);
+  getAllProducts(state).find(item => item.id === id);
 
 export default {
   getOrdersList,

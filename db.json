@@ -16,7 +16,8 @@
   ],
   "products": [
     {
-      "art": 85080,
+      "id": 85080,
+      "art": "85080",
       "prices": {
         "retail": 20,
         "wholesale": 35
@@ -24,7 +25,8 @@
       "dimensions": "20х20х50"
     },
     {
-      "art": 85081,
+      "id": 85081,
+      "art": "85081",
       "prices": {
         "retail": 25,
         "wholesale": 40
@@ -32,7 +34,8 @@
       "dimensions": "20х20х50"
     },
     {
-      "art": 85082,
+      "id": 85082,
+      "art": "85082",
       "prices": {
         "retail": 30,
         "wholesale": 45
@@ -40,7 +43,8 @@
       "dimensions": "20х20х50"
     },
     {
-      "art": 85083,
+      "id": 85083,
+      "art": "85083",
       "prices": {
         "retail": 35,
         "wholesale": 50
