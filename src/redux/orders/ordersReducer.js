@@ -7,24 +7,26 @@ const initNumOrder = { valueNum: 0, valueStr: '0' };
 const initAllProducts = [
   {
     id: 1,
+    checkProduct: false,
     art: '',
     color: '',
-    quantity: '',
-    price: '',
-    discount: '',
-    sum: '',
+    quantity: '1',
+    price: '0',
+    discount: '0',
+    sum: '0',
     note: '',
   },
-  {
-    id: 2,
-    art: '',
-    color: '',
-    quantity: '',
-    price: '',
-    discount: '',
-    sum: '',
-    note: '',
-  },
+  // {
+  //   id: 2,
+  //   checkProduct: false,
+  //   art: '',
+  //   color: '',
+  //   quantity: '1',
+  //   price: '0',
+  //   discount: '0',
+  //   sum: '0',
+  //   note: '',
+  // },
 ];
 
 const addOrder = state => {
@@ -40,6 +42,26 @@ const changeLineProductInput = (state, payload) =>
   state.map(item => {
     return item.id === payload.id
       ? { ...item, [payload.name]: payload.value }
+      : item;
+  });
+const changeLineProductInputQuantity = (state, payload) =>
+  state.map(item => {
+    return item.id === payload.id
+      ? { ...item, [payload.name]: payload.value }
+      : item;
+  });
+const calculateSum = (state, payload) =>
+  state.map(item => {
+    return item.id === payload.id
+      ? {
+          ...item,
+          sum:
+            Number(item.quantity) * Number(item.price) -
+            (Number(item.quantity) *
+              Number(item.price) *
+              Number(item.discount)) /
+              100,
+        }
       : item;
   });
 
@@ -67,6 +89,10 @@ const allProducts = createReducer(initAllProducts, {
         ? { ...item, price: payload.prices.wholesale }
         : item;
     }),
+  [ordersActions.changeLineProductInputQuantity]: (state, { payload }) =>
+    changeLineProductInputQuantity(state, payload),
+  [ordersActions.calculateSum]: (state, { payload }) =>
+    calculateSum(state, payload),
 });
 
 export default combineReducers({

@@ -6,12 +6,17 @@ import {
   ordersSelectors,
 } from '../../redux/orders';
 import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
+import sc from './LineOrderProduct.module.scss';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
 
+//TODO подключить библиотеку lodash: debounce в артикул
+
 const LineOrderProduct = ({
   onChangeInput,
+  onChangeInputQuantity,
+  onCalculateSum,
   onGetArticlePrice,
 
   ...props
@@ -24,11 +29,33 @@ const LineOrderProduct = ({
     onGetArticlePrice(artValue);
   };
 
+  const handleQuantity = (artValue, name) => {
+    onChangeInputQuantity({ value: artValue, name });
+
+    onCalculateSum();
+  };
+
+  const handleDiscount = (artValue, name) => {
+    onChangeInput({ value: artValue, name });
+
+    onCalculateSum();
+  };
+
   return (
     <li className={s.lineProduct}>
       <span className={s.numSpan}>1</span>
-      <input type="checkbox" className={s.checkboxItem} />
+      <label className={`${s.checkboxItem} ${sc.checkboxOther}`}>
+        <input
+          type="checkbox"
+          name="checkProduct"
+          onChange={({ target }) =>
+            onChangeInput({ value: target.checked, name: target.name })
+          }
+        />
+        <span></span>
+      </label>
       <input
+        autoComplete="off"
         type="text"
         placeholder="артикул"
         onChange={({ target }) => handleArticle(target.value, target.name)}
@@ -37,6 +64,7 @@ const LineOrderProduct = ({
         className={s.nameSpan}
       />
       <Autocomplete
+        disabled={!getProductLineById.art}
         defaultValue={
           getProductLineById.color ? getProductLineById.color : 'выберите цвет'
         }
@@ -46,6 +74,7 @@ const LineOrderProduct = ({
         renderInput={params => (
           <div ref={params.InputProps.ref}>
             <input
+              {...params.inputProps}
               type="text"
               name="color"
               value={params.inputProps.value}
@@ -56,7 +85,6 @@ const LineOrderProduct = ({
                   id: id,
                 })
               }
-              {...params.inputProps}
             />
           </div>
         )}
@@ -64,12 +92,11 @@ const LineOrderProduct = ({
       <input
         type="number"
         placeholder="количество"
-        onChange={({ target }) =>
-          onChangeInput({ value: target.value, name: target.name })
-        }
+        onChange={({ target }) => handleQuantity(target.value, target.name)}
         name="quantity"
         value={getProductLineById.quantity}
         className={s.quantitySpan}
+        disabled={!getProductLineById.art}
       />
       <input
         type="number"
@@ -79,18 +106,17 @@ const LineOrderProduct = ({
         }
         name="price"
         value={getProductLineById.price}
-        className={s.priceSpan}
+        className={`${s.priceSpan} ${getProductLineById.art && s.disabled}`}
         disabled
       />
       <input
         type="number"
         placeholder="скидка"
-        onChange={({ target }) =>
-          onChangeInput({ value: target.value, name: target.name })
-        }
+        onChange={({ target }) => handleDiscount(target.value, target.name)}
         name="discount"
         value={getProductLineById.discount}
         className={s.discountSpan}
+        disabled={!getProductLineById.art}
       />
       <input
         type="number"
@@ -100,10 +126,11 @@ const LineOrderProduct = ({
         }
         name="sum"
         value={getProductLineById.sum}
-        className={s.sumSpan}
+        className={`${s.sumSpan} ${getProductLineById.art && s.disabled}`}
         disabled
       />
       <input
+        autoComplete="off"
         type="text"
         placeholder="заметка"
         onChange={({ target }) =>
@@ -112,6 +139,7 @@ const LineOrderProduct = ({
         name="note"
         value={getProductLineById.note}
         className={s.noteSpan}
+        disabled={!getProductLineById.art}
       />
     </li>
   );
@@ -123,8 +151,11 @@ const mSTP = (state, { id }) => ({
 const mDTP = (dispatch, { id }) => ({
   onChangeInput: values =>
     dispatch(ordersActions.changeLineProductInput({ id, ...values })),
+  onChangeInputQuantity: values =>
+    dispatch(ordersActions.changeLineProductInputQuantity({ id, ...values })),
+  onGetArticlePrice: art => dispatch(ordersOperations.getPriceByArt(art, id)),
 
-  onGetArticlePrice: art => dispatch(ordersOperations.getPriceByArt(art)),
+  onCalculateSum: () => dispatch(ordersActions.calculateSum({ id })),
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

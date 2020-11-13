@@ -32,13 +32,14 @@ const getAllOrders = () => async dispatch => {
   }
 };
 
-const getPriceByArt = art => async dispatch => {
+const getPriceByArt = (art, id) => async dispatch => {
   dispatch(ordersActions.getPriceByArtRequest());
 
   try {
     const { data } = await axios(`${baseUrl}/products/${art}`);
 
     dispatch(ordersActions.getPriceByArtSuccess(data));
+    dispatch(ordersActions.calculateSum({ id }));
   } catch (error) {
     console.error(error);
     dispatch(ordersActions.getPriceByArtError(error));

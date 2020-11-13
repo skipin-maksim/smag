@@ -15,6 +15,10 @@ const saveOrder = createAction('order/saveOrder');
 
 const createLineProduct = createAction('order/createLineProduct');
 const changeLineProductInput = createAction('order/changeLineProductInput');
+const changeLineProductInputQuantity = createAction(
+  'order/changeLineProductInputQuantity',
+);
+const calculateSum = createAction('orders/calculateSum');
 
 const numOrderRequest = createAction('order/numOrderRequest');
 const numOrderSuccess = createAction('order/numOrderSuccess');
@@ -35,6 +39,8 @@ export default {
 
   createLineProduct,
   changeLineProductInput,
+  changeLineProductInputQuantity,
+  calculateSum,
 
   addOrder,
   removeOrder,

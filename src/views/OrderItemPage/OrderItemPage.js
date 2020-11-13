@@ -12,11 +12,8 @@ import s from './OrderItemPage.module.scss';
 
 const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
   const handleAddLineProduct = () => {
-    console.log('hi');
     console.log(onCreateLineProduct({}));
   };
-
-  console.log(allProducts);
 
   return (
     <div className={s.orderPage}>

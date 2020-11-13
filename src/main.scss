@@ -39,6 +39,15 @@ input {
     border: 1px solid #1c2b4a;
     outline: none;
   }
+
+  &:disabled {
+    background-color: transparent;
+    color: #dadada;
+
+    &::placeholder {
+      color: #dadada;
+    }
+  }
 }
 
 // !for hide arrows in input type 'number'
