@@ -1,7 +1,7 @@
 import toastr from 'toastr';
 import 'toastr/build/toastr.css';
 
-export const notification = (toastr.options = {
+toastr.options = {
   closeButton: true,
   debug: false,
   newestOnTop: false,
@@ -17,4 +17,6 @@ export const notification = (toastr.options = {
   hideEasing: 'linear',
   showMethod: 'fadeIn',
   hideMethod: 'fadeOut',
-});
+};
+
+export default toastr;
