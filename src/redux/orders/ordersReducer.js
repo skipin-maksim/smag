@@ -16,17 +16,6 @@ const initAllProducts = [
     sum: '0',
     note: '',
   },
-  // {
-  //   id: 2,
-  //   checkProduct: false,
-  //   art: '',
-  //   color: '',
-  //   quantity: '1',
-  //   price: '0',
-  //   discount: '0',
-  //   sum: '0',
-  //   note: '',
-  // },
 ];
 
 const addOrder = state => {
@@ -64,6 +53,24 @@ const calculateSum = (state, payload) =>
         }
       : item;
   });
+const createLineProduct = state => {
+  const newId = state.length + 1;
+
+  return [
+    ...state,
+    {
+      id: newId,
+      checkProduct: false,
+      art: '',
+      color: '',
+      quantity: '1',
+      price: '0',
+      discount: '0',
+      sum: '0',
+      note: '',
+    },
+  ];
+};
 
 const numOrder = createReducer(initNumOrder, {
   [ordersActions.addOrder]: (state, _) => addOrder(state),
@@ -77,10 +84,7 @@ const allOrders = createReducer([], {
 });
 
 const allProducts = createReducer(initAllProducts, {
-  [ordersActions.createLineProduct]: (state, { payload }) => ({
-    ...state,
-    ...payload,
-  }),
+  [ordersActions.createLineProduct]: state => createLineProduct(state),
   [ordersActions.changeLineProductInput]: (state, { payload }) =>
     changeLineProductInput(state, payload),
   [ordersActions.getPriceByArtSuccess]: (state, { payload }) =>

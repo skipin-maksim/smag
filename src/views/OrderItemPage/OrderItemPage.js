@@ -11,10 +11,6 @@ import LineOrderProduct from '../../components/LineOrderProduct/LineOrderProduct
 import s from './OrderItemPage.module.scss';
 
 const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
-  const handleAddLineProduct = () => {
-    console.log(onCreateLineProduct({}));
-  };
-
   return (
     <div className={s.orderPage}>
       <div className={s.ordersSettings}>
@@ -30,7 +26,7 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
         <div className={s.settingButtons}>
           <Tooltip title={'Добавить товар'} arrow>
             <button
-              onClick={handleAddLineProduct}
+              onClick={() => onCreateLineProduct()}
               className={`${s.settingButton} ${s.addBtn}`}
             >
               <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
@@ -64,7 +60,7 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
       <div className={s.windowOrders}>
         <form>
           <ul className={s.customerOrderList}>
-            {allProducts.map((item, idx) => {
+            {allProducts.map(item => {
               return <LineOrderProduct key={item.id} id={item.id} />;
             })}
           </ul>

@@ -43,7 +43,7 @@ const LineOrderProduct = ({
 
   return (
     <li className={s.lineProduct}>
-      <span className={s.numSpan}>1</span>
+      <span className={s.numSpan}>{id}</span>
       <label className={`${s.checkboxItem} ${sc.checkboxOther}`}>
         <input
           type="checkbox"
