@@ -84,7 +84,7 @@ class OrdersPage extends React.Component {
         </div>
 
         <div className={s.tableTitletLine}>
-          <CheckBox />
+          <CheckBox choiceOption="checkAllOrders" />
           <span>№</span>
           <span>Контрагент</span>
           <span>Позиций</span>

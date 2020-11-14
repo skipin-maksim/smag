@@ -27,12 +27,17 @@ const addOrder = state => {
   };
 };
 const getAllOrdersSuccess = (state, payload) => [...state, ...payload];
-const changeLineProductInput = (state, payload) =>
-  state.map(item => {
+const changeLineProductInput = (state, payload) => {
+  return state.map(item => {
+    if (payload.choiceOption === 'checkAllProducts') {
+      return { ...item, [payload.name]: payload.value };
+    }
+
     return item.id === payload.id
       ? { ...item, [payload.name]: payload.value }
       : item;
   });
+};
 const changeLineProductInputQuantity = (state, payload) =>
   state.map(item => {
     return item.id === payload.id

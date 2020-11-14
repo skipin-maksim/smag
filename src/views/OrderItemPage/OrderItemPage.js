@@ -49,15 +49,15 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
       </div>
 
       <div className={s.tableTitletLine}>
-        <CheckBox />
-        <span className={s.numSpan}>№</span>
-        <span className={s.vendorCodeSpan}>Артикул</span>
-        <span className={`${s.colorSpan} ${s.colorSpanText}`}>Цвет</span>
-        <span className={s.quantitySpan}>Кол-во</span>
-        <span className={s.priceSpan}>Цена</span>
-        <span className={s.discountSpan}>Скидка </span>
-        <span className={s.sumSpan}>Сумма</span>
-        <span className={s.noteSpan}>Примечание</span>
+        <CheckBox choiceOption="checkAllProducts" />
+        <span>№</span>
+        <span>Артикул</span>
+        <span>Цвет</span>
+        <span>Кол-во</span>
+        <span>Цена</span>
+        <span>Скидка </span>
+        <span>Сумма</span>
+        <span>Примечание</span>
       </div>
       <div className={s.windowOrders}>
         <form>

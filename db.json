@@ -61,6 +61,7 @@
       "totalQuantity": 100,
       "sum": 1000,
       "prepayment": 100,
+      "checkOrder": false,
       "products": []
     },
     {
@@ -71,6 +72,7 @@
       "totalQuantity": 200,
       "sum": 2000,
       "prepayment": 200,
+      "checkOrder": false,
       "products": []
     },
     {
@@ -81,6 +83,7 @@
       "totalQuantity": 300,
       "sum": 3000,
       "prepayment": 300,
+      "checkOrder": false,
       "products": []
     }
   ]

@@ -10,8 +10,6 @@ const getCurrentNumOrder = () => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/numorder`);
 
-    console.log('numOrder:', data);
-
     dispatch(ordersActions.numOrderSuccess(data));
   } catch (error) {
     dispatch(ordersActions.numOrderError(error));
@@ -23,8 +21,6 @@ const getAllOrders = () => async dispatch => {
 
   try {
     const { data } = await axios(`${baseUrl}/orders`);
-
-    console.log('orders:', data);
 
     dispatch(ordersActions.getAllOrdersSuccess(data));
   } catch (error) {

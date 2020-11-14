@@ -48,7 +48,7 @@ const LineOrderProduct = ({
 
   return (
     <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
-      <CheckBox />
+      <CheckBox id={id} choiceOption="product" />
       <span className={s.numSpan}>{id}</span>
       <input
         autoComplete="off"

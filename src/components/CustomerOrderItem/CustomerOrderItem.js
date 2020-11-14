@@ -11,7 +11,7 @@ function CustomerOrderItem({ idx, orderItem }) {
   const { name, positions, quantity, sum, prepayment } = orderItem;
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
-      <CheckBox />
+      <CheckBox choiceOption="checkOrder" />
       <span>{idx + 1}</span>
       <span>{name}</span>
       <span>{positions}</span>
