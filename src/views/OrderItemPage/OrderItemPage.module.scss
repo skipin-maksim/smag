@@ -96,10 +96,11 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
 }
 
-.customerOrderTitletLine {
+.tableTitletLine {
   padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 30px 60px 200px 500px 60px 100px 60px 160px 1fr;
+  // justify-content: space-between;
   align-items: center;
   text-align: center;
   border-top-left-radius: 5px;
@@ -111,12 +112,14 @@
 .lineProduct {
   padding: 10px 15px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 30px 60px 200px 500px 60px 100px 60px 160px 1fr;
   align-items: center;
+  text-align: center;
 
   & input {
     padding: 0;
+    width: 100%;
     border: none;
     text-align: center;
 
@@ -132,39 +135,13 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);
 }
 
-.checkboxItem {
-  position: absolute;
-}
-
-.numSpan {
-  width: 4%;
-  text-align: right;
-}
-
-.nameSpan {
-  width: 15%;
-}
-
-.colorSpan {
-  width: 31%;
-
-  & input {
-    width: 100%;
-  }
-}
-
-.quantitySpan,
+.vendorCodeSpan .quantitySpan,
+.colorSpan,
 .priceSpan,
 .discountSpan,
 .sumSpan,
 .noteSpan {
-  width: 10%;
-
   &:disabled {
     background-color: transparent;
   }
-}
-
-.colorSpanText {
-  width: 30%;
 }

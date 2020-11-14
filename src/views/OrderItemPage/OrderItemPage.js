@@ -6,8 +6,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
 import LineOrderProduct from '../../components/LineOrderProduct/LineOrderProduct';
+import CheckBox from '../../components/CheckBox/CheckBox';
+
 import s from './OrderItemPage.module.scss';
 
 const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
@@ -47,11 +48,12 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
         </div>
       </div>
 
-      <div className={s.customerOrderTitletLine}>
+      <div className={s.tableTitletLine}>
+        <CheckBox />
         <span className={s.numSpan}>№</span>
-        <span className={s.nameSpan}>Артикул</span>
+        <span className={s.vendorCodeSpan}>Артикул</span>
         <span className={`${s.colorSpan} ${s.colorSpanText}`}>Цвет</span>
-        <span className={s.quantitySpan}>Количество</span>
+        <span className={s.quantitySpan}>Кол-во</span>
         <span className={s.priceSpan}>Цена</span>
         <span className={s.discountSpan}>Скидка </span>
         <span className={s.sumSpan}>Сумма</span>

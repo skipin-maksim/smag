@@ -5,11 +5,13 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders';
-import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
-import sc from './LineOrderProduct.module.scss';
-
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import CheckBox from '../CheckBox/CheckBox';
+
 import colorsList from '../../data/colorsList';
+
+import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
 
 //TODO подключить библиотеку lodash: debounce в артикул
 
@@ -43,17 +45,8 @@ const LineOrderProduct = ({
 
   return (
     <li className={s.lineProduct}>
+      <CheckBox />
       <span className={s.numSpan}>{id}</span>
-      <label className={`${s.checkboxItem} ${sc.checkboxOther}`}>
-        <input
-          type="checkbox"
-          name="checkProduct"
-          onChange={({ target }) =>
-            onChangeInput({ value: target.checked, name: target.name })
-          }
-        />
-        <span></span>
-      </label>
       <input
         autoComplete="off"
         autoFocus
