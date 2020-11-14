@@ -1,0 +1,10 @@
+.mainAside {
+  position: relative;
+  grid-area: aside;
+  width: 250px;
+  height: 100vh;
+  background-color: #1c2b4a;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+  z-index: 10;
+}
