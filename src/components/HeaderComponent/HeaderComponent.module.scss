@@ -4,16 +4,16 @@
 
 .lineListTabs {
   min-height: 45px;
-  margin-left: 50px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 200px);
+  justify-content: center;
   align-items: flex-end;
+  grid-column-gap: 2px;
 }
 
 .tabLi {
   position: relative;
-  width: 200px;
   height: 30px;
-  margin: 0 1px;
   padding-right: 25px;
   font-style: italic;
   white-space: nowrap;

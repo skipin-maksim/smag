@@ -10,7 +10,6 @@ import AsideComponent from '../AsideComponent/AsideComponent';
 import Layout from '../Layout/Layout';
 import MainComponent from '../MainComponent/MainComponent';
 
-//TODO нужно сделать Redirect на "/" при обновлении страницы
 class App extends React.Component {
   componentDidMount() {
     this.props.getCerrentNumOrder();
