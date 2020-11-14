@@ -96,10 +96,10 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
 }
 
-.customerOrderTitletLine {
+.tableTitletLine {
   padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 30px 60px 500px 100px 100px 150px 150px 1fr;
   align-items: center;
   text-align: center;
   border-top-left-radius: 5px;
@@ -111,30 +111,4 @@
 .customerOrderList {
   min-height: 500px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);
-}
-
-.numSpan {
-  width: 4%;
-  text-align: right;
-}
-
-.nameSpan {
-  padding-left: 30px;
-  width: 46%;
-}
-
-.positionsSpan {
-  width: 12%;
-}
-
-.quantitySpan {
-  width: 12%;
-}
-
-.sumSpan {
-  width: 12%;
-}
-
-.prepaymentSpan {
-  width: 12%;
 }

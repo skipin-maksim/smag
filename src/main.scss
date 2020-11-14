@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-// font-family: 'Roboto', sans-serif;
 
 html {
   box-sizing: border-box;
@@ -34,6 +33,7 @@ input {
   padding: 5px 10px;
   border: 1px solid rgb(144, 144, 144);
   border-radius: 5px;
+  background-color: transparent;
 
   &:focus {
     border: 1px solid #1c2b4a;
@@ -103,4 +103,12 @@ input[type='radio'].visually-hidden {
 
 .main-content {
   width: 100%;
+}
+
+.whithLine {
+  background-color: #fff;
+}
+
+.greyLine {
+  background-color: rgba(243, 243, 243, 0.65);
 }

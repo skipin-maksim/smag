@@ -13,6 +13,7 @@ import { tabsActions } from '../../redux/tabs';
 import CustomerOrderItem from '../../components/CustomerOrderItem/CustomerOrderItem';
 
 import s from './OrdersPage.module.scss';
+import CheckBox from '../../components/CheckBox/CheckBox';
 
 class OrdersPage extends React.Component {
   handleAddLineProduct = () => {
@@ -82,13 +83,15 @@ class OrdersPage extends React.Component {
           </div>
         </div>
 
-        <div className={s.customerOrderTitletLine}>
-          <span className={s.numSpan}>№</span>
-          <span className={s.nameSpan}>Контрагент</span>
-          <span className={s.positionsSpan}>Позиций</span>
-          <span className={s.quantitySpan}>Количество</span>
-          <span className={s.sumSpan}>Сумма</span>
-          <span className={s.prepaymentSpan}>Предоплата</span>
+        <div className={s.tableTitletLine}>
+          <CheckBox />
+          <span>№</span>
+          <span>Контрагент</span>
+          <span>Позиций</span>
+          <span>Количество</span>
+          <span>Сумма</span>
+          <span>Предоплата</span>
+          <span>Заметки</span>
         </div>
         <div className={s.windowOrders}>
           <ul className={s.customerOrderList}>

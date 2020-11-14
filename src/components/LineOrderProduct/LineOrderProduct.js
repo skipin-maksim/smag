@@ -16,6 +16,7 @@ import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
 //TODO подключить библиотеку lodash: debounce в артикул
 
 const LineOrderProduct = ({
+  idx,
   onChangeInput,
   onChangeInputQuantity,
   onCalculateSum,
@@ -43,8 +44,10 @@ const LineOrderProduct = ({
     onCalculateSum();
   };
 
+  const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
+
   return (
-    <li className={s.lineProduct}>
+    <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
       <CheckBox />
       <span className={s.numSpan}>{id}</span>
       <input

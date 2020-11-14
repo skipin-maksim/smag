@@ -62,8 +62,8 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
       <div className={s.windowOrders}>
         <form>
           <ul className={s.customerOrderList}>
-            {allProducts.map(item => {
-              return <LineOrderProduct key={item.id} id={item.id} />;
+            {allProducts.map((item, idx) => {
+              return <LineOrderProduct key={item.id} id={item.id} idx={idx} />;
             })}
           </ul>
         </form>
