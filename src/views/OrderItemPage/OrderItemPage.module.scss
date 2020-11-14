@@ -127,7 +127,8 @@
 }
 
 .customerOrderList {
-  min-height: 500px;
+  height: 550px;
+  overflow-y: scroll;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);
 }
 
@@ -137,8 +138,7 @@
 
 .numSpan {
   width: 4%;
-  text-align: left;
-  text-align: center;
+  text-align: right;
 }
 
 .nameSpan {
@@ -147,6 +147,10 @@
 
 .colorSpan {
   width: 31%;
+
+  & input {
+    width: 100%;
+  }
 }
 
 .quantitySpan,

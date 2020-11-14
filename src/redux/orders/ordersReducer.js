@@ -8,7 +8,7 @@ const initAllProducts = [
   {
     id: 1,
     checkProduct: false,
-    art: '',
+    vendorCode: '',
     color: '',
     quantity: '1',
     price: '0',
@@ -61,7 +61,7 @@ const createLineProduct = state => {
     {
       id: newId,
       checkProduct: false,
-      art: '',
+      vendorCode: '',
       color: '',
       quantity: '1',
       price: '0',
@@ -89,7 +89,7 @@ const allProducts = createReducer(initAllProducts, {
     changeLineProductInput(state, payload),
   [ordersActions.getPriceByArtSuccess]: (state, { payload }) =>
     state.map(item => {
-      return item.art === payload.art
+      return item.vendorCode === payload.vendorCode
         ? { ...item, price: payload.prices.wholesale }
         : item;
     }),

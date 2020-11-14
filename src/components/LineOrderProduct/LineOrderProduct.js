@@ -56,15 +56,16 @@ const LineOrderProduct = ({
       </label>
       <input
         autoComplete="off"
+        autoFocus
         type="text"
         placeholder="артикул"
         onChange={({ target }) => handleArticle(target.value, target.name)}
-        value={getProductLineById.art}
-        name="art"
+        value={getProductLineById.vendorCode}
+        name="vendorCode"
         className={s.nameSpan}
       />
       <Autocomplete
-        disabled={!getProductLineById.art}
+        disabled={!getProductLineById.vendorCode}
         defaultValue={
           getProductLineById.color ? getProductLineById.color : 'выберите цвет'
         }
@@ -96,7 +97,7 @@ const LineOrderProduct = ({
         name="quantity"
         value={getProductLineById.quantity}
         className={s.quantitySpan}
-        disabled={!getProductLineById.art}
+        disabled={!getProductLineById.vendorCode}
       />
       <input
         type="number"
@@ -106,7 +107,9 @@ const LineOrderProduct = ({
         }
         name="price"
         value={getProductLineById.price}
-        className={`${s.priceSpan} ${getProductLineById.art && s.disabled}`}
+        className={`${s.priceSpan} ${
+          getProductLineById.vendorCode && s.disabled
+        }`}
         disabled
       />
       <input
@@ -116,7 +119,7 @@ const LineOrderProduct = ({
         name="discount"
         value={getProductLineById.discount}
         className={s.discountSpan}
-        disabled={!getProductLineById.art}
+        disabled={!getProductLineById.vendorCode}
       />
       <input
         type="number"
@@ -126,7 +129,9 @@ const LineOrderProduct = ({
         }
         name="sum"
         value={getProductLineById.sum}
-        className={`${s.sumSpan} ${getProductLineById.art && s.disabled}`}
+        className={`${s.sumSpan} ${
+          getProductLineById.vendorCode && s.disabled
+        }`}
         disabled
       />
       <input
@@ -139,7 +144,7 @@ const LineOrderProduct = ({
         name="note"
         value={getProductLineById.note}
         className={s.noteSpan}
-        disabled={!getProductLineById.art}
+        disabled={!getProductLineById.vendorCode}
       />
     </li>
   );
@@ -153,7 +158,8 @@ const mDTP = (dispatch, { id }) => ({
     dispatch(ordersActions.changeLineProductInput({ id, ...values })),
   onChangeInputQuantity: values =>
     dispatch(ordersActions.changeLineProductInputQuantity({ id, ...values })),
-  onGetArticlePrice: art => dispatch(ordersOperations.getPriceByArt(art, id)),
+  onGetArticlePrice: vendorCode =>
+    dispatch(ordersOperations.getPriceByArt(vendorCode, id)),
 
   onCalculateSum: () => dispatch(ordersActions.calculateSum({ id })),
 });

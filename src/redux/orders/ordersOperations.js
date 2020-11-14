@@ -32,11 +32,11 @@ const getAllOrders = () => async dispatch => {
   }
 };
 
-const getPriceByArt = (art, id) => async dispatch => {
+const getPriceByArt = (vendorCode, id) => async dispatch => {
   dispatch(ordersActions.getPriceByArtRequest());
 
   try {
-    const { data } = await axios(`${baseUrl}/products/${art}`);
+    const { data } = await axios(`${baseUrl}/products/${vendorCode}`);
 
     dispatch(ordersActions.getPriceByArtSuccess(data));
     dispatch(ordersActions.calculateSum({ id }));

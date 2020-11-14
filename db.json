@@ -17,7 +17,7 @@
   "products": [
     {
       "id": 10,
-      "art": "10",
+      "vendorCode": "10",
       "prices": {
         "retail": 20,
         "wholesale": 35
@@ -26,7 +26,7 @@
     },
     {
       "id": 20,
-      "art": "20",
+      "vendorCode": "20",
       "prices": {
         "retail": 25,
         "wholesale": 40
@@ -35,7 +35,7 @@
     },
     {
       "id": 30,
-      "art": "30",
+      "vendorCode": "30",
       "prices": {
         "retail": 30,
         "wholesale": 45
@@ -44,7 +44,7 @@
     },
     {
       "id": 40,
-      "art": "40",
+      "vendorCode": "40",
       "prices": {
         "retail": 35,
         "wholesale": 50
