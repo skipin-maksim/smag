@@ -5,12 +5,9 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-
 import CheckBox from '../CheckBox/CheckBox';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
-
 import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
 
 //TODO подключить библиотеку lodash: debounce в артикул
@@ -21,6 +18,8 @@ const LineOrderProduct = ({
   onChangeInputQuantity,
   onCalculateSum,
   onGetArticlePrice,
+  handleCheckAll,
+  isCheckAll,
 
   ...props
 }) => {
@@ -51,7 +50,8 @@ const LineOrderProduct = ({
       <CheckBox
         choiceOption="product"
         currentId={id}
-        onChangeInput={onChangeInput}
+        handleCheckAll={handleCheckAll}
+        isCheckAll={isCheckAll}
         currentCheckValue={getProductLineById.checkProduct}
       />
       <span className={s.numSpan}>{id}</span>
