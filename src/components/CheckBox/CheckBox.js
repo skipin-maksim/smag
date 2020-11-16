@@ -1,45 +1,38 @@
-import React from 'react';
-import { connect } from 'react-redux';
-
-import { ordersActions, ordersSelectors } from '../../redux/orders/';
+import React, { useState } from 'react';
 
 import s from './CheckBox.module.scss';
 
-const CheckBox = ({ choiceOption, getProductLineById, onChangeInput }) => {
-  const currentCheckId = getProductLineById ? getProductLineById.id : 0;
+export default function CheckBox({
+  choiceOption,
+  currentId,
+  onChangeInput,
+  currentCheckValue,
+}) {
+  const [valueCheckbox, setValueCheckbox] = useState(false);
 
-  let currentCheckValue;
+  const isSelectAll =
+    choiceOption === 'checkAllProducts' ? valueCheckbox : currentCheckValue;
 
-  if (getProductLineById) {
-    currentCheckValue = getProductLineById.checkProduct;
-  }
+  const handleChecked = (target, currentId) => {
+    if (choiceOption === 'checkAllProducts') setValueCheckbox(!valueCheckbox);
+
+    onChangeInput({
+      id: currentId,
+      value: target.checked,
+      name: target.name,
+      choiceOption: choiceOption,
+    });
+  };
 
   return (
     <label className={s.checkboxOther}>
       <input
         type="checkbox"
         name="checkProduct"
-        onChange={({ target }) => {
-          onChangeInput({
-            id: currentCheckId,
-            value: target.checked,
-            name: target.name,
-            choiceOption: choiceOption,
-          });
-        }}
-        checked={currentCheckValue}
+        onChange={({ target }) => handleChecked(target, currentId)}
+        checked={isSelectAll}
       />
       <span></span>
     </label>
   );
-};
-
-const mSTP = (state, { id }) => ({
-  getProductLineById: ordersSelectors.getProductLineById(state, id),
-});
-
-const mDTP = {
-  onChangeInput: ordersActions.changeLineProductInput,
-};
-
-export default connect(mSTP, mDTP)(CheckBox);
+}

@@ -11,7 +11,7 @@ import CheckBox from '../../components/CheckBox/CheckBox';
 
 import s from './OrderItemPage.module.scss';
 
-const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
+const OrderItemPage = ({ allProducts, onCreateLineProduct, onChangeInput }) => {
   return (
     <div className={s.orderPage}>
       <div className={s.ordersSettings}>
@@ -49,7 +49,12 @@ const OrderItemPage = ({ allProducts, onCreateLineProduct }) => {
       </div>
 
       <div className={s.tableTitletLine}>
-        <CheckBox choiceOption="checkAllProducts" />
+        <CheckBox
+          choiceOption="checkAllProducts"
+          currentId={0}
+          onChangeInput={onChangeInput}
+          currentCheckValue={false}
+        />
         <span>№</span>
         <span>Артикул</span>
         <span>Цвет</span>
@@ -79,6 +84,7 @@ const mSTP = state => ({
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
+  onChangeInput: ordersActions.changeLineProductInput,
 };
 
 export default connect(mSTP, mDTP)(OrderItemPage);

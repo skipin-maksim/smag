@@ -48,7 +48,12 @@ const LineOrderProduct = ({
 
   return (
     <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
-      <CheckBox id={id} choiceOption="product" />
+      <CheckBox
+        choiceOption="product"
+        currentId={id}
+        onChangeInput={onChangeInput}
+        currentCheckValue={getProductLineById.checkProduct}
+      />
       <span className={s.numSpan}>{id}</span>
       <input
         autoComplete="off"
