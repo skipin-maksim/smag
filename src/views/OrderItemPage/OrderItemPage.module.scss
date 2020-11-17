@@ -3,16 +3,30 @@
 }
 
 .ordersSettings {
+  margin-bottom: 20px;
+}
+
+.contractorInfo {
+  margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 439px;
-  margin-bottom: 36px;
+}
+
+.contractorInfoInner {
+  margin-left: 100px;
+
+  & span {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 }
 
 .contractorsBlock {
   display: flex;
-  width: 300px;
+  width: 450px;
   color: #fff;
 
   & input {

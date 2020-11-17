@@ -36,21 +36,33 @@ class OrderItemPage extends React.Component {
   };
 
   render() {
-    const { allProducts, onCreateLineProduct, onChangeInput } = this.props;
+    const {
+      allProducts,
+      onCreateLineProduct,
+      deleteLineSelectedProduct,
+      onChangeInput,
+    } = this.props;
 
     return (
       <div className={s.orderPage}>
         <div className={s.ordersSettings}>
-          <div className={s.contractorsBlock}>
-            <input type="text" className={s.ordersSearch} />
-            <Tooltip title={'Выбрать контрагента'} arrow>
-              <button
-                type="button"
-                className={`${s.settingButton} ${s.dotsBtn}`}
-              >
-                <MoreHorizIcon style={{ color: '#fff' }} />
-              </button>
-            </Tooltip>
+          <div className={s.contractorInfo}>
+            <div className={s.contractorsBlock}>
+              <input type="text" className={s.ordersSearch} />
+              <Tooltip title={'Выбрать контрагента'} arrow>
+                <button
+                  type="button"
+                  className={`${s.settingButton} ${s.dotsBtn}`}
+                >
+                  <MoreHorizIcon style={{ color: '#fff' }} />
+                </button>
+              </Tooltip>
+            </div>
+            <div className={s.contractorInfoInner}>
+              <span>Город</span>
+              <span>Новая почта №1</span>
+              <span>0509596984</span>
+            </div>
           </div>
 
           <div className={s.settingButtons}>
@@ -67,7 +79,7 @@ class OrderItemPage extends React.Component {
             <Tooltip title={'Удалить товар'} arrow>
               <button
                 type="button"
-                // onClick={this.handleAddLineProduct}
+                onClick={() => deleteLineSelectedProduct()}
                 className={`${s.settingButton} ${s.removeBtn}`}
               >
                 <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
@@ -124,6 +136,7 @@ const mSTP = state => ({
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
+  deleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
   onChangeInput: ordersActions.changeLineProductInput,
 };
 

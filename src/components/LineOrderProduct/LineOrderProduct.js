@@ -54,7 +54,7 @@ const LineOrderProduct = ({
         isCheckAll={isCheckAll}
         currentCheckValue={getProductLineById.checkProduct}
       />
-      <span className={s.numSpan}>{id}</span>
+      <span className={s.numSpan}>{idx + 1}</span>
       <input
         autoComplete="off"
         autoFocus

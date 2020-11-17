@@ -14,6 +14,9 @@ const editOrder = createAction('order/editOrder');
 const saveOrder = createAction('order/saveOrder');
 
 const createLineProduct = createAction('order/createLineProduct');
+const deleteLineSelectedProduct = createAction(
+  'order/deleteLineSelectedProduct',
+);
 const changeLineProductInput = createAction('order/changeLineProductInput');
 const changeLineProductInputQuantity = createAction(
   'order/changeLineProductInputQuantity',
@@ -38,6 +41,7 @@ export default {
   numOrderError,
 
   createLineProduct,
+  deleteLineSelectedProduct,
   changeLineProductInput,
   changeLineProductInputQuantity,
   calculateSum,

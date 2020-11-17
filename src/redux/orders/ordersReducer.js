@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ordersActions } from './';
 
 const initNumOrder = { valueNum: 0, valueStr: '0' };
 const initAllProducts = [
   {
-    id: 1,
+    id: uuidv4(),
     checkProduct: false,
     vendorCode: '',
     color: '',
@@ -26,7 +27,9 @@ const addOrder = state => {
     valueStr: editCustomNumber(state.valueNum),
   };
 };
-const getAllOrdersSuccess = (state, payload) => [...state, ...payload];
+const getAllOrdersSuccess = (state, payload) => {
+  return [...state, ...payload];
+};
 const changeLineProductInput = (state, payload) => {
   return state.map(item => {
     if (payload.choiceOption === 'checkAllProducts') {
@@ -38,14 +41,25 @@ const changeLineProductInput = (state, payload) => {
       : item;
   });
 };
-const changeLineProductInputQuantity = (state, payload) =>
-  state.map(item => {
+const getPriceByArtSuccess = (state, payload) => {
+  return state.map(item => {
+    return item.vendorCode === payload.vendorCode
+      ? { ...item, price: payload.prices.wholesale }
+      : item;
+  });
+};
+const changeLineProductInputQuantity = (state, payload) => {
+  return state.map(item => {
     return item.id === payload.id
       ? { ...item, [payload.name]: payload.value }
       : item;
   });
-const calculateSum = (state, payload) =>
-  state.map(item => {
+};
+const deleteLineSelectedProduct = state => {
+  return state.filter(product => !product.checkProduct);
+};
+const calculateSum = (state, payload) => {
+  return state.map(item => {
     return item.id === payload.id
       ? {
           ...item,
@@ -58,13 +72,12 @@ const calculateSum = (state, payload) =>
         }
       : item;
   });
+};
 const createLineProduct = state => {
-  const newId = state.length + 1;
-
   return [
     ...state,
     {
-      id: newId,
+      id: uuidv4(),
       checkProduct: false,
       vendorCode: '',
       color: '',
@@ -89,17 +102,15 @@ const allOrders = createReducer([], {
 });
 
 const allProducts = createReducer(initAllProducts, {
-  [ordersActions.createLineProduct]: state => createLineProduct(state),
+  [ordersActions.createLineProduct]: (state, _) => createLineProduct(state),
   [ordersActions.changeLineProductInput]: (state, { payload }) =>
     changeLineProductInput(state, payload),
   [ordersActions.getPriceByArtSuccess]: (state, { payload }) =>
-    state.map(item => {
-      return item.vendorCode === payload.vendorCode
-        ? { ...item, price: payload.prices.wholesale }
-        : item;
-    }),
+    getPriceByArtSuccess(state, payload),
   [ordersActions.changeLineProductInputQuantity]: (state, { payload }) =>
     changeLineProductInputQuantity(state, payload),
+  [ordersActions.deleteLineSelectedProduct]: (state, _) =>
+    deleteLineSelectedProduct(state),
   [ordersActions.calculateSum]: (state, { payload }) =>
     calculateSum(state, payload),
 });
