@@ -56,35 +56,62 @@
     {
       "id": "00001",
       "numOrder": "00001",
-      "name": "Григоренко Алексей Романович",
-      "positions": 10,
-      "totalQuantity": 100,
-      "sum": 1000,
-      "prepayment": 100,
-      "checkOrder": false,
-      "products": []
+      "isSave": true,
+      "orderInfo": {
+        "positions": 10,
+        "totalQuantity": 100,
+        "sum": 1000,
+        "prepayment": 100,
+        "checkOrder": false
+      },
+      "contactInfo": {
+        "name": "Григоренко Алексей Романович",
+        "city": "Город",
+        "post": "Новая почта №1",
+        "tel": "0509596984"
+      },
+      "products": [],
+      "date": ""
     },
     {
       "id": "00002",
       "numOrder": "00002",
-      "name": "Григоренко Алексей Романович",
-      "positions": 20,
-      "totalQuantity": 200,
-      "sum": 2000,
-      "prepayment": 200,
-      "checkOrder": false,
-      "products": []
+      "isSave": true,
+      "orderInfo": {
+        "positions": 10,
+        "totalQuantity": 100,
+        "sum": 1000,
+        "prepayment": 100,
+        "checkOrder": false
+      },
+      "contactInfo": {
+        "name": "Григоренко Алексей Романович",
+        "city": "Город",
+        "post": "Новая почта №1",
+        "tel": "0509596984"
+      },
+      "products": [],
+      "date": ""
     },
     {
       "id": "00003",
       "numOrder": "00003",
-      "name": "Григоренко Алексей Романович",
-      "positions": 30,
-      "totalQuantity": 300,
-      "sum": 3000,
-      "prepayment": 300,
-      "checkOrder": false,
-      "products": []
+      "isSave": true,
+      "orderInfo": {
+        "positions": 10,
+        "totalQuantity": 100,
+        "sum": 1000,
+        "prepayment": 100,
+        "checkOrder": false
+      },
+      "contactInfo": {
+        "name": "Григоренко Алексей Романович",
+        "city": "Город",
+        "post": "Новая почта №1",
+        "tel": "0509596984"
+      },
+      "products": [],
+      "date": ""
     }
   ]
 }

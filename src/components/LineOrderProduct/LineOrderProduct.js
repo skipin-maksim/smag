@@ -17,6 +17,7 @@ const LineOrderProduct = ({
   onChangeInput,
   onChangeInputQuantity,
   onCalculateSum,
+  onCalculateTotalQuantity,
   onGetArticlePrice,
   handleCheckAll,
   isCheckAll,
@@ -35,6 +36,7 @@ const LineOrderProduct = ({
     onChangeInputQuantity({ value: artValue, name });
 
     onCalculateSum();
+    onCalculateTotalQuantity();
   };
 
   const handleDiscount = (artValue, name) => {
@@ -163,6 +165,8 @@ const mDTP = (dispatch, { id }) => ({
     dispatch(ordersOperations.getPriceByArt(vendorCode, id)),
 
   onCalculateSum: () => dispatch(ordersActions.calculateSum({ id })),
+  onCalculateTotalQuantity: () =>
+    dispatch(ordersActions.calculateTotalQuantity()),
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

@@ -9,12 +9,11 @@
 .contractorInfo {
   margin-bottom: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .contractorInfoInner {
-  margin-left: 100px;
-
   & span {
     display: inline-block;
 
@@ -26,6 +25,7 @@
 
 .contractorsBlock {
   display: flex;
+  align-items: center;
   width: 450px;
   color: #fff;
 
@@ -34,14 +34,13 @@
   }
 }
 
-.ordersSearch {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
 .settingButtons {
   display: flex;
   align-items: center;
+
+  & .saveBtn {
+    margin-left: 20px;
+  }
 }
 
 .settingButton {
@@ -63,16 +62,7 @@
 
   &.addBtn {
     width: 55px;
-    margin: 0 3px;
-
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
-  }
-  &.changeBtn {
-    width: 55px;
-    margin: 0 3px;
+    margin-right: 10px;
 
     &:hover {
       background-color: transparent;
@@ -81,7 +71,6 @@
   }
   &.removeBtn {
     width: 55px;
-    margin: 0 3px;
 
     &:hover {
       background-color: transparent;
@@ -91,19 +80,20 @@
 }
 
 .dotsBtn {
-  width: 40px;
+  width: 120px;
   border: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  font-size: 10px;
+  color: #fff;
 }
 
-.orderWrapper {
-  padding: 0 15px;
-  background-color: #fff;
+.contractorName {
+  margin-left: 20px;
+  color: #1c2b4a;
 }
 
 .windowOrders {
-  padding: 0 15px 45px;
+  position: relative;
+  padding: 0 15px 55px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: #fff;
@@ -156,5 +146,26 @@
 .noteSpan {
   &:disabled {
     background-color: transparent;
+  }
+}
+
+.orderInfo {
+  width: 98%;
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  display: grid;
+  // grid-template-columns: 170px 200px 180px 240px 190px;
+  grid-template-columns: 30px 60px 200px 500px 80px 100px 60px 160px 1fr 100px;
+  align-items: flex-start;
+  text-align: center;
+  font-size: 12px;
+
+  & span {
+    display: block;
+  }
+
+  & .numbers {
+    font-size: 14px;
   }
 }

@@ -12,14 +12,16 @@ const addTab = (state, payload) => {
 
   return state;
 };
+const removeTab = (state, payload) => {
+  if (state.length === 1) return;
+
+  return state.filter(item => item.name !== payload);
+};
 
 const items = createReducer(initialStateItem, {
   [tabsActions.addTab]: (state, { payload }) => addTab(state, payload),
-  [tabsActions.removeTab]: (state, { payload }) => {
-    if (state.length === 1) return;
-
-    return state.filter(item => item.name !== payload);
-  },
+  [tabsActions.removeTab]: (state, { payload }) => removeTab(state, payload),
+  [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
 });
 
 export default combineReducers({

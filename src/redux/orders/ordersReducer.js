@@ -5,27 +5,53 @@ import { v4 as uuidv4 } from 'uuid';
 import { ordersActions } from './';
 
 const initNumOrder = { valueNum: 0, valueStr: '0' };
-const initAllProducts = [
-  {
-    id: uuidv4(),
-    checkProduct: false,
-    vendorCode: '',
-    color: '',
-    quantity: '1',
-    price: '0',
-    discount: '0',
-    sum: '0',
-    note: '',
+const initAllProducts = {
+  items: [
+    {
+      id: uuidv4(),
+      checkProduct: false,
+      vendorCode: '',
+      color: '',
+      quantity: '1',
+      price: '0',
+      discount: '0',
+      sum: '0',
+      note: '',
+    },
+  ],
+  totalQuantitys: [
+    { positions: 0, quantity: 0, averagePrice: 0, sum: 0, prepayment: 0 },
+  ],
+};
+const initCurrentContractorInfo = {
+  id: '00001',
+  numOrder: '00001',
+  isSave: true,
+  orderInfo: {
+    positions: 10,
+    totalQuantity: 100,
+    sum: 1000,
+    prepayment: 100,
+    checkOrder: false,
   },
-];
+  contactInfo: {
+    name: 'Григоренко Алексей Романович',
+    city: 'Город',
+    post: 'Новая почта №1',
+    tel: '0509596984',
+    debt: 0,
+  },
+  products: [],
+  date: '',
+};
 
-const addOrder = state => {
-  const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
-
-  return {
-    valueNum: state.valueNum + 1,
-    valueStr: editCustomNumber(state.valueNum),
-  };
+const saveOrder = state => {
+  // const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
+  // return {
+  //   valueNum: state.valueNum + 1,
+  //   valueStr: editCustomNumber(state.valueNum),
+  // };
+  console.log('hi is in save');
 };
 const getAllOrdersSuccess = (state, payload) => {
   return [...state, ...payload];
@@ -73,6 +99,11 @@ const calculateSum = (state, payload) => {
       : item;
   });
 };
+const calculateTotalQuantity = state => {
+  state.reduce((prev, cur) => {
+    return prev.quantity + cur.quantity;
+  }, 0);
+};
 const createLineProduct = state => {
   return [
     ...state,
@@ -91,7 +122,6 @@ const createLineProduct = state => {
 };
 
 const numOrder = createReducer(initNumOrder, {
-  [ordersActions.addOrder]: (state, _) => addOrder(state),
   [ordersActions.numOrderSuccess]: (_, { payload }) => payload,
   [ordersActions.saveOrder]: () => {},
 });
@@ -113,10 +143,22 @@ const allProducts = createReducer(initAllProducts, {
     deleteLineSelectedProduct(state),
   [ordersActions.calculateSum]: (state, { payload }) =>
     calculateSum(state, payload),
+  [ordersActions.calculateTotalQuantity]: (state, _) =>
+    calculateTotalQuantity(state),
+});
+
+const saveOrders = createReducer([], {
+  [ordersActions.saveOrder]: (state, _) => saveOrder(state),
+});
+
+const currentContractorInfo = createReducer(initCurrentContractorInfo, {
+  [ordersActions.saveOrder]: (state, { payload }) => '',
 });
 
 export default combineReducers({
   allOrders,
   allProducts,
   numOrder,
+  saveOrders,
+  currentContractorInfo,
 });

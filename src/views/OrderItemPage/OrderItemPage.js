@@ -5,7 +5,7 @@ import { ordersActions, ordersSelectors } from '../../redux/orders';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import LineOrderProduct from '../../components/LineOrderProduct/LineOrderProduct';
 import CheckBox from '../../components/CheckBox/CheckBox';
 
@@ -35,11 +35,16 @@ class OrderItemPage extends React.Component {
     });
   };
 
+  handleSaveBtn = checked => {
+    console.log('save', checked);
+    this.props.onSaveOrder(checked);
+  };
+
   render() {
     const {
       allProducts,
       onCreateLineProduct,
-      deleteLineSelectedProduct,
+      onDeleteLineSelectedProduct,
       onChangeInput,
     } = this.props;
 
@@ -48,20 +53,24 @@ class OrderItemPage extends React.Component {
         <div className={s.ordersSettings}>
           <div className={s.contractorInfo}>
             <div className={s.contractorsBlock}>
-              <input type="text" className={s.ordersSearch} />
               <Tooltip title={'Выбрать контрагента'} arrow>
                 <button
                   type="button"
                   className={`${s.settingButton} ${s.dotsBtn}`}
                 >
-                  <MoreHorizIcon style={{ color: '#fff' }} />
+                  Выбрать контрагента
+                  {/* <MoreHorizIcon style={{ color: '#fff' }} /> */}
                 </button>
               </Tooltip>
+              <span className={s.contractorName}>Иван Васильевич</span>
             </div>
             <div className={s.contractorInfoInner}>
               <span>Город</span>
               <span>Новая почта №1</span>
               <span>0509596984</span>
+            </div>
+            <div className={s.contractorInfoInner}>
+              Долг контрагента <span>500</span>
             </div>
           </div>
 
@@ -79,13 +88,18 @@ class OrderItemPage extends React.Component {
             <Tooltip title={'Удалить товар'} arrow>
               <button
                 type="button"
-                onClick={() => deleteLineSelectedProduct()}
+                onClick={() => onDeleteLineSelectedProduct()}
                 className={`${s.settingButton} ${s.removeBtn}`}
               >
                 <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
                 <div className="visually-hidden">Удалить заказ</div>
               </button>
             </Tooltip>
+            <input
+              type="checkbox"
+              className={s.saveBtn}
+              onChange={({ target }) => this.handleSaveBtn(target.checked)}
+            />
           </div>
         </div>
 
@@ -123,9 +137,45 @@ class OrderItemPage extends React.Component {
               })}
             </ul>
           </form>
-        </div>
 
-        <div className={s.orderWrapper}></div>
+          <div className={s.orderInfo}>
+            <div>
+              <span>Поз</span>
+              <span className={s.numbers}>1</span>
+            </div>
+            <div>
+              <span></span>
+            </div>
+            <div>
+              <span></span>
+            </div>
+            <div>
+              <span></span>
+            </div>
+            <div>
+              <span>Общее кол-во</span>
+              <span className={s.numbers}>1</span>
+            </div>
+            <div>
+              <span>Средняя цена</span>
+              <span className={s.numbers}>1</span>
+            </div>
+            <div>
+              <span></span>
+            </div>
+            <div>
+              <span>Общая сумма</span>
+              <span className={s.numbers}>1</span>
+            </div>
+            <div>
+              <span></span>
+            </div>
+            {/* <div>
+              <span>Предоплата</span>
+              <span className={s.numbers}>1</span>
+            </div> */}
+          </div>
+        </div>
       </div>
     );
   }
@@ -136,7 +186,8 @@ const mSTP = state => ({
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
-  deleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
+  onDeleteLineSelectedProduct: ordersActions.onDeleteLineSelectedProduct,
+  onSaveOrder: ordersActions.saveOrder,
   onChangeInput: ordersActions.changeLineProductInput,
 };
 

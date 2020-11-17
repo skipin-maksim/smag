@@ -5,7 +5,7 @@ const getOrderById = (state, id) =>
 
 const getCurrentOrderNum = state => state.orders.numOrder;
 
-const getAllProducts = state => state.orders.allProducts;
+const getAllProducts = state => state.orders.allProducts.items;
 
 const getProductLineById = (state, id) =>
   getAllProducts(state).find(item => item.id === id);

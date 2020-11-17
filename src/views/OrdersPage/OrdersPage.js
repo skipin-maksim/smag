@@ -114,7 +114,7 @@ const mSTP = state => ({
 
 const mDTP = {
   // addOrder: ordersActions.addOrder,
-  addTab: tabsActions.addTab,
+  addTab: tabsActions.addTabOrder,
 };
 
 export default connect(mSTP, mDTP)(OrdersPage);

@@ -8,16 +8,16 @@ import s from './CustomerOrderItem.module.scss';
 function CustomerOrderItem({ idx, orderItem }) {
   const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
 
-  const { name, positions, quantity, sum, prepayment } = orderItem;
+  const { orderInfo, contactInfo } = orderItem;
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
       <CheckBox choiceOption="checkOrder" />
       <span>{idx + 1}</span>
-      <span>{name}</span>
-      <span>{positions}</span>
-      <span>{quantity}</span>
-      <span>{sum}</span>
-      <span>{prepayment}</span>
+      <span>{contactInfo.name}</span>
+      <span>{orderInfo.positions}</span>
+      <span>{orderInfo.quantity}</span>
+      <span>{orderInfo.sum}</span>
+      <span>{orderInfo.prepayment}</span>
     </li>
   );
 }

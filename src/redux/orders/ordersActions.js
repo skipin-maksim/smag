@@ -8,7 +8,6 @@ const getPriceByArtRequest = createAction('order/getPriceByArtRequest');
 const getPriceByArtSuccess = createAction('order/getPriceByArtSuccess');
 const getPriceByArtError = createAction('order/getPriceByArtError');
 
-const addOrder = createAction('order/addOrder');
 const removeOrder = createAction('order/removeOrder');
 const editOrder = createAction('order/editOrder');
 const saveOrder = createAction('order/saveOrder');
@@ -22,6 +21,8 @@ const changeLineProductInputQuantity = createAction(
   'order/changeLineProductInputQuantity',
 );
 const calculateSum = createAction('orders/calculateSum');
+const calculateTotalQuantity = createAction('orders/calculateTotalQuantity');
+const calculateTotalSum = createAction('orders/calculateTotalSum');
 
 const numOrderRequest = createAction('order/numOrderRequest');
 const numOrderSuccess = createAction('order/numOrderSuccess');
@@ -44,9 +45,11 @@ export default {
   deleteLineSelectedProduct,
   changeLineProductInput,
   changeLineProductInputQuantity,
-  calculateSum,
 
-  addOrder,
+  calculateSum,
+  calculateTotalQuantity,
+  calculateTotalSum,
+
   removeOrder,
   editOrder,
   saveOrder,
