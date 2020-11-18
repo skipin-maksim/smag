@@ -6,12 +6,12 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 // import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import LineOrderProduct from '../../components/LineOrderProduct/LineOrderProduct';
+import LineProduct from '../../components/LineProduct/LineProduct';
 import CheckBox from '../../components/CheckBox/CheckBox';
 
-import s from './OrderItemPage.module.scss';
+import s from './NewOrderPage.module.scss';
 
-class OrderItemPage extends React.Component {
+class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
 
   componentDidMount() {
@@ -146,7 +146,7 @@ class OrderItemPage extends React.Component {
             <ul className={s.customerOrderList}>
               {allProducts.map((item, idx) => {
                 return (
-                  <LineOrderProduct
+                  <LineProduct
                     key={item.id}
                     id={item.id}
                     idx={idx}
@@ -228,4 +228,4 @@ const mDTP = {
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
 };
 
-export default connect(mSTP, mDTP)(OrderItemPage);
+export default connect(mSTP, mDTP)(NewOrderPage);

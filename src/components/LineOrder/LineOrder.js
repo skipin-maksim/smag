@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { ordersSelectors } from '../../redux/orders';
 import CheckBox from '../CheckBox/CheckBox';
 
-import s from './CustomerOrderItem.module.scss';
+import s from './LineOrder.module.scss';
 
-function CustomerOrderItem({ idx, orderItem }) {
+function LineOrder({ idx, orderItem }) {
   const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
 
   const { orderInfo, contactInfo } = orderItem;
@@ -26,4 +26,4 @@ const mSTP = (state, ownProps) => ({
   orderItem: ordersSelectors.getOrderById(state, ownProps.id),
 });
 
-export default connect(mSTP)(CustomerOrderItem);
+export default connect(mSTP)(LineOrder);

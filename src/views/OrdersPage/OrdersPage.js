@@ -10,7 +10,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import { ordersSelectors } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
-import CustomerOrderItem from '../../components/CustomerOrderItem/CustomerOrderItem';
+import LineOrder from '../../components/LineOrder/LineOrder';
 
 import s from './OrdersPage.module.scss';
 import CheckBox from '../../components/CheckBox/CheckBox';
@@ -96,7 +96,7 @@ class OrdersPage extends React.Component {
         <div className={s.windowOrders}>
           <ul className={s.customerOrderList}>
             {ordersList.map((item, idx) => {
-              return <CustomerOrderItem key={item.id} idx={idx} id={item.id} />;
+              return <LineOrder key={item.id} idx={idx} id={item.id} />;
             })}
           </ul>
         </div>

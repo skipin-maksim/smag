@@ -17,9 +17,9 @@ const AsyncOrdersPage = lazy(() =>
     '../views/OrdersPage/OrdersPage' /* webpackChunkName: "orders-page" */
   ),
 );
-const AsyncOrderItemPage = lazy(() =>
+const AsyncNewOrderPage = lazy(() =>
   import(
-    '../views/OrderItemPage/OrderItemPage' /* webpackChunkName: "order-item-page" */
+    '../views/NewOrderPage/NewOrderPage' /* webpackChunkName: "order-item-page" */
   ),
 );
 
@@ -29,5 +29,5 @@ export default {
   AsyncExhibitionsPage,
   AsyncContractorsPage,
   AsyncOrdersPage,
-  AsyncOrderItemPage,
+  AsyncNewOrderPage,
 };

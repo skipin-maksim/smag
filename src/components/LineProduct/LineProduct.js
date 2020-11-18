@@ -8,7 +8,7 @@ import {
 import CheckBox from '../CheckBox/CheckBox';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
-import s from '../../views/OrderItemPage/OrderItemPage.module.scss';
+import s from '../../views/NewOrderPage/NewOrderPage.module.scss';
 
 //TODO подключить библиотеку lodash: debounce в артикул
 
