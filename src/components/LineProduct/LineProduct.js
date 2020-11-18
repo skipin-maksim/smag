@@ -22,12 +22,6 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onGetArticlePrice,
   } = actions;
 
-  const handleArticle = (artValue, name) => {
-    onChangeInput({ value: artValue, name });
-
-    onGetArticlePrice(artValue);
-  };
-
   const handleQuantity = (artValue, name) => {
     onChangeInputQuantity({ value: artValue, name });
 
@@ -56,16 +50,16 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
         autoFocus
         type="text"
         placeholder="артикул"
-        onChange={({ target }) => handleArticle(target.value, target.name)}
+        onChange={({ target }) =>
+          onChangeInput({ value: target.value, name: target.name })
+        }
+        onBlur={({ target }) => onGetArticlePrice(target.value)}
         value={getProductLineById.vendorCode}
         name="vendorCode"
         className={s.nameSpan}
       />
       <Autocomplete
         disabled={!getProductLineById.vendorCode}
-        defaultValue={
-          getProductLineById.color ? getProductLineById.color : 'выберите цвет'
-        }
         className={s.colorSpan}
         style={{ textAlign: 'center' }}
         options={colorsList.map(option => option.title)}
@@ -75,10 +69,15 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
               {...params.inputProps}
               type="text"
               name="color"
-              value={params.inputProps.value}
+              placeholder="выберите цвет"
+              value={
+                params.inputProps.value
+                  ? params.inputProps.value
+                  : getProductLineById.color
+              }
               onBlur={({ target }) =>
                 onChangeInput({
-                  ...params.inputProps,
+                  value: params.inputProps.value,
                   name: target.name,
                   id: id,
                 })
