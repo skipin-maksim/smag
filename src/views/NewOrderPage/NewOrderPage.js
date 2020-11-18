@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ordersActions, ordersSelectors } from '../../redux/orders';
 
+// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import { CheckBoxMain } from '../../components/CheckBox/';
 import LineProduct from '../../components/LineProduct/LineProduct';
-import CheckBox from '../../components/CheckBox/CheckBox';
-
 import s from './NewOrderPage.module.scss';
 
 class NewOrderPage extends React.Component {
@@ -18,29 +17,38 @@ class NewOrderPage extends React.Component {
     this.props.onCalculateTotalPositions();
   }
 
-  handleCheckAll = (target, currentId, choiceOption) => {
-    if (choiceOption === 'checkAllProducts') {
-      console.log('выбрали всё', target, currentId, choiceOption);
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.props.isSomeUncheked && !prevState.isCheckAll) {
+      this.setState({
+        isCheckAll: true,
+      });
 
-      this.setState(prevState => ({
+      return;
+    }
+
+    if (this.props.isSomeUncheked && prevState.isCheckAll) {
+      this.setState({
+        isCheckAll: false,
+      });
+
+      return;
+    }
+  }
+
+  handleCheckAll = name => {
+    this.setState(
+      prevState => ({
         isCheckAll: !prevState.isCheckAll,
-      }));
-    }
-
-    if (choiceOption === 'product' && this.state.isCheckAll) {
-      this.setState({ isCheckAll: false });
-    }
-
-    this.props.onChangeInput({
-      id: currentId,
-      value: target.checked,
-      name: target.name,
-      choiceOption: choiceOption,
-    });
+      }),
+      () =>
+        this.props.onChangeMainCheckbox({
+          ...name,
+          value: this.state.isCheckAll,
+        }),
+    );
   };
 
   handleSaveBtn = checked => {
-    console.log('save', checked);
     this.props.onSaveOrder(checked);
   };
 
@@ -57,13 +65,10 @@ class NewOrderPage extends React.Component {
     const {
       allProducts,
       onCreateLineProduct,
-      // onDeleteLineSelectedProduct,
-      onChangeInput,
+      // onChangeInput,
       calculatedTotals,
       onCalculateTotalPositions,
     } = this.props;
-
-    console.log(calculatedTotals.positions);
 
     return (
       <div className={s.orderPage}>
@@ -124,13 +129,10 @@ class NewOrderPage extends React.Component {
         </div>
 
         <div className={s.tableTitletLine}>
-          <CheckBox
-            choiceOption="checkAllProducts"
-            currentId={0}
-            onChangeInput={onChangeInput}
-            currentCheckValue={false}
-            handleCheckAll={this.handleCheckAll}
-            isCheckAll={this.state.isCheckAll}
+          <CheckBoxMain
+            name="checkProduct"
+            isChecked={this.state.isCheckAll}
+            onChange={this.handleCheckAll}
           />
           <span>№</span>
           <span>Артикул</span>
@@ -145,15 +147,7 @@ class NewOrderPage extends React.Component {
           <form>
             <ul className={s.customerOrderList}>
               {allProducts.map((item, idx) => {
-                return (
-                  <LineProduct
-                    key={item.id}
-                    id={item.id}
-                    idx={idx}
-                    handleCheckAll={this.handleCheckAll}
-                    isCheckAll={this.state.isCheckAll}
-                  />
-                );
+                return <LineProduct key={item.id} id={item.id} idx={idx} />;
               })}
             </ul>
           </form>
@@ -211,12 +205,14 @@ class NewOrderPage extends React.Component {
 const mSTP = state => ({
   allProducts: ordersSelectors.getAllProducts(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
+  isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
   onSaveOrder: ordersActions.saveOrder,
   onChangeInput: ordersActions.changeLineProductInput,
+  onChangeMainCheckbox: ordersActions.changeMainCheckbox,
 
   onCalculateTotalQuantity: ordersActions.calculateTotalQuantity,
   onCalculateTotalSum: ordersActions.calculateTotalSum,

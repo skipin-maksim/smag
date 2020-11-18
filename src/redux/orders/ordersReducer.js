@@ -60,17 +60,20 @@ const changeLineProductInput = (state, payload) => {
   return {
     ...state,
     items: state.items.map(item => {
-      // if (payload.choiceOption === 'checkAllProducts') {
-      //   return { ...item, [payload.name]: payload.value };
-      // }
-
       return item.id === payload.id
         ? { ...item, [payload.name]: payload.value }
         : item;
     }),
   };
 };
-const changeMainCheckbox = (state, payload) => {};
+const changeMainCheckbox = (state, payload) => {
+  return {
+    ...state,
+    items: state.items.map(item => {
+      return { ...item, [payload.name]: payload.value };
+    }),
+  };
+};
 const getPriceByArtSuccess = (state, payload) => {
   return {
     ...state,

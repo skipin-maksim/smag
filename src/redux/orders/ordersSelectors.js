@@ -6,6 +6,10 @@ const getOrderById = (state, id) =>
 const getCurrentOrderNum = state => state.orders.numOrder;
 
 const getAllProducts = state => state.orders.allProducts.items;
+
+const getIsSomeUnchecked = state => {
+  return getAllProducts(state).some(item => !item.checkProduct);
+};
 const getCalculatedTotals = state => state.orders.allProducts.calculatedTotals;
 
 const getProductLineById = (state, id) =>
@@ -16,6 +20,7 @@ export default {
   getOrderById,
   getCurrentOrderNum,
   getAllProducts,
+  getIsSomeUnchecked,
   getCalculatedTotals,
   getProductLineById,
 };

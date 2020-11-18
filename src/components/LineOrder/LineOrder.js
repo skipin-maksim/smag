@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ordersSelectors } from '../../redux/orders';
+import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 
 import s from './LineOrder.module.scss';
 
 function LineOrder({ idx, orderItem }) {
-  const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
-
   const { orderInfo, contactInfo } = orderItem;
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>

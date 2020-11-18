@@ -4,28 +4,23 @@ import {
   ordersActions,
   ordersOperations,
   ordersSelectors,
-} from '../../redux/orders';
-import CheckBox from '../CheckBox/CheckBox';
+} from '../../redux/orders/';
+
+import lineColorPick from '../../helpers/lineColorPick';
+import { CheckBox } from '../CheckBox/';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
 import s from '../../views/NewOrderPage/NewOrderPage.module.scss';
 
-//TODO подключить библиотеку lodash: debounce в артикул
-
-const LineOrderProduct = ({
-  idx,
-  onChangeInput,
-  onChangeInputQuantity,
-  onCalculateSum,
-  onCalculateTotalSum,
-  onCalculateTotalQuantity,
-  onGetArticlePrice,
-  handleCheckAll,
-  isCheckAll,
-
-  ...props
-}) => {
-  const { id, getProductLineById } = props;
+const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
+  const {
+    onChangeInput,
+    onChangeInputQuantity,
+    onCalculateSum,
+    onCalculateTotalSum,
+    onCalculateTotalQuantity,
+    onGetArticlePrice,
+  } = actions;
 
   const handleArticle = (artValue, name) => {
     onChangeInput({ value: artValue, name });
@@ -48,17 +43,12 @@ const LineOrderProduct = ({
     onCalculateTotalSum();
   };
 
-  //TODO вынести lineColorPick в отдельный файл (функцию), типа helper
-  const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
-
   return (
     <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
       <CheckBox
-        choiceOption="product"
-        currentId={id}
-        handleCheckAll={handleCheckAll}
-        isCheckAll={isCheckAll}
-        currentCheckValue={getProductLineById.checkProduct}
+        name="checkProduct"
+        isChecked={getProductLineById.checkProduct}
+        onChange={onChangeInput}
       />
       <span className={s.numSpan}>{idx + 1}</span>
       <input
@@ -172,6 +162,7 @@ const mDTP = (dispatch, { id }) => ({
   onGetArticlePrice: vendorCode => {
     return dispatch(ordersOperations.getPriceByArt(vendorCode, id));
   },
+
   onCalculateSum: () => {
     return dispatch(ordersActions.calculateSum({ id }));
   },
