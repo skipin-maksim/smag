@@ -201,10 +201,6 @@ class NewOrderPage extends React.Component {
             <div>
               <span></span>
             </div>
-            {/* <div>
-              <span>Предоплата</span>
-              <span className={s.numbers}>1</span>
-            </div> */}
           </div>
         </div>
       </div>

@@ -60,9 +60,9 @@ const changeLineProductInput = (state, payload) => {
   return {
     ...state,
     items: state.items.map(item => {
-      if (payload.choiceOption === 'checkAllProducts') {
-        return { ...item, [payload.name]: payload.value };
-      }
+      // if (payload.choiceOption === 'checkAllProducts') {
+      //   return { ...item, [payload.name]: payload.value };
+      // }
 
       return item.id === payload.id
         ? { ...item, [payload.name]: payload.value }
@@ -70,6 +70,7 @@ const changeLineProductInput = (state, payload) => {
     }),
   };
 };
+const changeMainCheckbox = (state, payload) => {};
 const getPriceByArtSuccess = (state, payload) => {
   return {
     ...state,
@@ -196,6 +197,8 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.createLineProduct]: (state, _) => createLineProduct(state),
   [ordersActions.changeLineProductInput]: (state, { payload }) =>
     changeLineProductInput(state, payload),
+  [ordersActions.changeMainCheckbox]: (state, { payload }) =>
+    changeMainCheckbox(state, payload),
   [ordersActions.getPriceByArtSuccess]: (state, { payload }) =>
     getPriceByArtSuccess(state, payload),
   [ordersActions.changeLineProductInputQuantity]: (state, { payload }) =>

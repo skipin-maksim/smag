@@ -48,6 +48,7 @@ const LineOrderProduct = ({
     onCalculateTotalSum();
   };
 
+  //TODO вынести lineColorPick в отдельный файл (функцию), типа helper
   const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
 
   return (
@@ -160,17 +161,26 @@ const mSTP = (state, { id }) => ({
   getProductLineById: ordersSelectors.getProductLineById(state, id),
 });
 const mDTP = (dispatch, { id }) => ({
-  onChangeInput: values =>
-    dispatch(ordersActions.changeLineProductInput({ id, ...values })),
-  onChangeInputQuantity: values =>
-    dispatch(ordersActions.changeLineProductInputQuantity({ id, ...values })),
-  onGetArticlePrice: vendorCode =>
-    dispatch(ordersOperations.getPriceByArt(vendorCode, id)),
-
-  onCalculateSum: () => dispatch(ordersActions.calculateSum({ id })),
-  onCalculateTotalQuantity: () =>
-    dispatch(ordersActions.calculateTotalQuantity()),
-  onCalculateTotalSum: () => dispatch(ordersActions.calculateTotalSum()),
+  onChangeInput: values => {
+    return dispatch(ordersActions.changeLineProductInput({ id, ...values }));
+  },
+  onChangeInputQuantity: values => {
+    return dispatch(
+      ordersActions.changeLineProductInputQuantity({ id, ...values }),
+    );
+  },
+  onGetArticlePrice: vendorCode => {
+    return dispatch(ordersOperations.getPriceByArt(vendorCode, id));
+  },
+  onCalculateSum: () => {
+    return dispatch(ordersActions.calculateSum({ id }));
+  },
+  onCalculateTotalQuantity: () => {
+    return dispatch(ordersActions.calculateTotalQuantity());
+  },
+  onCalculateTotalSum: () => {
+    return dispatch(ordersActions.calculateTotalSum());
+  },
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);
