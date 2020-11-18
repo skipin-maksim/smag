@@ -36,6 +36,7 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
 
     dispatch(ordersActions.getPriceByArtSuccess(data));
     dispatch(ordersActions.calculateSum({ id }));
+    dispatch(ordersActions.calculateAveragePrice());
   } catch (error) {
     console.error(error);
     dispatch(ordersActions.getPriceByArtError(error));

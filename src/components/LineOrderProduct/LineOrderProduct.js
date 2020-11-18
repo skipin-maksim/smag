@@ -17,6 +17,7 @@ const LineOrderProduct = ({
   onChangeInput,
   onChangeInputQuantity,
   onCalculateSum,
+  onCalculateTotalSum,
   onCalculateTotalQuantity,
   onGetArticlePrice,
   handleCheckAll,
@@ -37,12 +38,14 @@ const LineOrderProduct = ({
 
     onCalculateSum();
     onCalculateTotalQuantity();
+    onCalculateTotalSum();
   };
 
   const handleDiscount = (artValue, name) => {
     onChangeInput({ value: artValue, name });
 
     onCalculateSum();
+    onCalculateTotalSum();
   };
 
   const lineColorPick = idx => (idx % 2 === 0 ? 'whithLine' : 'greyLine');
@@ -167,6 +170,7 @@ const mDTP = (dispatch, { id }) => ({
   onCalculateSum: () => dispatch(ordersActions.calculateSum({ id })),
   onCalculateTotalQuantity: () =>
     dispatch(ordersActions.calculateTotalQuantity()),
+  onCalculateTotalSum: () => dispatch(ordersActions.calculateTotalSum()),
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

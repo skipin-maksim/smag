@@ -21,8 +21,10 @@ const changeLineProductInputQuantity = createAction(
   'order/changeLineProductInputQuantity',
 );
 const calculateSum = createAction('orders/calculateSum');
+const calculateTotalPositions = createAction('orders/calculateTotalPositions');
 const calculateTotalQuantity = createAction('orders/calculateTotalQuantity');
 const calculateTotalSum = createAction('orders/calculateTotalSum');
+const calculateAveragePrice = createAction('orders/calculateAveragePrice');
 
 const numOrderRequest = createAction('order/numOrderRequest');
 const numOrderSuccess = createAction('order/numOrderSuccess');
@@ -47,6 +49,8 @@ export default {
   changeLineProductInputQuantity,
 
   calculateSum,
+  calculateTotalPositions,
+  calculateAveragePrice,
   calculateTotalQuantity,
   calculateTotalSum,
 

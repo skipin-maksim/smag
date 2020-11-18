@@ -6,6 +6,7 @@ const getOrderById = (state, id) =>
 const getCurrentOrderNum = state => state.orders.numOrder;
 
 const getAllProducts = state => state.orders.allProducts.items;
+const getCalculatedTotals = state => state.orders.allProducts.calculatedTotals;
 
 const getProductLineById = (state, id) =>
   getAllProducts(state).find(item => item.id === id);
@@ -15,5 +16,6 @@ export default {
   getOrderById,
   getCurrentOrderNum,
   getAllProducts,
+  getCalculatedTotals,
   getProductLineById,
 };

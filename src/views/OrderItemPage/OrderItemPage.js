@@ -14,6 +14,10 @@ import s from './OrderItemPage.module.scss';
 class OrderItemPage extends React.Component {
   state = { isCheckAll: false };
 
+  componentDidMount() {
+    this.props.onCalculateTotalPositions();
+  }
+
   handleCheckAll = (target, currentId, choiceOption) => {
     if (choiceOption === 'checkAllProducts') {
       console.log('выбрали всё', target, currentId, choiceOption);
@@ -40,13 +44,26 @@ class OrderItemPage extends React.Component {
     this.props.onSaveOrder(checked);
   };
 
+  handleDelete = () => {
+    this.props.onDeleteLineSelectedProduct();
+
+    this.props.onCalculateTotalQuantity();
+    this.props.onCalculateTotalSum();
+    this.props.onCalculateAveragePrice();
+    this.props.onCalculateTotalPositions();
+  };
+
   render() {
     const {
       allProducts,
       onCreateLineProduct,
-      onDeleteLineSelectedProduct,
+      // onDeleteLineSelectedProduct,
       onChangeInput,
+      calculatedTotals,
+      onCalculateTotalPositions,
     } = this.props;
+
+    console.log(calculatedTotals.positions);
 
     return (
       <div className={s.orderPage}>
@@ -77,7 +94,10 @@ class OrderItemPage extends React.Component {
           <div className={s.settingButtons}>
             <Tooltip title={'Добавить товар'} arrow>
               <button
-                onClick={() => onCreateLineProduct()}
+                onClick={() => {
+                  onCreateLineProduct();
+                  onCalculateTotalPositions();
+                }}
                 className={`${s.settingButton} ${s.addBtn}`}
               >
                 <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
@@ -88,7 +108,7 @@ class OrderItemPage extends React.Component {
             <Tooltip title={'Удалить товар'} arrow>
               <button
                 type="button"
-                onClick={() => onDeleteLineSelectedProduct()}
+                onClick={this.handleDelete}
                 className={`${s.settingButton} ${s.removeBtn}`}
               >
                 <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
@@ -141,7 +161,9 @@ class OrderItemPage extends React.Component {
           <div className={s.orderInfo}>
             <div>
               <span>Поз</span>
-              <span className={s.numbers}>1</span>
+              <span className={s.numbers}>
+                {calculatedTotals.positions ? calculatedTotals.positions : 0}
+              </span>
             </div>
             <div>
               <span></span>
@@ -154,18 +176,27 @@ class OrderItemPage extends React.Component {
             </div>
             <div>
               <span>Общее кол-во</span>
-              <span className={s.numbers}>1</span>
+              <span className={s.numbers}>
+                {calculatedTotals.quantity ? calculatedTotals.quantity : 0}
+              </span>
             </div>
             <div>
               <span>Средняя цена</span>
-              <span className={s.numbers}>1</span>
+              <span className={s.numbers}>
+                {calculatedTotals.averagePrice
+                  ? calculatedTotals.averagePrice
+                  : 0}
+              </span>
             </div>
             <div>
               <span></span>
             </div>
             <div>
               <span>Общая сумма</span>
-              <span className={s.numbers}>1</span>
+              <span className={s.numbers}>
+                {' '}
+                {calculatedTotals.sum ? calculatedTotals.sum : 0}
+              </span>
             </div>
             <div>
               <span></span>
@@ -183,12 +214,18 @@ class OrderItemPage extends React.Component {
 
 const mSTP = state => ({
   allProducts: ordersSelectors.getAllProducts(state),
+  calculatedTotals: ordersSelectors.getCalculatedTotals(state),
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
-  onDeleteLineSelectedProduct: ordersActions.onDeleteLineSelectedProduct,
+  onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
   onSaveOrder: ordersActions.saveOrder,
   onChangeInput: ordersActions.changeLineProductInput,
+
+  onCalculateTotalQuantity: ordersActions.calculateTotalQuantity,
+  onCalculateTotalSum: ordersActions.calculateTotalSum,
+  onCalculateAveragePrice: ordersActions.calculateAveragePrice,
+  onCalculateTotalPositions: ordersActions.calculateTotalPositions,
 };
 
 export default connect(mSTP, mDTP)(OrderItemPage);

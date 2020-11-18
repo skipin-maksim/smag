@@ -12,15 +12,15 @@ const initAllProducts = {
       checkProduct: false,
       vendorCode: '',
       color: '',
-      quantity: '1',
+      quantity: '0',
       price: '0',
       discount: '0',
       sum: '0',
       note: '',
     },
   ],
-  totalQuantitys: [
-    { positions: 0, quantity: 0, averagePrice: 0, sum: 0, prepayment: 0 },
+  calculatedTotals: [
+    { positions: 1, quantity: 0, averagePrice: 0, sum: 0, prepayment: 0 },
   ],
 };
 const initCurrentContractorInfo = {
@@ -57,68 +57,129 @@ const getAllOrdersSuccess = (state, payload) => {
   return [...state, ...payload];
 };
 const changeLineProductInput = (state, payload) => {
-  return state.map(item => {
-    if (payload.choiceOption === 'checkAllProducts') {
-      return { ...item, [payload.name]: payload.value };
-    }
+  return {
+    ...state,
+    items: state.items.map(item => {
+      if (payload.choiceOption === 'checkAllProducts') {
+        return { ...item, [payload.name]: payload.value };
+      }
 
-    return item.id === payload.id
-      ? { ...item, [payload.name]: payload.value }
-      : item;
-  });
+      return item.id === payload.id
+        ? { ...item, [payload.name]: payload.value }
+        : item;
+    }),
+  };
 };
 const getPriceByArtSuccess = (state, payload) => {
-  return state.map(item => {
-    return item.vendorCode === payload.vendorCode
-      ? { ...item, price: payload.prices.wholesale }
-      : item;
-  });
+  return {
+    ...state,
+    items: state.items.map(item => {
+      return item.vendorCode === payload.vendorCode
+        ? { ...item, price: payload.prices.wholesale }
+        : item;
+    }),
+  };
 };
 const changeLineProductInputQuantity = (state, payload) => {
-  return state.map(item => {
-    return item.id === payload.id
-      ? { ...item, [payload.name]: payload.value }
-      : item;
-  });
+  return {
+    ...state,
+    items: state.items.map(item => {
+      return item.id === payload.id
+        ? { ...item, [payload.name]: payload.value }
+        : item;
+    }),
+  };
 };
 const deleteLineSelectedProduct = state => {
-  return state.filter(product => !product.checkProduct);
+  return {
+    ...state,
+    items: state.items.filter(product => !product.checkProduct),
+  };
 };
 const calculateSum = (state, payload) => {
-  return state.map(item => {
-    return item.id === payload.id
-      ? {
-          ...item,
-          sum:
-            Number(item.quantity) * Number(item.price) -
-            (Number(item.quantity) *
-              Number(item.price) *
-              Number(item.discount)) /
-              100,
-        }
-      : item;
-  });
+  return {
+    ...state,
+    items: state.items.map(item => {
+      return item.id === payload.id
+        ? {
+            ...item,
+            sum:
+              Number(item.quantity) * Number(item.price) -
+              (Number(item.quantity) *
+                Number(item.price) *
+                Number(item.discount)) /
+                100,
+          }
+        : item;
+    }),
+  };
 };
 const calculateTotalQuantity = state => {
-  state.reduce((prev, cur) => {
-    return prev.quantity + cur.quantity;
-  }, 0);
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      quantity: state.items.reduce((prev, cur) => {
+        return Number(prev) + Number(cur.quantity);
+      }, 0),
+    },
+  };
+};
+const calculateTotalSum = state => {
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      sum: state.items.reduce((prev, cur) => {
+        return Number(prev) + Number(cur.sum);
+      }, 0),
+    },
+  };
+};
+const calculateAveragePrice = state => {
+  const calcAveragePrice = state => {
+    const totalPriceSum = state.items.reduce((prev, cur) => {
+      return Number(prev) + Number(cur.price);
+    }, 0);
+    return totalPriceSum / state.items.length;
+  };
+
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      averagePrice: calcAveragePrice(state),
+    },
+  };
 };
 const createLineProduct = state => {
-  return [
+  return {
     ...state,
-    {
-      id: uuidv4(),
-      checkProduct: false,
-      vendorCode: '',
-      color: '',
-      quantity: '1',
-      price: '0',
-      discount: '0',
-      sum: '0',
-      note: '',
+    items: [
+      ...state.items,
+      {
+        id: uuidv4(),
+        checkProduct: false,
+        vendorCode: '',
+        color: '',
+        quantity: '0',
+        price: '0',
+        discount: '0',
+        sum: '0',
+        note: '',
+      },
+    ],
+  };
+};
+
+const calculateTotalPositions = state => {
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      positions: state.items.length,
     },
-  ];
+  };
 };
 
 const numOrder = createReducer(initNumOrder, {
@@ -145,9 +206,14 @@ const allProducts = createReducer(initAllProducts, {
     calculateSum(state, payload),
   [ordersActions.calculateTotalQuantity]: (state, _) =>
     calculateTotalQuantity(state),
+  [ordersActions.calculateTotalSum]: (state, _) => calculateTotalSum(state),
+  [ordersActions.calculateAveragePrice]: (state, _) =>
+    calculateAveragePrice(state),
+  [ordersActions.calculateTotalPositions]: (state, _) =>
+    calculateTotalPositions(state),
 });
 
-const saveOrders = createReducer([], {
+const savedOrders = createReducer([], {
   [ordersActions.saveOrder]: (state, _) => saveOrder(state),
 });
 
@@ -159,6 +225,6 @@ export default combineReducers({
   allOrders,
   allProducts,
   numOrder,
-  saveOrders,
+  savedOrders,
   currentContractorInfo,
 });
