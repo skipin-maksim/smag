@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ordersActions, ordersSelectors } from '../../redux/orders';
+import {
+  ordersActions,
+  ordersOperations,
+  ordersSelectors,
+} from '../../redux/orders';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 // import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -36,6 +40,10 @@ class NewOrderPage extends React.Component {
     }
   }
 
+  handleChoiseContractors = () => {
+    console.log('hohoho');
+  };
+
   handleCheckAll = name => {
     this.setState(
       prevState => ({
@@ -50,7 +58,18 @@ class NewOrderPage extends React.Component {
   };
 
   handleSaveBtn = checked => {
-    this.props.onSaveOrder(checked);
+    console.log(checked, 'save');
+
+    let lastOrder;
+
+    this.props.allOrders.filter((order, idx) => {
+      if (idx === this.props.allOrders.length - 1) {
+        return (lastOrder = order);
+      }
+      return order;
+    });
+
+    this.props.onSaveOrder(this.props.allProducts, lastOrder.numOrder);
   };
 
   handleDelete = () => {
@@ -81,6 +100,7 @@ class NewOrderPage extends React.Component {
                 <button
                   type="button"
                   className={`${s.settingButton} ${s.dotsBtn}`}
+                  onClick={this.handleChoiseContractors}
                 >
                   Выбрать контрагента
                   {/* <MoreHorizIcon style={{ color: '#fff' }} /> */}
@@ -122,6 +142,7 @@ class NewOrderPage extends React.Component {
                 <div className="visually-hidden">Удалить заказ</div>
               </button>
             </Tooltip>
+
             <input
               type="checkbox"
               className={s.saveBtn}
@@ -218,13 +239,13 @@ class NewOrderPage extends React.Component {
 const mSTP = state => ({
   allProductsItems: ordersSelectors.getAllProductsItems(state),
   allProducts: ordersSelectors.getOrdersAllProducts(state),
+  allOrders: ordersSelectors.getOrdersList(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
 });
 const mDTP = {
   onCreateLineProduct: ordersActions.createLineProduct,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
-  onSaveOrder: ordersActions.saveOrder,
   onChangeInput: ordersActions.changeLineProductInput,
   onChangeMainCheckbox: ordersActions.changeMainCheckbox,
   onChangeInputNoteForOrder: ordersActions.changeInputNoteForOrder,
@@ -233,6 +254,8 @@ const mDTP = {
   onCalculateTotalSum: ordersActions.calculateTotalSum,
   onCalculateAveragePrice: ordersActions.calculateAveragePrice,
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
+
+  onSaveOrder: ordersOperations.postOrder,
 };
 
 export default connect(mSTP, mDTP)(NewOrderPage);

@@ -15,10 +15,15 @@ export const initAllProducts = {
       note: '',
     },
   ],
-  calculatedTotals: [
-    { positions: 1, quantity: 0, averagePrice: 0, sum: 0, prepayment: 0 },
-  ],
+  calculatedTotals: {
+    positions: 1,
+    quantity: 0,
+    averagePrice: 0,
+    sum: 0,
+    prepayment: 0,
+  },
   noteForOrder: '',
+  date: '',
 };
 export const initCurrentContractorInfo = {
   id: '00001',
@@ -36,8 +41,7 @@ export const initCurrentContractorInfo = {
     city: 'Город',
     post: 'Новая почта №1',
     tel: '0509596984',
-    debt: 0,
+    debtBeforeOrder: 0,
   },
-  products: [],
   date: '',
 };

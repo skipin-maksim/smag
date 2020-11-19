@@ -1,5 +1,8 @@
 {
-  "numorder": { "valueNum": 1, "valueStr": "00001" },
+  "numorder": {
+    "valueNum": 1,
+    "valueStr": "00001"
+  },
   "contractors": [
     {
       "id": 1,
@@ -57,12 +60,11 @@
       "id": "00001",
       "numOrder": "00001",
       "isSave": true,
-      "orderInfo": {
+      "calculatedTotals": {
         "positions": 10,
-        "totalQuantity": 100,
+        "quantity": 100,
         "sum": 1000,
-        "prepayment": 100,
-        "checkOrder": false
+        "prepayment": 100
       },
       "contactInfo": {
         "name": "Григоренко Алексей Романович",
@@ -70,19 +72,18 @@
         "post": "Новая почта №1",
         "tel": "0509596984"
       },
-      "products": [],
+      "items": [],
       "date": ""
     },
     {
       "id": "00002",
       "numOrder": "00002",
       "isSave": true,
-      "orderInfo": {
+      "calculatedTotals": {
         "positions": 10,
-        "totalQuantity": 100,
+        "quantity": 100,
         "sum": 1000,
-        "prepayment": 100,
-        "checkOrder": false
+        "prepayment": 100
       },
       "contactInfo": {
         "name": "Григоренко Алексей Романович",
@@ -90,19 +91,18 @@
         "post": "Новая почта №1",
         "tel": "0509596984"
       },
-      "products": [],
+      "items": [],
       "date": ""
     },
     {
       "id": "00003",
       "numOrder": "00003",
       "isSave": true,
-      "orderInfo": {
+      "calculatedTotals": {
         "positions": 10,
-        "totalQuantity": 100,
+        "quantity": 100,
         "sum": 1000,
-        "prepayment": 100,
-        "checkOrder": false
+        "prepayment": 100
       },
       "contactInfo": {
         "name": "Григоренко Алексей Романович",
@@ -110,8 +110,34 @@
         "post": "Новая почта №1",
         "tel": "0509596984"
       },
-      "products": [],
+      "items": [],
       "date": ""
+    },
+    {
+      "items": [
+        {
+          "id": "6591ca8e-ccc9-482c-a382-6a2d35bcd096",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "красный (rosso)",
+          "quantity": "2",
+          "price": 35,
+          "discount": "0",
+          "sum": 70,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 2,
+        "averagePrice": 35,
+        "sum": 70,
+        "prepayment": 0
+      },
+      "noteForOrder": "",
+      "date": "",
+      "numOrder": "00004",
+      "id": "00004"
     }
   ]
 }

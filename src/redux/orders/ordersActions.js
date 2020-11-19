@@ -1,36 +1,39 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const getAllOrdersRequest = createAction('order/getAllOrderRequest');
-const getAllOrdersSuccess = createAction('order/getAllOrderSuccess');
-const getAllOrdersError = createAction('order/getAllOrderError');
+const getAllOrdersRequest = createAction('orders/getAllOrderRequest');
+const getAllOrdersSuccess = createAction('orders/getAllOrderSuccess');
+const getAllOrdersError = createAction('orders/getAllOrderError');
 
-const getPriceByArtRequest = createAction('order/getPriceByArtRequest');
-const getPriceByArtSuccess = createAction('order/getPriceByArtSuccess');
-const getPriceByArtError = createAction('order/getPriceByArtError');
+const getPriceByArtRequest = createAction('orders/getPriceByArtRequest');
+const getPriceByArtSuccess = createAction('orders/getPriceByArtSuccess');
+const getPriceByArtError = createAction('orders/getPriceByArtError');
 
-const removeOrder = createAction('order/removeOrder');
-const editOrder = createAction('order/editOrder');
-const saveOrder = createAction('order/saveOrder');
+const removeOrder = createAction('orders/removeOrder');
+const editOrder = createAction('orders/editOrder');
 
-const createLineProduct = createAction('order/createLineProduct');
+const saveOrderRequest = createAction('orders/saveOrderRequest');
+const saveOrderSuccess = createAction('orders/saveOrderSuccess');
+const saveOrderError = createAction('orders/saveOrderError');
+
+const createLineProduct = createAction('orders/createLineProduct');
 const deleteLineSelectedProduct = createAction(
   'order/deleteLineSelectedProduct',
 );
-const changeLineProductInput = createAction('order/changeLineProductInput');
+const changeLineProductInput = createAction('orders/changeLineProductInput');
 const changeLineProductInputQuantity = createAction(
-  'order/changeLineProductInputQuantity',
+  'orders/changeLineProductInputQuantity',
 );
-const changeInputNoteForOrder = createAction('order/changeInputNoteForOrder');
-const changeMainCheckbox = createAction('order/changeMainCheckbox');
+const changeInputNoteForOrder = createAction('orders/changeInputNoteForOrder');
+const changeMainCheckbox = createAction('orders/changeMainCheckbox');
 const calculateSum = createAction('orders/calculateSum');
 const calculateTotalPositions = createAction('orders/calculateTotalPositions');
 const calculateTotalQuantity = createAction('orders/calculateTotalQuantity');
 const calculateTotalSum = createAction('orders/calculateTotalSum');
 const calculateAveragePrice = createAction('orders/calculateAveragePrice');
 
-const numOrderRequest = createAction('order/numOrderRequest');
-const numOrderSuccess = createAction('order/numOrderSuccess');
-const numOrderError = createAction('order/numOrderError');
+const numOrderRequest = createAction('orders/numOrderRequest');
+const numOrderSuccess = createAction('orders/numOrderSuccess');
+const numOrderError = createAction('orders/numOrderError');
 
 export default {
   getAllOrdersRequest,
@@ -60,5 +63,7 @@ export default {
 
   removeOrder,
   editOrder,
-  saveOrder,
+  saveOrderRequest,
+  saveOrderSuccess,
+  saveOrderError,
 };

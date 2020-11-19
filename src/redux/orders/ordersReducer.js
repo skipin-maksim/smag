@@ -194,25 +194,23 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.calculateTotalPositions]: (state, _) => {
     return calculateTotalPositions(state);
   },
+  [ordersActions.changeInputNoteForOrder]: (state, { payload }) => {
+    return { ...state, noteForOrder: payload };
+  },
 });
 
-const savedOrders = createReducer([], {
+const saveOrder = createReducer([], {
   [ordersActions.saveOrder]: (state, _) => {},
 });
 
-const noteForOrders = createReducer('', {
-  [ordersActions.changeInputNoteForOrder]: (_, { payload }) => payload,
-});
-
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
-  [ordersActions.saveOrder]: (state, { payload }) => {},
+  // [ordersActions.saveOrder]: (state, { payload }) => {},
 });
 
 export default combineReducers({
   allOrders,
   allProducts,
   numOrder,
-  savedOrders,
+  saveOrder,
   currentContractorInfo,
-  noteForOrders,
 });
