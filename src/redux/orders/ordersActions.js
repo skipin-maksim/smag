@@ -20,6 +20,7 @@ const changeLineProductInput = createAction('order/changeLineProductInput');
 const changeLineProductInputQuantity = createAction(
   'order/changeLineProductInputQuantity',
 );
+const changeInputNoteForOrder = createAction('order/changeInputNoteForOrder');
 const changeMainCheckbox = createAction('order/changeMainCheckbox');
 const calculateSum = createAction('orders/calculateSum');
 const calculateTotalPositions = createAction('orders/calculateTotalPositions');
@@ -49,6 +50,7 @@ export default {
   changeLineProductInput,
   changeLineProductInputQuantity,
   changeMainCheckbox,
+  changeInputNoteForOrder,
 
   calculateSum,
   calculateTotalPositions,

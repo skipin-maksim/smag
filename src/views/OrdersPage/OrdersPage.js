@@ -100,8 +100,6 @@ class OrdersPage extends React.Component {
             })}
           </ul>
         </div>
-
-        <div className={s.orderWrapper}></div>
       </div>
     );
   }

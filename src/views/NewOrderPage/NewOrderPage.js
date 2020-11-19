@@ -64,8 +64,9 @@ class NewOrderPage extends React.Component {
   render() {
     const {
       allProducts,
+      allProductsItems,
       onCreateLineProduct,
-      // onChangeInput,
+      onChangeInputNoteForOrder,
       calculatedTotals,
       onCalculateTotalPositions,
     } = this.props;
@@ -146,7 +147,7 @@ class NewOrderPage extends React.Component {
         <div className={s.windowOrders}>
           <form>
             <ul className={s.customerOrderList}>
-              {allProducts.map((item, idx) => {
+              {allProductsItems.map((item, idx) => {
                 return <LineProduct key={item.id} id={item.id} idx={idx} />;
               })}
             </ul>
@@ -197,13 +198,20 @@ class NewOrderPage extends React.Component {
             </div>
           </div>
         </div>
+        <input
+          type="text"
+          placeholder={'Заметки'}
+          value={allProducts.noteForOrder.value}
+          onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
+        />
       </div>
     );
   }
 }
 
 const mSTP = state => ({
-  allProducts: ordersSelectors.getAllProducts(state),
+  allProductsItems: ordersSelectors.getAllProductsItems(state),
+  allProducts: ordersSelectors.getOrdersAllProducts(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
 });
@@ -213,6 +221,7 @@ const mDTP = {
   onSaveOrder: ordersActions.saveOrder,
   onChangeInput: ordersActions.changeLineProductInput,
   onChangeMainCheckbox: ordersActions.changeMainCheckbox,
+  onChangeInputNoteForOrder: ordersActions.changeInputNoteForOrder,
 
   onCalculateTotalQuantity: ordersActions.calculateTotalQuantity,
   onCalculateTotalSum: ordersActions.calculateTotalSum,
