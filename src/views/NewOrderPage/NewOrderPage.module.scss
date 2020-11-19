@@ -14,12 +14,27 @@
 }
 
 .contractorInfoInner {
+  width: 850px;
   & span {
     display: inline-block;
 
     &:not(:last-child) {
       margin-right: 20px;
     }
+  }
+}
+
+.contractorInfoInnerDept {
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+
+  & span {
+    margin-left: 10px;
+    font-size: 25px;
+    font-style: italic;
   }
 }
 
@@ -94,6 +109,7 @@
 .windowOrders {
   position: relative;
   padding: 0 15px 55px;
+  margin-bottom: 25px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: #fff;
@@ -134,7 +150,7 @@
 
 .customerOrderList {
   height: 550px;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);
 }
 
@@ -168,4 +184,27 @@
   & .numbers {
     font-size: 14px;
   }
+}
+
+.noteForOrderLabel {
+  display: flex;
+
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 100px;
+    background: #1c2b4a;
+    color: #fff;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+}
+
+.noteForOrder {
+  width: 100%;
+  padding: 5px 10px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }

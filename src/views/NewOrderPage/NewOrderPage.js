@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ordersActions, ordersSelectors } from '../../redux/orders';
+import { Scrollbar } from 'react-scrollbars-custom';
 
 // import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -92,8 +93,8 @@ class NewOrderPage extends React.Component {
               <span>Новая почта №1</span>
               <span>0509596984</span>
             </div>
-            <div className={s.contractorInfoInner}>
-              Долг контрагента <span>500</span>
+            <div className={s.contractorInfoInnerDept}>
+              Долг контрагента: <span>500</span>
             </div>
           </div>
 
@@ -146,11 +147,13 @@ class NewOrderPage extends React.Component {
         </div>
         <div className={s.windowOrders}>
           <form>
-            <ul className={s.customerOrderList}>
-              {allProductsItems.map((item, idx) => {
-                return <LineProduct key={item.id} id={item.id} idx={idx} />;
-              })}
-            </ul>
+            <Scrollbar style={{ width: 1567, height: 549 }}>
+              <ul className={s.customerOrderList}>
+                {allProductsItems.map((item, idx) => {
+                  return <LineProduct key={item.id} id={item.id} idx={idx} />;
+                })}
+              </ul>
+            </Scrollbar>
           </form>
 
           <div className={s.orderInfo}>
@@ -198,12 +201,15 @@ class NewOrderPage extends React.Component {
             </div>
           </div>
         </div>
-        <input
-          type="text"
-          placeholder={'Заметки'}
-          value={allProducts.noteForOrder.value}
-          onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
-        />
+        <label className={s.noteForOrderLabel}>
+          <span>Заметка</span>
+          <input
+            className={s.noteForOrder}
+            type="text"
+            value={allProducts.noteForOrder.value}
+            onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
+          />
+        </label>
       </div>
     );
   }
