@@ -17,6 +17,7 @@ import { CheckBoxMain } from '../../components/CheckBox/';
 import LineProduct from '../../components/LineProduct/LineProduct';
 import ContractorsInModal from '../../components/ContractorsInModal/ContractorsInModal';
 import s from './NewOrderPage.module.scss';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
@@ -44,8 +45,8 @@ class NewOrderPage extends React.Component {
   }
 
   handleChoiseContractors = () => {
-    console.log('hohoho');
     this.props.onChoiseContractor();
+    this.props.allContacts();
   };
 
   handleCheckAll = name => {
@@ -89,11 +90,22 @@ class NewOrderPage extends React.Component {
     const {
       allProducts,
       allProductsItems,
+      currentContractorInfo,
       onCreateLineProduct,
       onChangeInputNoteForOrder,
       calculatedTotals,
       onCalculateTotalPositions,
     } = this.props;
+
+    const {
+      secondName,
+      firstName,
+      thirdName,
+      city,
+      post,
+      tel,
+      debt,
+    } = currentContractorInfo;
 
     return (
       <>
@@ -113,15 +125,17 @@ class NewOrderPage extends React.Component {
                     {/* <MoreHorizIcon style={{ color: '#fff' }} /> */}
                   </button>
                 </Tooltip>
-                <span className={s.contractorName}>Иван Васильевич</span>
+                <span className={s.contractorName}>
+                  {secondName} {firstName} {thirdName}
+                </span>
               </div>
               <div className={s.contractorInfoInner}>
-                <span>Город</span>
-                <span>Новая почта №1</span>
-                <span>0509596984</span>
+                <span>{city}</span>
+                <span>{post}</span>
+                <span>{tel}</span>
               </div>
               <div className={s.contractorInfoInnerDept}>
-                Долг контрагента: <span>500</span>
+                Долг контрагента: <span>{debt}</span>
               </div>
             </div>
 
@@ -254,9 +268,11 @@ const mSTP = state => ({
   allOrders: ordersSelectors.getOrdersList(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
+  currentContractorInfo: ordersSelectors.getCurrentContractorInfo(state),
 });
 const mDTP = {
   onChoiseContractor: modalActions.openModal,
+  allContacts: contactsOperations.getContacts,
 
   onCreateLineProduct: ordersActions.createLineProduct,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,

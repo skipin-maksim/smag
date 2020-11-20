@@ -37,11 +37,13 @@ export const initCurrentContractorInfo = {
     checkOrder: false,
   },
   contactInfo: {
-    name: 'Григоренко Алексей Романович',
-    city: 'Город',
-    post: 'Новая почта №1',
-    tel: '0509596984',
-    debtBeforeOrder: 0,
+    firstName: '',
+    secondName: '',
+    thirdName: '',
+    city: '',
+    post: '',
+    tel: '',
+    debt: 0,
   },
   date: '',
 };

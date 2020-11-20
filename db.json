@@ -9,11 +9,10 @@
       "firstName": "Максим",
       "secondName": "Скипин",
       "thirdName": "Сергеевич",
-      "phoneNumber": "+38 066 202 53 90",
-      "phoneNumberTwo": "+98 066 202 53 90",
+      "tel": "+38 066 202 53 90",
       "email": "maks@gmail.com",
       "city": "Бровары",
-      "newPostNumber": 13,
+      "post": "Новая Почта 13",
       "debt": 0
     },
     {
@@ -21,11 +20,10 @@
       "firstName": "Алексей",
       "secondName": "Григоренко",
       "thirdName": "Скипинович",
-      "phoneNumber": "+38 066 202 53 90",
-      "phoneNumberTwo": "+98 066 202 53 90",
+      "tel": "+38 066 202 53 90",
       "email": "aleks@gmail.com",
       "city": "Чернобыль",
-      "newPostNumber": 666,
+      "post": 666,
       "debt": 1000
     }
   ],

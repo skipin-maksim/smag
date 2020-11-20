@@ -8,14 +8,6 @@ import {
   initCurrentContractorInfo,
 } from './initialStateForReducers';
 
-// const saveOrder = state => {
-// const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
-// return {
-//   valueNum: state.valueNum + 1,
-//   valueStr: editCustomNumber(state.valueNum),
-// };
-// console.log('hi is in save');
-// };
 const getAllOrdersSuccess = (state, payload) => {
   return [...state, ...payload];
 };
@@ -204,7 +196,16 @@ const saveOrder = createReducer([], {
 });
 
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
-  // [ordersActions.saveOrder]: (state, { payload }) => {},
+  [ordersActions.choiseContractor]: (state, { payload }) => {
+    return {
+      ...state,
+      contactInfo: { ...payload },
+    };
+  },
+});
+
+const filterContractors = createReducer('', {
+  [ordersActions.filterContractors]: (state, { payload }) => payload,
 });
 
 export default combineReducers({
@@ -213,4 +214,5 @@ export default combineReducers({
   numOrder,
   saveOrder,
   currentContractorInfo,
+  filterContractors,
 });

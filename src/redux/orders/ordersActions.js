@@ -35,6 +35,10 @@ const numOrderRequest = createAction('orders/numOrderRequest');
 const numOrderSuccess = createAction('orders/numOrderSuccess');
 const numOrderError = createAction('orders/numOrderError');
 
+const choiseContractor = createAction('orders/choiseContractor');
+
+const filterContractors = createAction('orders/filterContractors');
+
 export default {
   getAllOrdersRequest,
   getAllOrdersSuccess,
@@ -66,4 +70,7 @@ export default {
   saveOrderRequest,
   saveOrderSuccess,
   saveOrderError,
+
+  choiseContractor,
+  filterContractors,
 };

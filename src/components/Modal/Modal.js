@@ -20,7 +20,6 @@ class Modal extends Component {
   };
 
   render() {
-    console.log(this.props.children);
     return (
       <div className="Overlay" onClick={this.handleMouseClick}>
         <div className="Modal">{this.props.children}</div>
