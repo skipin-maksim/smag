@@ -7,16 +7,16 @@ import CheckBox from '../CheckBox/CheckBox';
 import s from './LineOrder.module.scss';
 
 function LineOrder({ idx, orderItem }) {
-  const { orderInfo, contactInfo } = orderItem;
+  const { calculatedTotals, contactInfo } = orderItem;
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
-      <CheckBox choiceOption="checkOrder" />
+      <CheckBox />
       <span>{idx + 1}</span>
       <span>{contactInfo.name}</span>
-      <span>{orderInfo.positions}</span>
-      <span>{orderInfo.quantity}</span>
-      <span>{orderInfo.sum}</span>
-      <span>{orderInfo.prepayment}</span>
+      <span>{calculatedTotals.positions}</span>
+      <span>{calculatedTotals.quantity}</span>
+      <span>{calculatedTotals.sum}</span>
+      <span>{calculatedTotals.prepayment}</span>
     </li>
   );
 }

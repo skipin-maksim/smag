@@ -50,7 +50,7 @@ input {
   }
 }
 
-// !for hide arrows in input type 'number'
+// !для скрытия стрелочек в инпуте типа "number"
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -105,7 +105,7 @@ input[type='radio'].visually-hidden {
   width: 100%;
 }
 
-.whithLine {
+.whiteLine {
   background-color: #fff;
 }
 
@@ -116,3 +116,27 @@ input[type='radio'].visually-hidden {
 .Scrollbars {
   background: #1c2b4a;
 }
+
+/*
+ * Стили компонента Modal
+ */
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
+
+.Modal {
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+}
+/*
+ * Стили компонента Modal
+ */
