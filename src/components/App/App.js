@@ -9,11 +9,12 @@ import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import AsideComponent from '../AsideComponent/AsideComponent';
 import Layout from '../Layout/Layout';
 import MainComponent from '../MainComponent/MainComponent';
+import { contactsOperations } from '../../redux/contacts';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getCerrentNumOrder();
-    this.props.getAllOrders();
+    this.props.allOrders();
+    this.props.allContacts();
   }
 
   render() {
@@ -33,8 +34,8 @@ class App extends React.Component {
 }
 
 const mDTP = {
-  getCerrentNumOrder: ordersOperations.getCurrentNumOrder,
-  getAllOrders: ordersOperations.getAllOrders,
+  allContacts: contactsOperations.getContacts,
+  allOrders: ordersOperations.getAllOrders,
 };
 
 export default connect(null, mDTP)(App);

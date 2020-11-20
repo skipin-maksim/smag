@@ -15,6 +15,18 @@
       "city": "Бровары",
       "newPostNumber": 13,
       "debt": 0
+    },
+    {
+      "id": 2,
+      "firstName": "Алексей",
+      "secondName": "Григоренко",
+      "thirdName": "Скипинович",
+      "phoneNumber": "+38 066 202 53 90",
+      "phoneNumberTwo": "+98 066 202 53 90",
+      "email": "aleks@gmail.com",
+      "city": "Чернобыль",
+      "newPostNumber": 666,
+      "debt": 1000
     }
   ],
   "products": [
