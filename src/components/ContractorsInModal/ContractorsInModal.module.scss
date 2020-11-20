@@ -1,0 +1,30 @@
+.modalContractors {
+  min-width: 550px;
+  position: relative;
+  padding: 40px 0;
+  background-color: #fff;
+  border-radius: 8px;
+
+  & .searchInput {
+    width: calc(100% - 80px);
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  & .list {
+    & li {
+      padding: 5px 40px;
+      cursor: pointer;
+
+      &:hover {
+        background: #eeeeee;
+      }
+    }
+  }
+
+  & button {
+    top: 4px;
+    right: 4px;
+  }
+}

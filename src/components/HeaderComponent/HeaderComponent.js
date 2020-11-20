@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import CloseBtn from '../Buttons/CloseBtn';
+
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
 
 import s from './HeaderComponent.module.scss';
 
 function HeaderComponent({ tabsList, removeTab, match, history }) {
-  function handleOnCloseTab(name, path, idxItem) {
+  const handleOnCloseTab = (name, path, idxItem) => {
     tabsList.reduce((previous, current) => {
       if (idxItem === 0 && tabsList[1] && history.location.pathname === path) {
         history.replace(tabsList[1].path);
@@ -27,7 +29,7 @@ function HeaderComponent({ tabsList, removeTab, match, history }) {
 
       return current;
     }, tabsList[0]);
-  }
+  };
 
   return (
     <header className={s.headerLineTabs}>
@@ -43,14 +45,13 @@ function HeaderComponent({ tabsList, removeTab, match, history }) {
               >
                 {name}
               </NavLink>
-              <button
-                // onClick={() => removeTab({ name, tabsList })}
-                onClick={() => handleOnCloseTab(name, path, idx)}
-                className={s.tabCloseBtn}
-                type="button"
-              >
-                <span className="visually-hidden">close button</span>
-              </button>
+
+              <CloseBtn
+                onClick={handleOnCloseTab}
+                name={name}
+                path={path}
+                idx={idx}
+              />
             </li>
           );
         })}

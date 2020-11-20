@@ -124,32 +124,6 @@
       },
       "items": [],
       "date": ""
-    },
-    {
-      "items": [
-        {
-          "id": "6591ca8e-ccc9-482c-a382-6a2d35bcd096",
-          "checkProduct": false,
-          "vendorCode": "10",
-          "color": "красный (rosso)",
-          "quantity": "2",
-          "price": 35,
-          "discount": "0",
-          "sum": 70,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 2,
-        "averagePrice": 35,
-        "sum": 70,
-        "prepayment": 0
-      },
-      "noteForOrder": "",
-      "date": "",
-      "numOrder": "00004",
-      "id": "00004"
     }
   ]
 }

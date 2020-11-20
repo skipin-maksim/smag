@@ -1,0 +1,43 @@
+.tabCloseBtn {
+  position: absolute;
+  // top: 50%;
+  // right: 0;
+  // transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s linear;
+
+  &:hover::before {
+    background-color: #de6a73;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+  }
+
+  &:hover::after {
+    background-color: #de6a73;
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 70%;
+    height: 1px;
+    background-color: #000;
+    transition: all 0.2s linear;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
