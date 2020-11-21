@@ -7,9 +7,6 @@ import {
   initCurrentContractorInfo,
 } from './initialStateForReducers';
 
-const getAllOrdersSuccess = (state, payload) => {
-  return [...state, ...payload];
-};
 const changeLineProductInput = (state, payload) => {
   return {
     ...state,
@@ -141,7 +138,7 @@ const calculateTotalPositions = state => {
 
 const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
-    return getAllOrdersSuccess(state, payload);
+    return [...state, ...payload];
   },
 });
 
@@ -198,7 +195,7 @@ const currentContractorInfo = createReducer(initCurrentContractorInfo, {
 });
 
 const filterContractors = createReducer('', {
-  [ordersActions.filterContractors]: (state, { payload }) => payload,
+  [ordersActions.filterContractors]: (_, { payload }) => payload,
 });
 
 export default combineReducers({

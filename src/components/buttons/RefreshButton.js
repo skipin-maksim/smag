@@ -19,11 +19,10 @@ export default function RefreshButton({
           onClick={onRefreshFunction}
           disabled={isRotate}
         >
-          {isRotate && (
-            <Autorenew className={s.rotate} style={{ fontSize: size }} />
-          )}
-
-          {!isRotate && <Autorenew style={{ fontSize: size }} />}
+          <Autorenew
+            className={isRotate ? s.rotate : ''}
+            style={{ fontSize: size }}
+          />
         </button>
       </span>
     </Tooltip>

@@ -63,15 +63,12 @@ class NewOrderPage extends React.Component {
   };
 
   handleSaveBtn = checked => {
-    console.log(checked, 'save');
-
     let lastOrder;
 
     this.props.allOrders.filter((order, idx) => {
-      if (idx === this.props.allOrders.length - 1) {
-        return (lastOrder = order);
-      }
-      return order;
+      return idx === this.props.allOrders.length - 1
+        ? (lastOrder = order)
+        : order;
     });
 
     this.props.onSaveOrder(this.props.allProducts, lastOrder.numOrder);

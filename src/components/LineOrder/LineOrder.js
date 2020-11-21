@@ -8,6 +8,7 @@ import s from './LineOrder.module.scss';
 
 function LineOrder({ idx, orderItem }) {
   const { calculatedTotals, contactInfo } = orderItem;
+
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
       <CheckBox />
