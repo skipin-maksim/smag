@@ -17,7 +17,7 @@ import { CheckBoxMain } from '../../components/CheckBox/';
 import LineProduct from '../../components/LineProduct/LineProduct';
 import ContractorsInModal from '../../components/ContractorsInModal/ContractorsInModal';
 import s from './NewOrderPage.module.scss';
-import { contactsOperations, contactsSelectors } from '../../redux/contacts';
+import { contactsOperations } from '../../redux/contacts';
 
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
@@ -122,7 +122,6 @@ class NewOrderPage extends React.Component {
                     onClick={this.handleChoiseContractors}
                   >
                     Выбрать контрагента
-                    {/* <MoreHorizIcon style={{ color: '#fff' }} /> */}
                   </button>
                 </Tooltip>
                 <span className={s.contractorName}>
