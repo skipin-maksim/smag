@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const initNumOrder = { valueNum: 0, valueStr: '0' };
 export const initAllProducts = {
   items: [
     {
@@ -25,6 +24,7 @@ export const initAllProducts = {
   noteForOrder: '',
   date: '',
 };
+
 export const initCurrentContractorInfo = {
   id: '00001',
   numOrder: '00001',

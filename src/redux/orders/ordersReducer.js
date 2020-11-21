@@ -140,12 +140,6 @@ const calculateTotalPositions = state => {
   };
 };
 
-const numOrder = createReducer(initNumOrder, {
-  [ordersActions.numOrderSuccess]: (_, { payload }) => payload,
-
-  [ordersActions.saveOrder]: () => {},
-});
-
 const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
     return getAllOrdersSuccess(state, payload);
@@ -211,7 +205,6 @@ const filterContractors = createReducer('', {
 export default combineReducers({
   allOrders,
   allProducts,
-  numOrder,
   saveOrder,
   currentContractorInfo,
   filterContractors,
