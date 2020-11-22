@@ -19,8 +19,9 @@ export const initAllProducts = {
     quantity: 0,
     averagePrice: 0,
     sum: 0,
-    prepayment: 0,
+    remainderPaid: 0,
   },
+  prepayment: 0,
   noteForOrder: '',
   date: '',
 };

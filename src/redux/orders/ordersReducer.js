@@ -107,6 +107,16 @@ const calculateAveragePrice = state => {
     },
   };
 };
+const calculateRemainderPaid = (state, payload) => {
+  const { sum } = state.calculatedTotals;
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      remainderPaid: sum && payload ? sum - payload : sum - state.prepayment,
+    },
+  };
+};
 const createLineProduct = state => {
   return {
     ...state,
@@ -176,8 +186,14 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.calculateTotalPositions]: (state, _) => {
     return calculateTotalPositions(state);
   },
+  [ordersActions.calculateRemainderPaid]: (state, { payload }) => {
+    return calculateRemainderPaid(state, payload);
+  },
   [ordersActions.changeInputNoteForOrder]: (state, { payload }) => {
     return { ...state, noteForOrder: payload };
+  },
+  [ordersActions.changePrepaymentInput]: (state, { payload }) => {
+    return { ...state, prepayment: payload };
   },
 });
 
