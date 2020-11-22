@@ -67,61 +67,53 @@
   ],
   "orders": [
     {
-      "id": "00001",
-      "numOrder": "00001",
-      "isSave": true,
+      "items": [
+        {
+          "id": "1a531523-5eb9-4018-b174-ea104b07d50a",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "коричневый (tmoro)",
+          "quantity": "4",
+          "price": 40,
+          "discount": "10",
+          "sum": 144,
+          "note": "qwe"
+        },
+        {
+          "id": "f55f12aa-0a87-4b44-b0c5-d709d480377a",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "белый (bianco)",
+          "quantity": "6",
+          "price": 45,
+          "discount": "20",
+          "sum": 216,
+          "note": "qwe"
+        }
+      ],
       "calculatedTotals": {
-        "positions": 10,
-        "quantity": 100,
-        "sum": 1000,
-        "prepayment": 100
+        "positions": 2,
+        "quantity": 10,
+        "averagePrice": 42.5,
+        "sum": 360,
+        "remainderPaid": 300
       },
-      "contactInfo": {
-        "name": "Григоренко Алексей Романович",
-        "city": "Город",
-        "post": "Новая почта №1",
-        "tel": "0509596984"
+      "prepayment": "60",
+      "noteForOrder": "qweqwe",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
       },
-      "items": [],
-      "date": ""
-    },
-    {
-      "id": "00002",
-      "numOrder": "00002",
-      "isSave": true,
-      "calculatedTotals": {
-        "positions": 10,
-        "quantity": 100,
-        "sum": 1000,
-        "prepayment": 100
-      },
-      "contactInfo": {
-        "name": "Григоренко Алексей Романович",
-        "city": "Город",
-        "post": "Новая почта №1",
-        "tel": "0509596984"
-      },
-      "items": [],
-      "date": ""
-    },
-    {
-      "id": "00003",
       "numOrder": "00003",
-      "isSave": true,
-      "calculatedTotals": {
-        "positions": 10,
-        "quantity": 100,
-        "sum": 1000,
-        "prepayment": 100
-      },
-      "contactInfo": {
-        "name": "Григоренко Алексей Романович",
-        "city": "Город",
-        "post": "Новая почта №1",
-        "tel": "0509596984"
-      },
-      "items": [],
-      "date": ""
+      "id": "00003",
+      "date": "23-11-2020 02:20"
     }
   ]
 }

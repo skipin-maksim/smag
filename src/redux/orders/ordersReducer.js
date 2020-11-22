@@ -7,9 +7,6 @@ import {
   initCurrentContractorInfo,
 } from './initialStateForReducers';
 
-const getAllOrdersSuccess = (state, payload) => {
-  return [...state, ...payload];
-};
 const changeLineProductInput = (state, payload) => {
   return {
     ...state,
@@ -110,6 +107,16 @@ const calculateAveragePrice = state => {
     },
   };
 };
+const calculateRemainderPaid = (state, payload) => {
+  const { sum } = state.calculatedTotals;
+  return {
+    ...state,
+    calculatedTotals: {
+      ...state.calculatedTotals,
+      remainderPaid: sum && payload ? sum - payload : sum - state.prepayment,
+    },
+  };
+};
 const createLineProduct = state => {
   return {
     ...state,
@@ -141,7 +148,7 @@ const calculateTotalPositions = state => {
 
 const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
-    return getAllOrdersSuccess(state, payload);
+    return [...state, ...payload];
   },
 });
 
@@ -179,32 +186,33 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.calculateTotalPositions]: (state, _) => {
     return calculateTotalPositions(state);
   },
+  [ordersActions.calculateRemainderPaid]: (state, { payload }) => {
+    return calculateRemainderPaid(state, payload);
+  },
   [ordersActions.changeInputNoteForOrder]: (state, { payload }) => {
     return { ...state, noteForOrder: payload };
   },
-});
-
-const saveOrder = createReducer([], {
-  [ordersActions.saveOrder]: (state, _) => {},
+  [ordersActions.changePrepaymentInput]: (state, { payload }) => {
+    return { ...state, prepayment: payload };
+  },
 });
 
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
       ...state,
-      contactInfo: { ...payload },
+      contractorInfo: { ...payload },
     };
   },
 });
 
 const filterContractors = createReducer('', {
-  [ordersActions.filterContractors]: (state, { payload }) => payload,
+  [ordersActions.filterContractors]: (_, { payload }) => payload,
 });
 
 export default combineReducers({
   allOrders,
   allProducts,
-  saveOrder,
   currentContractorInfo,
   filterContractors,
 });

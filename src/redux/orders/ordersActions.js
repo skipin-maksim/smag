@@ -30,6 +30,9 @@ const calculateTotalPositions = createAction('orders/calculateTotalPositions');
 const calculateTotalQuantity = createAction('orders/calculateTotalQuantity');
 const calculateTotalSum = createAction('orders/calculateTotalSum');
 const calculateAveragePrice = createAction('orders/calculateAveragePrice');
+const calculateRemainderPaid = createAction('orders/calculateRemainderPaid');
+
+const changePrepaymentInput = createAction('orders/changePrepaymentInput');
 
 const numOrderRequest = createAction('orders/numOrderRequest');
 const numOrderSuccess = createAction('orders/numOrderSuccess');
@@ -64,6 +67,9 @@ export default {
   calculateAveragePrice,
   calculateTotalQuantity,
   calculateTotalSum,
+  calculateRemainderPaid,
+
+  changePrepaymentInput,
 
   removeOrder,
   editOrder,

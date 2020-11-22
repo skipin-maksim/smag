@@ -19,6 +19,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateSum,
     onCalculateTotalSum,
     onCalculateTotalQuantity,
+    onCalculateRemainderPaid,
     onGetArticlePrice,
   } = actions;
 
@@ -28,6 +29,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateSum();
     onCalculateTotalQuantity();
     onCalculateTotalSum();
+    onCalculateRemainderPaid();
   };
 
   const handleDiscount = (artValue, name) => {
@@ -35,6 +37,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
 
     onCalculateSum();
     onCalculateTotalSum();
+    onCalculateRemainderPaid();
   };
 
   return (
@@ -170,6 +173,9 @@ const mDTP = (dispatch, { id }) => ({
   },
   onCalculateTotalSum: () => {
     return dispatch(ordersActions.calculateTotalSum());
+  },
+  onCalculateRemainderPaid: () => {
+    return dispatch(ordersActions.calculateRemainderPaid());
   },
 });
 

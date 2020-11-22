@@ -2,15 +2,18 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getOrdersList = state => state.orders.allOrders;
 
-const getCurrentContractorInfo = state =>
-  state.orders.currentContractorInfo.contactInfo;
+const getCurrentContractorInfo = state => {
+  return state.orders.currentContractorInfo.contractorInfo;
+};
 
-const getOrderById = (state, id) =>
-  state.orders.allOrders.find(item => item.id === id);
+const getOrderById = (state, id) => {
+  return state.orders.allOrders.find(item => item.id === id);
+};
 
 const getCurrentOrderNum = state => state.orders.numOrder;
 
 const getAllProductsItems = state => state.orders.allProducts.items;
+
 const getOrdersAllProducts = state => state.orders.allProducts;
 
 const getIsSomeUnchecked = state => {
@@ -18,8 +21,9 @@ const getIsSomeUnchecked = state => {
 };
 const getCalculatedTotals = state => state.orders.allProducts.calculatedTotals;
 
-const getProductLineById = (state, id) =>
-  getAllProductsItems(state).find(item => item.id === id);
+const getProductLineById = (state, id) => {
+  return getAllProductsItems(state).find(item => item.id === id);
+};
 
 const getFilterValue = state => state.orders.filterContractors;
 

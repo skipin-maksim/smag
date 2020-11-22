@@ -19,24 +19,14 @@ export const initAllProducts = {
     quantity: 0,
     averagePrice: 0,
     sum: 0,
-    prepayment: 0,
+    remainderPaid: 0,
   },
+  prepayment: 0,
   noteForOrder: '',
-  date: '',
 };
 
 export const initCurrentContractorInfo = {
-  id: '00001',
-  numOrder: '00001',
-  isSave: true,
-  orderInfo: {
-    positions: 10,
-    totalQuantity: 100,
-    sum: 1000,
-    prepayment: 100,
-    checkOrder: false,
-  },
-  contactInfo: {
+  contractorInfo: {
     firstName: '',
     secondName: '',
     thirdName: '',
@@ -45,5 +35,4 @@ export const initCurrentContractorInfo = {
     tel: '',
     debt: 0,
   },
-  date: '',
 };

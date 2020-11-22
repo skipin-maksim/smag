@@ -24,6 +24,8 @@ const ContractorsInModal = ({
 
   return (
     <div className={s.modalContractors}>
+      <CloseBtn onClick={onCloseModal} />
+
       <input
         type="text"
         placeholder="поиск"
@@ -31,7 +33,7 @@ const ContractorsInModal = ({
         onChange={({ target }) => onFilterContractors(target.value)}
         value={filterValue}
       />
-      <CloseBtn onClick={onCloseModal} />
+
       <Scrollbar style={{ width: 549, height: 299 }}>
         <div className={s.loader}>
           <PulseLoader

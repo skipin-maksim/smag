@@ -63,18 +63,19 @@ class NewOrderPage extends React.Component {
   };
 
   handleSaveBtn = checked => {
-    console.log(checked, 'save');
-
     let lastOrder;
 
     this.props.allOrders.filter((order, idx) => {
-      if (idx === this.props.allOrders.length - 1) {
-        return (lastOrder = order);
-      }
-      return order;
+      return idx === this.props.allOrders.length - 1
+        ? (lastOrder = order)
+        : order;
     });
 
-    this.props.onSaveOrder(this.props.allProducts, lastOrder.numOrder);
+    this.props.onSaveOrder(
+      this.props.allProducts,
+      lastOrder.numOrder,
+      this.props.currentContractorInfo,
+    );
   };
 
   handleDelete = () => {
@@ -84,6 +85,7 @@ class NewOrderPage extends React.Component {
     this.props.onCalculateTotalSum();
     this.props.onCalculateAveragePrice();
     this.props.onCalculateTotalPositions();
+    this.props.onCalculateRemainderPaid();
   };
 
   render() {
@@ -93,8 +95,10 @@ class NewOrderPage extends React.Component {
       currentContractorInfo,
       onCreateLineProduct,
       onChangeInputNoteForOrder,
+      onChangePrepaymentInput,
       calculatedTotals,
       onCalculateTotalPositions,
+      onCalculateRemainderPaid,
     } = this.props;
 
     const {
@@ -138,38 +142,65 @@ class NewOrderPage extends React.Component {
               </div>
             </div>
 
-            <div className={s.settingButtons}>
-              <Tooltip title={'Добавить товар'} arrow>
-                <button
-                  onClick={() => {
-                    onCreateLineProduct();
-                    onCalculateTotalPositions();
-                  }}
-                  className={`${s.settingButton} ${s.addBtn}`}
-                >
-                  <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
-                  <div className="visually-hidden">Добавить заказ</div>
-                </button>
-              </Tooltip>
+            <div className={s.settingControls}>
+              <div className={s.settingButtons}>
+                <Tooltip title={'Добавить товар'} arrow>
+                  <button
+                    onClick={() => {
+                      onCreateLineProduct();
+                      onCalculateTotalPositions();
+                    }}
+                    className={`${s.settingButton} ${s.addBtn}`}
+                  >
+                    <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
+                    <div className="visually-hidden">Добавить заказ</div>
+                  </button>
+                </Tooltip>
 
-              <Tooltip title={'Удалить товар'} arrow>
-                <button
-                  type="button"
-                  onClick={this.handleDelete}
-                  className={`${s.settingButton} ${s.removeBtn}`}
-                >
-                  <DeleteForeverIcon
-                    style={{ color: '#DE6A73', fontSize: 21 }}
+                <Tooltip title={'Удалить товар'} arrow>
+                  <button
+                    type="button"
+                    onClick={this.handleDelete}
+                    className={`${s.settingButton} ${s.removeBtn}`}
+                  >
+                    <DeleteForeverIcon
+                      style={{ color: '#DE6A73', fontSize: 21 }}
+                    />
+                    <div className="visually-hidden">Удалить заказ</div>
+                  </button>
+                </Tooltip>
+
+                <input
+                  type="checkbox"
+                  className={s.saveBtn}
+                  onChange={({ target }) => this.handleSaveBtn(target.checked)}
+                />
+              </div>
+              <div className={s.moneyBlock}>
+                <label className={s.prepaymentLabel}>
+                  Предоплата:
+                  <input
+                    name="prepayment"
+                    type="number"
+                    className={s.prepaymentInput}
+                    value={allProducts.prepayment}
+                    onChange={({ target }) =>
+                      onChangePrepaymentInput(target.value)
+                    }
+                    onBlur={({ target }) =>
+                      onCalculateRemainderPaid(target.value)
+                    }
                   />
-                  <div className="visually-hidden">Удалить заказ</div>
-                </button>
-              </Tooltip>
-
-              <input
-                type="checkbox"
-                className={s.saveBtn}
-                onChange={({ target }) => this.handleSaveBtn(target.checked)}
-              />
+                </label>
+                <div className={s.remainderPaid}>
+                  Остаток к оплате:{' '}
+                  <span>
+                    {calculatedTotals.remainderPaid < 0
+                      ? 0
+                      : calculatedTotals.remainderPaid.toLocaleString('ru')}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -190,7 +221,13 @@ class NewOrderPage extends React.Component {
           </div>
           <div className={s.windowOrders}>
             <form>
-              <Scrollbar style={{ width: 1567, height: 549 }}>
+              <Scrollbar
+                style={{
+                  width: 1567,
+                  height: 549,
+                  boxShadow: '0 0 5px rgba(0, 0, 0, 0.233)',
+                }}
+              >
                 <ul className={s.customerOrderList}>
                   {allProductsItems.map((item, idx) => {
                     return <LineProduct key={item.id} id={item.id} idx={idx} />;
@@ -283,7 +320,10 @@ const mDTP = {
   onCalculateTotalSum: ordersActions.calculateTotalSum,
   onCalculateAveragePrice: ordersActions.calculateAveragePrice,
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
+  onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
   onSaveOrder: ordersOperations.postOrder,
+
+  onChangePrepaymentInput: ordersActions.changePrepaymentInput,
 };
 
 export default connect(mSTP, mDTP)(NewOrderPage);
