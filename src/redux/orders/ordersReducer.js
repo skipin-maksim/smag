@@ -197,15 +197,11 @@ const allProducts = createReducer(initAllProducts, {
   },
 });
 
-const saveOrder = createReducer([], {
-  [ordersActions.saveOrder]: (state, _) => {},
-});
-
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
       ...state,
-      contactInfo: { ...payload },
+      contractorInfo: { ...payload },
     };
   },
 });
@@ -217,7 +213,6 @@ const filterContractors = createReducer('', {
 export default combineReducers({
   allOrders,
   allProducts,
-  saveOrder,
   currentContractorInfo,
   filterContractors,
 });

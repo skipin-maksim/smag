@@ -71,7 +71,11 @@ class NewOrderPage extends React.Component {
         : order;
     });
 
-    this.props.onSaveOrder(this.props.allProducts, lastOrder.numOrder);
+    this.props.onSaveOrder(
+      this.props.allProducts,
+      lastOrder.numOrder,
+      this.props.currentContractorInfo,
+    );
   };
 
   handleDelete = () => {

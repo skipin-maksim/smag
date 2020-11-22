@@ -1,8 +1,9 @@
 import axios from 'axios';
-
+import moment from 'moment';
 import { ordersActions } from './';
 
 const baseUrl = 'http://localhost:2000';
+const dateNow = moment().format('DD-MM-YYYY hh:mm');
 
 const getCurrentNumOrder = () => async dispatch => {
   dispatch(ordersActions.numOrderRequest());
@@ -43,15 +44,17 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (allProducts, numOrder) => async dispatch => {
+const postOrder = (allProducts, numOrder, contractorInfo) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
   const editCustomNumber = () => ('00000' + (Number(numOrder) + 1)).substr(-5);
 
   const postData = {
     ...allProducts,
+    contractorInfo: contractorInfo,
     numOrder: editCustomNumber(),
     id: editCustomNumber(),
+    date: dateNow,
   };
 
   try {
