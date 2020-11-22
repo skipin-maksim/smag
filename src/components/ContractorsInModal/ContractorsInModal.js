@@ -24,7 +24,10 @@ const ContractorsInModal = ({
 
   return (
     <div className={s.modalContractors}>
-      <CloseBtn onClick={onCloseModal} />
+      <CloseBtn
+        onClick={onCloseModal}
+        additionalClassName={s.contarctorClose}
+      />
 
       <input
         type="text"
