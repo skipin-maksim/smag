@@ -21,6 +21,7 @@ export const initAllProducts = {
     sum: 0,
     remainderPaid: 0,
   },
+  isSaved: false,
   prepayment: 0,
   noteForOrder: '',
 };

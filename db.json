@@ -69,37 +69,103 @@
     {
       "items": [
         {
-          "id": "1a531523-5eb9-4018-b174-ea104b07d50a",
+          "id": "41a52526-f449-4c44-99d5-4caa22dae115",
           "checkProduct": false,
-          "vendorCode": "20",
-          "color": "коричневый (tmoro)",
-          "quantity": "4",
-          "price": 40,
-          "discount": "10",
-          "sum": 144,
-          "note": "qwe"
-        },
-        {
-          "id": "f55f12aa-0a87-4b44-b0c5-d709d480377a",
-          "checkProduct": false,
-          "vendorCode": "30",
-          "color": "белый (bianco)",
-          "quantity": "6",
-          "price": 45,
-          "discount": "20",
-          "sum": 216,
-          "note": "qwe"
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": "0",
+          "note": ""
         }
       ],
       "calculatedTotals": {
-        "positions": 2,
-        "quantity": 10,
-        "averagePrice": 42.5,
-        "sum": 360,
-        "remainderPaid": 300
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
       },
-      "prepayment": "60",
-      "noteForOrder": "qweqwe",
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "firstName": "",
+        "secondName": "",
+        "thirdName": "",
+        "city": "",
+        "post": "",
+        "tel": "",
+        "debt": 0
+      },
+      "numOrder": "00001",
+      "id": "00001",
+      "date": "23-11-2020 03:27"
+    },
+    {
+      "items": [
+        {
+          "id": "68f02bc8-d3e4-48d2-bd4a-7bf8d832835d",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "numOrder": "00002",
+      "id": "00002",
+      "date": "23-11-2020 03:29"
+    },
+    {
+      "items": [
+        {
+          "id": "d0953114-d706-4227-acbf-beff6f84af99",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
       "contractorInfo": {
         "id": 1,
         "firstName": "Максим",
@@ -113,67 +179,69 @@
       },
       "numOrder": "00003",
       "id": "00003",
-      "date": "23-11-2020 02:20"
+      "date": "23-11-2020 03:33"
     },
     {
       "items": [
         {
-          "id": "eff994d5-a299-4550-bf6b-b43ff7b387aa",
+          "id": "8506d9de-edc1-4a9c-ae36-2ac60d6599aa",
           "checkProduct": false,
-          "vendorCode": "40",
-          "color": "красный (rosso)",
-          "quantity": "200",
-          "price": 50,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
           "discount": "0",
-          "sum": 10000,
+          "sum": 0,
           "note": ""
         }
       ],
       "calculatedTotals": {
         "positions": 1,
-        "quantity": 200,
-        "averagePrice": 50,
-        "sum": 10000,
-        "remainderPaid": 6000
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
       },
-      "prepayment": "4000",
+      "isSaved": true,
+      "prepayment": 0,
       "noteForOrder": "",
       "contractorInfo": {
-        "id": 2,
-        "firstName": "Алексей",
-        "secondName": "Григоренко",
-        "thirdName": "Скипинович",
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
         "tel": "+38 066 202 53 90",
-        "email": "aleks@gmail.com",
-        "city": "Чернобыль",
-        "post": 666,
-        "debt": 1000
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
       },
       "numOrder": "00004",
       "id": "00004",
-      "date": "23-11-2020 02:06"
+      "date": "23-11-2020 03:34"
     },
     {
       "items": [
         {
-          "id": "102fe5e4-1d7d-43a4-a97d-2b98c7411f17",
+          "id": "d81773f8-6089-42f8-964b-b15495adf2e7",
           "checkProduct": false,
-          "vendorCode": "10",
-          "color": "черный (nero)",
-          "quantity": "10",
-          "price": 35,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
           "discount": "0",
-          "sum": 350,
+          "sum": 0,
           "note": ""
         }
       ],
       "calculatedTotals": {
         "positions": 1,
-        "quantity": 10,
-        "averagePrice": 35,
-        "sum": 350,
-        "remainderPaid": 350
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
       },
+      "isSaved": true,
       "prepayment": 0,
       "noteForOrder": "",
       "contractorInfo": {
@@ -189,30 +257,31 @@
       },
       "numOrder": "00005",
       "id": "00005",
-      "date": "23-11-2020 02:07"
+      "date": "23-11-2020 03:34"
     },
     {
       "items": [
         {
-          "id": "ec45751b-1563-4033-9927-21886adb214d",
+          "id": "fcbcae84-7370-4e6b-b1e0-1f3ae843e309",
           "checkProduct": false,
-          "vendorCode": "20",
-          "color": "бежевый (beige)",
-          "quantity": "50",
-          "price": 40,
-          "discount": "50",
-          "sum": 1000,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
           "note": ""
         }
       ],
       "calculatedTotals": {
         "positions": 1,
-        "quantity": 50,
-        "averagePrice": 40,
-        "sum": 1000,
-        "remainderPaid": 900
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
       },
-      "prepayment": "100",
+      "isSaved": true,
+      "prepayment": 0,
       "noteForOrder": "",
       "contractorInfo": {
         "id": 2,
@@ -227,45 +296,46 @@
       },
       "numOrder": "00006",
       "id": "00006",
-      "date": "23-11-2020 02:12"
+      "date": "23-11-2020 03:35"
     },
     {
       "items": [
         {
-          "id": "7e2cd77c-2154-45ae-afb9-d089ca5cef62",
+          "id": "b74af2a5-aee3-483c-9d5e-3a00628ac46f",
           "checkProduct": false,
-          "vendorCode": "10",
-          "color": "черный (nero)",
-          "quantity": "10",
-          "price": 35,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
           "discount": "0",
-          "sum": 350,
+          "sum": 0,
           "note": ""
         }
       ],
       "calculatedTotals": {
         "positions": 1,
-        "quantity": 10,
-        "averagePrice": 35,
-        "sum": 350,
-        "remainderPaid": 350
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
       },
+      "isSaved": true,
       "prepayment": 0,
       "noteForOrder": "",
       "contractorInfo": {
-        "id": 2,
-        "firstName": "Алексей",
-        "secondName": "Григоренко",
-        "thirdName": "Скипинович",
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
         "tel": "+38 066 202 53 90",
-        "email": "aleks@gmail.com",
-        "city": "Чернобыль",
-        "post": 666,
-        "debt": 1000
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
       },
       "numOrder": "00007",
       "id": "00007",
-      "date": "23-11-2020 02:16"
+      "date": "23-11-2020 03:36"
     }
   ]
 }

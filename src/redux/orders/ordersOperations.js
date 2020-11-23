@@ -51,17 +51,19 @@ const postOrder = (allProducts, numOrder, contractorInfo) => async dispatch => {
 
   const postData = {
     ...allProducts,
+    isSaved: true,
     contractorInfo: contractorInfo,
     numOrder: editCustomNumber(),
     id: editCustomNumber(),
     date: dateNow,
   };
+  console.log(postData);
 
   try {
     const { data } = await axios.post(`${baseUrl}/orders`, postData);
 
     console.log(data);
-    // dispatch(ordersActions.saveOrderSuccess());
+    dispatch(ordersActions.saveOrderSuccess(data));
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);

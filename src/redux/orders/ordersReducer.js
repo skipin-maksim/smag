@@ -195,6 +195,12 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.changePrepaymentInput]: (state, { payload }) => {
     return { ...state, prepayment: payload };
   },
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
+    return {
+      ...state,
+      ...payload,
+    };
+  },
 });
 
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
@@ -202,6 +208,12 @@ const currentContractorInfo = createReducer(initCurrentContractorInfo, {
     return {
       ...state,
       contractorInfo: { ...payload },
+    };
+  },
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
+    return {
+      ...state,
+      contractorInfo: { ...payload.contractorInfo },
     };
   },
 });

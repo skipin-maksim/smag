@@ -40,6 +40,14 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateRemainderPaid();
   };
 
+  const handleVendorCode = async target => {
+    await onGetArticlePrice(target.value);
+
+    onCalculateSum();
+    onCalculateTotalSum();
+    onCalculateRemainderPaid();
+  };
+
   return (
     <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
       <CheckBox
@@ -56,7 +64,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
         onChange={({ target }) =>
           onChangeInput({ value: target.value, name: target.name })
         }
-        onBlur={({ target }) => onGetArticlePrice(target.value)}
+        onBlur={({ target }) => handleVendorCode(target)}
         value={getProductLineById.vendorCode}
         name="vendorCode"
         className={s.nameSpan}
