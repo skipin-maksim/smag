@@ -13,7 +13,7 @@ import { contactsOperations } from '../../redux/contacts';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.allOrders();
+    // this.props.allOrders();
     // this.props.allContacts();
   }
 

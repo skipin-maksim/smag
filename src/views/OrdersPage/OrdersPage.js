@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import { ordersSelectors } from '../../redux/orders';
+import { ordersSelectors, ordersOperations } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
 import LineOrder from '../../components/LineOrder/LineOrder';
 
@@ -16,10 +16,11 @@ import s from './OrdersPage.module.scss';
 import CheckBox from '../../components/CheckBox/CheckBox';
 
 class OrdersPage extends React.Component {
-  handleAddLineProduct = () => {
-    // this.props.addOrder();
-    // const { valueStr: currentOrder } = this.props.currentOrder;
+  componentDidMount() {
+    this.props.allOrders();
+  }
 
+  handleAddLineProduct = () => {
     this.props.addTab({
       name: 'Заказ № ***?',
       path: '/orders/new-order',
@@ -91,12 +92,15 @@ class OrdersPage extends React.Component {
           <span>Количество</span>
           <span>Сумма</span>
           <span>Предоплата</span>
+          <span>Дата</span>
           <span>Заметки</span>
         </div>
         <div className={s.windowOrders}>
           <ul className={s.customerOrderList}>
             {ordersList.map((item, idx) => {
-              return <LineOrder key={item.id} idx={idx} id={item.id} />;
+              return (
+                <LineOrder key={item.id} idx={idx} id={item.id} order={item} />
+              );
             })}
           </ul>
         </div>
@@ -113,6 +117,7 @@ const mSTP = state => ({
 const mDTP = {
   // addOrder: ordersActions.addOrder,
   addTab: tabsActions.addTabOrder,
+  allOrders: ordersOperations.getAllOrders,
 };
 
 export default connect(mSTP, mDTP)(OrdersPage);

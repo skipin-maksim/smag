@@ -148,7 +148,7 @@ const calculateTotalPositions = state => {
 
 const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
-    return [...state, ...payload];
+    return [...payload];
   },
 });
 

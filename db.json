@@ -114,6 +114,158 @@
       "numOrder": "00003",
       "id": "00003",
       "date": "23-11-2020 02:20"
+    },
+    {
+      "items": [
+        {
+          "id": "eff994d5-a299-4550-bf6b-b43ff7b387aa",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "красный (rosso)",
+          "quantity": "200",
+          "price": 50,
+          "discount": "0",
+          "sum": 10000,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 200,
+        "averagePrice": 50,
+        "sum": 10000,
+        "remainderPaid": 6000
+      },
+      "prepayment": "4000",
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": 1000
+      },
+      "numOrder": "00004",
+      "id": "00004",
+      "date": "23-11-2020 02:06"
+    },
+    {
+      "items": [
+        {
+          "id": "102fe5e4-1d7d-43a4-a97d-2b98c7411f17",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 10,
+        "averagePrice": 35,
+        "sum": 350,
+        "remainderPaid": 350
+      },
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "numOrder": "00005",
+      "id": "00005",
+      "date": "23-11-2020 02:07"
+    },
+    {
+      "items": [
+        {
+          "id": "ec45751b-1563-4033-9927-21886adb214d",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "бежевый (beige)",
+          "quantity": "50",
+          "price": 40,
+          "discount": "50",
+          "sum": 1000,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 50,
+        "averagePrice": 40,
+        "sum": 1000,
+        "remainderPaid": 900
+      },
+      "prepayment": "100",
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": 1000
+      },
+      "numOrder": "00006",
+      "id": "00006",
+      "date": "23-11-2020 02:12"
+    },
+    {
+      "items": [
+        {
+          "id": "7e2cd77c-2154-45ae-afb9-d089ca5cef62",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 10,
+        "averagePrice": 35,
+        "sum": 350,
+        "remainderPaid": 350
+      },
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": 1000
+      },
+      "numOrder": "00007",
+      "id": "00007",
+      "date": "23-11-2020 02:16"
     }
   ]
 }
