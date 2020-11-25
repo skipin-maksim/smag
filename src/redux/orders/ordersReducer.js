@@ -147,9 +147,8 @@ const calculateTotalPositions = state => {
 };
 
 const allOrders = createReducer([], {
-  [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
-    return [...payload];
-  },
+  [ordersActions.getAllOrdersSuccess]: (state, { payload }) => [...payload],
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => [...state, payload],
 });
 
 const allProducts = createReducer(initAllProducts, {
@@ -195,12 +194,7 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.changePrepaymentInput]: (state, { payload }) => {
     return { ...state, prepayment: payload };
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-    return {
-      ...state,
-      ...payload,
-    };
-  },
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => initAllProducts,
 });
 
 const currentContractorInfo = createReducer(initCurrentContractorInfo, {
@@ -210,12 +204,8 @@ const currentContractorInfo = createReducer(initCurrentContractorInfo, {
       contractorInfo: { ...payload },
     };
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-    return {
-      ...state,
-      contractorInfo: { ...payload.contractorInfo },
-    };
-  },
+  [ordersActions.saveOrderSuccess]: (state, { payload }) =>
+    initCurrentContractorInfo,
 });
 
 const filterContractors = createReducer('', {

@@ -44,26 +44,37 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (allProducts, numOrder, contractorInfo) => async dispatch => {
+const postOrder = (allProducts, contractorInfo) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
-  const editCustomNumber = () => ('00000' + (Number(numOrder) + 1)).substr(-5);
+  const { data } = await axios(`${baseUrl}/numorder`);
+
+  const createNewOrderNum = prevNum => {
+    const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
+
+    return {
+      valueNum: prevNum.valueNum + 1,
+      valueStr: editCustomNumber(prevNum.valueNum),
+    };
+  };
+
+  const currentNumOrderObj = createNewOrderNum(data);
 
   const postData = {
     ...allProducts,
     isSaved: true,
     contractorInfo: contractorInfo,
-    numOrder: editCustomNumber(),
-    id: editCustomNumber(),
+    numOrder: currentNumOrderObj.valueStr,
+    id: currentNumOrderObj.valueStr,
     date: dateNow,
   };
-  console.log(postData);
 
   try {
     const { data } = await axios.post(`${baseUrl}/orders`, postData);
 
-    console.log(data);
     dispatch(ordersActions.saveOrderSuccess(data));
+
+    axios.patch(`${baseUrl}/numorder`, currentNumOrderObj);
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);

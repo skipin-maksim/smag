@@ -62,24 +62,12 @@ class NewOrderPage extends React.Component {
     );
   };
 
-  handleSaveBtn = checked => {
-    let lastOrder;
-
-    // TODO переделать на ЗАПРОС на сервер!!!
-    this.props.allOrders.filter((order, idx) => {
-      return idx === this.props.allOrders.length - 1
-        ? (lastOrder = order)
-        : order;
-    });
-
-    console.log(lastOrder.numOrder);
-
+  handleSaveBtn = () => {
     this.props.currentContractorInfo.firstName
       ? this.props.onSaveOrder(
           this.props.allProducts,
-          !lastOrder ? '0000' : lastOrder.numOrder,
           this.props.currentContractorInfo,
-          checked,
+          this.props.match.url,
         )
       : alert('Вы не выбрали контрагента');
   };
@@ -180,7 +168,7 @@ class NewOrderPage extends React.Component {
                   type="checkbox"
                   checked={allProducts.isSaved}
                   className={s.saveBtn}
-                  onChange={({ target }) => this.handleSaveBtn(target.checked)}
+                  onChange={this.handleSaveBtn}
                 />
               </div>
               <div className={s.moneyBlock}>
