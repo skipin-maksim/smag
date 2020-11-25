@@ -10,6 +10,7 @@ import s from './HeaderComponent.module.scss';
 
 function HeaderComponent({ tabsList, removeTab, match, history }) {
   const handleOnCloseTab = (name, path, idxItem) => {
+    console.log(name, path, idxItem);
     tabsList.reduce((previous, current) => {
       if (idxItem === 0 && tabsList[1] && history.location.pathname === path) {
         history.replace(tabsList[1].path);

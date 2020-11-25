@@ -1,5 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
+import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
 const baseUrl = 'http://localhost:2000';
@@ -69,10 +70,15 @@ const postOrder = (allProducts, contractorInfo) => async dispatch => {
     date: dateNow,
   };
 
+  const createTabForNewOrder = tabsActions.addTab({
+    name: `Заказ №${currentNumOrderObj.valueStr}`,
+    path: `/orders/${currentNumOrderObj.valueStr}`,
+  });
+
   try {
     const { data } = await axios.post(`${baseUrl}/orders`, postData);
 
-    dispatch(ordersActions.saveOrderSuccess(data));
+    dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
     axios.patch(`${baseUrl}/numorder`, currentNumOrderObj);
   } catch (error) {

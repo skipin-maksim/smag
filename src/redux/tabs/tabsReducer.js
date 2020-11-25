@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
 import { tabsActions } from './';
+import ordersActions from '../orders/ordersActions';
 
 const initialStateItem = [{ name: 'Главная', path: '/' }];
 
@@ -22,6 +23,11 @@ const items = createReducer(initialStateItem, {
   [tabsActions.addTab]: (state, { payload }) => addTab(state, payload),
   [tabsActions.removeTab]: (state, { payload }) => removeTab(state, payload),
   [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
+    const newState = state.filter(item => item.path !== '/orders/new-order');
+    console.log(payload);
+    return [...newState, payload.createTabForNewOrder.payload];
+  },
 });
 
 export default combineReducers({
