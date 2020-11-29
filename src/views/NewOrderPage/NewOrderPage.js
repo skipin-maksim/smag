@@ -29,6 +29,8 @@ const createNewOrderNum = prevNum => {
   };
 };
 
+let currentData;
+let testId;
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
 
@@ -107,11 +109,23 @@ class NewOrderPage extends React.Component {
 
   testFN = () => {
     if (this.props.history.location.pathname === '/orders/new-order') {
-      console.log(this.props.history);
+      currentData = this.props.allProducts;
 
       console.log('бери из allProducts');
+      console.log(currentData);
     } else {
+      currentData = this.props.orderById;
+      testId = this.props.history.location.pathname.slice(8);
+      console.log(this.props.history.location.pathname.slice(8));
+      console.log(currentData);
       console.log('бери из ORDERS');
+    }
+  };
+
+  tesContractor = () => {
+    if (currentData) {
+      //TODO !!!!!!!!!!!!!!!!!!!!!!
+      console.log(currentData.contractorInfo);
     }
   };
 
@@ -329,6 +343,7 @@ class NewOrderPage extends React.Component {
 const mSTP = state => ({
   isModal: modalSelectors.getCurrentModalState(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
+  orderById: ordersSelectors.getOrderById(state, testId),
 
   allProductsItems: ordersSelectors.getAllProductsItems(state),
   allProducts: ordersSelectors.getOrdersAllProducts(state),

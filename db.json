@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 8,
-    "valueStr": "00008"
+    "valueNum": 11,
+    "valueStr": "00011"
   },
   "contractors": [
     {
@@ -377,6 +377,123 @@
       "numOrder": "00008",
       "id": "00008",
       "date": "29-11-2020 09:48"
+    },
+    {
+      "items": [
+        {
+          "id": "0a3266a0-2428-42c2-b85e-3e949e92775f",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": 1000
+      },
+      "numOrder": "00009",
+      "id": "00009",
+      "date": "29-11-2020 09:48"
+    },
+    {
+      "items": [
+        {
+          "id": "55ecd298-b4ab-4542-b2ee-a14b36c4d418",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "numOrder": "00010",
+      "id": "00010",
+      "date": "29-11-2020 10:17"
+    },
+    {
+      "items": [
+        {
+          "id": "55ecd298-b4ab-4542-b2ee-a14b36c4d418",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 547
+      },
+      "numOrder": "00011",
+      "id": "00011",
+      "date": "29-11-2020 10:17"
     }
   ]
 }
