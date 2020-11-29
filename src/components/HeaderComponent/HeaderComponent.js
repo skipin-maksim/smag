@@ -40,9 +40,13 @@ function HeaderComponent({ tabsList, removeTab, match, history }) {
             <li className={s.tabLi} key={name}>
               <NavLink
                 exact
+                name={path}
                 to={path}
                 className={s.tab}
                 activeClassName={s.tabActive}
+                onClick={({ target }) => {
+                  console.log(target.name.slice(8));
+                }}
               >
                 {name}
               </NavLink>

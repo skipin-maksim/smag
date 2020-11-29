@@ -45,34 +45,21 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (allProducts, contractorInfo) => async dispatch => {
+const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
-
-  const { data } = await axios(`${baseUrl}/numorder`);
-
-  const createNewOrderNum = prevNum => {
-    const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
-
-    return {
-      valueNum: prevNum.valueNum + 1,
-      valueStr: editCustomNumber(prevNum.valueNum),
-    };
-  };
-
-  const currentNumOrderObj = createNewOrderNum(data);
 
   const postData = {
     ...allProducts,
     isSaved: true,
     contractorInfo: contractorInfo,
-    numOrder: currentNumOrderObj.valueStr,
-    id: currentNumOrderObj.valueStr,
+    numOrder: tetsNum.valueStr,
+    id: tetsNum.valueStr,
     date: dateNow,
   };
 
   const createTabForNewOrder = tabsActions.addTab({
-    name: `Заказ №${currentNumOrderObj.valueStr}`,
-    path: `/orders/${currentNumOrderObj.valueStr}`,
+    name: `Заказ №${tetsNum.valueStr}`,
+    path: `/orders/${tetsNum.valueStr}`,
   });
 
   try {
@@ -80,11 +67,16 @@ const postOrder = (allProducts, contractorInfo) => async dispatch => {
 
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
-    axios.patch(`${baseUrl}/numorder`, currentNumOrderObj);
+    axios.patch(`${baseUrl}/numorder`, tetsNum);
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);
   }
 };
 
-export default { getCurrentNumOrder, getAllOrders, getPriceByArt, postOrder };
+export default {
+  getCurrentNumOrder,
+  getAllOrders,
+  getPriceByArt,
+  postOrder,
+};

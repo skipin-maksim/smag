@@ -3,6 +3,7 @@ import { tabsReducer } from './tabs/';
 import { ordersReducer } from './orders/';
 import { modalReducer } from './modal/';
 import { contactsReducer } from './contacts/';
+import { numOrderReducer } from './numOrder/';
 import {
   persistStore,
   persistReducer,
@@ -23,6 +24,7 @@ const tabsPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    numOrder: numOrderReducer,
     tabs: persistReducer(tabsPersistConfig, tabsReducer),
     orders: ordersReducer,
     contacts: contactsReducer,

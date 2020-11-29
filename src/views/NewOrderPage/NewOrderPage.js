@@ -5,6 +5,7 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders/';
+import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
 import { modalActions, modalSelectors } from '../../redux/modal/';
 import Modal from '../../components/Modal/Modal';
 import { Scrollbar } from 'react-scrollbars-custom';
@@ -18,6 +19,15 @@ import LineProduct from '../../components/LineProduct/LineProduct';
 import ContractorsInModal from '../../components/ContractorsInModal/ContractorsInModal';
 import s from './NewOrderPage.module.scss';
 import { contactsOperations } from '../../redux/contacts';
+
+const createNewOrderNum = prevNum => {
+  const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
+
+  return {
+    valueNum: prevNum.valueNum + 1,
+    valueStr: editCustomNumber(prevNum.valueNum),
+  };
+};
 
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
@@ -62,14 +72,27 @@ class NewOrderPage extends React.Component {
     );
   };
 
-  handleSaveBtn = () => {
-    this.props.currentContractorInfo.firstName
-      ? this.props.onSaveOrder(
-          this.props.allProducts,
-          this.props.currentContractorInfo,
-          this.props.match.url,
-        )
-      : alert('Вы не выбрали контрагента');
+  handleSaveBtn = async () => {
+    if (this.props.currentContractorInfo.firstName) {
+      // забираем последний номер заказа с сервера
+      await this.props.getTestGetNumOrder();
+
+      // прибавляем 1 к полученному номеру заказа
+      const currentNumOrderObj = createNewOrderNum(this.props.currentNumOrder);
+
+      // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
+      this.props.onSaveOrder(
+        this.props.allProducts,
+        this.props.currentContractorInfo,
+        currentNumOrderObj,
+      );
+
+      console.log(currentNumOrderObj.valueStr);
+
+      this.props.history.replace(`/orders/${currentNumOrderObj.valueStr}`);
+    } else {
+      alert('Вы не выбрали контрагента');
+    }
   };
 
   handleDelete = () => {
@@ -80,6 +103,16 @@ class NewOrderPage extends React.Component {
     this.props.onCalculateAveragePrice();
     this.props.onCalculateTotalPositions();
     this.props.onCalculateRemainderPaid();
+  };
+
+  testFN = () => {
+    if (this.props.history.location.pathname === '/orders/new-order') {
+      console.log(this.props.history);
+
+      console.log('бери из allProducts');
+    } else {
+      console.log('бери из ORDERS');
+    }
   };
 
   render() {
@@ -94,6 +127,8 @@ class NewOrderPage extends React.Component {
       onCalculateTotalPositions,
       onCalculateRemainderPaid,
     } = this.props;
+
+    this.testFN();
 
     const {
       secondName,
@@ -293,6 +328,7 @@ class NewOrderPage extends React.Component {
 
 const mSTP = state => ({
   isModal: modalSelectors.getCurrentModalState(state),
+  currentNumOrder: numOrderSelectors.getCurrentNum(state),
 
   allProductsItems: ordersSelectors.getAllProductsItems(state),
   allProducts: ordersSelectors.getOrdersAllProducts(state),
@@ -304,6 +340,7 @@ const mSTP = state => ({
 const mDTP = {
   onChoiseContractor: modalActions.openModal,
   allContacts: contactsOperations.getContacts,
+  getTestGetNumOrder: numOrderOperations.testGetNumOrder,
 
   onCreateLineProduct: ordersActions.createLineProduct,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
