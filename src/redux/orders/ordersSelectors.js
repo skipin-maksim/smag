@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const getOrdersList = state => state.orders.allOrders;
 
 const getCurrentContractorInfo = state => {
-  return state.orders.currentContractorInfo.contractorInfo;
+  return state.orders.contractorInfo;
 };
 
 const getOrderById = (state, id) => {

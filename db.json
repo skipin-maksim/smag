@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 11,
-    "valueStr": "00011"
+    "valueNum": 12,
+    "valueStr": "00012"
   },
   "contractors": [
     {
@@ -494,6 +494,45 @@
       "numOrder": "00011",
       "id": "00011",
       "date": "29-11-2020 10:17"
+    },
+    {
+      "items": [
+        {
+          "id": "3596cbe5-a7a6-4b83-a711-ae44e8c69bb2",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "numOrder": "00012",
+      "id": "00012",
+      "date": "30-11-2020 07:05"
     }
   ]
 }

@@ -27,13 +27,11 @@ export const initAllProducts = {
 };
 
 export const initCurrentContractorInfo = {
-  contractorInfo: {
-    firstName: '',
-    secondName: '',
-    thirdName: '',
-    city: '',
-    post: '',
-    tel: '',
-    debt: 0,
-  },
+  firstName: '',
+  secondName: '',
+  thirdName: '',
+  city: '',
+  post: '',
+  tel: '',
+  debt: 0,
 };

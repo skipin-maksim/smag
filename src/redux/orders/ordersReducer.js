@@ -200,11 +200,10 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.saveOrderSuccess]: (state, { payload }) => initAllProducts,
 });
 
-const currentContractorInfo = createReducer(initCurrentContractorInfo, {
+const contractorInfo = createReducer(initCurrentContractorInfo, {
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
-      ...state,
-      contractorInfo: { ...payload },
+      ...payload,
     };
   },
   [ordersActions.saveOrderSuccess]: (state, { payload }) =>
@@ -218,6 +217,6 @@ const filterContractors = createReducer('', {
 export default combineReducers({
   allOrders,
   allProducts,
-  currentContractorInfo,
+  contractorInfo,
   filterContractors,
 });
