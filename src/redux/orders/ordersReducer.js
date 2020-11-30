@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+
 import { ordersActions } from './';
-import {
-  initAllProducts,
-  initCurrentContractorInfo,
-} from './initialStateForReducers';
+import { tabsActions } from '../tabs/';
+import { initAllProducts } from './initialStateForReducers';
 
 const changeLineProductInput = (state, payload) => {
   return {
@@ -197,17 +196,21 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.changePrepaymentInput]: (state, { payload }) => {
     return { ...state, prepayment: payload };
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) => initAllProducts,
-});
-
-const contractorInfo = createReducer(initCurrentContractorInfo, {
+  [ordersActions.getOrderForView]: (state, { payload }) => {
+    return payload;
+  },
+  [tabsActions.addTabOrder]: (state, { payload }) => {
+    return { ...state, ...initAllProducts };
+  },
+  [ordersActions.clearAllProducts]: (state, { payload }) => {
+    return { ...state, ...initAllProducts };
+  },
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
-      ...payload,
+      ...state,
+      contractorInfo: payload,
     };
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) =>
-    initCurrentContractorInfo,
 });
 
 const filterContractors = createReducer('', {
@@ -217,6 +220,5 @@ const filterContractors = createReducer('', {
 export default combineReducers({
   allOrders,
   allProducts,
-  contractorInfo,
   filterContractors,
 });

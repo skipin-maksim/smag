@@ -4,13 +4,11 @@ import { numOrderActions } from './';
 
 const baseUrl = 'http://localhost:2000';
 
-const testGetNumOrder = () => async dispatch => {
+const getCurrentNumOrder = () => async dispatch => {
   dispatch(numOrderActions.numOrderRequest());
 
   try {
     const { data } = await axios(`${baseUrl}/numorder`);
-
-    console.log(data);
 
     dispatch(numOrderActions.numOrderSuccess(data));
 
@@ -22,5 +20,5 @@ const testGetNumOrder = () => async dispatch => {
 };
 
 export default {
-  testGetNumOrder,
+  getCurrentNumOrder,
 };

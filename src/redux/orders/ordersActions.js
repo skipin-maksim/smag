@@ -15,6 +15,9 @@ const saveOrderRequest = createAction('orders/saveOrderRequest');
 const saveOrderSuccess = createAction('orders/saveOrderSuccess');
 const saveOrderError = createAction('orders/saveOrderError');
 
+const getOrderForView = createAction('orders/getOrderForView');
+const clearAllProducts = createAction('orders/clearAllProducts');
+
 const createLineProduct = createAction('orders/createLineProduct');
 const deleteLineSelectedProduct = createAction(
   'order/deleteLineSelectedProduct',
@@ -50,6 +53,9 @@ export default {
   getPriceByArtRequest,
   getPriceByArtSuccess,
   getPriceByArtError,
+
+  getOrderForView,
+  clearAllProducts,
 
   numOrderRequest,
   numOrderSuccess,

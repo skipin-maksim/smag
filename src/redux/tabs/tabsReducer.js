@@ -25,7 +25,7 @@ const items = createReducer(initialStateItem, {
   [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
     const newState = state.filter(item => item.path !== '/orders/new-order');
-    console.log(payload);
+
     return [...newState, payload.createTabForNewOrder.payload];
   },
 });

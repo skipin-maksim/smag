@@ -21,17 +21,16 @@ export const initAllProducts = {
     sum: 0,
     remainderPaid: 0,
   },
+  contractorInfo: {
+    firstName: '',
+    secondName: '',
+    thirdName: '',
+    city: '',
+    post: '',
+    tel: '',
+    debt: 0,
+  },
   isSaved: false,
   prepayment: 0,
   noteForOrder: '',
-};
-
-export const initCurrentContractorInfo = {
-  firstName: '',
-  secondName: '',
-  thirdName: '',
-  city: '',
-  post: '',
-  tel: '',
-  debt: 0,
 };

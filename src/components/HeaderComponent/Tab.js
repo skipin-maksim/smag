@@ -1,66 +1,102 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { tabsSelectors, tabsActions } from '../../redux/tabs/';
+import { ordersActions, ordersSelectors } from '../../redux/orders';
 
 import CloseBtn from '../Buttons/CloseBtn';
 
-import { tabsSelectors, tabsActions } from '../../redux/tabs/';
-
 import s from './HeaderComponent.module.scss';
-import { ordersSelectors } from '../../redux/orders';
 
-const Tab = ({ name, idx, history, path, tabsList, removeTab }) => {
-  const handleOnCloseTab = (name, path, idxItem) => {
-    console.log(name, path, idxItem);
-    tabsList.reduce((previous, current) => {
-      if (idxItem === 0 && tabsList[1] && history.location.pathname === path) {
-        history.replace(tabsList[1].path);
+let orderId;
+
+class Tab extends React.Component {
+  componentDidMount() {
+    this.props.onGetOrderForView(this.getCurrentOrderObjById());
+  }
+
+  handleOnCloseTab = (name, path, idxItem) => {
+    this.props.tabsList.reduce((previous, current) => {
+      if (
+        idxItem === 0 &&
+        this.props.tabsList[1] &&
+        this.props.history.location.pathname === path
+      ) {
+        this.props.history.replace(this.props.absList[1].path);
         return current;
       }
 
-      if (current.path === path && history.location.pathname === path) {
-        history.replace(previous.path);
-        removeTab(name);
+      if (
+        current.path === path &&
+        this.props.history.location.pathname === path
+      ) {
+        this.props.history.replace(previous.path);
+        this.props.removeTab(name);
         return current;
       }
 
-      if (current.path !== path && history.location.pathname !== path) {
-        removeTab(name);
+      if (
+        current.path !== path &&
+        this.props.history.location.pathname !== path
+      ) {
+        this.props.removeTab(name);
         return current;
       }
 
       return current;
-    }, tabsList[0]);
+    }, this.props.tabsList[0]);
   };
 
-  return (
-    <li className={s.tabLi}>
-      <NavLink
-        exact
-        name={path}
-        to={path}
-        className={s.tab}
-        activeClassName={s.tabActive}
-        onClick={({ target }) => {
-          console.log(history);
-          console.log(target.name.slice(8));
-        }}
-      >
-        {name}
-      </NavLink>
+  getCurrentOrderObjById = () => {
+    if (this.props.history.location.pathname === '/orders/new-order') {
+      this.props.onClearAllProducts();
+    } else {
+      orderId = this.props.history.location.pathname.slice(8);
 
-      <CloseBtn onClick={handleOnCloseTab} name={name} path={path} idx={idx} />
-    </li>
-  );
-};
+      return this.props.orderById;
+    }
+  };
 
-const mSTP = state => ({
+  render() {
+    const { name, idx, path, onGetOrderForView } = this.props;
+
+    // TODO -- код ниже, не ломает, но запуска сдесь быть не должно!!!
+    this.props.onGetOrderForView(this.getCurrentOrderObjById());
+
+    return (
+      <li className={s.tabLi}>
+        <NavLink
+          exact
+          name={path}
+          to={path}
+          className={s.tab}
+          activeClassName={s.tabActive}
+          onClick={() => onGetOrderForView(this.getCurrentOrderObjById())}
+        >
+          {name}
+        </NavLink>
+
+        <CloseBtn
+          onClick={this.handleOnCloseTab}
+          name={name}
+          path={path}
+          idx={idx}
+        />
+      </li>
+    );
+  }
+}
+
+const mSTP = (state, ownProps) => ({
   tabsList: tabsSelectors.getTabsList(state),
-  orderById: ordersSelectors.getOrderById(state),
+  orderById: ordersSelectors.getOrderById(state, orderId),
 });
 
 const mDTP = {
   removeTab: tabsActions.removeTab,
+  onGetOrderForView: ordersActions.getOrderForView,
+  onClearAllProducts: ordersActions.clearAllProducts,
 };
 
-export default connect(mSTP, mDTP)(Tab);
+export default withRouter(connect(mSTP, mDTP)(Tab));

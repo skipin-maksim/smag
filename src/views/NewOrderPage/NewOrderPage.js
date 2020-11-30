@@ -1,5 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Scrollbar } from 'react-scrollbars-custom';
+
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 import {
   ordersActions,
   ordersOperations,
@@ -7,18 +13,14 @@ import {
 } from '../../redux/orders/';
 import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
 import { modalActions, modalSelectors } from '../../redux/modal/';
-import Modal from '../../components/Modal/Modal';
-import { Scrollbar } from 'react-scrollbars-custom';
+import { contactsOperations } from '../../redux/contacts';
 
-// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import Tooltip from '@material-ui/core/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Modal from '../../components/Modal/Modal';
 import { CheckBoxMain } from '../../components/CheckBox/';
 import LineProduct from '../../components/LineProduct/LineProduct';
 import ContractorsInModal from '../../components/ContractorsInModal/ContractorsInModal';
+
 import s from './NewOrderPage.module.scss';
-import { contactsOperations } from '../../redux/contacts';
 
 const createNewOrderNum = prevNum => {
   const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
@@ -29,8 +31,6 @@ const createNewOrderNum = prevNum => {
   };
 };
 
-let currentData;
-let testId;
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
 
@@ -76,11 +76,9 @@ class NewOrderPage extends React.Component {
 
   handleSaveBtn = async () => {
     if (this.props.currentContractorInfo.firstName) {
-      // забираем последний номер заказа с сервера
-      await this.props.getTestGetNumOrder();
+      await this.props.getCurrentNumOrder(); // забираем последний номер заказа с сервера
 
-      // прибавляем 1 к полученному номеру заказа
-      const currentNumOrderObj = createNewOrderNum(this.props.currentNumOrder);
+      const currentNumOrderObj = createNewOrderNum(this.props.currentNumOrder); // прибавляем 1 к полученному номеру заказа
 
       // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
       this.props.onSaveOrder(
@@ -88,8 +86,6 @@ class NewOrderPage extends React.Component {
         this.props.currentContractorInfo,
         currentNumOrderObj,
       );
-
-      console.log(currentNumOrderObj.valueStr);
 
       this.props.history.replace(`/orders/${currentNumOrderObj.valueStr}`);
     } else {
@@ -107,28 +103,6 @@ class NewOrderPage extends React.Component {
     this.props.onCalculateRemainderPaid();
   };
 
-  testFN = () => {
-    if (this.props.history.location.pathname === '/orders/new-order') {
-      currentData = this.props.allProducts;
-
-      console.log('бери из allProducts');
-      console.log(currentData);
-    } else {
-      currentData = this.props.orderById;
-      testId = this.props.history.location.pathname.slice(8);
-      console.log(this.props.history.location.pathname.slice(8));
-      console.log(currentData);
-      console.log('бери из ORDERS');
-    }
-  };
-
-  tesContractor = () => {
-    if (currentData) {
-      //TODO !!!!!!!!!!!!!!!!!!!!!!
-      console.log(currentData.contractorInfo);
-    }
-  };
-
   render() {
     const {
       allProducts,
@@ -141,8 +115,6 @@ class NewOrderPage extends React.Component {
       onCalculateTotalPositions,
       onCalculateRemainderPaid,
     } = this.props;
-
-    this.testFN();
 
     const {
       secondName,
@@ -343,7 +315,6 @@ class NewOrderPage extends React.Component {
 const mSTP = state => ({
   isModal: modalSelectors.getCurrentModalState(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
-  orderById: ordersSelectors.getOrderById(state, testId),
 
   allProductsItems: ordersSelectors.getAllProductsItems(state),
   allProducts: ordersSelectors.getOrdersAllProducts(state),
@@ -355,7 +326,7 @@ const mSTP = state => ({
 const mDTP = {
   onChoiseContractor: modalActions.openModal,
   allContacts: contactsOperations.getContacts,
-  getTestGetNumOrder: numOrderOperations.testGetNumOrder,
+  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
 
   onCreateLineProduct: ordersActions.createLineProduct,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,

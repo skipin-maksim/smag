@@ -10,11 +10,11 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import { ordersSelectors, ordersOperations } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
-import LineOrder from '../../components/LineOrder/LineOrder';
 
-import s from './OrdersPage.module.scss';
+import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
 
+import s from './OrdersPage.module.scss';
 class OrdersPage extends React.Component {
   componentDidMount() {
     this.props.allOrders();
@@ -28,10 +28,7 @@ class OrdersPage extends React.Component {
   };
 
   render() {
-    const {
-      ordersList,
-      // currentOrder: { valueStr: currentOrder },
-    } = this.props;
+    const { ordersList } = this.props;
 
     return (
       <div className={s.orderPage}>
