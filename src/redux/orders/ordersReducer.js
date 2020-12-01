@@ -200,7 +200,9 @@ const allProducts = createReducer(initAllProducts, {
     return { ...state, ...initAllProducts };
   },
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
-    return payload;
+    if (!payload) console.log('gjskhvbdbdrhvdrvkj');
+
+    return { ...payload };
   },
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
@@ -209,7 +211,7 @@ const allProducts = createReducer(initAllProducts, {
     };
   },
   [tabsActions.getDataOfTemporaryStorageLocation]: (state, { payload }) => {
-    return payload;
+    return { ...payload };
   },
 });
 

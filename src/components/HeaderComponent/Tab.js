@@ -56,15 +56,17 @@ class Tab extends React.Component {
   };
 
   testHandleClickTab = tabId => {
-    if (tabId === 'new-order') {
+    console.log(tabId);
+    if (tabId.slice(8) === 'new-order' || tabId === '/orders') {
       // this.props.onClearAllProducts();
+      console.log(this.props.dataOfTemporaryStorageLocation);
       this.props.onGetDataOfTemporaryStorageLocation(
         this.props.dataOfTemporaryStorageLocation,
       );
       console.log('new-order');
       return;
     } else {
-      this.props.onGetOrderById(tabId);
+      this.props.onGetOrderById(tabId.slice(8));
 
       this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
     }
@@ -81,9 +83,7 @@ class Tab extends React.Component {
           to={path}
           className={s.tab}
           activeClassName={s.tabActive}
-          onClick={({ target }) =>
-            this.testHandleClickTab(target.name.slice(8))
-          }
+          onClick={({ target }) => this.testHandleClickTab(target.name)}
         >
           {name}
         </NavLink>

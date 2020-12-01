@@ -82,7 +82,7 @@ const getOrderById = id => async dispatch => {
 
     console.log(data);
 
-    dispatch(ordersActions.getOrderByIdSuccess(data));
+    dispatch(ordersActions.getOrderByIdSuccess({ ...data }));
   } catch (error) {
     dispatch(ordersActions.getOrderByIdError());
     console.error(error);

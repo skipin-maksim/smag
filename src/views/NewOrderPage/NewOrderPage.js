@@ -185,12 +185,22 @@ class NewOrderPage extends React.Component {
                   </button>
                 </Tooltip>
 
-                <input
-                  type="checkbox"
-                  checked={allProducts.isSaved}
-                  className={s.saveBtn}
-                  onChange={this.handleSaveBtn}
-                />
+                <label
+                  className={
+                    !allProducts.isSaved
+                      ? s.labelSaveBtnNotSaved
+                      : s.labelSaveBtnIstSaved
+                  }
+                >
+                  {!allProducts.isSaved ? 'Не сохранен' : 'Сохранен'}
+
+                  <input
+                    type="checkbox"
+                    checked={allProducts.isSaved}
+                    className={s.saveBtn}
+                    onChange={this.handleSaveBtn}
+                  />
+                </label>
               </div>
               <div className={s.moneyBlock}>
                 <label className={s.prepaymentLabel}>

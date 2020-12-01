@@ -13,6 +13,7 @@ import { tabsActions, tabsSelectors } from '../../redux/tabs';
 
 import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
+import { initAllProducts } from '../../redux/orders/initialStateForReducers';
 
 import s from './OrdersPage.module.scss';
 class OrdersPage extends React.Component {
@@ -33,6 +34,8 @@ class OrdersPage extends React.Component {
         name: 'Заказ № ***?',
         path: '/orders/new-order',
       });
+
+      this.props.onSaveToTemporaryStorageLocation(initAllProducts);
 
       this.props.history.replace('/orders/new-order');
     }
@@ -121,13 +124,16 @@ const mSTP = state => ({
   ordersList: ordersSelectors.getOrdersList(state),
   currentOrder: ordersSelectors.getCurrentOrderNum(state),
   tabsList: tabsSelectors.getTabsList(state),
-  // isTab: tabsSelectors.getIsTab(state, tabName),
+  dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
+    state,
+  ),
 });
 
 const mDTP = {
   // addOrder: ordersActions.addOrder,
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
+  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
 };
 
 export default withRouter(connect(mSTP, mDTP)(OrdersPage));
