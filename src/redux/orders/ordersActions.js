@@ -15,7 +15,6 @@ const saveOrderRequest = createAction('orders/saveOrderRequest');
 const saveOrderSuccess = createAction('orders/saveOrderSuccess');
 const saveOrderError = createAction('orders/saveOrderError');
 
-const getOrderForView = createAction('orders/getOrderForView');
 const clearAllProducts = createAction('orders/clearAllProducts');
 
 const createLineProduct = createAction('orders/createLineProduct');
@@ -41,6 +40,10 @@ const numOrderRequest = createAction('orders/numOrderRequest');
 const numOrderSuccess = createAction('orders/numOrderSuccess');
 const numOrderError = createAction('orders/numOrderError');
 
+const getOrderByIdRequest = createAction('orders/getOrderByIdRequest');
+const getOrderByIdSuccess = createAction('orders/getOrderByIdSuccess');
+const getOrderByIdError = createAction('orders/getOrderByIdError');
+
 const choiseContractor = createAction('orders/choiseContractor');
 
 const filterContractors = createAction('orders/filterContractors');
@@ -54,7 +57,10 @@ export default {
   getPriceByArtSuccess,
   getPriceByArtError,
 
-  getOrderForView,
+  getOrderByIdRequest,
+  getOrderByIdSuccess,
+  getOrderByIdError,
+
   clearAllProducts,
 
   numOrderRequest,

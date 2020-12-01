@@ -3,17 +3,24 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
-import { ordersActions, ordersSelectors } from '../../redux/orders';
+import {
+  ordersActions,
+  ordersOperations,
+  ordersSelectors,
+} from '../../redux/orders';
 
 import CloseBtn from '../Buttons/CloseBtn';
 
 import s from './HeaderComponent.module.scss';
-
-let orderId;
-
 class Tab extends React.Component {
   componentDidMount() {
-    this.props.onGetOrderForView(this.getCurrentOrderObjById());
+    if (this.props.history.location.pathname.slice(8) === 'new-order') {
+      this.props.onGetDataOfTemporaryStorageLocation(
+        this.props.dataOfTemporaryStorageLocation,
+      );
+    } else {
+      this.props.onGetOrderById(this.props.history.location.pathname.slice(8));
+    }
   }
 
   handleOnCloseTab = (name, path, idxItem) => {
@@ -48,21 +55,23 @@ class Tab extends React.Component {
     }, this.props.tabsList[0]);
   };
 
-  getCurrentOrderObjById = () => {
-    if (this.props.history.location.pathname === '/orders/new-order') {
-      this.props.onClearAllProducts();
+  testHandleClickTab = tabId => {
+    if (tabId === 'new-order') {
+      // this.props.onClearAllProducts();
+      this.props.onGetDataOfTemporaryStorageLocation(
+        this.props.dataOfTemporaryStorageLocation,
+      );
+      console.log('new-order');
+      return;
     } else {
-      orderId = this.props.history.location.pathname.slice(8);
+      this.props.onGetOrderById(tabId);
 
-      return this.props.orderById;
+      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
     }
   };
 
   render() {
-    const { name, idx, path, onGetOrderForView } = this.props;
-
-    // TODO -- код ниже, не ломает, но запуска сдесь быть не должно!!!
-    this.props.onGetOrderForView(this.getCurrentOrderObjById());
+    const { name, idx, path } = this.props;
 
     return (
       <li className={s.tabLi}>
@@ -72,7 +81,9 @@ class Tab extends React.Component {
           to={path}
           className={s.tab}
           activeClassName={s.tabActive}
-          onClick={() => onGetOrderForView(this.getCurrentOrderObjById())}
+          onClick={({ target }) =>
+            this.testHandleClickTab(target.name.slice(8))
+          }
         >
           {name}
         </NavLink>
@@ -90,13 +101,19 @@ class Tab extends React.Component {
 
 const mSTP = (state, ownProps) => ({
   tabsList: tabsSelectors.getTabsList(state),
-  orderById: ordersSelectors.getOrderById(state, orderId),
+  allProducts: ordersSelectors.getOrdersAllProducts(state),
+  dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
+    state,
+  ),
 });
 
 const mDTP = {
   removeTab: tabsActions.removeTab,
-  onGetOrderForView: ordersActions.getOrderForView,
   onClearAllProducts: ordersActions.clearAllProducts,
+  onGetOrderById: ordersOperations.getOrderById,
+  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  onGetDataOfTemporaryStorageLocation:
+    tabsActions.getDataOfTemporaryStorageLocation,
 };
 
 export default withRouter(connect(mSTP, mDTP)(Tab));

@@ -38,6 +38,10 @@ const getVisibleContractors = createSelector(
   },
 );
 
+const getDataOfTemporaryStorageLocation = state => {
+  return state.orders.temporaryStorageLocation;
+};
+
 export default {
   getOrdersList,
   getCurrentContractorInfo,
@@ -51,4 +55,5 @@ export default {
   getFilterValue,
   getAllContactsList,
   getVisibleContractors,
+  getDataOfTemporaryStorageLocation,
 };

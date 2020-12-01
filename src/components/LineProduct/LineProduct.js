@@ -5,6 +5,7 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders/';
+import { tabsActions } from '../../redux/tabs/';
 
 import lineColorPick from '../../helpers/lineColorPick';
 import { CheckBox } from '../CheckBox/';
@@ -12,7 +13,13 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
 import s from '../../views/NewOrderPage/NewOrderPage.module.scss';
 
-const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
+const LineOrderProduct = ({
+  id,
+  idx,
+  getProductLineById,
+  allProducts,
+  ...actions
+}) => {
   const {
     onChangeInput,
     onChangeInputQuantity,
@@ -21,6 +28,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateTotalQuantity,
     onCalculateRemainderPaid,
     onGetArticlePrice,
+    onSaveToTemporaryStorageLocation,
   } = actions;
 
   const handleQuantity = (artValue, name) => {
@@ -30,6 +38,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateTotalQuantity();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
+    onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleDiscount = (artValue, name) => {
@@ -38,6 +47,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
+    onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleVendorCode = async target => {
@@ -46,6 +56,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
+    onSaveToTemporaryStorageLocation(allProducts);
   };
 
   return (
@@ -86,13 +97,13 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
                   ? params.inputProps.value
                   : getProductLineById.color
               }
-              onBlur={({ target }) =>
+              onBlur={({ target }) => {
                 onChangeInput({
                   value: params.inputProps.value,
                   name: target.name,
                   id: id,
-                })
-              }
+                });
+              }}
             />
           </div>
         )}
@@ -159,6 +170,7 @@ const LineOrderProduct = ({ id, idx, getProductLineById, ...actions }) => {
 
 const mSTP = (state, { id }) => ({
   getProductLineById: ordersSelectors.getProductLineById(state, id),
+  allProducts: ordersSelectors.getOrdersAllProducts(state),
 });
 const mDTP = (dispatch, { id }) => ({
   onChangeInput: values => {
@@ -184,6 +196,9 @@ const mDTP = (dispatch, { id }) => ({
   },
   onCalculateRemainderPaid: () => {
     return dispatch(ordersActions.calculateRemainderPaid());
+  },
+  onSaveToTemporaryStorageLocation: data => {
+    return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
   },
 });
 

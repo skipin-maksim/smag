@@ -21,12 +21,20 @@ const tabsPersistConfig = {
   storage,
   whitelist: ['items'],
 };
+const temporaryStorageLocationPersistConfig = {
+  key: 'orders',
+  storage,
+  whitelist: ['temporaryStorageLocation'],
+};
 
 export const store = configureStore({
   reducer: {
     numOrder: numOrderReducer,
     tabs: persistReducer(tabsPersistConfig, tabsReducer),
-    orders: ordersReducer,
+    orders: persistReducer(
+      temporaryStorageLocationPersistConfig,
+      ordersReducer,
+    ),
     contacts: contactsReducer,
     modal: modalReducer,
   },

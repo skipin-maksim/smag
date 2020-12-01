@@ -74,9 +74,25 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
   }
 };
 
+const getOrderById = id => async dispatch => {
+  dispatch(ordersActions.getOrderByIdRequest());
+
+  try {
+    const { data } = await axios(`${baseUrl}/orders/${id}`);
+
+    console.log(data);
+
+    dispatch(ordersActions.getOrderByIdSuccess(data));
+  } catch (error) {
+    dispatch(ordersActions.getOrderByIdError());
+    console.error(error);
+  }
+};
+
 export default {
   getCurrentNumOrder,
   getAllOrders,
   getPriceByArt,
   postOrder,
+  getOrderById,
 };

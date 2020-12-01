@@ -196,14 +196,11 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.changePrepaymentInput]: (state, { payload }) => {
     return { ...state, prepayment: payload };
   },
-  [ordersActions.getOrderForView]: (state, { payload }) => {
-    return payload;
-  },
-  // [tabsActions.addTabOrder]: (state, { payload }) => {
-  //   return { ...state, ...initAllProducts };
-  // },
   [ordersActions.clearAllProducts]: (state, { payload }) => {
     return { ...state, ...initAllProducts };
+  },
+  [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
+    return payload;
   },
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
@@ -211,14 +208,24 @@ const allProducts = createReducer(initAllProducts, {
       contractorInfo: payload,
     };
   },
+  [tabsActions.getDataOfTemporaryStorageLocation]: (state, { payload }) => {
+    return payload;
+  },
 });
 
 const filterContractors = createReducer('', {
   [ordersActions.filterContractors]: (_, { payload }) => payload,
 });
 
+const temporaryStorageLocation = createReducer(initAllProducts, {
+  [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => {
+    return payload;
+  },
+});
+
 export default combineReducers({
   allOrders,
   allProducts,
   filterContractors,
+  temporaryStorageLocation,
 });
