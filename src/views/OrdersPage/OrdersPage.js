@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,7 +9,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import { ordersSelectors, ordersOperations } from '../../redux/orders';
-import { tabsActions } from '../../redux/tabs';
+import { tabsActions, tabsSelectors } from '../../redux/tabs';
 
 import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
@@ -21,10 +21,21 @@ class OrdersPage extends React.Component {
   }
 
   handleAddLineProduct = () => {
-    this.props.addTab({
-      name: 'Заказ № ***?',
-      path: '/orders/new-order',
-    });
+    const isTab = this.props.tabsList.find(
+      item => item.name === 'Заказ № ***?',
+    );
+
+    if (isTab) {
+      alert('Перед созданием нового заказа, сохраните предыдущий заказ');
+      return;
+    } else {
+      this.props.addTab({
+        name: 'Заказ № ***?',
+        path: '/orders/new-order',
+      });
+
+      this.props.history.replace('/orders/new-order');
+    }
   };
 
   render() {
@@ -47,14 +58,14 @@ class OrdersPage extends React.Component {
 
           <div className={s.settingButtons}>
             <Tooltip title={'Добавить заказ'} arrow>
-              <Link
+              <button
                 to={'orders/new-order'}
                 onClick={this.handleAddLineProduct}
                 className={`${s.settingButton} ${s.addBtn}`}
               >
                 <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
                 <div className="visually-hidden">Добавить заказ</div>
-              </Link>
+              </button>
             </Tooltip>
 
             <Tooltip title={'Изменить заказ'} arrow>
@@ -109,6 +120,8 @@ class OrdersPage extends React.Component {
 const mSTP = state => ({
   ordersList: ordersSelectors.getOrdersList(state),
   currentOrder: ordersSelectors.getCurrentOrderNum(state),
+  tabsList: tabsSelectors.getTabsList(state),
+  // isTab: tabsSelectors.getIsTab(state, tabName),
 });
 
 const mDTP = {
@@ -117,4 +130,4 @@ const mDTP = {
   allOrders: ordersOperations.getAllOrders,
 };
 
-export default connect(mSTP, mDTP)(OrdersPage);
+export default withRouter(connect(mSTP, mDTP)(OrdersPage));

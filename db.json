@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 9,
-    "valueStr": "00009"
+    "valueNum": 11,
+    "valueStr": "00011"
   },
   "contractors": [
     {
@@ -338,6 +338,84 @@
       "numOrder": "00009",
       "id": "00009",
       "date": "01-12-2020 12:10"
+    },
+    {
+      "items": [
+        {
+          "id": "caddca03-b4b5-435d-a8f4-1f8d8d2d27fa",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "0",
+          "price": 35,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 35,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00010",
+      "id": "00010",
+      "date": "01-12-2020 01:36"
+    },
+    {
+      "items": [
+        {
+          "id": "caddca03-b4b5-435d-a8f4-1f8d8d2d27fa",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "",
+          "quantity": "0",
+          "price": 40,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 40,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": 1000
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00011",
+      "id": "00011",
+      "date": "01-12-2020 01:36"
     }
   ]
 }

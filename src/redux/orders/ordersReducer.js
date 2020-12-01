@@ -199,9 +199,9 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.getOrderForView]: (state, { payload }) => {
     return payload;
   },
-  [tabsActions.addTabOrder]: (state, { payload }) => {
-    return { ...state, ...initAllProducts };
-  },
+  // [tabsActions.addTabOrder]: (state, { payload }) => {
+  //   return { ...state, ...initAllProducts };
+  // },
   [ordersActions.clearAllProducts]: (state, { payload }) => {
     return { ...state, ...initAllProducts };
   },
