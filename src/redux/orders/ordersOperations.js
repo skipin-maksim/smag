@@ -50,10 +50,10 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
 
   const newContractorInfo = {
     ...contractorInfo,
-    debt: contractorInfo.debt + allProducts.calculatedTotals.remainderPaid,
+    debt: contractorInfo.debt - allProducts.calculatedTotals.remainderPaid,
   };
 
-  console.log(contractorInfo.debt + allProducts.calculatedTotals.remainderPaid);
+  console.log(contractorInfo.debt - allProducts.calculatedTotals.remainderPaid);
 
   const postData = {
     ...allProducts,

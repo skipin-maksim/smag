@@ -164,9 +164,10 @@ class NewOrderPage extends React.Component {
                 <span>{tel}</span>
               </div>
               {/* //TODO сделать чтоб брался актуальный долг с сервера!!! */}
+
               <div className={s.contractorInfoInnerDept}>
                 Долг контрагента:{' '}
-                <span className={debt > 0 ? 'red' : 'green'}>
+                <span className={debt > 0 ? 'green' : 'red'}>
                   {debt.toLocaleString('ru')}
                 </span>
               </div>
@@ -237,9 +238,7 @@ class NewOrderPage extends React.Component {
                 <div className={s.remainderPaid}>
                   Остаток к оплате:{' '}
                   <span>
-                    {calculatedTotals.remainderPaid < 0
-                      ? 0
-                      : calculatedTotals.remainderPaid.toLocaleString('ru')}
+                    {calculatedTotals.remainderPaid.toLocaleString('ru')}
                   </span>
                 </div>
               </div>
