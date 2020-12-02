@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 40,
-    "valueStr": "00040"
+    "valueNum": 49,
+    "valueStr": "00049"
   },
   "contractors": [
     {
@@ -13,7 +13,7 @@
       "email": "maks@gmail.com",
       "city": "Бровары",
       "post": "Новая Почта 13",
-      "debt": 0
+      "debt": 10
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "email": "aleks@gmail.com",
       "city": "Чернобыль",
       "post": 666,
-      "debt": 1000
+      "debt": -100
     }
   ],
   "products": [
@@ -182,6 +182,687 @@
       "numOrder": "00040",
       "id": "00040",
       "date": "02-12-2020 02:01"
+    },
+    {
+      "items": [
+        {
+          "id": "dae9d0dc-6f08-4328-960b-f89330d70d6e",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "",
+          "quantity": "1000",
+          "price": 50,
+          "discount": "0",
+          "sum": 50000,
+          "note": ""
+        },
+        {
+          "id": "20c2c963-9a97-4786-a945-7a3044989741",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "c27d136f-c2c4-4487-ab61-2720d056f3ca",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "292fe26a-748c-4f49-a650-951800faca48",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "3d5cbdf5-896e-421e-a6c2-095b4d0d5dcf",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "82bdf5f6-2091-41c6-8076-e47c0abb707f",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "8d6ae403-afe3-4b80-975d-822470259b32",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "b9a60e46-02e8-4cf6-ae88-1ae8bcbc6b0c",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "5a636a16-b8c8-49c2-99e8-6d57c8701ed1",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "5fc04480-497d-41d9-b8cd-22f0c552ae1e",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "77d0c03d-c07a-447f-aa06-778e0e308e8c",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "62e51209-1c6a-4be0-8d09-f58970418505",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "ee4e6989-5336-4373-bb2f-bde43e6c32ba",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "6332dbe4-ecfb-4557-b553-2ae261e8ac89",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "da5b0ab1-72fe-4fe3-9b37-a07c37db1ee8",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "ec7c6778-ec01-458a-b0f8-32fa7319a74a",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "17153679-1433-4231-a45c-0a5da0668b21",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "81aa49b0-7718-4d3d-969b-c7b50987e14e",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "db01f7ad-64b3-455a-90c4-9dc86ad340c5",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "dad6e5d2-0f3b-4759-9c47-a5bc0733a960",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "c30e9373-6c39-4734-87c3-0f2bb7d616b5",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "631f9892-db30-4197-a65f-458e1be7d87a",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "878bb7e4-8995-497a-9ac4-7006320425bc",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "11a784fe-5d25-4a1d-8514-f29b0c44e33c",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "1eec5fd6-9fa2-49fd-bdac-4d82890c11b7",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "f0035d35-be95-4243-a594-6ec5e2857d2a",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "cd8a996c-ef67-4045-8078-9230387e82bb",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "23983773-63e5-434c-b405-e7285a942aa7",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "5fe9f0a6-7326-4cc6-81e7-e72581ba2900",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "79a1a5bb-944d-4cdb-aae0-a8a042373701",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "3da3ce5b-bff9-4c81-9661-8dd10e7cc7eb",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 31,
+        "quantity": 1000,
+        "averagePrice": 1.6129032258064515,
+        "sum": 50000,
+        "remainderPaid": 49000
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": "1000",
+      "noteForOrder": "",
+      "numOrder": "00041",
+      "id": "00041",
+      "date": "02-12-2020 03:05"
+    },
+    {
+      "items": [
+        {
+          "id": "c769d1d7-bf7d-46e4-a429-8ad49db002f2",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "0",
+          "price": 35,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 35,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 100
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00042",
+      "id": "00042",
+      "date": "02-12-2020 03:10"
+    },
+    {
+      "items": [
+        {
+          "id": "f825eac9-23cc-4516-99c2-bfe7288c6bcf",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "",
+          "quantity": "5",
+          "price": 50,
+          "discount": "0",
+          "sum": 250,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 5,
+        "averagePrice": 50,
+        "sum": 250,
+        "remainderPaid": 250
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 250
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00043",
+      "id": "00043",
+      "date": "02-12-2020 03:19"
+    },
+    {
+      "items": [
+        {
+          "id": "710ce581-da9b-414b-99e6-a9ee785fb516",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "",
+          "quantity": "5",
+          "price": 50,
+          "discount": "0",
+          "sum": 250,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 5,
+        "averagePrice": 50,
+        "sum": 250,
+        "remainderPaid": 250
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 250
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00044",
+      "id": "00044",
+      "date": "02-12-2020 03:20"
+    },
+    {
+      "items": [
+        {
+          "id": "cd4cc49a-fe5a-419d-b30b-b1eacdc244eb",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "2",
+          "price": 35,
+          "discount": "0",
+          "sum": 70,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 2,
+        "averagePrice": 35,
+        "sum": 70,
+        "remainderPaid": 70
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 70
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00045",
+      "id": "00045",
+      "date": "02-12-2020 03:21"
+    },
+    {
+      "items": [
+        {
+          "id": "cd4cc49a-fe5a-419d-b30b-b1eacdc244eb",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": -100
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": -30
+      },
+      "isSaved": true,
+      "prepayment": "100",
+      "noteForOrder": "",
+      "numOrder": "00046",
+      "id": "00046",
+      "date": "02-12-2020 03:29"
+    },
+    {
+      "items": [
+        {
+          "id": "580b405e-f4e7-4d74-8684-db3f32c4f761",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "",
+          "quantity": "0",
+          "price": 45,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 45,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": -30
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00047",
+      "id": "00047",
+      "date": "02-12-2020 03:29"
+    },
+    {
+      "items": [
+        {
+          "id": "580b405e-f4e7-4d74-8684-db3f32c4f761",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "",
+          "quantity": "1",
+          "price": 40,
+          "discount": "0",
+          "sum": 40,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 1,
+        "averagePrice": 40,
+        "sum": 40,
+        "remainderPaid": 40
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 10
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00048",
+      "id": "00048",
+      "date": "02-12-2020 03:29"
+    },
+    {
+      "items": [
+        {
+          "id": "1a5ee036-91e8-4daf-a450-b751d87ee8c1",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": -1100
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Скипинович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Чернобыль",
+        "post": 666,
+        "debt": -100
+      },
+      "isSaved": true,
+      "prepayment": "1100",
+      "noteForOrder": "",
+      "numOrder": "00049",
+      "id": "00049",
+      "date": "02-12-2020 03:34"
     }
   ]
 }

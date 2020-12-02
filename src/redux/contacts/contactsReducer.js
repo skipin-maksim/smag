@@ -1,11 +1,16 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import { contactsActions } from './';
-import { modalActions } from '../modal/';
+// import { ordersActions } from '../orders/';
+// import { modalActions } from '../modal/';
 
 const allContacts = createReducer([], {
   [contactsActions.getAllContactsSuccess]: (state, { payload }) => [...payload],
-  [modalActions.closeModal]: () => [],
+  // [modalActions.closeModal]: () => [],
+  // [ordersActions.saveOrderSuccess]: (state, { payload }) => {
+  //   console.log(payload);
+  //   return state;
+  // },
 });
 
 const loader = createReducer(false, {

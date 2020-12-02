@@ -48,10 +48,17 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
 const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
+  const newContractorInfo = {
+    ...contractorInfo,
+    debt: contractorInfo.debt + allProducts.calculatedTotals.remainderPaid,
+  };
+
+  console.log(contractorInfo.debt + allProducts.calculatedTotals.remainderPaid);
+
   const postData = {
     ...allProducts,
     isSaved: true,
-    contractorInfo: contractorInfo,
+    contractorInfo: newContractorInfo,
     numOrder: tetsNum.valueStr,
     id: tetsNum.valueStr,
     date: dateNow,
@@ -68,6 +75,10 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
     axios.patch(`${baseUrl}/numorder`, tetsNum);
+    axios.patch(
+      `${baseUrl}/contractors/${contractorInfo.id}`,
+      newContractorInfo,
+    );
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);
