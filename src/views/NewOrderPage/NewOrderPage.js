@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
+import { tabsActions } from '../../redux/tabs/';
 import {
   ordersActions,
   ordersOperations,
@@ -36,6 +38,14 @@ class NewOrderPage extends React.Component {
 
   componentDidMount() {
     this.props.onCalculateTotalPositions();
+
+    if (this.props.history.location.pathname.slice(8) === 'new-order') {
+      this.props.onGetDataOfTemporaryStorageLocation(
+        this.props.dataOfTemporaryStorageLocation,
+      );
+    } else if (Number(this.props.history.location.pathname.slice(8))) {
+      this.props.onGetOrderById(this.props.history.location.pathname.slice(8));
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -114,6 +124,7 @@ class NewOrderPage extends React.Component {
       calculatedTotals,
       onCalculateTotalPositions,
       onCalculateRemainderPaid,
+      onSaveToTemporaryStorageLocation,
     } = this.props;
 
     const {
@@ -213,9 +224,10 @@ class NewOrderPage extends React.Component {
                     onChange={({ target }) =>
                       onChangePrepaymentInput(target.value)
                     }
-                    onBlur={({ target }) =>
-                      onCalculateRemainderPaid(target.value)
-                    }
+                    onBlur={({ target }) => {
+                      onSaveToTemporaryStorageLocation(allProducts);
+                      onCalculateRemainderPaid(target.value);
+                    }}
                   />
                 </label>
                 <div className={s.remainderPaid}>
@@ -332,6 +344,9 @@ const mSTP = state => ({
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
   currentContractorInfo: ordersSelectors.getCurrentContractorInfo(state),
+  dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
+    state,
+  ),
 });
 const mDTP = {
   onChoiseContractor: modalActions.openModal,
@@ -352,6 +367,12 @@ const mDTP = {
   onSaveOrder: ordersOperations.postOrder,
 
   onChangePrepaymentInput: ordersActions.changePrepaymentInput,
+
+  onGetOrderById: ordersOperations.getOrderById,
+
+  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  onGetDataOfTemporaryStorageLocation:
+    tabsActions.getDataOfTemporaryStorageLocation,
 };
 
-export default connect(mSTP, mDTP)(NewOrderPage);
+export default withRouter(connect(mSTP, mDTP)(NewOrderPage));

@@ -200,8 +200,6 @@ const allProducts = createReducer(initAllProducts, {
     return { ...state, ...initAllProducts };
   },
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
-    if (!payload) console.log('gjskhvbdbdrhvdrvkj');
-
     return { ...payload };
   },
   [ordersActions.choiseContractor]: (state, { payload }) => {
@@ -222,6 +220,9 @@ const filterContractors = createReducer('', {
 const temporaryStorageLocation = createReducer(initAllProducts, {
   [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => {
     return payload;
+  },
+  [ordersActions.clearAllProducts]: (state, { payload }) => {
+    return initAllProducts;
   },
 });
 

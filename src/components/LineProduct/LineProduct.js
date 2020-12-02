@@ -28,7 +28,7 @@ const LineOrderProduct = ({
     onCalculateTotalQuantity,
     onCalculateRemainderPaid,
     onGetArticlePrice,
-    onSaveToTemporaryStorageLocation,
+    // onSaveToTemporaryStorageLocation,
   } = actions;
 
   const handleQuantity = (artValue, name) => {
@@ -38,7 +38,7 @@ const LineOrderProduct = ({
     onCalculateTotalQuantity();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    onSaveToTemporaryStorageLocation(allProducts);
+    // onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleDiscount = (artValue, name) => {
@@ -47,7 +47,7 @@ const LineOrderProduct = ({
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    onSaveToTemporaryStorageLocation(allProducts);
+    // onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleVendorCode = async target => {
@@ -56,7 +56,7 @@ const LineOrderProduct = ({
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    onSaveToTemporaryStorageLocation(allProducts);
+    // onSaveToTemporaryStorageLocation(allProducts);
   };
 
   return (
@@ -197,9 +197,9 @@ const mDTP = (dispatch, { id }) => ({
   onCalculateRemainderPaid: () => {
     return dispatch(ordersActions.calculateRemainderPaid());
   },
-  onSaveToTemporaryStorageLocation: data => {
-    return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
-  },
+  // onSaveToTemporaryStorageLocation: data => {
+  //   return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
+  // },
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

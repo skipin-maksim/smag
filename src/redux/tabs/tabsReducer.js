@@ -14,7 +14,9 @@ const addTab = (state, payload) => {
   return state;
 };
 const removeTab = (state, payload) => {
-  if (state.length === 1) return;
+  if (state.length === 1) {
+    return initialStateItem;
+  }
 
   return state.filter(item => item.name !== payload);
 };

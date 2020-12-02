@@ -8,12 +8,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
-import { ordersSelectors, ordersOperations } from '../../redux/orders';
+import {
+  ordersSelectors,
+  ordersOperations,
+  ordersActions,
+} from '../../redux/orders';
 import { tabsActions, tabsSelectors } from '../../redux/tabs';
 
 import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
-import { initAllProducts } from '../../redux/orders/initialStateForReducers';
 
 import s from './OrdersPage.module.scss';
 class OrdersPage extends React.Component {
@@ -21,7 +24,7 @@ class OrdersPage extends React.Component {
     this.props.allOrders();
   }
 
-  handleAddLineProduct = () => {
+  handleAddLineProduct = name => {
     const isTab = this.props.tabsList.find(
       item => item.name === 'Заказ № ***?',
     );
@@ -35,7 +38,7 @@ class OrdersPage extends React.Component {
         path: '/orders/new-order',
       });
 
-      this.props.onSaveToTemporaryStorageLocation(initAllProducts);
+      this.props.onClearAllProducts();
 
       this.props.history.replace('/orders/new-order');
     }
@@ -62,8 +65,9 @@ class OrdersPage extends React.Component {
           <div className={s.settingButtons}>
             <Tooltip title={'Добавить заказ'} arrow>
               <button
+                name={'addNewOrder'}
                 to={'orders/new-order'}
-                onClick={this.handleAddLineProduct}
+                onClick={({ target }) => this.handleAddLineProduct(target.name)}
                 className={`${s.settingButton} ${s.addBtn}`}
               >
                 <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
@@ -133,7 +137,8 @@ const mDTP = {
   // addOrder: ordersActions.addOrder,
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
-  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  onClearAllProducts: ordersActions.clearAllProducts,
+  // onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
 };
 
 export default withRouter(connect(mSTP, mDTP)(OrdersPage));
