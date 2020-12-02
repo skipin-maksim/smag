@@ -164,7 +164,7 @@ class NewOrderPage extends React.Component {
                 <span>{tel}</span>
               </div>
               <div className={s.contractorInfoInnerDept}>
-                Долг контрагента: <span>{debt}</span>
+                Долг контрагента: <span>{debt.toLocaleString('ru')}</span>
               </div>
             </div>
 
@@ -257,6 +257,7 @@ class NewOrderPage extends React.Component {
             <span>Сумма</span>
             <span>Примечание</span>
           </div>
+
           <div className={s.windowOrders}>
             <form>
               <Scrollbar
@@ -275,50 +276,43 @@ class NewOrderPage extends React.Component {
             </form>
 
             <div className={s.orderInfo}>
-              <div>
-                <span>Поз</span>
+              <div className={s.numOrder}>
+                <span>Позицый</span>
                 <span className={s.numbers}>
                   {calculatedTotals.positions ? calculatedTotals.positions : 0}
                 </span>
               </div>
-              <div>
-                <span></span>
-              </div>
-              <div>
-                <span></span>
-              </div>
-              <div>
-                <span></span>
-              </div>
-              <div>
+
+              <div className={s.totalProduct}>
                 <span>Общее кол-во</span>
                 <span className={s.numbers}>
-                  {calculatedTotals.quantity ? calculatedTotals.quantity : 0}
-                </span>
-              </div>
-              <div>
-                <span>Средняя цена</span>
-                <span className={s.numbers}>
-                  {calculatedTotals.averagePrice
-                    ? calculatedTotals.averagePrice
+                  {calculatedTotals.quantity
+                    ? calculatedTotals.quantity.toLocaleString('ru')
                     : 0}
                 </span>
               </div>
-              <div>
-                <span></span>
+
+              <div className={s.averagePrice}>
+                <span>Средняя цена</span>
+                <span className={s.numbers}>
+                  {calculatedTotals.averagePrice
+                    ? calculatedTotals.averagePrice.toString().slice(0, 4)
+                    : 0}
+                </span>
               </div>
-              <div>
+
+              <div className={s.totalSum}>
                 <span>Общая сумма</span>
                 <span className={s.numbers}>
                   {' '}
-                  {calculatedTotals.sum ? calculatedTotals.sum : 0}
+                  {calculatedTotals.sum
+                    ? calculatedTotals.sum.toLocaleString('ru')
+                    : 0}
                 </span>
-              </div>
-              <div>
-                <span></span>
               </div>
             </div>
           </div>
+
           <label className={s.noteForOrderLabel}>
             <span>Заметка</span>
             <input

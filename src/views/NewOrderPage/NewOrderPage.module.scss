@@ -102,24 +102,10 @@
   display: flex;
   align-items: center;
 
-  // labelSaveBtnIstSaved
-
   & .saveBtn {
     width: 0;
     height: 0;
     opacity: 0;
-
-    // &::before {
-    //   position: absolute;
-    //   top: 0;
-    //   left: 0;
-    //   content: '';
-    //   display: block;
-    //   width: 110px;
-    //   height: 30px;
-    //   background-color: #1c2b4a;
-    //   border-radius: 5px;
-    // }
   }
 }
 
@@ -293,21 +279,39 @@
 .orderInfo {
   width: 98%;
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 15px;
   display: grid;
-  // grid-template-columns: 170px 200px 180px 240px 190px;
-  grid-template-columns: 30px 60px 200px 500px 80px 100px 60px 160px 1fr 100px;
+  grid-template-columns: 100px 690px 80px 100px 60px 160px 1fr;
   align-items: flex-start;
   text-align: center;
   font-size: 12px;
+  grid-template-areas: 'numOrder . totalProduct averagePrice . totalSum .';
 
   & span {
     display: block;
   }
 
   & .numbers {
+    margin-top: 5px;
     font-size: 14px;
+    font-weight: 600;
+  }
+
+  & .numOrder {
+    grid-area: numOrder;
+  }
+
+  & .totalProduct {
+    grid-area: totalProduct;
+  }
+
+  & .averagePrice {
+    grid-area: averagePrice;
+  }
+
+  & .totalSum {
+    grid-area: totalSum;
   }
 }
 
