@@ -65,6 +65,7 @@ const LineOrderProduct = ({
         name="checkProduct"
         isChecked={getProductLineById.checkProduct}
         onChange={onChangeInput}
+        isDisabled={allProducts.isSaved}
       />
       <span className={s.numSpan}>{idx + 1}</span>
       <input
@@ -79,6 +80,7 @@ const LineOrderProduct = ({
         value={getProductLineById.vendorCode}
         name="vendorCode"
         className={s.nameSpan}
+        disabled={allProducts.isSaved}
       />
       <Autocomplete
         disabled={!getProductLineById.vendorCode}
@@ -89,6 +91,7 @@ const LineOrderProduct = ({
           <div ref={params.InputProps.ref}>
             <input
               {...params.inputProps}
+              disabled={allProducts.isSaved}
               type="text"
               name="color"
               placeholder="выберите цвет"
@@ -137,7 +140,7 @@ const LineOrderProduct = ({
         name="discount"
         value={getProductLineById.discount}
         className={s.discountSpan}
-        disabled={!getProductLineById.vendorCode}
+        disabled={allProducts.isSaved || !getProductLineById.vendorCode}
       />
       <input
         type="number"

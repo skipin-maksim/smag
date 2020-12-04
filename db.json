@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 53,
-    "valueStr": "00053"
+    "valueNum": 9,
+    "valueStr": "00009"
   },
   "contractors": [
     {
@@ -13,17 +13,28 @@
       "email": "maks@gmail.com",
       "city": "Бровары",
       "post": "Новая Почта 13",
-      "debt": 10
+      "debt": -35
     },
     {
       "id": 2,
       "firstName": "Алексей",
       "secondName": "Григоренко",
-      "thirdName": "Скипинович",
+      "thirdName": "Романович",
       "tel": "+38 066 202 53 90",
       "email": "aleks@gmail.com",
-      "city": "Чернобыль",
-      "post": 666,
+      "city": "Донецк",
+      "post": "Новая Почта 25",
+      "debt": -450
+    },
+    {
+      "id": 3,
+      "firstName": "Юрий",
+      "secondName": "Филатов",
+      "thirdName": "Иванович",
+      "tel": "+38 066 202 53 90",
+      "email": "fil@gmail.com",
+      "city": "Ивано-Франковск",
+      "post": "Новая Почта 2",
       "debt": 0
     }
   ],
@@ -34,8 +45,7 @@
       "prices": {
         "retail": 20,
         "wholesale": 35
-      },
-      "dimensions": "20х20х50"
+      }
     },
     {
       "id": 20,
@@ -43,8 +53,7 @@
       "prices": {
         "retail": 25,
         "wholesale": 40
-      },
-      "dimensions": "20х20х50"
+      }
     },
     {
       "id": 30,
@@ -52,8 +61,7 @@
       "prices": {
         "retail": 30,
         "wholesale": 45
-      },
-      "dimensions": "20х20х50"
+      }
     },
     {
       "id": 40,
@@ -61,9 +69,360 @@
       "prices": {
         "retail": 35,
         "wholesale": 50
-      },
-      "dimensions": "20х20х50"
+      }
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "items": [
+        {
+          "id": "c1b158f0-8eb0-42bd-a88c-171a21e66fe7",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "0",
+          "price": 35,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 35,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00001",
+      "id": "00001",
+      "date": "04-12-2020 12:17"
+    },
+    {
+      "items": [
+        {
+          "id": "3f1a4458-dc12-4c75-b138-1d52994bb948",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": "Новая Почта 2",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00002",
+      "id": "00002",
+      "date": "04-12-2020 12:29"
+    },
+    {
+      "items": [
+        {
+          "id": "08a0d3ec-c360-4306-b7ad-6fbdb479e8a4",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": "Новая Почта 2",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00003",
+      "id": "00003",
+      "date": "04-12-2020 01:57"
+    },
+    {
+      "items": [
+        {
+          "id": "08a0d3ec-c360-4306-b7ad-6fbdb479e8a4",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": "Новая Почта 2",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00004",
+      "id": "00004",
+      "date": "04-12-2020 01:57"
+    },
+    {
+      "items": [
+        {
+          "id": "5157ac0f-4401-4d54-b5e7-74f64f9f92ca",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Романович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Донецк",
+        "post": "Новая Почта 25",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00005",
+      "id": "00005",
+      "date": "04-12-2020 02:11"
+    },
+    {
+      "items": [
+        {
+          "id": "940304da-bc87-45bd-84ff-bb742e7e1e08",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00006",
+      "id": "00006",
+      "date": "04-12-2020 02:16"
+    },
+    {
+      "items": [
+        {
+          "id": "940304da-bc87-45bd-84ff-bb742e7e1e08",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "коричневый (tmoro)",
+          "quantity": "10",
+          "price": 50,
+          "discount": "10",
+          "sum": 450,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 10,
+        "averagePrice": 50,
+        "sum": 450,
+        "remainderPaid": 450
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Романович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Донецк",
+        "post": "Новая Почта 25",
+        "debt": -450
+      },
+      "isSaved": true,
+      "prepayment": "",
+      "noteForOrder": "",
+      "numOrder": "00007",
+      "id": "00007",
+      "date": "04-12-2020 02:37"
+    },
+    {
+      "items": [
+        {
+          "id": "4cb44b3a-772f-441e-822b-c4d98108bb6d",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "коричневый (tmoro)",
+          "quantity": "50",
+          "price": 35,
+          "discount": "0",
+          "sum": 1750,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 50,
+        "averagePrice": 35,
+        "sum": 1750,
+        "remainderPaid": 1250
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": -1250
+      },
+      "isSaved": true,
+      "prepayment": "500",
+      "noteForOrder": "",
+      "numOrder": "00008",
+      "id": "00008",
+      "date": "04-12-2020 02:50"
+    },
+    {
+      "items": [
+        {
+          "id": "4cb44b3a-772f-441e-822b-c4d98108bb6d",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "коричневый (tmoro)",
+          "quantity": "1",
+          "price": 35,
+          "discount": "0",
+          "sum": 35,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 1,
+        "averagePrice": 35,
+        "sum": 35,
+        "remainderPaid": -1215
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": "Новая Почта 13",
+        "debt": -35
+      },
+      "isSaved": true,
+      "prepayment": "1250",
+      "noteForOrder": "",
+      "numOrder": "00009",
+      "id": "00009",
+      "date": "04-12-2020 02:50"
+    }
+  ]
 }

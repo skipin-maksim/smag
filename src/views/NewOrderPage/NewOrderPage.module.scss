@@ -82,6 +82,10 @@
     border-bottom: 1px solid #1c2b4a;
     border-radius: 5px;
   }
+
+  &:disabled {
+    color: inherit;
+  }
 }
 
 .remainderPaid {
@@ -117,11 +121,11 @@
   height: 30px;
   background-color: #de6a73;
   border-radius: 5px;
-  cursor: pointer;
   text-align: right;
   font-size: 12px;
   line-height: 30px;
   transition: all 0.4s linear;
+  cursor: pointer;
 
   &::before {
     position: absolute;
@@ -148,7 +152,7 @@
   height: 30px;
   background-color: #98c379;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: default;
   text-align: left;
   font-size: 12px;
   line-height: 30px;
@@ -205,6 +209,11 @@
       border: #1c2b4a 1px solid;
     }
   }
+
+  &:disabled:hover {
+    background-color: #1c2b4a;
+    cursor: default;
+  }
 }
 
 .dotsBtn {
@@ -255,7 +264,7 @@
     border: none;
     text-align: center;
 
-    &.disabled {
+    &:disabled {
       color: inherit;
     }
   }

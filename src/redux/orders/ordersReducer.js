@@ -200,7 +200,7 @@ const allProducts = createReducer(initAllProducts, {
     return { ...state, ...initAllProducts };
   },
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
-    return { ...payload };
+    return payload;
   },
   [ordersActions.choiseContractor]: (state, { payload }) => {
     return {
@@ -211,6 +211,7 @@ const allProducts = createReducer(initAllProducts, {
   [tabsActions.getDataOfTemporaryStorageLocation]: (state, { payload }) => {
     return { ...payload };
   },
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => payload.data,
 });
 
 const filterContractors = createReducer('', {
@@ -219,6 +220,7 @@ const filterContractors = createReducer('', {
 
 const temporaryStorageLocation = createReducer(initAllProducts, {
   [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => {
+    console.log('СОХРАНИЛИ В ВРЕМЕННОЕ ХРАНИЛИЩЕ-----------------------');
     return payload;
   },
   [ordersActions.clearAllProducts]: (state, { payload }) => {

@@ -38,6 +38,7 @@ class NewOrderPage extends React.Component {
 
   componentDidMount() {
     this.props.onCalculateTotalPositions();
+    console.log('componentDidMount');
 
     if (this.props.history.location.pathname.slice(8) === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(
@@ -145,11 +146,16 @@ class NewOrderPage extends React.Component {
           <div className={s.ordersSettings}>
             <div className={s.contractorInfo}>
               <div className={s.contractorsBlock}>
-                <Tooltip title={'Выбрать контрагента'} arrow>
+                <Tooltip
+                  title={'Выбрать контрагента'}
+                  arrow
+                  disableHoverListener={allProducts.isSaved}
+                >
                   <button
                     type="button"
                     className={`${s.settingButton} ${s.dotsBtn}`}
                     onClick={this.handleChoiseContractors}
+                    disabled={allProducts.isSaved}
                   >
                     Выбрать контрагента
                   </button>
@@ -163,7 +169,6 @@ class NewOrderPage extends React.Component {
                 <span>{post}</span>
                 <span>{tel}</span>
               </div>
-              {/* //TODO сделать чтоб брался актуальный долг с сервера!!! */}
 
               <div className={s.contractorInfoInnerDept}>
                 Долг контрагента:{' '}
@@ -175,24 +180,33 @@ class NewOrderPage extends React.Component {
 
             <div className={s.settingControls}>
               <div className={s.settingButtons}>
-                <Tooltip title={'Добавить товар'} arrow>
+                <Tooltip
+                  title={'Добавить товар'}
+                  arrow
+                  disableHoverListener={allProducts.isSaved}
+                >
                   <button
                     onClick={() => {
                       onCreateLineProduct();
                       onCalculateTotalPositions();
                     }}
                     className={`${s.settingButton} ${s.addBtn}`}
+                    disabled={allProducts.isSaved}
                   >
                     <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
-                    <div className="visually-hidden">Добавить заказ</div>
                   </button>
                 </Tooltip>
 
-                <Tooltip title={'Удалить товар'} arrow>
+                <Tooltip
+                  title={'Удалить товар'}
+                  arrow
+                  disableHoverListener={allProducts.isSaved}
+                >
                   <button
                     type="button"
                     onClick={this.handleDelete}
                     className={`${s.settingButton} ${s.removeBtn}`}
+                    disabled={allProducts.isSaved}
                   >
                     <DeleteForeverIcon
                       style={{ color: '#DE6A73', fontSize: 21 }}
@@ -215,6 +229,7 @@ class NewOrderPage extends React.Component {
                     checked={allProducts.isSaved}
                     className={s.saveBtn}
                     onChange={this.handleSaveBtn}
+                    disabled={allProducts.isSaved}
                   />
                 </label>
               </div>
@@ -222,6 +237,7 @@ class NewOrderPage extends React.Component {
                 <label className={s.prepaymentLabel}>
                   Предоплата:
                   <input
+                    disabled={allProducts.isSaved}
                     name="prepayment"
                     type="number"
                     className={s.prepaymentInput}
@@ -230,7 +246,7 @@ class NewOrderPage extends React.Component {
                       onChangePrepaymentInput(target.value)
                     }
                     onBlur={({ target }) => {
-                      onSaveToTemporaryStorageLocation(allProducts);
+                      // onSaveToTemporaryStorageLocation(allProducts);
                       onCalculateRemainderPaid(target.value);
                     }}
                   />
@@ -238,7 +254,10 @@ class NewOrderPage extends React.Component {
                 <div className={s.remainderPaid}>
                   Остаток к оплате:{' '}
                   <span>
-                    {calculatedTotals.remainderPaid.toLocaleString('ru')}
+                    {' '}
+                    {calculatedTotals.remainderPaid < 0
+                      ? 0
+                      : calculatedTotals.remainderPaid.toLocaleString('ru')}
                   </span>
                 </div>
               </div>
@@ -250,6 +269,7 @@ class NewOrderPage extends React.Component {
               name="checkProduct"
               isChecked={this.state.isCheckAll}
               onChange={this.handleCheckAll}
+              isDisabled={allProducts.isSaved}
             />
             <span>№</span>
             <span>Артикул</span>
@@ -323,6 +343,7 @@ class NewOrderPage extends React.Component {
               type="text"
               value={allProducts.noteForOrder.value}
               onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
+              disabled={allProducts.isSaved}
             />
           </label>
         </div>
@@ -367,7 +388,7 @@ const mDTP = {
 
   onGetOrderById: ordersOperations.getOrderById,
 
-  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  // onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
   onGetDataOfTemporaryStorageLocation:
     tabsActions.getDataOfTemporaryStorageLocation,
 };

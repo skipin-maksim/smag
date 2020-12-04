@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
+import { contactsOperations } from '../contacts/';
 
 const baseUrl = 'http://localhost:2000';
 const dateNow = moment().format('DD-MM-YYYY hh:mm');
@@ -53,8 +54,6 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
     debt: contractorInfo.debt - allProducts.calculatedTotals.remainderPaid,
   };
 
-  console.log(contractorInfo.debt - allProducts.calculatedTotals.remainderPaid);
-
   const postData = {
     ...allProducts,
     isSaved: true,
@@ -90,10 +89,19 @@ const getOrderById = id => async dispatch => {
 
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);
+    const { data: dataContact } = await axios(
+      `${baseUrl}/contractors/${data.contractorInfo.id}`,
+    );
 
-    console.log(data);
+    console.log(dataContact);
+    console.log({ ...data, contractorInfo: dataContact });
 
-    dispatch(ordersActions.getOrderByIdSuccess({ ...data }));
+    dispatch(
+      ordersActions.getOrderByIdSuccess({
+        ...data,
+        contractorInfo: dataContact,
+      }),
+    );
   } catch (error) {
     dispatch(ordersActions.getOrderByIdError());
     console.error(error);
