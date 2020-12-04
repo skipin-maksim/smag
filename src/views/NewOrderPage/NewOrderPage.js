@@ -6,6 +6,7 @@ import { Scrollbar } from 'react-scrollbars-custom';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import PrintIcon from '@material-ui/icons/Print';
 
 import { tabsActions } from '../../redux/tabs/';
 import {
@@ -126,11 +127,6 @@ class NewOrderPage extends React.Component {
       this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
   };
 
-  tete = () => {
-    if (!this.props.allProducts.isSaved)
-      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
-  };
-
   render() {
     const {
       allProducts,
@@ -247,6 +243,21 @@ class NewOrderPage extends React.Component {
                     disabled={allProducts.isSaved}
                   />
                 </label>
+
+                <Tooltip
+                  title={'Печать'}
+                  arrow
+                  disableHoverListener={allProducts.isSaved}
+                >
+                  <button
+                    type="button"
+                    // onClick={this.handleDelete}
+                    className={`${s.settingButton} ${s.printBtn}`}
+                  >
+                    <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
+                    <div className="visually-hidden">Печать</div>
+                  </button>
+                </Tooltip>
               </div>
               <div className={s.moneyBlock}>
                 <label className={s.prepaymentLabel}>

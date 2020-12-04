@@ -195,19 +195,13 @@
   &.addBtn {
     width: 55px;
     margin-right: 10px;
-
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
   }
   &.removeBtn {
     width: 55px;
+  }
 
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
+  &.printBtn {
+    margin-left: 20px;
   }
 
   &:disabled:hover {
