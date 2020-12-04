@@ -114,6 +114,18 @@ class NewOrderPage extends React.Component {
     this.props.onCalculateRemainderPaid();
   };
 
+  handleOnBlurPrepayment = value => {
+    if (!this.props.allProducts.isSaved)
+      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+
+    this.props.onCalculateRemainderPaid(value);
+  };
+
+  handleNoteForOrder = () => {
+    if (!this.props.allProducts.isSaved)
+      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+  };
+
   render() {
     const {
       allProducts,
@@ -124,8 +136,6 @@ class NewOrderPage extends React.Component {
       onChangePrepaymentInput,
       calculatedTotals,
       onCalculateTotalPositions,
-      onCalculateRemainderPaid,
-      onSaveToTemporaryStorageLocation,
     } = this.props;
 
     const {
@@ -245,10 +255,9 @@ class NewOrderPage extends React.Component {
                     onChange={({ target }) =>
                       onChangePrepaymentInput(target.value)
                     }
-                    onBlur={({ target }) => {
-                      // onSaveToTemporaryStorageLocation(allProducts);
-                      onCalculateRemainderPaid(target.value);
-                    }}
+                    onBlur={({ target }) =>
+                      this.handleOnBlurPrepayment(target.value)
+                    }
                   />
                 </label>
                 <div className={s.remainderPaid}>
@@ -341,8 +350,9 @@ class NewOrderPage extends React.Component {
             <input
               className={s.noteForOrder}
               type="text"
-              value={allProducts.noteForOrder.value}
+              value={allProducts.noteForOrder}
               onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
+              onBlur={this.handleNoteForOrder}
               disabled={allProducts.isSaved}
             />
           </label>
@@ -388,7 +398,7 @@ const mDTP = {
 
   onGetOrderById: ordersOperations.getOrderById,
 
-  // onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
   onGetDataOfTemporaryStorageLocation:
     tabsActions.getDataOfTemporaryStorageLocation,
 };

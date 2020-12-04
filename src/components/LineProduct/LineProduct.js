@@ -28,7 +28,7 @@ const LineOrderProduct = ({
     onCalculateTotalQuantity,
     onCalculateRemainderPaid,
     onGetArticlePrice,
-    // onSaveToTemporaryStorageLocation,
+    onSaveToTemporaryStorageLocation,
   } = actions;
 
   const handleQuantity = (artValue, name) => {
@@ -38,7 +38,8 @@ const LineOrderProduct = ({
     onCalculateTotalQuantity();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    // onSaveToTemporaryStorageLocation(allProducts);
+
+    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleDiscount = (artValue, name) => {
@@ -47,7 +48,8 @@ const LineOrderProduct = ({
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    // onSaveToTemporaryStorageLocation(allProducts);
+
+    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
   };
 
   const handleVendorCode = async target => {
@@ -56,7 +58,22 @@ const LineOrderProduct = ({
     onCalculateSum();
     onCalculateTotalSum();
     onCalculateRemainderPaid();
-    // onSaveToTemporaryStorageLocation(allProducts);
+
+    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+  };
+
+  const handleOnBlurColor = (value, name, id) => {
+    onChangeInput({
+      value,
+      name,
+      id,
+    });
+
+    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+  };
+
+  const handleOnBlurNote = () => {
+    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
   };
 
   return (
@@ -91,7 +108,7 @@ const LineOrderProduct = ({
           <div ref={params.InputProps.ref}>
             <input
               {...params.inputProps}
-              disabled={allProducts.isSaved}
+              disabled={allProducts.isSaved || !getProductLineById.vendorCode}
               type="text"
               name="color"
               placeholder="выберите цвет"
@@ -100,13 +117,9 @@ const LineOrderProduct = ({
                   ? params.inputProps.value
                   : getProductLineById.color
               }
-              onBlur={({ target }) => {
-                onChangeInput({
-                  value: params.inputProps.value,
-                  name: target.name,
-                  id: id,
-                });
-              }}
+              onBlur={({ target }) =>
+                handleOnBlurColor(params.inputProps.value, target.name, id)
+              }
             />
           </div>
         )}
@@ -118,7 +131,7 @@ const LineOrderProduct = ({
         name="quantity"
         value={getProductLineById.quantity}
         className={s.quantitySpan}
-        disabled={!getProductLineById.vendorCode}
+        disabled={allProducts.isSaved || !getProductLineById.vendorCode}
       />
       <input
         type="number"
@@ -162,6 +175,7 @@ const LineOrderProduct = ({
         onChange={({ target }) =>
           onChangeInput({ value: target.value, name: target.name })
         }
+        onBlur={handleOnBlurNote}
         name="note"
         value={getProductLineById.note}
         className={s.noteSpan}
@@ -200,9 +214,9 @@ const mDTP = (dispatch, { id }) => ({
   onCalculateRemainderPaid: () => {
     return dispatch(ordersActions.calculateRemainderPaid());
   },
-  // onSaveToTemporaryStorageLocation: data => {
-  //   return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
-  // },
+  onSaveToTemporaryStorageLocation: data => {
+    return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
+  },
 });
 
 export default connect(mSTP, mDTP)(LineOrderProduct);

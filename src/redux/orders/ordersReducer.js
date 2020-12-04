@@ -197,7 +197,7 @@ const allProducts = createReducer(initAllProducts, {
     return { ...state, prepayment: payload };
   },
   [ordersActions.clearAllProducts]: (state, { payload }) => {
-    return { ...state, ...initAllProducts };
+    return initAllProducts;
   },
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
     return payload;
@@ -223,9 +223,11 @@ const temporaryStorageLocation = createReducer(initAllProducts, {
     console.log('СОХРАНИЛИ В ВРЕМЕННОЕ ХРАНИЛИЩЕ-----------------------');
     return payload;
   },
-  [ordersActions.clearAllProducts]: (state, { payload }) => {
-    return initAllProducts;
-  },
+  //TODO такой-же для temporaryStorageLocation, чтоб при создании нового заказа
+  //TODO можно было сбрасывать к дефолтному
+  // [ordersActions.clearAllProducts]: (state, { payload }) => {
+  //   return initAllProducts;
+  // },
 });
 
 export default combineReducers({
