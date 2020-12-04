@@ -5,7 +5,6 @@ import PulseLoader from 'react-spinners/PulseLoader';
 
 import { contactsSelectors } from '../../redux/contacts';
 import { modalActions } from '../../redux/modal';
-import { tabsActions } from '../../redux/tabs/';
 import { ordersActions, ordersSelectors } from '../../redux/orders';
 
 import CloseBtn from '../Buttons/CloseBtn';
@@ -19,8 +18,6 @@ const ContractorsInModal = ({
   onFilterContractors,
   filterValue,
   isLoading,
-  onSaveToTemporaryStorageLocation,
-  allProducts,
 }) => {
   const handleCloseModal = contact => {
     onChoiseContractor(contact);
@@ -58,7 +55,6 @@ const ContractorsInModal = ({
               key={contact.id}
               onClick={() => {
                 handleCloseModal(contact);
-                // onSaveToTemporaryStorageLocation(allProducts);
               }}
             >
               {` ${contact.secondName} ${contact.firstName}  ${contact.thirdName}`}
@@ -74,14 +70,11 @@ const mSTP = state => ({
   isLoading: contactsSelectors.getIsLoading(state),
   filterContacts: ordersSelectors.getVisibleContractors(state),
   filterValue: ordersSelectors.getFilterValue(state),
-  allProducts: ordersSelectors.getOrdersAllProducts(state),
 });
 const mDTP = {
   onCloseModal: modalActions.closeModal,
   onChoiseContractor: ordersActions.choiseContractor,
   onFilterContractors: ordersActions.filterContractors,
-
-  // onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
 };
 
 export default connect(mSTP, mDTP)(ContractorsInModal);

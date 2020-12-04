@@ -14,50 +14,53 @@ import CloseBtn from '../Buttons/CloseBtn';
 import s from './HeaderComponent.module.scss';
 class Tab extends React.Component {
   componentDidMount() {
-    if (this.props.history.location.pathname.slice(8) === 'new-order') {
-      this.props.onGetDataOfTemporaryStorageLocation(
-        this.props.dataOfTemporaryStorageLocation,
-      );
-    } else if (Number(this.props.history.location.pathname.slice(8))) {
-      this.props.onGetOrderById(this.props.history.location.pathname.slice(8));
-    }
+    // const { pathname } = this.props.history.location;
+    /*
+        Проверяемб находимся ли мы на странице нового заказа?
+        И если да => забираем данные из временного места хранения 
+        ----- erders -> temporaryStorageLocation
+
+        Если нет => берем заказ с сервера по id
+    */
+    // if (pathname.slice(8) === 'new-order') {
+    //   this.props.onGetDataOfTemporaryStorageLocation(
+    //     this.props.dataOfTemporaryStorageLocation,
+    //   );
+    // } else if (Number(pathname.slice(8))) {
+    //   this.props.onGetOrderById(pathname.slice(8));
+    // }
+    // this.getDataOrderById(pathname);
   }
 
   handleOnCloseTab = (name, path, idxItem) => {
+    const { pathname } = this.props.history.location;
+    /*
+        Ниже, условия при закрытии Табы. Куда должен перенестись роут.
+        Влево от закрываемогоб, вправо или остаться на текущей
+    */
     this.props.tabsList.reduce((previous, current) => {
       if (idxItem === 0 && this.props.tabsList.length === 1) {
         this.props.history.replace('/');
         this.props.removeTab(name);
         return current;
       }
-      if (
-        idxItem === 0 &&
-        this.props.tabsList[1] &&
-        this.props.history.location.pathname === path
-      ) {
+      if (idxItem === 0 && this.props.tabsList[1] && pathname === path) {
         this.props.removeTab(name);
         this.props.history.replace(this.props.tabsList[1].path);
         return current;
       }
 
-      if (
-        current.path === path &&
-        this.props.history.location.pathname === path
-      ) {
+      if (current.path === path && pathname === path) {
         this.props.history.replace(previous.path);
 
         if (Number(previous.path.slice(8))) {
-          console.log('не число, удали табу');
           this.props.onGetOrderById(previous.path.slice(8));
         }
         this.props.removeTab(name);
         return current;
       }
 
-      if (
-        current.path !== path &&
-        this.props.history.location.pathname !== path
-      ) {
+      if (current.path !== path && pathname !== path) {
         this.props.removeTab(name);
         return current;
       }
@@ -66,20 +69,20 @@ class Tab extends React.Component {
     }, this.props.tabsList[0]);
   };
 
-  testHandleClickTab = tabId => {
-    console.log(tabId);
-    if (tabId.slice(8) === 'new-order' || tabId === '/orders') {
-      // this.props.onClearAllProducts();
-      console.log(this.props.dataOfTemporaryStorageLocation);
+  getDataOrderById = tabId => {
+    const currentId = tabId.slice(8);
+
+    if (currentId === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(
         this.props.dataOfTemporaryStorageLocation,
       );
-      console.log('new-order');
+
+      return;
+    } else if (currentId === '') {
       return;
     } else {
-      this.props.onGetOrderById(tabId.slice(8));
-
-      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+      this.props.onGetOrderById(currentId);
+      // this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
     }
   };
 
@@ -94,7 +97,7 @@ class Tab extends React.Component {
           to={path}
           className={s.tab}
           activeClassName={s.tabActive}
-          onClick={({ target }) => this.testHandleClickTab(target.name)}
+          onClick={({ target }) => this.getDataOrderById(target.name)}
         >
           {name}
         </NavLink>

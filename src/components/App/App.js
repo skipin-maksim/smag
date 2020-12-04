@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 // import { Beforeunload } from 'react-beforeunload';
 
 import { ordersOperations } from '../../redux/orders/';
+import { contactsOperations } from '../../redux/contacts';
 
 import PrivatBankComponent from '../PrivatBankComponent/PrivatBankComponent';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import AsideComponent from '../AsideComponent/AsideComponent';
 import Layout from '../Layout/Layout';
 import MainComponent from '../MainComponent/MainComponent';
-import { contactsOperations } from '../../redux/contacts';
 
 class App extends React.Component {
   componentDidMount() {
