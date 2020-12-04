@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 13,
-    "valueStr": "00013"
+    "valueNum": 14,
+    "valueStr": "00014"
   },
   "contractors": [
     {
@@ -24,7 +24,7 @@
       "email": "aleks@gmail.com",
       "city": "Донецк",
       "post": "Новая Почта 25",
-      "debt": -450
+      "debt": 0
     },
     {
       "id": 3,
@@ -579,6 +579,45 @@
       "numOrder": "00013",
       "id": "00013",
       "date": "04-12-2020 03:53"
+    },
+    {
+      "items": [
+        {
+          "id": "003df69f-628a-4734-9d85-ee6c48ab5f6a",
+          "checkProduct": false,
+          "vendorCode": "40",
+          "color": "",
+          "quantity": "20",
+          "price": 50,
+          "discount": "0",
+          "sum": 1000,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 20,
+        "averagePrice": 50,
+        "sum": 1000,
+        "remainderPaid": -450
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Романович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Донецк",
+        "post": "Новая Почта 25",
+        "debt": 0
+      },
+      "isSaved": true,
+      "prepayment": "1450",
+      "noteForOrder": "",
+      "numOrder": "00014",
+      "id": "00014",
+      "date": "04-12-2020 05:37"
     }
   ]
 }

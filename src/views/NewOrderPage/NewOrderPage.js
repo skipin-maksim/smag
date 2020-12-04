@@ -126,6 +126,11 @@ class NewOrderPage extends React.Component {
       this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
   };
 
+  tete = () => {
+    if (!this.props.allProducts.isSaved)
+      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+  };
+
   render() {
     const {
       allProducts,

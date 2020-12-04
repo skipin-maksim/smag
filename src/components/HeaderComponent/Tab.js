@@ -83,7 +83,9 @@ class Tab extends React.Component {
     } else {
       this.props.onClearAllProducts();
       this.props.onGetOrderById(currentId);
-      // this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+
+      if (!this.props.allProducts.isSaved)
+        this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
     }
   };
 

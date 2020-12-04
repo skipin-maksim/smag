@@ -138,7 +138,6 @@ const mDTP = {
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
   onClearAllProducts: ordersActions.clearAllProducts,
-  // onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
 };
 
 export default withRouter(connect(mSTP, mDTP)(OrdersPage));
