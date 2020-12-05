@@ -135,6 +135,25 @@ const createLineProduct = state => {
     ],
   };
 };
+const createLineProductCopy = (state, payload) => {
+  return {
+    ...state,
+    items: [
+      ...state.items,
+      {
+        id: uuidv4(),
+        checkProduct: false,
+        vendorCode: payload.vendorCode,
+        color: '',
+        quantity: '0',
+        price: '0',
+        discount: '0',
+        sum: '0',
+        note: '',
+      },
+    ],
+  };
+};
 const calculateTotalPositions = state => {
   return {
     ...state,
@@ -156,6 +175,9 @@ const allOrders = createReducer([], {
 const allProducts = createReducer(initAllProducts, {
   [ordersActions.createLineProduct]: (state, _) => {
     return createLineProduct(state);
+  },
+  [ordersActions.createLineProductCopy]: (state, { payload }) => {
+    return createLineProductCopy(state, payload);
   },
   [ordersActions.changeLineProductInput]: (state, { payload }) => {
     return changeLineProductInput(state, payload);

@@ -38,8 +38,9 @@ class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
 
   componentDidMount() {
+    window.addEventListener('keydown', this.handlePressKeyNewLine);
+
     this.props.onCalculateTotalPositions();
-    console.log('componentDidMount');
 
     if (this.props.history.location.pathname.slice(8) === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(
@@ -67,6 +68,27 @@ class NewOrderPage extends React.Component {
       return;
     }
   }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    window.removeEventListener('keydown', this.handlePressKeyNewLine);
+  }
+
+  handlePressKeyNewLine = e => {
+    if (e.code === 'Enter' && e.ctrlKey && !e.shiftKey) {
+      this.props.onCreateLineProduct();
+      this.props.onCalculateTotalPositions();
+    }
+
+    if (e.code === 'Enter' && e.ctrlKey && e.shiftKey) {
+      const lastItem = this.props.allProductsItems.find(
+        (item, idx) => idx === this.props.allProductsItems.length - 1,
+      );
+
+      this.props.onCreateLineProductCopy(lastItem);
+      this.props.onCalculateTotalPositions();
+    }
+  };
 
   handleChoiseContractors = () => {
     this.props.onChoiseContractor();
@@ -192,7 +214,7 @@ class NewOrderPage extends React.Component {
             <div className={s.settingControls}>
               <div className={s.settingButtons}>
                 <Tooltip
-                  title={'Добавить товар'}
+                  title={'Ctrl + Enter'}
                   arrow
                   disableHoverListener={allProducts.isSaved}
                 >
@@ -398,6 +420,7 @@ const mDTP = {
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
 
   onCreateLineProduct: ordersActions.createLineProduct,
+  onCreateLineProductCopy: ordersActions.createLineProductCopy,
   onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
   onChangeInput: ordersActions.changeLineProductInput,
   onChangeMainCheckbox: ordersActions.changeMainCheckbox,

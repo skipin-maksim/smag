@@ -21,6 +21,7 @@ const clearTemporaryStorageLocation = createAction(
 );
 
 const createLineProduct = createAction('orders/createLineProduct');
+const createLineProductCopy = createAction('orders/createLineProductCopy');
 const deleteLineSelectedProduct = createAction(
   'order/deleteLineSelectedProduct',
 );
@@ -72,6 +73,7 @@ export default {
   numOrderError,
 
   createLineProduct,
+  createLineProductCopy,
   deleteLineSelectedProduct,
   changeLineProductInput,
   changeLineProductInputQuantity,
