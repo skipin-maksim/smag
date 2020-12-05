@@ -1,12 +1,15 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { tabsActions } from '../../redux/tabs';
 import { ordersSelectors } from '../../redux/orders';
 import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 
 import s from './LineOrder.module.scss';
 
-function LineOrder({ idx, orderItem, order }) {
+function LineOrder({ idx, orderItem, order, id, addTab, history }) {
   const {
     calculatedTotals,
     contractorInfo,
@@ -15,7 +18,17 @@ function LineOrder({ idx, orderItem, order }) {
   } = orderItem;
 
   return (
-    <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
+    <li
+      className={`${s.customerOrderItem} ${lineColorPick(idx)}`}
+      onClick={() => {
+        addTab({
+          name: `Заказ №${id}`,
+          path: `/orders/${id}`,
+        });
+        console.log('li', id);
+        history.replace(`/orders/${id}`);
+      }}
+    >
       <CheckBox />
       <span>{order.numOrder}</span>
       <span>
@@ -36,4 +49,8 @@ const mSTP = (state, ownProps) => ({
   orderItem: ordersSelectors.getOrderById(state, ownProps.id),
 });
 
-export default connect(mSTP)(LineOrder);
+const mDTP = {
+  addTab: tabsActions.addTabOrder,
+};
+
+export default withRouter(connect(mSTP, mDTP)(LineOrder));
