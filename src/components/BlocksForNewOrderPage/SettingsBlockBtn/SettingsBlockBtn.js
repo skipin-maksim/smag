@@ -11,14 +11,17 @@ import {
   ordersActions,
   ordersOperations,
   ordersSelectors,
-} from '../../redux/orders/';
-import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
+} from '../../../redux/orders/';
+import {
+  numOrderOperations,
+  numOrderSelectors,
+} from '../../../redux/numOrder/';
 
 import s from './SettingsBlockBtn.module.scss';
 
 function SettingsBlockBtn({
   history,
-  allProducts,
+  currentOrder,
   currentNumOrder,
 
   onCreateLineProduct,
@@ -58,7 +61,7 @@ function SettingsBlockBtn({
       const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
 
       // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
-      onSaveOrder(allProducts, currentContractorInfo, currentNumOrderObj);
+      onSaveOrder(currentOrder, currentContractorInfo, currentNumOrderObj);
 
       history.replace(`/orders/${currentNumOrderObj.valueStr}`);
     } else {
@@ -71,7 +74,7 @@ function SettingsBlockBtn({
       <Tooltip
         title={'Ctrl + Enter'}
         arrow
-        disableHoverListener={allProducts.isSaved}
+        disableHoverListener={currentOrder.isSaved}
       >
         {/* ****** span - для Tooltip-a */}
         <span>
@@ -81,7 +84,7 @@ function SettingsBlockBtn({
               onCalculateTotalPositions();
             }}
             className={`${s.settingButton} ${s.addBtn}`}
-            disabled={allProducts.isSaved}
+            disabled={currentOrder.isSaved}
           >
             <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
           </button>
@@ -91,7 +94,7 @@ function SettingsBlockBtn({
       <Tooltip
         title={'Удалить товар'}
         arrow
-        disableHoverListener={allProducts.isSaved}
+        disableHoverListener={currentOrder.isSaved}
       >
         {/* ****** span - для Tooltip-a */}
         <span>
@@ -99,7 +102,7 @@ function SettingsBlockBtn({
             type="button"
             onClick={handleDelete}
             className={`${s.settingButton} ${s.removeBtn}`}
-            disabled={allProducts.isSaved}
+            disabled={currentOrder.isSaved}
           >
             <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
             <div className="visually-hidden">Удалить заказ</div>
@@ -109,24 +112,26 @@ function SettingsBlockBtn({
 
       <label
         className={
-          !allProducts.isSaved ? s.labelSaveBtnNotSaved : s.labelSaveBtnIstSaved
+          !currentOrder.isSaved
+            ? s.labelSaveBtnNotSaved
+            : s.labelSaveBtnIstSaved
         }
       >
-        {!allProducts.isSaved ? 'Не сохранен' : 'Сохранен'}
+        {!currentOrder.isSaved ? 'Не сохранен' : 'Сохранен'}
 
         <input
           type="checkbox"
-          checked={allProducts.isSaved}
+          checked={currentOrder.isSaved}
           className={s.saveBtn}
           onChange={handleSaveBtn}
-          disabled={allProducts.isSaved}
+          disabled={currentOrder.isSaved}
         />
       </label>
 
       <Tooltip
         title={'Печать'}
         arrow
-        disableHoverListener={allProducts.isSaved}
+        disableHoverListener={currentOrder.isSaved}
       >
         {/* ****** span - для Tooltip-a */}
         <span>
@@ -145,7 +150,7 @@ function SettingsBlockBtn({
 }
 
 const mSTP = state => ({
-  allProducts: ordersSelectors.getOrdersAllProducts(state),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
   currentContractorInfo: ordersSelectors.getCurrentContractorInfo(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
 });

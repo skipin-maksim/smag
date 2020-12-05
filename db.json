@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 6,
-    "valueStr": "00006"
+    "valueNum": 7,
+    "valueStr": "00007"
   },
   "contractors": [
     {
@@ -13,7 +13,7 @@
       "email": "maks@gmail.com",
       "city": "Бровары",
       "post": 13,
-      "debt": -885
+      "debt": -2635
     },
     {
       "id": 2,
@@ -150,6 +150,45 @@
       "numOrder": "00006",
       "id": "00006",
       "date": "05-12-2020 10:02"
+    },
+    {
+      "items": [
+        {
+          "id": "a7681d53-7ae5-4dca-832c-e8ea2dd64589",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "50",
+          "price": 35,
+          "discount": "0",
+          "sum": 1750,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 50,
+        "averagePrice": 35,
+        "sum": 1750,
+        "remainderPaid": 1750
+      },
+      "contractorInfo": {
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
+        "tel": "+38 066 202 53 90",
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": 13,
+        "debt": -2635
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00007",
+      "id": "00007",
+      "date": "05-12-2020 10:34"
     }
   ]
 }

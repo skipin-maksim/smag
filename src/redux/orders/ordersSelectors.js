@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const getOrdersList = state => state.orders.allOrders;
 
 const getCurrentContractorInfo = state => {
-  return state.orders.allProducts.contractorInfo;
+  return state.orders.currentOrder.contractorInfo;
 };
 
 const getOrderById = (state, id) => {
@@ -12,19 +12,17 @@ const getOrderById = (state, id) => {
 
 const getIsLoader = state => state.orders.loader;
 
-// const getCurrentOrderNum = state => state.orders.numOrder;
+const getCurrentOrderItems = state => state.orders.currentOrder.items;
 
-const getAllProductsItems = state => state.orders.allProducts.items;
-
-const getOrdersAllProducts = state => state.orders.allProducts;
+const getCurrentOrder = state => state.orders.currentOrder;
 
 const getIsSomeUnchecked = state => {
-  return getAllProductsItems(state).some(item => !item.checkProduct);
+  return getCurrentOrderItems(state).some(item => !item.checkProduct);
 };
-const getCalculatedTotals = state => state.orders.allProducts.calculatedTotals;
+const getCalculatedTotals = state => state.orders.currentOrder.calculatedTotals;
 
 const getProductLineById = (state, id) => {
-  return getAllProductsItems(state).find(item => item.id === id);
+  return getCurrentOrderItems(state).find(item => item.id === id);
 };
 
 const getFilterValue = state => state.orders.filterContractors;
@@ -49,9 +47,8 @@ export default {
   getCurrentContractorInfo,
   getOrderById,
   getIsLoader,
-  // getCurrentOrderNum,
-  getOrdersAllProducts,
-  getAllProductsItems,
+  getCurrentOrder,
+  getCurrentOrderItems,
   getIsSomeUnchecked,
   getCalculatedTotals,
   getProductLineById,

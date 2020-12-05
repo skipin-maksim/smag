@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import PulseLoader from 'react-spinners/PulseLoader';
 
 import { tabsActions } from '../../redux/tabs/';
 import {
@@ -14,13 +13,13 @@ import { modalActions, modalSelectors } from '../../redux/modal/';
 import { contactsOperations } from '../../redux/contacts';
 
 import Spinner from '../../components/Spinner/Spinner';
-import SettingsBlockBtn from '../../components/SettingsBlockBtn/SettingsBlockBtn';
+import SettingsBlockBtn from '../../components/BlocksForNewOrderPage/SettingsBlockBtn/SettingsBlockBtn';
 import Modal from '../../components/Modal/Modal';
 import ContractorsInModal from '../../components/Modal/ContractorsInModal/ContractorsInModal';
 import ContractorsInfoBlock from '../../components/BlocksForNewOrderPage/ContractorsInfoBlock/ContractorsInfoBlock';
-import TableTitletLineBlock from '../../components/TableTitletLineBlock/TableTitletLineBlock';
+import TableTitletLineBlock from '../../components/BlocksForNewOrderPage/TableTitletLineBlock/TableTitletLineBlock';
 import MoneyBlock from '../../components/BlocksForNewOrderPage/MoneyBlock/MoneyBlock';
-import WindowOrdersBlock from '../../components/WindowOrdersBlock/WindowOrdersBlock';
+import WindowOrdersBlock from '../../components/BlocksForNewOrderPage/WindowOrdersBlock/WindowOrdersBlock';
 
 import s from './NewOrderPage.module.scss';
 
@@ -71,8 +70,8 @@ class NewOrderPage extends React.Component {
     }
 
     if (e.code === 'Enter' && e.ctrlKey && e.shiftKey) {
-      const lastItem = this.props.allProductsItems.find(
-        (item, idx) => idx === this.props.allProductsItems.length - 1,
+      const lastItem = this.props.currentOrderItems.find(
+        (item, idx) => idx === this.props.currentOrderItems.length - 1,
       );
 
       this.props.onCreateLineProductCopy(lastItem);
@@ -94,16 +93,16 @@ class NewOrderPage extends React.Component {
   };
 
   handleNoteForOrder = () => {
-    if (!this.props.allProducts.isSaved)
-      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+    if (!this.props.currentOrder.isSaved)
+      this.props.onSaveToTemporaryStorageLocation(this.props.currentOrder);
   };
 
   render() {
     const {
       isLoading,
-      allProducts,
+      currentOrder,
       allContacts,
-      allProductsItems,
+      currentOrderItems,
       currentContractorInfo,
       onChangeInputNoteForOrder,
       onChangePrepaymentInput,
@@ -123,7 +122,7 @@ class NewOrderPage extends React.Component {
           <div className={s.ordersSettings}>
             <ContractorsInfoBlock
               currentContractorInfo={currentContractorInfo}
-              allProducts={allProducts}
+              currentOrder={currentOrder}
               onChoiseContractor={onChoiseContractor}
               allContacts={allContacts}
             />
@@ -132,7 +131,7 @@ class NewOrderPage extends React.Component {
               <SettingsBlockBtn />
 
               <MoneyBlock
-                allProducts={allProducts}
+                currentOrder={currentOrder}
                 onChangePrepaymentInput={onChangePrepaymentInput}
                 calculatedTotals={calculatedTotals}
                 onCalculateRemainderPaid={onCalculateRemainderPaid}
@@ -144,13 +143,13 @@ class NewOrderPage extends React.Component {
           </div>
 
           <TableTitletLineBlock
-            allProducts={allProducts}
+            currentOrder={currentOrder}
             handleCheckAll={this.handleCheckAll}
             isCheckAll={this.state.isCheckAll}
           />
 
           <WindowOrdersBlock
-            allProductsItems={allProductsItems}
+            currentOrderItems={currentOrderItems}
             calculatedTotals={calculatedTotals}
           />
 
@@ -159,10 +158,10 @@ class NewOrderPage extends React.Component {
             <input
               className={s.noteForOrder}
               type="text"
-              value={allProducts.noteForOrder}
+              value={currentOrder.noteForOrder}
               onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
               onBlur={this.handleNoteForOrder}
-              disabled={allProducts.isSaved}
+              disabled={currentOrder.isSaved}
             />
           </label>
         </div>
@@ -176,8 +175,8 @@ const mSTP = state => ({
   isLoading: ordersSelectors.getIsLoader(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
 
-  allProductsItems: ordersSelectors.getAllProductsItems(state),
-  allProducts: ordersSelectors.getOrdersAllProducts(state),
+  currentOrderItems: ordersSelectors.getCurrentOrderItems(state),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
   allOrders: ordersSelectors.getOrdersList(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),

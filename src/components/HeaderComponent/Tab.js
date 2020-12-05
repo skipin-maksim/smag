@@ -81,11 +81,11 @@ class Tab extends React.Component {
     } else if (currentId === '') {
       return;
     } else {
-      this.props.onClearAllProducts();
+      this.props.onClearCurrentOrder();
       this.props.onGetOrderById(currentId);
 
-      if (!this.props.allProducts.isSaved)
-        this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
+      if (!this.props.currentOrder.isSaved)
+        this.props.onSaveToTemporaryStorageLocation(this.props.currentOrder);
     }
   };
 
@@ -118,7 +118,7 @@ class Tab extends React.Component {
 
 const mSTP = (state, ownProps) => ({
   tabsList: tabsSelectors.getTabsList(state),
-  allProducts: ordersSelectors.getOrdersAllProducts(state),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
   dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
     state,
   ),
@@ -126,7 +126,7 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = {
   removeTab: tabsActions.removeTab,
-  onClearAllProducts: ordersActions.clearAllProducts,
+  onClearCurrentOrder: ordersActions.clearCurrentOrder,
   onGetOrderById: ordersOperations.getOrderById,
 
   onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,

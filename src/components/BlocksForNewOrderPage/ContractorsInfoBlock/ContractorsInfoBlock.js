@@ -4,7 +4,7 @@ import s from './ContractorsInfoBlock.module.scss';
 
 export default function ContractorsInfoBlock({
   currentContractorInfo,
-  allProducts,
+  currentOrder,
   allContacts,
   onChoiseContractor,
 }) {
@@ -30,7 +30,7 @@ export default function ContractorsInfoBlock({
           type="button"
           className={s.contractorsBtn}
           onClick={handleChoiseContractors}
-          disabled={allProducts.isSaved}
+          disabled={currentOrder.isSaved}
         >
           Выбрать контрагента
         </button>

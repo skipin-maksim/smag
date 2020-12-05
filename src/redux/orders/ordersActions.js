@@ -15,7 +15,7 @@ const saveOrderRequest = createAction('orders/saveOrderRequest');
 const saveOrderSuccess = createAction('orders/saveOrderSuccess');
 const saveOrderError = createAction('orders/saveOrderError');
 
-const clearAllProducts = createAction('orders/clearAllProducts');
+const clearCurrentOrder = createAction('orders/clearCurrentOrder');
 const clearTemporaryStorageLocation = createAction(
   'orders/clearTemporaryStorageLocation',
 );
@@ -65,12 +65,8 @@ export default {
   getOrderByIdSuccess,
   getOrderByIdError,
 
-  clearAllProducts,
+  clearCurrentOrder,
   clearTemporaryStorageLocation,
-
-  // numOrderRequest,
-  // numOrderSuccess,
-  // numOrderError,
 
   createLineProduct,
   createLineProductCopy,

@@ -35,7 +35,7 @@ export const initNewOrder = {
   noteForOrder: '',
 };
 
-export const initAllProducts = {
+export const initCurrentOrder = {
   items: [
     {
       id: uuidv4(),

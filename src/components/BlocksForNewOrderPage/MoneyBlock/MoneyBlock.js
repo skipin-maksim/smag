@@ -3,14 +3,14 @@ import React from 'react';
 import s from './MoneyBlock.module.scss';
 
 export default function MoneyBlock({
-  allProducts,
+  currentOrder,
   calculatedTotals,
   onChangePrepaymentInput,
   onCalculateRemainderPaid,
   onSaveToTemporaryStorageLocation,
 }) {
   const handleOnBlurPrepayment = value => {
-    if (allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
 
     onCalculateRemainderPaid(value);
   };
@@ -20,11 +20,11 @@ export default function MoneyBlock({
       <label className={s.prepaymentLabel}>
         Предоплата:
         <input
-          disabled={allProducts.isSaved}
+          disabled={currentOrder.isSaved}
           name="prepayment"
           type="number"
           className={s.prepaymentInput}
-          value={allProducts.prepayment}
+          value={currentOrder.prepayment}
           onChange={({ target }) => onChangePrepaymentInput(target.value)}
           onBlur={({ target }) => handleOnBlurPrepayment(target.value)}
         />

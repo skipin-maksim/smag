@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { ordersActions } from './';
 import { tabsActions } from '../tabs/';
-import { initAllProducts } from './initialStateForReducers';
+import { initCurrentOrder } from './initialStateForReducers';
 
 const changeLineProductInput = (state, payload) => {
   return {
@@ -172,7 +172,7 @@ const allOrders = createReducer([], {
   ],
 });
 
-const allProducts = createReducer(initAllProducts, {
+const currentOrder = createReducer(initCurrentOrder, {
   [ordersActions.createLineProduct]: (state, _) => {
     return createLineProduct(state);
   },
@@ -218,8 +218,8 @@ const allProducts = createReducer(initAllProducts, {
   [ordersActions.changePrepaymentInput]: (state, { payload }) => {
     return { ...state, prepayment: payload };
   },
-  [ordersActions.clearAllProducts]: (state, { payload }) => {
-    return initAllProducts;
+  [ordersActions.clearCurrentOrder]: (state, { payload }) => {
+    return initCurrentOrder;
   },
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
     return payload;
@@ -240,13 +240,13 @@ const filterContractors = createReducer('', {
   [ordersActions.filterContractors]: (_, { payload }) => payload,
 });
 
-const temporaryStorageLocation = createReducer(initAllProducts, {
+const temporaryStorageLocation = createReducer(initCurrentOrder, {
   [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => {
     console.log('СОХРАНИЛИ В ВРЕМЕННОЕ ХРАНИЛИЩЕ-----------------------');
     return payload;
   },
   [ordersActions.clearTemporaryStorageLocation]: (state, { payload }) => {
-    return initAllProducts;
+    return initCurrentOrder;
   },
 });
 
@@ -258,7 +258,7 @@ const loader = createReducer(false, {
 
 export default combineReducers({
   allOrders,
-  allProducts,
+  currentOrder,
   filterContractors,
   temporaryStorageLocation,
   loader,

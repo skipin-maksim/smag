@@ -17,7 +17,7 @@ const LineOrderProduct = ({
   id,
   idx,
   getProductLineById,
-  allProducts,
+  currentOrder,
   ...actions
 }) => {
   const {
@@ -39,7 +39,7 @@ const LineOrderProduct = ({
     onCalculateTotalSum();
     onCalculateRemainderPaid();
 
-    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
   const handleDiscount = (artValue, name) => {
@@ -49,7 +49,7 @@ const LineOrderProduct = ({
     onCalculateTotalSum();
     onCalculateRemainderPaid();
 
-    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
   const handleVendorCode = async target => {
@@ -59,7 +59,7 @@ const LineOrderProduct = ({
     onCalculateTotalSum();
     onCalculateRemainderPaid();
 
-    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
   const handleOnBlurColor = (value, name, id) => {
@@ -69,11 +69,11 @@ const LineOrderProduct = ({
       id,
     });
 
-    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
   const handleOnBlurNote = () => {
-    if (!allProducts.isSaved) onSaveToTemporaryStorageLocation(allProducts);
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
   return (
@@ -82,7 +82,7 @@ const LineOrderProduct = ({
         name="checkProduct"
         isChecked={getProductLineById.checkProduct}
         onChange={onChangeInput}
-        isDisabled={allProducts.isSaved}
+        isDisabled={currentOrder.isSaved}
       />
       <span className={s.numSpan}>{idx + 1}</span>
       <input
@@ -97,7 +97,7 @@ const LineOrderProduct = ({
         value={getProductLineById.vendorCode}
         name="vendorCode"
         className={s.nameSpan}
-        disabled={allProducts.isSaved}
+        disabled={currentOrder.isSaved}
       />
       <Autocomplete
         disabled={!getProductLineById.vendorCode}
@@ -108,7 +108,7 @@ const LineOrderProduct = ({
           <div ref={params.InputProps.ref}>
             <input
               {...params.inputProps}
-              disabled={allProducts.isSaved || !getProductLineById.vendorCode}
+              disabled={currentOrder.isSaved || !getProductLineById.vendorCode}
               type="text"
               name="color"
               placeholder="выберите цвет"
@@ -131,7 +131,7 @@ const LineOrderProduct = ({
         name="quantity"
         value={getProductLineById.quantity}
         className={s.quantitySpan}
-        disabled={allProducts.isSaved || !getProductLineById.vendorCode}
+        disabled={currentOrder.isSaved || !getProductLineById.vendorCode}
       />
       <input
         type="number"
@@ -153,7 +153,7 @@ const LineOrderProduct = ({
         name="discount"
         value={getProductLineById.discount}
         className={s.discountSpan}
-        disabled={allProducts.isSaved || !getProductLineById.vendorCode}
+        disabled={currentOrder.isSaved || !getProductLineById.vendorCode}
       />
       <input
         type="number"
@@ -187,7 +187,7 @@ const LineOrderProduct = ({
 
 const mSTP = (state, { id }) => ({
   getProductLineById: ordersSelectors.getProductLineById(state, id),
-  allProducts: ordersSelectors.getOrdersAllProducts(state),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
 });
 const mDTP = (dispatch, { id }) => ({
   onChangeInput: values => {

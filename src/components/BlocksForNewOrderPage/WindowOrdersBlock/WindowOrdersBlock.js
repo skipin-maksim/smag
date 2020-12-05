@@ -1,12 +1,12 @@
 import React from 'react';
 import { Scrollbar } from 'react-scrollbars-custom';
 
-import LineProduct from '../LineProduct/LineProduct';
+import LineProduct from '../../LineProduct/LineProduct';
 
 import s from './WindowOrdersBlock.module.scss';
 
 export default function WindowOrdersBlock({
-  allProductsItems,
+  currentOrderItems,
   calculatedTotals,
 }) {
   return (
@@ -19,7 +19,7 @@ export default function WindowOrdersBlock({
         }}
       >
         <ul className={s.customerOrderList}>
-          {allProductsItems.map((item, idx) => {
+          {currentOrderItems.map((item, idx) => {
             return <LineProduct key={item.id} id={item.id} idx={idx} />;
           })}
         </ul>

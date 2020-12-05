@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { CheckBoxMain } from '../CheckBox/';
+import { CheckBoxMain } from '../../CheckBox/';
 
 import s from './TableTitletLineBlock.module.scss';
 
 export default function TableTitletLineBlock({
-  allProducts,
+  currentOrder,
   isCheckAll,
   handleCheckAll,
 }) {
@@ -15,7 +15,7 @@ export default function TableTitletLineBlock({
         name="checkProduct"
         isChecked={isCheckAll}
         onChange={handleCheckAll}
-        isDisabled={allProducts.isSaved}
+        isDisabled={currentOrder.isSaved}
       />
       <span>№</span>
       <span>Артикул</span>

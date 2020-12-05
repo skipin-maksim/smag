@@ -33,16 +33,20 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (allProducts, contractorInfo, numOrder) => async dispatch => {
+const postOrder = (
+  currentOrder,
+  contractorInfo,
+  numOrder,
+) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
   const newContractorInfo = {
     ...contractorInfo,
-    debt: contractorInfo.debt - allProducts.calculatedTotals.remainderPaid,
+    debt: contractorInfo.debt - currentOrder.calculatedTotals.remainderPaid,
   };
 
   const postData = {
-    ...allProducts,
+    ...currentOrder,
     isSaved: true,
     contractorInfo: newContractorInfo,
     numOrder: numOrder.valueStr,
