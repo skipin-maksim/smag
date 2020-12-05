@@ -1,0 +1,46 @@
+.moneyBlock {
+  display: flex;
+  align-items: center;
+}
+
+.prepaymentLabel {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.prepaymentInput {
+  margin-left: 10px;
+  width: 120px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #1c2b4a;
+  border-radius: 0;
+  transition: all 0.25s linear;
+  font-size: 25px;
+  font-weight: 800;
+  font-style: italic;
+
+  &:active,
+  &:focus {
+    border-bottom: 1px solid #1c2b4a;
+    border-radius: 5px;
+  }
+
+  &:disabled {
+    color: inherit;
+  }
+}
+
+.remainderPaid {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+
+  & span {
+    padding-left: 6px;
+    min-width: 100px;
+    text-align: right;
+    font-size: 25px;
+    font-style: italic;
+  }
+}

@@ -10,7 +10,9 @@ const getOrderById = (state, id) => {
   return state.orders.allOrders.find(item => item.id === id);
 };
 
-const getCurrentOrderNum = state => state.orders.numOrder;
+const getIsLoader = state => state.orders.loader;
+
+// const getCurrentOrderNum = state => state.orders.numOrder;
 
 const getAllProductsItems = state => state.orders.allProducts.items;
 
@@ -46,7 +48,8 @@ export default {
   getOrdersList,
   getCurrentContractorInfo,
   getOrderById,
-  getCurrentOrderNum,
+  getIsLoader,
+  // getCurrentOrderNum,
   getOrdersAllProducts,
   getAllProductsItems,
   getIsSomeUnchecked,

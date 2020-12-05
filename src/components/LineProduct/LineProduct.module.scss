@@ -1,0 +1,30 @@
+.lineProduct {
+  padding: 10px 15px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 60px 200px 500px 60px 100px 60px 160px 1fr;
+  align-items: center;
+  text-align: center;
+
+  & input {
+    padding: 0;
+    width: 100%;
+    border: none;
+    text-align: center;
+
+    &:disabled {
+      color: inherit;
+    }
+  }
+}
+
+.vendorCodeSpan .quantitySpan,
+.colorSpan,
+.priceSpan,
+.discountSpan,
+.sumSpan,
+.noteSpan {
+  &:disabled {
+    background-color: transparent;
+  }
+}

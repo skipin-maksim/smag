@@ -11,7 +11,7 @@ import lineColorPick from '../../helpers/lineColorPick';
 import { CheckBox } from '../CheckBox/';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import colorsList from '../../data/colorsList';
-import s from '../../views/NewOrderPage/NewOrderPage.module.scss';
+import s from './LineProduct.module.scss';
 
 const LineOrderProduct = ({
   id,

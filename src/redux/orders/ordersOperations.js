@@ -2,22 +2,9 @@ import axios from 'axios';
 import moment from 'moment';
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
-import { contactsOperations } from '../contacts/';
 
 const baseUrl = 'http://localhost:2000';
 const dateNow = moment().format('DD-MM-YYYY hh:mm');
-
-const getCurrentNumOrder = () => async dispatch => {
-  dispatch(ordersActions.numOrderRequest());
-
-  try {
-    const { data } = await axios(`${baseUrl}/numorder`);
-
-    dispatch(ordersActions.numOrderSuccess(data));
-  } catch (error) {
-    dispatch(ordersActions.numOrderError(error));
-  }
-};
 
 const getAllOrders = () => async dispatch => {
   dispatch(ordersActions.getAllOrdersRequest());
@@ -46,7 +33,7 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
+const postOrder = (allProducts, contractorInfo, numOrder) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
   const newContractorInfo = {
@@ -58,14 +45,14 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
     ...allProducts,
     isSaved: true,
     contractorInfo: newContractorInfo,
-    numOrder: tetsNum.valueStr,
-    id: tetsNum.valueStr,
+    numOrder: numOrder.valueStr,
+    id: numOrder.valueStr,
     date: dateNow,
   };
 
   const createTabForNewOrder = tabsActions.addTab({
-    name: `Заказ №${tetsNum.valueStr}`,
-    path: `/orders/${tetsNum.valueStr}`,
+    name: `Заказ №${numOrder.valueStr}`,
+    path: `/orders/${numOrder.valueStr}`,
   });
 
   try {
@@ -73,7 +60,7 @@ const postOrder = (allProducts, contractorInfo, tetsNum) => async dispatch => {
 
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
-    axios.patch(`${baseUrl}/numorder`, tetsNum);
+    axios.patch(`${baseUrl}/numorder`, numOrder);
     axios.patch(
       `${baseUrl}/contractors/${contractorInfo.id}`,
       newContractorInfo,
@@ -109,7 +96,6 @@ const getOrderById = id => async dispatch => {
 };
 
 export default {
-  getCurrentNumOrder,
   getAllOrders,
   getPriceByArt,
   postOrder,

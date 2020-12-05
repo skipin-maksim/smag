@@ -14,6 +14,7 @@ import {
   ordersActions,
 } from '../../redux/orders';
 import { tabsActions, tabsSelectors } from '../../redux/tabs';
+import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
 
 import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
@@ -39,6 +40,8 @@ class OrdersPage extends React.Component {
       });
 
       this.props.onClearTemporaryStorageLocation();
+
+      this.props.getCurrentNumOrder();
 
       this.props.history.replace('/orders/new-order');
     }
@@ -126,7 +129,7 @@ class OrdersPage extends React.Component {
 
 const mSTP = state => ({
   ordersList: ordersSelectors.getOrdersList(state),
-  currentOrder: ordersSelectors.getCurrentOrderNum(state),
+  currentOrder: numOrderSelectors.getCurrentNum(state),
   tabsList: tabsSelectors.getTabsList(state),
   dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
     state,
@@ -135,6 +138,7 @@ const mSTP = state => ({
 
 const mDTP = {
   // addOrder: ordersActions.addOrder,
+  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
   onClearTemporaryStorageLocation: ordersActions.clearTemporaryStorageLocation,

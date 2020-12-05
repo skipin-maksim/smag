@@ -1,12 +1,3 @@
-.orderPage {
-  position: relative;
-  padding: 36px;
-}
-
-.ordersSettings {
-  margin-bottom: 20px;
-}
-
 .contractorInfo {
   margin-bottom: 20px;
   display: flex;
@@ -126,27 +117,4 @@
 .contractorName {
   margin-left: 20px;
   color: #1c2b4a;
-}
-
-.noteForOrderLabel {
-  display: flex;
-
-  & span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    width: 100px;
-    background: #1c2b4a;
-    color: #fff;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-  }
-}
-
-.noteForOrder {
-  width: 100%;
-  padding: 5px 10px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
 }

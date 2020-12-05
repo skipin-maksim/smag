@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Scrollbar } from 'react-scrollbars-custom';
-
-import Tooltip from '@material-ui/core/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import PrintIcon from '@material-ui/icons/Print';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 import { tabsActions } from '../../redux/tabs/';
 import {
@@ -18,21 +13,16 @@ import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
 import { modalActions, modalSelectors } from '../../redux/modal/';
 import { contactsOperations } from '../../redux/contacts';
 
+import Spinner from '../../components/Spinner/Spinner';
+import SettingsBlockBtn from '../../components/SettingsBlockBtn/SettingsBlockBtn';
 import Modal from '../../components/Modal/Modal';
-import { CheckBoxMain } from '../../components/CheckBox/';
-import LineProduct from '../../components/LineProduct/LineProduct';
-import ContractorsInModal from '../../components/ContractorsInModal/ContractorsInModal';
+import ContractorsInModal from '../../components/Modal/ContractorsInModal/ContractorsInModal';
+import ContractorsInfoBlock from '../../components/BlocksForNewOrderPage/ContractorsInfoBlock/ContractorsInfoBlock';
+import TableTitletLineBlock from '../../components/TableTitletLineBlock/TableTitletLineBlock';
+import MoneyBlock from '../../components/BlocksForNewOrderPage/MoneyBlock/MoneyBlock';
+import WindowOrdersBlock from '../../components/WindowOrdersBlock/WindowOrdersBlock';
 
 import s from './NewOrderPage.module.scss';
-
-const createNewOrderNum = prevNum => {
-  const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
-
-  return {
-    valueNum: prevNum.valueNum + 1,
-    valueStr: editCustomNumber(prevNum.valueNum),
-  };
-};
 
 class NewOrderPage extends React.Component {
   state = { isCheckAll: false };
@@ -90,11 +80,6 @@ class NewOrderPage extends React.Component {
     }
   };
 
-  handleChoiseContractors = () => {
-    this.props.onChoiseContractor();
-    this.props.allContacts();
-  };
-
   handleCheckAll = name => {
     this.setState(
       prevState => ({
@@ -108,42 +93,6 @@ class NewOrderPage extends React.Component {
     );
   };
 
-  handleSaveBtn = async () => {
-    if (this.props.currentContractorInfo.firstName) {
-      await this.props.getCurrentNumOrder(); // забираем последний номер заказа с сервера
-
-      const currentNumOrderObj = createNewOrderNum(this.props.currentNumOrder); // прибавляем 1 к полученному номеру заказа
-
-      // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
-      this.props.onSaveOrder(
-        this.props.allProducts,
-        this.props.currentContractorInfo,
-        currentNumOrderObj,
-      );
-
-      this.props.history.replace(`/orders/${currentNumOrderObj.valueStr}`);
-    } else {
-      alert('Вы не выбрали контрагента');
-    }
-  };
-
-  handleDelete = () => {
-    this.props.onDeleteLineSelectedProduct();
-
-    this.props.onCalculateTotalQuantity();
-    this.props.onCalculateTotalSum();
-    this.props.onCalculateAveragePrice();
-    this.props.onCalculateTotalPositions();
-    this.props.onCalculateRemainderPaid();
-  };
-
-  handleOnBlurPrepayment = value => {
-    if (!this.props.allProducts.isSaved)
-      this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
-
-    this.props.onCalculateRemainderPaid(value);
-  };
-
   handleNoteForOrder = () => {
     if (!this.props.allProducts.isSaved)
       this.props.onSaveToTemporaryStorageLocation(this.props.allProducts);
@@ -151,237 +100,59 @@ class NewOrderPage extends React.Component {
 
   render() {
     const {
+      isLoading,
       allProducts,
+      allContacts,
       allProductsItems,
       currentContractorInfo,
-      onCreateLineProduct,
       onChangeInputNoteForOrder,
       onChangePrepaymentInput,
       calculatedTotals,
-      onCalculateTotalPositions,
+      onCalculateRemainderPaid,
+      onSaveToTemporaryStorageLocation,
+      onChoiseContractor,
     } = this.props;
-
-    const {
-      secondName,
-      firstName,
-      thirdName,
-      city,
-      post,
-      tel,
-      debt,
-    } = currentContractorInfo;
 
     return (
       <>
         {this.props.isModal && <Modal children={<ContractorsInModal />} />}
 
         <div className={s.orderPage}>
-          <div className={s.ordersSettings}>
-            <div className={s.contractorInfo}>
-              <div className={s.contractorsBlock}>
-                <Tooltip
-                  title={'Выбрать контрагента'}
-                  arrow
-                  disableHoverListener={allProducts.isSaved}
-                >
-                  <button
-                    type="button"
-                    className={`${s.settingButton} ${s.dotsBtn}`}
-                    onClick={this.handleChoiseContractors}
-                    disabled={allProducts.isSaved}
-                  >
-                    Выбрать контрагента
-                  </button>
-                </Tooltip>
-                <span className={s.contractorName}>
-                  {secondName} {firstName} {thirdName}
-                </span>
-              </div>
-              <div className={s.contractorInfoInner}>
-                <span>{city}</span>
-                <span>{post}</span>
-                <span>{tel}</span>
-              </div>
+          {isLoading && <Spinner />}
 
-              <div className={s.contractorInfoInnerDept}>
-                Долг контрагента:{' '}
-                <span className={debt > 0 ? 'green' : 'red'}>
-                  {debt.toLocaleString('ru')}
-                </span>
-              </div>
-            </div>
+          <div className={s.ordersSettings}>
+            <ContractorsInfoBlock
+              currentContractorInfo={currentContractorInfo}
+              allProducts={allProducts}
+              onChoiseContractor={onChoiseContractor}
+              allContacts={allContacts}
+            />
 
             <div className={s.settingControls}>
-              <div className={s.settingButtons}>
-                <Tooltip
-                  title={'Ctrl + Enter'}
-                  arrow
-                  disableHoverListener={allProducts.isSaved}
-                >
-                  <button
-                    onClick={() => {
-                      onCreateLineProduct();
-                      onCalculateTotalPositions();
-                    }}
-                    className={`${s.settingButton} ${s.addBtn}`}
-                    disabled={allProducts.isSaved}
-                  >
-                    <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
-                  </button>
-                </Tooltip>
+              <SettingsBlockBtn />
 
-                <Tooltip
-                  title={'Удалить товар'}
-                  arrow
-                  disableHoverListener={allProducts.isSaved}
-                >
-                  <button
-                    type="button"
-                    onClick={this.handleDelete}
-                    className={`${s.settingButton} ${s.removeBtn}`}
-                    disabled={allProducts.isSaved}
-                  >
-                    <DeleteForeverIcon
-                      style={{ color: '#DE6A73', fontSize: 21 }}
-                    />
-                    <div className="visually-hidden">Удалить заказ</div>
-                  </button>
-                </Tooltip>
-
-                <label
-                  className={
-                    !allProducts.isSaved
-                      ? s.labelSaveBtnNotSaved
-                      : s.labelSaveBtnIstSaved
-                  }
-                >
-                  {!allProducts.isSaved ? 'Не сохранен' : 'Сохранен'}
-
-                  <input
-                    type="checkbox"
-                    checked={allProducts.isSaved}
-                    className={s.saveBtn}
-                    onChange={this.handleSaveBtn}
-                    disabled={allProducts.isSaved}
-                  />
-                </label>
-
-                <Tooltip
-                  title={'Печать'}
-                  arrow
-                  disableHoverListener={allProducts.isSaved}
-                >
-                  <button
-                    type="button"
-                    // onClick={this.handleDelete}
-                    className={`${s.settingButton} ${s.printBtn}`}
-                  >
-                    <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
-                    <div className="visually-hidden">Печать</div>
-                  </button>
-                </Tooltip>
-              </div>
-              <div className={s.moneyBlock}>
-                <label className={s.prepaymentLabel}>
-                  Предоплата:
-                  <input
-                    disabled={allProducts.isSaved}
-                    name="prepayment"
-                    type="number"
-                    className={s.prepaymentInput}
-                    value={allProducts.prepayment}
-                    onChange={({ target }) =>
-                      onChangePrepaymentInput(target.value)
-                    }
-                    onBlur={({ target }) =>
-                      this.handleOnBlurPrepayment(target.value)
-                    }
-                  />
-                </label>
-                <div className={s.remainderPaid}>
-                  Остаток к оплате:{' '}
-                  <span>
-                    {' '}
-                    {calculatedTotals.remainderPaid < 0
-                      ? 0
-                      : calculatedTotals.remainderPaid.toLocaleString('ru')}
-                  </span>
-                </div>
-              </div>
+              <MoneyBlock
+                allProducts={allProducts}
+                onChangePrepaymentInput={onChangePrepaymentInput}
+                calculatedTotals={calculatedTotals}
+                onCalculateRemainderPaid={onCalculateRemainderPaid}
+                onSaveToTemporaryStorageLocation={
+                  onSaveToTemporaryStorageLocation
+                }
+              />
             </div>
           </div>
 
-          <div className={s.tableTitletLine}>
-            <CheckBoxMain
-              name="checkProduct"
-              isChecked={this.state.isCheckAll}
-              onChange={this.handleCheckAll}
-              isDisabled={allProducts.isSaved}
-            />
-            <span>№</span>
-            <span>Артикул</span>
-            <span>Цвет</span>
-            <span>Кол-во</span>
-            <span>Цена</span>
-            <span>Скидка </span>
-            <span>Сумма</span>
-            <span>Примечание</span>
-          </div>
+          <TableTitletLineBlock
+            allProducts={allProducts}
+            handleCheckAll={this.handleCheckAll}
+            isCheckAll={this.state.isCheckAll}
+          />
 
-          <div className={s.windowOrders}>
-            <form>
-              <Scrollbar
-                style={{
-                  width: 1567,
-                  height: 549,
-                  boxShadow: '0 0 5px rgba(0, 0, 0, 0.233)',
-                }}
-              >
-                <ul className={s.customerOrderList}>
-                  {allProductsItems.map((item, idx) => {
-                    return <LineProduct key={item.id} id={item.id} idx={idx} />;
-                  })}
-                </ul>
-              </Scrollbar>
-            </form>
-
-            <div className={s.orderInfo}>
-              <div className={s.numOrder}>
-                <span>Позицый</span>
-                <span className={s.numbers}>
-                  {calculatedTotals.positions ? calculatedTotals.positions : 0}
-                </span>
-              </div>
-
-              <div className={s.totalProduct}>
-                <span>Общее кол-во</span>
-                <span className={s.numbers}>
-                  {calculatedTotals.quantity
-                    ? calculatedTotals.quantity.toLocaleString('ru')
-                    : 0}
-                </span>
-              </div>
-
-              <div className={s.averagePrice}>
-                <span>Средняя цена</span>
-                <span className={s.numbers}>
-                  {calculatedTotals.averagePrice
-                    ? calculatedTotals.averagePrice.toString().slice(0, 4)
-                    : 0}
-                </span>
-              </div>
-
-              <div className={s.totalSum}>
-                <span>Общая сумма</span>
-                <span className={s.numbers}>
-                  {' '}
-                  {calculatedTotals.sum
-                    ? calculatedTotals.sum.toLocaleString('ru')
-                    : 0}
-                </span>
-              </div>
-            </div>
-          </div>
+          <WindowOrdersBlock
+            allProductsItems={allProductsItems}
+            calculatedTotals={calculatedTotals}
+          />
 
           <label className={s.noteForOrderLabel}>
             <span>Заметка</span>
@@ -402,6 +173,7 @@ class NewOrderPage extends React.Component {
 
 const mSTP = state => ({
   isModal: modalSelectors.getCurrentModalState(state),
+  isLoading: ordersSelectors.getIsLoader(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
 
   allProductsItems: ordersSelectors.getAllProductsItems(state),

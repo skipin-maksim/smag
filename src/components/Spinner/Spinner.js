@@ -1,16 +1,14 @@
 import React from 'react';
-import Loader from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import PulseLoader from 'react-spinners/PulseLoader';
+
 import s from './Spinner.module.scss';
 
-export default function spinner() {
+export default function Spinner() {
   return (
-    <Loader
-      className={s.spinner}
-      type="Puff"
-      color="#1c2b4a"
-      height={30}
-      width={30}
-    />
+    <div className={s.loaderWrapper}>
+      <div className={s.loader}>
+        <PulseLoader size={15} margin={10} color={'#1C2B4A'} />
+      </div>
+    </div>
   );
 }

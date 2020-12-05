@@ -1,0 +1,103 @@
+.settingButtons {
+  display: flex;
+  align-items: center;
+
+  & .saveBtn {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.labelSaveBtnNotSaved {
+  margin-left: 20px;
+  padding-right: 7px;
+  position: relative;
+  width: 140px;
+  height: 30px;
+  background-color: #de6a73;
+  border-radius: 5px;
+  text-align: right;
+  font-size: 12px;
+  line-height: 30px;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    width: 55px;
+    height: 30px;
+    background: url(../../assets/images/iconNotSaved.svg), #1c2b4a;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28%;
+    border-radius: 5px;
+  }
+}
+
+.labelSaveBtnIstSaved {
+  margin-left: 20px;
+  padding-left: 16px;
+  position: relative;
+  width: 140px;
+  height: 30px;
+  background-color: #98c379;
+  border-radius: 5px;
+  cursor: default;
+  text-align: left;
+  font-size: 12px;
+  line-height: 30px;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    display: block;
+    width: 55px;
+    height: 30px;
+    background: url(../../assets/images/iconSaved.svg), #1c2b4a;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28%;
+    border-radius: 5px;
+  }
+}
+
+.settingButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-height: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1c2b4a;
+  transition: all 0.25s linear;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #314775;
+  }
+
+  &.addBtn {
+    width: 55px;
+    margin-right: 10px;
+  }
+  &.removeBtn {
+    width: 55px;
+  }
+
+  &.printBtn {
+    margin-left: 20px;
+  }
+
+  &:disabled:hover {
+    background-color: #1c2b4a;
+    cursor: default;
+  }
+}

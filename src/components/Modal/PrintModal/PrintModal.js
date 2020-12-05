@@ -1,5 +1,5 @@
 import React from 'react';
-import CloseBtn from '../components/Buttons/CloseBtn';
+import CloseBtn from '../../Buttons/CloseBtn';
 
 import s from './PrintModal.module.scss';
 

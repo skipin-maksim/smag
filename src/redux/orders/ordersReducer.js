@@ -250,9 +250,16 @@ const temporaryStorageLocation = createReducer(initAllProducts, {
   },
 });
 
+const loader = createReducer(false, {
+  [ordersActions.getOrderByIdRequest]: () => true,
+  [ordersActions.getOrderByIdSuccess]: () => false,
+  [ordersActions.getOrderByIdError]: () => false,
+});
+
 export default combineReducers({
   allOrders,
   allProducts,
   filterContractors,
   temporaryStorageLocation,
+  loader,
 });

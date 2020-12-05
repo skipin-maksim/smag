@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { ordersOperations } from '../../redux/orders/';
 import { contactsOperations } from '../../redux/contacts';
+import { numOrderOperations } from '../../redux/numOrder';
 
 import PrivatBankComponent from '../PrivatBankComponent/PrivatBankComponent';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
@@ -15,6 +16,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.allOrders();
     this.props.allContacts();
+    this.props.getCurrentNumOrder();
   }
 
   render() {
@@ -36,6 +38,7 @@ class App extends React.Component {
 const mDTP = {
   allContacts: contactsOperations.getContacts,
   allOrders: ordersOperations.getAllOrders,
+  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
 };
 
 export default connect(null, mDTP)(App);

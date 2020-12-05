@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
-import PulseLoader from 'react-spinners/PulseLoader';
 
-import { contactsSelectors } from '../../redux/contacts';
-import { modalActions } from '../../redux/modal';
-import { ordersActions, ordersSelectors } from '../../redux/orders';
+import { contactsSelectors } from '../../../redux/contacts';
+import { modalActions } from '../../../redux/modal';
+import { ordersActions, ordersSelectors } from '../../../redux/orders';
 
-import CloseBtn from '../Buttons/CloseBtn';
+import CloseBtn from '../../Buttons/CloseBtn';
+import Spinner from '../../Spinner/Spinner';
 
 import s from './ContractorsInModal.module.scss';
 
@@ -40,15 +40,6 @@ const ContractorsInModal = ({
       />
 
       <Scrollbar style={{ width: 549, height: 299 }}>
-        <div className={s.loader}>
-          <PulseLoader
-            size={15}
-            margin={10}
-            color={'#1C2B4A'}
-            loading={isLoading}
-          />
-        </div>
-
         <ul className={s.list}>
           {filterContacts.map(contact => (
             <li
@@ -62,6 +53,7 @@ const ContractorsInModal = ({
           ))}
         </ul>
       </Scrollbar>
+      {isLoading && <Spinner />}
     </div>
   );
 };
