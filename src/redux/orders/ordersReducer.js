@@ -223,11 +223,9 @@ const temporaryStorageLocation = createReducer(initAllProducts, {
     console.log('СОХРАНИЛИ В ВРЕМЕННОЕ ХРАНИЛИЩЕ-----------------------');
     return payload;
   },
-  //TODO такой-же для temporaryStorageLocation, чтоб при создании нового заказа
-  //TODO можно было сбрасывать к дефолтному
-  // [ordersActions.clearAllProducts]: (state, { payload }) => {
-  //   return initAllProducts;
-  // },
+  [ordersActions.clearTemporaryStorageLocation]: (state, { payload }) => {
+    return initAllProducts;
+  },
 });
 
 export default combineReducers({

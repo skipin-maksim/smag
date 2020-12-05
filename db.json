@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 21,
-    "valueStr": "00021"
+    "valueNum": 22,
+    "valueStr": "00022"
   },
   "contractors": [
     {
@@ -35,7 +35,7 @@
       "email": "fil@gmail.com",
       "city": "Ивано-Франковск",
       "post": "Новая Почта 2",
-      "debt": -4200
+      "debt": -7700
     }
   ],
   "products": [
@@ -194,6 +194,45 @@
       "numOrder": "00021",
       "id": "00021",
       "date": "05-12-2020 03:08"
+    },
+    {
+      "items": [
+        {
+          "id": "2a7cda82-188d-43a6-ba03-a43d85214386",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "зеленый (verde)",
+          "quantity": "100",
+          "price": 35,
+          "discount": "0",
+          "sum": 3500,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 100,
+        "averagePrice": 35,
+        "sum": 3500,
+        "remainderPaid": 3500
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": "Новая Почта 2",
+        "debt": -7700
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00022",
+      "id": "00022",
+      "date": "05-12-2020 02:06"
     }
   ]
 }

@@ -24,7 +24,7 @@ class OrdersPage extends React.Component {
     this.props.allOrders();
   }
 
-  handleAddLineProduct = name => {
+  handleAddNewOrder = name => {
     const isTab = this.props.tabsList.find(
       item => item.name === 'Заказ № ***?',
     );
@@ -38,7 +38,7 @@ class OrdersPage extends React.Component {
         path: '/orders/new-order',
       });
 
-      this.props.onClearAllProducts();
+      this.props.onClearTemporaryStorageLocation();
 
       this.props.history.replace('/orders/new-order');
     }
@@ -67,7 +67,7 @@ class OrdersPage extends React.Component {
               <button
                 name={'addNewOrder'}
                 to={'orders/new-order'}
-                onClick={({ target }) => this.handleAddLineProduct(target.name)}
+                onClick={({ target }) => this.handleAddNewOrder(target.name)}
                 className={`${s.settingButton} ${s.addBtn}`}
               >
                 <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
@@ -137,7 +137,7 @@ const mDTP = {
   // addOrder: ordersActions.addOrder,
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
-  onClearAllProducts: ordersActions.clearAllProducts,
+  onClearTemporaryStorageLocation: ordersActions.clearTemporaryStorageLocation,
 };
 
 export default withRouter(connect(mSTP, mDTP)(OrdersPage));
