@@ -6,11 +6,6 @@ import { contactsActions } from './';
 
 const allContacts = createReducer([], {
   [contactsActions.getAllContactsSuccess]: (state, { payload }) => [...payload],
-  // [modalActions.closeModal]: () => [],
-  // [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-  //   console.log(payload);
-  //   return state;
-  // },
 });
 
 const loader = createReducer(false, {

@@ -84,9 +84,6 @@ const getOrderById = id => async dispatch => {
       `${baseUrl}/contractors/${data.contractorInfo.id}`,
     );
 
-    console.log(dataContact);
-    console.log({ ...data, contractorInfo: dataContact });
-
     dispatch(
       ordersActions.getOrderByIdSuccess({
         ...data,

@@ -57,7 +57,6 @@ function SettingsBlockBtn({
 
   const handleSaveBtn = () => {
     if (currentContractorInfo.firstName) {
-      console.log(currentNumOrder);
       const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
 
       // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер

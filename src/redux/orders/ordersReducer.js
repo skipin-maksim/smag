@@ -241,10 +241,7 @@ const filterContractors = createReducer('', {
 });
 
 const temporaryStorageLocation = createReducer(initCurrentOrder, {
-  [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => {
-    console.log('СОХРАНИЛИ В ВРЕМЕННОЕ ХРАНИЛИЩЕ-----------------------');
-    return payload;
-  },
+  [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => payload,
   [ordersActions.clearTemporaryStorageLocation]: (state, { payload }) => {
     return initCurrentOrder;
   },

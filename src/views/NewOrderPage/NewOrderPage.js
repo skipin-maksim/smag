@@ -59,7 +59,6 @@ class NewOrderPage extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
     window.removeEventListener('keydown', this.handlePressKeyNewLine);
   }
 
