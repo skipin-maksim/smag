@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 14,
-    "valueStr": "00014"
+    "valueNum": 16,
+    "valueStr": "00016"
   },
   "contractors": [
     {
@@ -35,7 +35,7 @@
       "email": "fil@gmail.com",
       "city": "Ивано-Франковск",
       "post": 2,
-      "debt": -5050
+      "debt": -6025
     }
   ],
   "products": [
@@ -462,6 +462,172 @@
       "numOrder": "00014",
       "id": "00014",
       "date": "06-12-2020 04:43"
+    },
+    {
+      "items": [
+        {
+          "id": "f27474de-7488-469b-93b1-6cd6cd513207",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "красный (rosso)",
+          "quantity": "5",
+          "price": 35,
+          "discount": "0",
+          "sum": 175,
+          "note": ""
+        },
+        {
+          "id": "2d3dd0ae-feef-4428-8e62-256d7f66d010",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "черный (nero)",
+          "quantity": "5",
+          "price": 40,
+          "discount": "0",
+          "sum": 200,
+          "note": ""
+        },
+        {
+          "id": "14af16c3-fcc3-4287-8e99-43346bf21fb1",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "зеленый (verde)",
+          "quantity": "5",
+          "price": 40,
+          "discount": "0",
+          "sum": 200,
+          "note": ""
+        },
+        {
+          "id": "2a2efa3c-c3d6-4672-ba24-0c9a66b0aa9f",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "5",
+          "price": 40,
+          "discount": "0",
+          "sum": 200,
+          "note": ""
+        },
+        {
+          "id": "4305f00b-0908-42be-baaf-fa2e34ef837e",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "зеленый (verde)",
+          "quantity": "5",
+          "price": 40,
+          "discount": "0",
+          "sum": 200,
+          "note": ""
+        },
+        {
+          "id": "7d1eb601-09a8-414f-9f1a-0d310db611ab",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "18b3d78d-45b9-4e5e-98d3-36b4fdb86b01",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "1a54b847-acff-497a-a41c-690031cc055b",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "0",
+          "price": 35,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        },
+        {
+          "id": "5ee3d63f-66a8-427c-abaf-f8b88b031957",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "",
+          "quantity": "0",
+          "price": 35,
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 9,
+        "quantity": 25,
+        "averagePrice": 29.444444444444443,
+        "sum": 975,
+        "remainderPaid": 975
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": 2,
+        "debt": -6025
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00015",
+      "id": "00015",
+      "date": "06-12-2020 08:09"
+    },
+    {
+      "items": [
+        {
+          "id": "cc65d40d-55ef-4bcb-af78-2d664087507e",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 2,
+        "firstName": "Алексей",
+        "secondName": "Григоренко",
+        "thirdName": "Романович",
+        "tel": "+38 066 202 53 90",
+        "email": "aleks@gmail.com",
+        "city": "Донецк",
+        "post": 25,
+        "debt": -4450
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00016",
+      "id": "00016",
+      "date": "06-12-2020 08:17"
     }
   ]
 }

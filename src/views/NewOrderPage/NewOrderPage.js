@@ -9,7 +9,6 @@ import {
   ordersSelectors,
 } from '../../redux/orders/';
 import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
-import { modalActions, modalSelectors } from '../../redux/modal/';
 import { contactsOperations } from '../../redux/contacts';
 
 import Spinner from '../../components/Spinner/Spinner';
@@ -24,7 +23,7 @@ import WindowOrdersBlock from '../../components/BlocksForNewOrderPage/WindowOrde
 import s from './NewOrderPage.module.scss';
 
 class NewOrderPage extends React.Component {
-  state = { isCheckAll: false };
+  state = { isCheckAll: false, isModal: false };
 
   componentDidMount() {
     window.addEventListener('keydown', this.handlePressKeyNewLine);
@@ -96,6 +95,12 @@ class NewOrderPage extends React.Component {
       this.props.onSaveToTemporaryStorageLocation(this.props.currentOrder);
   };
 
+  toggleModal = () => {
+    this.setState(prevState => ({
+      isModal: !prevState.isModal,
+    }));
+  };
+
   render() {
     const {
       isLoading,
@@ -113,7 +118,12 @@ class NewOrderPage extends React.Component {
 
     return (
       <>
-        {this.props.isModal && <Modal children={<ContractorsInModal />} />}
+        {this.state.isModal && (
+          <Modal
+            onCloseModal={this.toggleModal}
+            children={<ContractorsInModal onCloseModal={this.toggleModal} />}
+          />
+        )}
 
         <div className={s.orderPage}>
           {isLoading && <Spinner />}
@@ -124,6 +134,7 @@ class NewOrderPage extends React.Component {
               currentOrder={currentOrder}
               onChoiseContractor={onChoiseContractor}
               allContacts={allContacts}
+              onOpenModal={this.toggleModal}
             />
 
             <div className={s.settingControls}>
@@ -170,7 +181,6 @@ class NewOrderPage extends React.Component {
 }
 
 const mSTP = state => ({
-  isModal: modalSelectors.getCurrentModalState(state),
   isLoading: ordersSelectors.getIsLoader(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
 
@@ -185,7 +195,6 @@ const mSTP = state => ({
   ),
 });
 const mDTP = {
-  onChoiseContractor: modalActions.openModal,
   allContacts: contactsOperations.getContacts,
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
 

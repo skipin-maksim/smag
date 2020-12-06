@@ -23,6 +23,10 @@
       margin-right: 20px;
     }
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 .contractorInfoInnerDept {
@@ -141,6 +145,10 @@
     color: #fff;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
+  }
+
+  @media print {
+    display: none;
   }
 }
 

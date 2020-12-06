@@ -1,8 +1,9 @@
 .test {
-  width: 100vw;
-  height: 100vh;
+  width: 600px;
+  height: 90%;
   position: absolute;
-  top: 0;
+  top: 5%;
   left: 0;
+  transform: translateY(-50%, -50%);
   background-color: #fff;
 }

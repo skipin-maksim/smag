@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 import { contactsSelectors } from '../../../redux/contacts';
-import { modalActions } from '../../../redux/modal';
 import { ordersActions, ordersSelectors } from '../../../redux/orders';
 
 import CloseBtn from '../../Buttons/CloseBtn';
@@ -64,7 +63,7 @@ const mSTP = state => ({
   filterValue: ordersSelectors.getFilterValue(state),
 });
 const mDTP = {
-  onCloseModal: modalActions.closeModal,
+  // onCloseModal: modalActions.closeModal,
   onChoiseContractor: ordersActions.choiseContractor,
   onFilterContractors: ordersActions.filterContractors,
 };

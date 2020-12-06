@@ -1,6 +1,10 @@
 .headerLineTabs {
   position: relative;
   background-color: #1c2b4a;
+
+  @media print {
+    display: none;
+  }
 }
 
 .wrapperLineListTabs {

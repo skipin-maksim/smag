@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { modalActions } from '../../redux/modal/';
 
-class Modal extends Component {
+export default class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeydown);
   }
@@ -27,9 +25,3 @@ class Modal extends Component {
     );
   }
 }
-
-const mDTP = {
-  onCloseModal: modalActions.closeModal,
-};
-
-export default connect(null, mDTP)(Modal);

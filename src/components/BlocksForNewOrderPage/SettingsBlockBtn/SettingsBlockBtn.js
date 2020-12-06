@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -6,6 +6,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import PrintIcon from '@material-ui/icons/Print';
+
+import Modal from '../../Modal/Modal';
 
 import {
   ordersActions,
@@ -18,6 +20,7 @@ import {
 } from '../../../redux/numOrder/';
 
 import s from './SettingsBlockBtn.module.scss';
+import PrintModal from '../../Modal/PrintModal/PrintModal';
 
 function SettingsBlockBtn({
   history,
@@ -36,6 +39,8 @@ function SettingsBlockBtn({
 
   currentContractorInfo,
 }) {
+  const [isModalPrint, setIsModalPrint] = useState(false);
+
   const createNewOrderNum = prevNum => {
     const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
 
@@ -68,83 +73,95 @@ function SettingsBlockBtn({
     }
   };
 
+  const onCloseModal = () => {
+    setIsModalPrint(false);
+  };
+
   return (
-    <div className={s.settingButtons}>
-      <Tooltip
-        title={'Ctrl + Enter'}
-        arrow
-        disableHoverListener={currentOrder.isSaved}
-      >
-        {/* ****** span - для Tooltip-a */}
-        <span>
-          <button
-            onClick={() => {
-              onCreateLineProduct();
-              onCalculateTotalPositions();
-            }}
-            className={`${s.settingButton} ${s.addBtn}`}
+    <>
+      <div className={s.settingButtons}>
+        <Tooltip
+          title={'Ctrl + Enter'}
+          arrow
+          disableHoverListener={currentOrder.isSaved}
+        >
+          {/* ****** span - для Tooltip-a */}
+          <span>
+            <button
+              onClick={() => {
+                onCreateLineProduct();
+                onCalculateTotalPositions();
+              }}
+              className={`${s.settingButton} ${s.addBtn}`}
+              disabled={currentOrder.isSaved}
+            >
+              <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
+            </button>
+          </span>
+        </Tooltip>
+
+        <Tooltip
+          title={'Удалить товар'}
+          arrow
+          disableHoverListener={currentOrder.isSaved}
+        >
+          {/* ****** span - для Tooltip-a */}
+          <span>
+            <button
+              type="button"
+              onClick={handleDelete}
+              className={`${s.settingButton} ${s.removeBtn}`}
+              disabled={currentOrder.isSaved}
+            >
+              <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
+              <div className="visually-hidden">Удалить заказ</div>
+            </button>
+          </span>
+        </Tooltip>
+
+        <label
+          className={
+            !currentOrder.isSaved
+              ? s.labelSaveBtnNotSaved
+              : s.labelSaveBtnIstSaved
+          }
+        >
+          {!currentOrder.isSaved ? 'Не сохранен' : 'Сохранен'}
+
+          <input
+            type="checkbox"
+            checked={currentOrder.isSaved}
+            className={s.saveBtn}
+            onChange={handleSaveBtn}
             disabled={currentOrder.isSaved}
-          >
-            <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
-          </button>
-        </span>
-      </Tooltip>
+          />
+        </label>
 
-      <Tooltip
-        title={'Удалить товар'}
-        arrow
-        disableHoverListener={currentOrder.isSaved}
-      >
-        {/* ****** span - для Tooltip-a */}
-        <span>
-          <button
-            type="button"
-            onClick={handleDelete}
-            className={`${s.settingButton} ${s.removeBtn}`}
-            disabled={currentOrder.isSaved}
-          >
-            <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
-            <div className="visually-hidden">Удалить заказ</div>
-          </button>
-        </span>
-      </Tooltip>
-
-      <label
-        className={
-          !currentOrder.isSaved
-            ? s.labelSaveBtnNotSaved
-            : s.labelSaveBtnIstSaved
-        }
-      >
-        {!currentOrder.isSaved ? 'Не сохранен' : 'Сохранен'}
-
-        <input
-          type="checkbox"
-          checked={currentOrder.isSaved}
-          className={s.saveBtn}
-          onChange={handleSaveBtn}
-          disabled={currentOrder.isSaved}
+        <Tooltip
+          title={'Печать'}
+          arrow
+          disableHoverListener={currentOrder.isSaved}
+        >
+          {/* ****** span - для Tooltip-a */}
+          <span>
+            <button
+              type="button"
+              onClick={() => setIsModalPrint(true)}
+              className={`${s.settingButton} ${s.printBtn}`}
+            >
+              <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
+              <div className="visually-hidden">Печать</div>
+            </button>
+          </span>
+        </Tooltip>
+      </div>
+      {isModalPrint && (
+        <Modal
+          children={<PrintModal currentOrder={currentOrder} />}
+          onCloseModal={onCloseModal}
         />
-      </label>
-
-      <Tooltip
-        title={'Печать'}
-        arrow
-        disableHoverListener={currentOrder.isSaved}
-      >
-        {/* ****** span - для Tooltip-a */}
-        <span>
-          <button
-            type="button"
-            // onClick={this.handleDelete}
-            className={`${s.settingButton} ${s.printBtn}`}
-          >
-            <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
-            <div className="visually-hidden">Печать</div>
-          </button>
-        </span>
-      </Tooltip>
-    </div>
+      )}
+    </>
   );
 }
 

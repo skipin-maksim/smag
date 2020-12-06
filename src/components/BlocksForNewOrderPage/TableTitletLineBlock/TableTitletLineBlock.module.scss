@@ -8,4 +8,8 @@
   border-top-right-radius: 5px;
   background-color: #1c2b4a;
   color: #fff;
+
+  @media print {
+    display: none;
+  }
 }

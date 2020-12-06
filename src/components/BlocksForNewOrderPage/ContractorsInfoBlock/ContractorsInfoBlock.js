@@ -7,6 +7,7 @@ export default function ContractorsInfoBlock({
   currentOrder,
   allContacts,
   onChoiseContractor,
+  onOpenModal,
 }) {
   const {
     secondName,
@@ -19,7 +20,8 @@ export default function ContractorsInfoBlock({
   } = currentContractorInfo;
 
   const handleChoiseContractors = () => {
-    onChoiseContractor();
+    onOpenModal();
+    // onChoiseContractor();
     allContacts();
   };
 

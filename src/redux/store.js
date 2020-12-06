@@ -1,7 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { tabsReducer } from './tabs/';
 import { ordersReducer } from './orders/';
-import { modalReducer } from './modal/';
 import { contactsReducer } from './contacts/';
 import { numOrderReducer } from './numOrder/';
 import {
@@ -36,7 +35,6 @@ export const store = configureStore({
       ordersReducer,
     ),
     contacts: contactsReducer,
-    modal: modalReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {
