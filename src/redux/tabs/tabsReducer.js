@@ -32,6 +32,19 @@ const items = createReducer(initialStateItem, {
   },
 });
 
+const positionData = createReducer(
+  { width: 0, left: 0 },
+  {
+    [tabsActions.widthLineTabs]: (state, { payload }) => {
+      return { ...state, width: payload };
+    },
+    [tabsActions.moveSlideLeft]: (state, { payload }) => {
+      return { ...state, left: payload };
+    },
+  },
+);
+// getPositionLeft
 export default combineReducers({
   items,
+  positionData,
 });

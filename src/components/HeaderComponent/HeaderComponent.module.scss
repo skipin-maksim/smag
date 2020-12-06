@@ -1,19 +1,59 @@
 .headerLineTabs {
+  position: relative;
   background-color: #1c2b4a;
 }
 
-.lineListTabs {
+.wrapperLineListTabs {
   min-height: 45px;
-  display: grid;
-  grid-template-columns: repeat(7, 200px);
-  justify-content: center;
+  margin: 0 auto;
+  width: 1500px;
+  display: flex;
+  // grid-template-columns: repeat(7, 200px);
+  justify-content: flex-start;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.sliderBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s linear;
+
+  &.leftBtn {
+    left: 30px;
+  }
+
+  &.rightBtn {
+    right: 30px;
+  }
+
+  &:hover {
+    background-color: #213357;
+  }
+}
+
+.lineListTabs {
+  position: relative;
+  display: flex;
+  // grid-template-columns: repeat(7, 200px);
+  justify-content: flex-start;
   align-items: flex-end;
   grid-column-gap: 2px;
+  transition: all 0.3s linear;
 }
 
 .tabLi {
   position: relative;
   height: 30px;
+  width: 200px;
   padding-right: 25px;
   font-style: italic;
   white-space: nowrap;
