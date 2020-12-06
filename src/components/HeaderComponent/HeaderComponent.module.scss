@@ -24,8 +24,9 @@
   border: none;
   border-radius: 50%;
   background-color: transparent;
-  cursor: pointer;
+  outline: none;
   transition: all 0.3s linear;
+  cursor: pointer;
 
   &.leftBtn {
     left: 30px;

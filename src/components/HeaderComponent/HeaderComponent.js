@@ -1,43 +1,56 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import { tabsActions, tabsSelectors } from '../../redux/tabs/';
+import { tabsActions } from '../../redux/tabs/';
 
 import LineListTabs from './LineListTabs';
 
 import s from './HeaderComponent.module.scss';
 
-function HeaderComponent({
-  tabsList,
-  widthLineTabs,
-  leftPositionLineTabs,
-  onMoveSlideLeft,
-  onWidthLineTabs,
-}) {
+//TODO Попробовать сдеать так, чтоб слайдер перелыстывался после добавления нового заказа!!!
+
+export default function HeaderComponent() {
+  const tabsList = useSelector(state => state.tabs.items);
+  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  const leftPositionLineTabs = useSelector(
+    state => state.tabs.positionData.left,
+  );
+
+  const dispatch = useDispatch();
+  const onMoveSlideLeft = useCallback(
+    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs + 200)),
+    [dispatch, leftPositionLineTabs],
+  );
+  const onMoveSlideRight = useCallback(
+    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 200)),
+    [dispatch, leftPositionLineTabs],
+  );
+  const getComponentWidthDispatch = useCallback(
+    data => dispatch(tabsActions.widthLineTabs(data)),
+    [dispatch],
+  );
+
   const moveLeft = () => {
     if (leftPositionLineTabs === 0) {
       return;
     } else {
-      onMoveSlideLeft(leftPositionLineTabs + 200);
+      onMoveSlideLeft();
     }
   };
 
   const moveRight = () => {
     if (widthLineTabs - -leftPositionLineTabs <= 1500) {
       return;
-    }
-
-    if (widthLineTabs > 1500) {
-      onMoveSlideLeft(leftPositionLineTabs - 200);
+    } else if (widthLineTabs > 1500) {
+      onMoveSlideRight();
     }
   };
 
   const getComponentWidth = data => {
-    onWidthLineTabs(data);
+    getComponentWidthDispatch(data);
   };
 
   return (
@@ -58,16 +71,3 @@ function HeaderComponent({
     </header>
   );
 }
-
-const mSTP = state => ({
-  tabsList: tabsSelectors.getTabsList(state),
-  widthLineTabs: tabsSelectors.getWidthLineTabs(state),
-  leftPositionLineTabs: tabsSelectors.getLeftPositionLineTabs(state),
-});
-
-const mDTP = {
-  onWidthLineTabs: tabsActions.widthLineTabs,
-  onMoveSlideLeft: tabsActions.moveSlideLeft,
-};
-
-export default withRouter(connect(mSTP, mDTP)(HeaderComponent));
