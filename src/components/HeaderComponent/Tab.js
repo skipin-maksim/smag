@@ -13,25 +13,6 @@ import CloseBtn from '../Buttons/CloseBtn';
 
 import s from './HeaderComponent.module.scss';
 class Tab extends React.Component {
-  componentDidMount() {
-    // const { pathname } = this.props.history.location;
-    /*
-        Проверяемб находимся ли мы на странице нового заказа?
-        И если да => забираем данные из временного места хранения 
-        ----- erders -> temporaryStorageLocation
-
-        Если нет => берем заказ с сервера по id
-    */
-    // if (pathname.slice(8) === 'new-order') {
-    //   this.props.onGetDataOfTemporaryStorageLocation(
-    //     this.props.dataOfTemporaryStorageLocation,
-    //   );
-    // } else if (Number(pathname.slice(8))) {
-    //   this.props.onGetOrderById(pathname.slice(8));
-    // }
-    // this.getDataOrderById(pathname);
-  }
-
   handleOnCloseTab = (name, path, idxItem) => {
     const { pathname } = this.props.history.location;
     /*

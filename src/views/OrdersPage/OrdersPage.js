@@ -21,6 +21,10 @@ import CheckBox from '../../components/CheckBox/CheckBox';
 
 import s from './OrdersPage.module.scss';
 class OrdersPage extends React.Component {
+  // const onMoveSlideRight = useCallback(
+  //   () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 200)),
+  //   [dispatch, leftPositionLineTabs],
+  // );
   componentDidMount() {
     this.props.allOrders();
   }
@@ -38,6 +42,11 @@ class OrdersPage extends React.Component {
         name: 'Заказ № ***?',
         path: '/orders/new-order',
       });
+
+      if (this.props.widthLineTabs > 1300) {
+        const futurePositionLeft = this.props.widthLineTabs - 1212;
+        this.props.onMoveSlideLeft(-futurePositionLeft);
+      }
 
       this.props.onClearTemporaryStorageLocation();
 
@@ -134,10 +143,11 @@ const mSTP = state => ({
   dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
     state,
   ),
+  widthLineTabs: tabsSelectors.getWidthLineTabs(state),
 });
 
 const mDTP = {
-  // addOrder: ordersActions.addOrder,
+  onMoveSlideLeft: tabsActions.moveSlideLeft,
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,

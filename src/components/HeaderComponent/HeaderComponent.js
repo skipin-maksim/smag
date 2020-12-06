@@ -21,11 +21,11 @@ export default function HeaderComponent() {
 
   const dispatch = useDispatch();
   const onMoveSlideLeft = useCallback(
-    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs + 200)),
+    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs + 202)),
     [dispatch, leftPositionLineTabs],
   );
   const onMoveSlideRight = useCallback(
-    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 200)),
+    () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 202)),
     [dispatch, leftPositionLineTabs],
   );
   const getComponentWidthDispatch = useCallback(

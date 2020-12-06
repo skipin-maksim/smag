@@ -1,15 +1,44 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { tabsActions } from '../../redux/tabs';
-import { ordersSelectors } from '../../redux/orders';
 import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 
 import s from './LineOrder.module.scss';
 
-function LineOrder({ idx, orderItem, order, id, addTab, history }) {
+export default function LineOrder({ idx, order, id }) {
+  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  const orderItem = useSelector(state =>
+    state.orders.allOrders.find(item => item.id === id),
+  );
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const onMoveSlideLeft = useCallback(
+    data => dispatch(tabsActions.moveSlideLeft(data)),
+    [dispatch],
+  );
+  const onAddTab = useCallback(
+    data => dispatch(tabsActions.addTabOrder(data)),
+    [dispatch],
+  );
+
+  const handleOpenOrder = () => {
+    onAddTab({
+      name: `Заказ №${id}`,
+      path: `/orders/${id}`,
+    });
+
+    history.replace(`/orders/${id}`);
+
+    if (widthLineTabs > 1300) {
+      const futurePositionLeft = widthLineTabs - 1212;
+      onMoveSlideLeft(-futurePositionLeft);
+    }
+  };
+
   const {
     calculatedTotals,
     contractorInfo,
@@ -20,14 +49,7 @@ function LineOrder({ idx, orderItem, order, id, addTab, history }) {
   return (
     <li
       className={`${s.customerOrderItem} ${lineColorPick(idx)}`}
-      onClick={() => {
-        addTab({
-          name: `Заказ №${id}`,
-          path: `/orders/${id}`,
-        });
-        console.log('li', id);
-        history.replace(`/orders/${id}`);
-      }}
+      onClick={handleOpenOrder}
     >
       <CheckBox />
       <span>{order.numOrder}</span>
@@ -44,13 +66,3 @@ function LineOrder({ idx, orderItem, order, id, addTab, history }) {
     </li>
   );
 }
-
-const mSTP = (state, ownProps) => ({
-  orderItem: ordersSelectors.getOrderById(state, ownProps.id),
-});
-
-const mDTP = {
-  addTab: tabsActions.addTabOrder,
-};
-
-export default withRouter(connect(mSTP, mDTP)(LineOrder));
