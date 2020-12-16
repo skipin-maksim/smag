@@ -4,7 +4,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { tabsActions } from './';
 import ordersActions from '../orders/ordersActions';
 
-const initialStateItem = [{ name: 'Главная', path: '/' }];
+const initialStateItem = [{ name: 'Главная', path: '/home' }];
 
 const addTab = (state, payload) => {
   const isTabs = state.find(item => item.name === payload.name);

@@ -1,5 +1,6 @@
 export default {
-  HomePage: '/',
+  root: '/',
+  HomePage: '/home',
   ExhibitionsPage: '/exhibitions',
   SalesPage: '/sales',
   ContractorsPage: '/contractors',

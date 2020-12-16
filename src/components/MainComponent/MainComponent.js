@@ -11,7 +11,7 @@ export default function MainComponent() {
     <main className="main-content">
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route exact path={routes.HomePage} component={path.AsyncHomePage} />
+          <Route path={routes.HomePage} component={path.AsyncHomePage} />
 
           <Route path={routes.SalesPage} component={path.AsyncSalesPage} />
 

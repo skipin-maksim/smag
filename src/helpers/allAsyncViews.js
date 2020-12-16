@@ -1,5 +1,9 @@
 import { lazy } from 'react';
 
+const AsyncRootPage = lazy(() =>
+  import('../views/RootViews' /* webpackChunkName: "root-page" */),
+);
+
 const AsyncHomePage = lazy(() =>
   import('../views/HomePage' /* webpackChunkName: "home-page" */),
 );
@@ -24,6 +28,7 @@ const AsyncNewOrderPage = lazy(() =>
 );
 
 export default {
+  AsyncRootPage,
   AsyncHomePage,
   AsyncSalesPage,
   AsyncExhibitionsPage,

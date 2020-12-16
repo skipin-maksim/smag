@@ -21,7 +21,7 @@ class Tab extends React.Component {
     */
     this.props.tabsList.reduce((previous, current) => {
       if (idxItem === 0 && this.props.tabsList.length === 1) {
-        this.props.history.replace('/');
+        this.props.history.replace('/home');
         this.props.removeTab(name);
         return current;
       }
