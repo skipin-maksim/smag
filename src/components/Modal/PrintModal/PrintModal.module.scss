@@ -1,9 +1,152 @@
-.test {
-  width: 600px;
-  height: 90%;
+.modalPrint {
   position: absolute;
+  // margin: 0 auto;
+  padding: 30px;
+  width: 250mm;
+  height: 848px;
   top: 5%;
-  left: 0;
-  transform: translateY(-50%, -50%);
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #fff;
+  overflow-y: scroll;
+  // border: 1px solid black;
+
+  @media print {
+    position: relative;
+    top: 0;
+    left: 44%;
+    // transform: translateX(100%);
+    width: 250mm;
+    height: 100%;
+    overflow-y: initial;
+    font-size: 18px;
+  }
+}
+
+.infoBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  & .logo {
+    width: 200px;
+  }
+
+  & .infoMag {
+    & li {
+      display: flex;
+      justify-content: space-between;
+      height: 20px;
+      line-height: 20px;
+    }
+    & span {
+      margin-left: 40px;
+      width: 270px;
+      display: inline-block;
+    }
+  }
+}
+
+.orderInfoBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  .numOrder {
+    font-size: 25px;
+
+    & span {
+      margin-left: 80px;
+      font-size: 20px;
+    }
+  }
+  .calculatedTotals {
+    width: 400px;
+    font-size: 20px;
+
+    & li {
+      display: flex;
+      justify-content: flex-end;
+      text-align: right;
+      height: 25px;
+      line-height: 25px;
+    }
+
+    & span {
+      margin-left: 40px;
+      min-width: 100px;
+      max-width: 200px;
+      display: inline-block;
+    }
+
+    & .liTitle {
+      width: 150px;
+    }
+  }
+}
+.clientInfoBlock {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+
+  & li {
+    height: 25px;
+    line-height: 25px;
+  }
+
+  & span {
+    width: calc(100% - 100px);
+    text-align: center;
+    display: inline-block;
+  }
+
+  & .clientInfoTitle {
+    width: 100px;
+    text-align: left;
+  }
+}
+
+.customerOrderList {
+  & span {
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    border-right: 1px solid #000;
+  }
+
+  & span:last-child {
+    font-size: 14px;
+    overflow: hidden;
+    border-right: none;
+  }
+}
+
+.lineProduct {
+  display: grid;
+  grid-template-columns: 35px 110px 330px 55px 55px 55px 65px 1fr;
+  border: 1px solid #000;
+  border-top: none;
+}
+
+.lineTitle {
+  composes: lineProduct;
+  border-top: 1px solid #000;
+  background-color: rgb(221, 221, 221);
+  font-size: 14px;
+
+  @media print {
+    background-color: rgb(221, 221, 221);
+    color-adjust: exact;
+  }
+}
+
+.lineMargin {
+  composes: lineProduct;
+  @media print {
+    margin-bottom: 15px;
+  }
 }

@@ -97,6 +97,14 @@ input[type='radio'].visually-hidden {
   color: #98c379;
 }
 
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+  }
+}
+
 .main-wrapper {
   display: grid;
   grid-template-columns: 250px 1fr;
@@ -138,11 +146,21 @@ input[type='radio'].visually-hidden {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
+
+  @media print {
+    position: absolute;
+    height: auto;
+  }
 }
 
 .Modal {
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
+
+  @media print {
+    max-width: 210mm;
+    max-height: 10000px;
+  }
 }
 /*
  * Стили компонента Modal

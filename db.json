@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 16,
-    "valueStr": "00016"
+    "valueNum": 18,
+    "valueStr": "00018"
   },
   "contractors": [
     {
@@ -13,7 +13,7 @@
       "email": "maks@gmail.com",
       "city": "Бровары",
       "post": 13,
-      "debt": -2635
+      "debt": -4500
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
       "email": "aleks@gmail.com",
       "city": "Донецк",
       "post": 25,
-      "debt": -4450
+      "debt": -6450
     },
     {
       "id": 3,
@@ -76,397 +76,7 @@
     {
       "items": [
         {
-          "id": "f48c6171-9386-4a1e-989e-d6ae626bdf75",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -885
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00005",
-      "id": "00005",
-      "date": "05-12-2020 09:47"
-    },
-    {
-      "items": [
-        {
-          "id": "7cac3ee4-d587-4d0e-9e86-bf6309efc748",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -885
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00006",
-      "id": "00006",
-      "date": "05-12-2020 10:02"
-    },
-    {
-      "items": [
-        {
-          "id": "a7681d53-7ae5-4dca-832c-e8ea2dd64589",
-          "checkProduct": false,
-          "vendorCode": "10",
-          "color": "розовый античный (rosa antico)",
-          "quantity": "50",
-          "price": 35,
-          "discount": "0",
-          "sum": 1750,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 50,
-        "averagePrice": 35,
-        "sum": 1750,
-        "remainderPaid": 1750
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -2635
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00007",
-      "id": "00007",
-      "date": "05-12-2020 10:34"
-    },
-    {
-      "items": [
-        {
-          "id": "fe4ab98a-4b7f-4464-acd1-41b4e573e207",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -2635
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00008",
-      "id": "00008",
-      "date": "06-12-2020 12:09"
-    },
-    {
-      "items": [
-        {
-          "id": "3b6f947f-3aac-4f1a-a87b-1d230dc37b3d",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 2,
-        "firstName": "Алексей",
-        "secondName": "Григоренко",
-        "thirdName": "Романович",
-        "tel": "+38 066 202 53 90",
-        "email": "aleks@gmail.com",
-        "city": "Донецк",
-        "post": 25,
-        "debt": -4450
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00009",
-      "id": "00009",
-      "date": "06-12-2020 12:09"
-    },
-    {
-      "items": [
-        {
-          "id": "e6c8dffe-215a-49ac-9f3f-38246c1ead89",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 3,
-        "firstName": "Юрий",
-        "secondName": "Филатов",
-        "thirdName": "Иванович",
-        "tel": "+38 066 202 53 90",
-        "email": "fil@gmail.com",
-        "city": "Ивано-Франковск",
-        "post": 2,
-        "debt": -5050
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00010",
-      "id": "00010",
-      "date": "06-12-2020 02:51"
-    },
-    {
-      "items": [
-        {
-          "id": "07b0e343-ebab-43bf-9a27-c0fe58cb229c",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -2635
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00011",
-      "id": "00011",
-      "date": "06-12-2020 04:04"
-    },
-    {
-      "items": [
-        {
-          "id": "fd8bd87a-fdc7-44f2-93e9-cfd486617437",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -2635
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00012",
-      "id": "00012",
-      "date": "06-12-2020 04:10"
-    },
-    {
-      "items": [
-        {
-          "id": "fd8bd87a-fdc7-44f2-93e9-cfd486617437",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": "0",
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 2,
-        "firstName": "Алексей",
-        "secondName": "Григоренко",
-        "thirdName": "Романович",
-        "tel": "+38 066 202 53 90",
-        "email": "aleks@gmail.com",
-        "city": "Донецк",
-        "post": 25,
-        "debt": -4450
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00013",
-      "id": "00013",
-      "date": "06-12-2020 04:10"
-    },
-    {
-      "items": [
-        {
-          "id": "5045d3e5-3ae3-4e4c-bae9-341554d231dd",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        }
-      ],
-      "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
-      },
-      "contractorInfo": {
-        "id": 1,
-        "firstName": "Максим",
-        "secondName": "Скипин",
-        "thirdName": "Сергеевич",
-        "tel": "+38 066 202 53 90",
-        "email": "maks@gmail.com",
-        "city": "Бровары",
-        "post": 13,
-        "debt": -2635
-      },
-      "isSaved": true,
-      "prepayment": 0,
-      "noteForOrder": "",
-      "numOrder": "00014",
-      "id": "00014",
-      "date": "06-12-2020 04:43"
-    },
-    {
-      "items": [
-        {
-          "id": "f27474de-7488-469b-93b1-6cd6cd513207",
+          "id": "22099558-3494-4e7d-b4af-a745cd386eba",
           "checkProduct": false,
           "vendorCode": "10",
           "color": "красный (rosso)",
@@ -477,7 +87,7 @@
           "note": ""
         },
         {
-          "id": "2d3dd0ae-feef-4428-8e62-256d7f66d010",
+          "id": "d6a514a7-8c5b-4c64-b74c-e4b9c98f6e44",
           "checkProduct": false,
           "vendorCode": "20",
           "color": "черный (nero)",
@@ -488,10 +98,10 @@
           "note": ""
         },
         {
-          "id": "14af16c3-fcc3-4287-8e99-43346bf21fb1",
+          "id": "9e417ba6-9bba-40de-9e71-c0432a703539",
           "checkProduct": false,
           "vendorCode": "20",
-          "color": "зеленый (verde)",
+          "color": "черный (nero)",
           "quantity": "5",
           "price": 40,
           "discount": "0",
@@ -499,117 +109,744 @@
           "note": ""
         },
         {
-          "id": "2a2efa3c-c3d6-4672-ba24-0c9a66b0aa9f",
+          "id": "50e00bb7-96ac-4b25-9d27-cf16a3a2c2f5",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "a04a09c6-5654-47ca-81c9-14cc14d6a88b",
           "checkProduct": false,
           "vendorCode": "20",
           "color": "белый (bianco)",
-          "quantity": "5",
+          "quantity": "10",
           "price": 40,
           "discount": "0",
-          "sum": 200,
+          "sum": 400,
           "note": ""
         },
         {
-          "id": "4305f00b-0908-42be-baaf-fa2e34ef837e",
+          "id": "8dc342da-dd28-44d3-a06f-2217571b7ce5",
           "checkProduct": false,
           "vendorCode": "20",
-          "color": "зеленый (verde)",
-          "quantity": "5",
+          "color": "серый (grigio)",
+          "quantity": "10",
           "price": 40,
           "discount": "0",
-          "sum": 200,
+          "sum": 400,
           "note": ""
         },
         {
-          "id": "7d1eb601-09a8-414f-9f1a-0d310db611ab",
+          "id": "84614364-f185-4f13-987e-1522afc53dfc",
           "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
+          "vendorCode": "30",
+          "color": "черный (nero)",
+          "quantity": "2",
+          "price": 45,
           "discount": "0",
-          "sum": 0,
-          "note": ""
-        },
-        {
-          "id": "18b3d78d-45b9-4e5e-98d3-36b4fdb86b01",
-          "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        },
-        {
-          "id": "1a54b847-acff-497a-a41c-690031cc055b",
-          "checkProduct": false,
-          "vendorCode": "10",
-          "color": "",
-          "quantity": "0",
-          "price": 35,
-          "discount": "0",
-          "sum": 0,
-          "note": ""
-        },
-        {
-          "id": "5ee3d63f-66a8-427c-abaf-f8b88b031957",
-          "checkProduct": false,
-          "vendorCode": "10",
-          "color": "",
-          "quantity": "0",
-          "price": 35,
-          "discount": "0",
-          "sum": 0,
+          "sum": 90,
           "note": ""
         }
       ],
       "calculatedTotals": {
-        "positions": 9,
-        "quantity": 25,
-        "averagePrice": 29.444444444444443,
-        "sum": 975,
-        "remainderPaid": 975
+        "positions": 7,
+        "quantity": 47,
+        "averagePrice": 40,
+        "sum": 1865,
+        "remainderPaid": 1865
       },
       "contractorInfo": {
-        "id": 3,
-        "firstName": "Юрий",
-        "secondName": "Филатов",
-        "thirdName": "Иванович",
+        "id": 1,
+        "firstName": "Максим",
+        "secondName": "Скипин",
+        "thirdName": "Сергеевич",
         "tel": "+38 066 202 53 90",
-        "email": "fil@gmail.com",
-        "city": "Ивано-Франковск",
-        "post": 2,
-        "debt": -6025
+        "email": "maks@gmail.com",
+        "city": "Бровары",
+        "post": 13,
+        "debt": -4500
       },
       "isSaved": true,
       "prepayment": 0,
       "noteForOrder": "",
-      "numOrder": "00015",
-      "id": "00015",
-      "date": "06-12-2020 08:09"
+      "numOrder": "00017",
+      "id": "00017",
+      "date": "16-12-2020 01:25"
     },
     {
       "items": [
         {
-          "id": "cc65d40d-55ef-4bcb-af78-2d664087507e",
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
           "checkProduct": false,
-          "vendorCode": "",
-          "color": "",
-          "quantity": "0",
-          "price": "0",
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
           "discount": "0",
-          "sum": 0,
+          "sum": 350,
           "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
+        },
+        {
+          "id": "86102ea8-7e49-4964-8d38-fe971580f98e",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "черный (nero)",
+          "quantity": "10",
+          "price": 35,
+          "discount": "0",
+          "sum": 350,
+          "note": ""
+        },
+        {
+          "id": "5e04e8c5-0055-4c11-a375-618620d5f20c",
+          "checkProduct": false,
+          "vendorCode": "20",
+          "color": "белый (bianco)",
+          "quantity": "10",
+          "price": 40,
+          "discount": "0",
+          "sum": 400,
+          "note": ""
+        },
+        {
+          "id": "bc9e3275-37ba-484a-8882-152bcfa9de76",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "розовый античный (rosa antico)",
+          "quantity": "20",
+          "price": 35,
+          "discount": "0",
+          "sum": 700,
+          "note": ""
+        },
+        {
+          "id": "a8f4bb53-076f-40ae-b5bd-16aa57c10489",
+          "checkProduct": false,
+          "vendorCode": "10",
+          "color": "серый (grigio)",
+          "quantity": "30",
+          "price": 35,
+          "discount": "0",
+          "sum": 1050,
+          "note": ""
+        },
+        {
+          "id": "c28c562c-1d8e-4937-a3cb-da8b6638593c",
+          "checkProduct": false,
+          "vendorCode": "30",
+          "color": "коричневый (tmoro)",
+          "quantity": "5",
+          "price": 45,
+          "discount": "0",
+          "sum": 225,
+          "note": "Белая фурнитра"
         }
       ],
       "calculatedTotals": {
-        "positions": 1,
-        "quantity": 0,
-        "averagePrice": 0,
-        "sum": 0,
-        "remainderPaid": 0
+        "positions": 5,
+        "quantity": 75,
+        "averagePrice": 38,
+        "sum": 2725,
+        "remainderPaid": 2000
       },
       "contractorInfo": {
         "id": 2,
@@ -618,16 +855,16 @@
         "thirdName": "Романович",
         "tel": "+38 066 202 53 90",
         "email": "aleks@gmail.com",
-        "city": "Донецк",
+        "city": "Las Vegas",
         "post": 25,
-        "debt": -4450
+        "debt": -6450
       },
       "isSaved": true,
-      "prepayment": 0,
+      "prepayment": "725",
       "noteForOrder": "",
-      "numOrder": "00016",
-      "id": "00016",
-      "date": "06-12-2020 08:17"
+      "numOrder": "00018",
+      "id": "00018",
+      "date": "16-12-2020 01:34"
     }
   ]
 }

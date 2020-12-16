@@ -137,23 +137,16 @@ function SettingsBlockBtn({
           />
         </label>
 
-        <Tooltip
-          title={'Печать'}
-          arrow
-          disableHoverListener={currentOrder.isSaved}
+        <button
+          type="button"
+          onClick={() => {
+            // window.print();
+            setIsModalPrint(true);
+          }}
+          className={`${s.settingButton} ${s.printBtn}`}
         >
-          {/* ****** span - для Tooltip-a */}
-          <span>
-            <button
-              type="button"
-              onClick={() => setIsModalPrint(true)}
-              className={`${s.settingButton} ${s.printBtn}`}
-            >
-              <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
-              <div className="visually-hidden">Печать</div>
-            </button>
-          </span>
-        </Tooltip>
+          <PrintIcon style={{ color: '#fff', fontSize: 21 }} />
+        </button>
       </div>
       {isModalPrint && (
         <Modal
