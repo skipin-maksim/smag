@@ -2,8 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getOrdersList = state => state.orders.allOrders;
 
-const getCurrentContractorInfo = state => {
-  return state.orders.currentOrder.contractorInfo;
+const getCurrentClientInfo = state => {
+  return state.orders.currentOrder.clientInfo;
 };
 
 const getOrderById = (state, id) => {
@@ -25,15 +25,15 @@ const getProductLineById = (state, id) => {
   return getCurrentOrderItems(state).find(item => item.id === id);
 };
 
-const getFilterValue = state => state.orders.filterContractors;
+const getFilterValue = state => state.orders.filterClients;
 
 const getAllContactsList = state => state.contacts.allContacts;
 
-const getVisibleContractors = createSelector(
+const getVisibleClients = createSelector(
   [getAllContactsList, getFilterValue],
-  (contractors, filterValue) => {
-    return contractors.filter(contractor =>
-      contractor.secondName.toLowerCase().includes(filterValue),
+  (clients, filterValue) => {
+    return clients.filter(client =>
+      client.secondName.toLowerCase().includes(filterValue),
     );
   },
 );
@@ -44,7 +44,7 @@ const getDataOfTemporaryStorageLocation = state => {
 
 export default {
   getOrdersList,
-  getCurrentContractorInfo,
+  getCurrentClientInfo,
   getOrderById,
   getIsLoader,
   getCurrentOrder,
@@ -54,6 +54,6 @@ export default {
   getProductLineById,
   getFilterValue,
   getAllContactsList,
-  getVisibleContractors,
+  getVisibleClients,
   getDataOfTemporaryStorageLocation,
 };

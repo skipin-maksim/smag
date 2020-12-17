@@ -14,8 +14,8 @@ import { contactsOperations } from '../../redux/contacts';
 import Spinner from '../../components/Spinner/Spinner';
 import SettingsBlockBtn from '../../components/BlocksForNewOrderPage/SettingsBlockBtn/SettingsBlockBtn';
 import Modal from '../../components/Modal/Modal';
-import ContractorsInModal from '../../components/Modal/ContractorsInModal/ContractorsInModal';
-import ContractorsInfoBlock from '../../components/BlocksForNewOrderPage/ContractorsInfoBlock/ContractorsInfoBlock';
+import ClientsInModal from '../../components/Modal/ClientsInModal/ClientsInModal';
+import ClientsInfoBlock from '../../components/BlocksForNewOrderPage/ClientsInfoBlock/ClientsInfoBlock';
 import TableTitletLineBlock from '../../components/BlocksForNewOrderPage/TableTitletLineBlock/TableTitletLineBlock';
 import MoneyBlock from '../../components/BlocksForNewOrderPage/MoneyBlock/MoneyBlock';
 import WindowOrdersBlock from '../../components/BlocksForNewOrderPage/WindowOrdersBlock/WindowOrdersBlock';
@@ -107,13 +107,13 @@ class NewOrderPage extends React.Component {
       currentOrder,
       allContacts,
       currentOrderItems,
-      currentContractorInfo,
+      currentClientInfo,
       onChangeInputNoteForOrder,
       onChangePrepaymentInput,
       calculatedTotals,
       onCalculateRemainderPaid,
       onSaveToTemporaryStorageLocation,
-      onChoiseContractor,
+      onChoiseClient,
     } = this.props;
 
     return (
@@ -121,7 +121,7 @@ class NewOrderPage extends React.Component {
         {this.state.isModal && (
           <Modal
             onCloseModal={this.toggleModal}
-            children={<ContractorsInModal onCloseModal={this.toggleModal} />}
+            children={<ClientsInModal onCloseModal={this.toggleModal} />}
           />
         )}
 
@@ -129,10 +129,10 @@ class NewOrderPage extends React.Component {
           {isLoading && <Spinner />}
 
           <div className={s.ordersSettings}>
-            <ContractorsInfoBlock
-              currentContractorInfo={currentContractorInfo}
+            <ClientsInfoBlock
+              currentClientInfo={currentClientInfo}
               currentOrder={currentOrder}
-              onChoiseContractor={onChoiseContractor}
+              onChoiseClient={onChoiseClient}
               allContacts={allContacts}
               onOpenModal={this.toggleModal}
             />
@@ -189,7 +189,7 @@ const mSTP = state => ({
   allOrders: ordersSelectors.getOrdersList(state),
   calculatedTotals: ordersSelectors.getCalculatedTotals(state),
   isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
-  currentContractorInfo: ordersSelectors.getCurrentContractorInfo(state),
+  currentClientInfo: ordersSelectors.getCurrentClientInfo(state),
   dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
     state,
   ),

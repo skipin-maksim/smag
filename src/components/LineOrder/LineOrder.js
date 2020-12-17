@@ -39,12 +39,7 @@ export default function LineOrder({ idx, order, id }) {
     }
   };
 
-  const {
-    calculatedTotals,
-    contractorInfo,
-    prepayment,
-    noteForOrder,
-  } = orderItem;
+  const { calculatedTotals, clientInfo, prepayment, noteForOrder } = orderItem;
 
   return (
     <li
@@ -54,8 +49,7 @@ export default function LineOrder({ idx, order, id }) {
       <CheckBox />
       <span>{order.numOrder}</span>
       <span>
-        {contractorInfo.secondName} {contractorInfo.firstName}{' '}
-        {contractorInfo.thirdName}
+        {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}
       </span>
       <span>{calculatedTotals.positions}</span>
       <span>{calculatedTotals.quantity}</span>

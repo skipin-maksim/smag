@@ -7,7 +7,7 @@ const getContacts = () => async dispatch => {
   dispatch(contactsActions.getAllContactsRequest());
 
   try {
-    const { data } = await axios(`${baseUrl}/contractors`);
+    const { data } = await axios(`${baseUrl}/clients`);
 
     dispatch(contactsActions.getAllContactsSuccess(data));
   } catch (error) {

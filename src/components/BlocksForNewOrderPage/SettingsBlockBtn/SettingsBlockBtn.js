@@ -36,7 +36,7 @@ function SettingsBlockBtn({
   onCalculateTotalPositions,
   onCalculateRemainderPaid,
 
-  currentContractorInfo,
+  currentClientInfo,
 }) {
   const [isModalPrint, setIsModalPrint] = useState(false);
 
@@ -60,15 +60,15 @@ function SettingsBlockBtn({
   };
 
   const handleSaveBtn = () => {
-    if (currentContractorInfo.firstName) {
+    if (currentClientInfo.firstName) {
       const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
 
       // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
-      onSaveOrder(currentOrder, currentContractorInfo, currentNumOrderObj);
+      onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
 
       history.replace(`/orders/${currentNumOrderObj.valueStr}`);
     } else {
-      alert('Вы не выбрали контрагента');
+      alert('Вы не выбрали клиента');
     }
   };
 
@@ -104,7 +104,7 @@ function SettingsBlockBtn({
 
 const mSTP = state => ({
   currentOrder: ordersSelectors.getCurrentOrder(state),
-  currentContractorInfo: ordersSelectors.getCurrentContractorInfo(state),
+  currentClientInfo: ordersSelectors.getCurrentClientInfo(state),
   currentNumOrder: numOrderSelectors.getCurrentNum(state),
 });
 const mDTP = {

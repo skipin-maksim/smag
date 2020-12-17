@@ -63,23 +63,23 @@ export default function PrintModal({ currentOrder }) {
       <ul className={s.clientInfoBlock}>
         <li>
           <span className={s.clientInfoTitle}>Клиент:</span>
-          <span>{`${currentOrder.contractorInfo.secondName} ${currentOrder.contractorInfo.firstName} ${currentOrder.contractorInfo.thirdName}`}</span>
+          <span>{`${currentOrder.clientInfo.secondName} ${currentOrder.clientInfo.firstName} ${currentOrder.clientInfo.thirdName}`}</span>
         </li>
         <li>
           <span className={s.clientInfoTitle}>Город:</span>
-          <span>{`${currentOrder.contractorInfo.city}`}</span>
+          <span>{`${currentOrder.clientInfo.city}`}</span>
         </li>
         <li>
           <span className={s.clientInfoTitle}>Email:</span>
-          <span>{`${currentOrder.contractorInfo.email}`}</span>
+          <span>{`${currentOrder.clientInfo.email}`}</span>
         </li>
         <li>
           <span className={s.clientInfoTitle}>Телефон:</span>
-          <span>{`${currentOrder.contractorInfo.tel}`}</span>
+          <span>{`${currentOrder.clientInfo.tel}`}</span>
         </li>
         <li>
           <span className={s.clientInfoTitle}>Доставка:</span>
-          <span>{`Новая Почта ${currentOrder.contractorInfo.post}`}</span>
+          <span>{`Новая Почта ${currentOrder.clientInfo.post}`}</span>
         </li>
       </ul>
 

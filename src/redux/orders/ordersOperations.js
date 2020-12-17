@@ -33,22 +33,18 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
   }
 };
 
-const postOrder = (
-  currentOrder,
-  contractorInfo,
-  numOrder,
-) => async dispatch => {
+const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
-  const newContractorInfo = {
-    ...contractorInfo,
-    debt: contractorInfo.debt - currentOrder.calculatedTotals.remainderPaid,
+  const newClientInfo = {
+    ...clientInfo,
+    debt: clientInfo.debt - currentOrder.calculatedTotals.remainderPaid,
   };
 
   const postData = {
     ...currentOrder,
     isSaved: true,
-    contractorInfo: newContractorInfo,
+    clientInfo: newClientInfo,
     numOrder: numOrder.valueStr,
     id: numOrder.valueStr,
     date: dateNow,
@@ -65,10 +61,7 @@ const postOrder = (
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
     axios.patch(`${baseUrl}/numorder`, numOrder);
-    axios.patch(
-      `${baseUrl}/contractors/${contractorInfo.id}`,
-      newContractorInfo,
-    );
+    axios.patch(`${baseUrl}/clients/${clientInfo.id}`, newClientInfo);
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);
@@ -81,13 +74,13 @@ const getOrderById = id => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);
     const { data: dataContact } = await axios(
-      `${baseUrl}/contractors/${data.contractorInfo.id}`,
+      `${baseUrl}/clients/${data.clientInfo.id}`,
     );
 
     dispatch(
       ordersActions.getOrderByIdSuccess({
         ...data,
-        contractorInfo: dataContact,
+        clientInfo: dataContact,
       }),
     );
   } catch (error) {

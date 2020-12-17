@@ -7,14 +7,14 @@
   margin-bottom: 20px;
 }
 
-.contractorInfo {
+.clientInfo {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.contractorInfoInner {
+.clientInfoInner {
   width: 850px;
   & span {
     display: inline-block;
@@ -29,7 +29,7 @@
   }
 }
 
-.contractorInfoInnerDept {
+.clientInfoInnerDept {
   display: flex;
   align-items: center;
   font-weight: 800;
@@ -43,7 +43,7 @@
   }
 }
 
-.contractorsBlock {
+.clientsBlock {
   display: flex;
   align-items: center;
   width: 450px;
@@ -107,7 +107,7 @@
   }
 }
 
-.contractorsBtn {
+.clientsBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,7 +127,7 @@
   }
 }
 
-.contractorName {
+.clientName {
   margin-left: 20px;
   color: #1c2b4a;
 }

@@ -8,23 +8,23 @@ import { ordersActions, ordersSelectors } from '../../../redux/orders';
 import CloseBtn from '../../Buttons/CloseBtn';
 import Spinner from '../../Spinner/Spinner';
 
-import s from './ContractorsInModal.module.scss';
+import s from './ClientsInModal.module.scss';
 
-const ContractorsInModal = ({
+const ClientsInModal = ({
   filterContacts,
   onCloseModal,
-  onChoiseContractor,
-  onFilterContractors,
+  onChoiseClient,
+  onFilterClients,
   filterValue,
   isLoading,
 }) => {
   const handleCloseModal = contact => {
-    onChoiseContractor(contact);
+    onChoiseClient(contact);
     onCloseModal();
   };
 
   return (
-    <div className={s.modalContractors}>
+    <div className={s.modalClients}>
       <CloseBtn
         onClick={onCloseModal}
         additionalClassName={s.contarctorClose}
@@ -34,7 +34,7 @@ const ContractorsInModal = ({
         type="text"
         placeholder="поиск"
         className={s.searchInput}
-        onChange={({ target }) => onFilterContractors(target.value)}
+        onChange={({ target }) => onFilterClients(target.value)}
         value={filterValue}
       />
 
@@ -59,13 +59,13 @@ const ContractorsInModal = ({
 
 const mSTP = state => ({
   isLoading: contactsSelectors.getIsLoading(state),
-  filterContacts: ordersSelectors.getVisibleContractors(state),
+  filterContacts: ordersSelectors.getVisibleClients(state),
   filterValue: ordersSelectors.getFilterValue(state),
 });
 const mDTP = {
   // onCloseModal: modalActions.closeModal,
-  onChoiseContractor: ordersActions.choiseContractor,
-  onFilterContractors: ordersActions.filterContractors,
+  onChoiseClient: ordersActions.choiseClient,
+  onFilterClients: ordersActions.filterClients,
 };
 
-export default connect(mSTP, mDTP)(ContractorsInModal);
+export default connect(mSTP, mDTP)(ClientsInModal);

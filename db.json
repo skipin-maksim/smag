@@ -1,9 +1,9 @@
 {
   "numorder": {
-    "valueNum": 20,
-    "valueStr": "00020"
+    "valueNum": 21,
+    "valueStr": "00021"
   },
-  "contractors": [
+  "clients": [
     {
       "id": 1,
       "firstName": "Максим",
@@ -94,7 +94,7 @@
         "sum": 1750,
         "remainderPaid": 1750
       },
-      "contractorInfo": {
+      "clientInfo": {
         "id": 2,
         "firstName": "Алексей",
         "secondName": "Григоренко",
@@ -133,7 +133,7 @@
         "sum": 0,
         "remainderPaid": 0
       },
-      "contractorInfo": {
+      "clientInfo": {
         "id": 3,
         "firstName": "Юрий",
         "secondName": "Филатов",
@@ -150,6 +150,45 @@
       "numOrder": "00020",
       "id": "00020",
       "date": "17-12-2020 11:21"
+    },
+    {
+      "items": [
+        {
+          "id": "15f02459-d8a9-4f82-b355-597d414f0713",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "clientInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": 2,
+        "debt": -6025
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00021",
+      "id": "00021",
+      "date": "18-12-2020 12:55"
     }
   ]
 }

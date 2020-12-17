@@ -32,10 +32,7 @@ export default function MainComponent() {
             component={path.AsyncExhibitionsPage}
           />
 
-          <Route
-            path={routes.ContractorsPage}
-            component={path.AsyncContractorsPage}
-          />
+          <Route path={routes.ClientsPage} component={path.AsyncClientsPage} />
         </Switch>
       </Suspense>
     </main>

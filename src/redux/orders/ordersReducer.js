@@ -224,10 +224,10 @@ const currentOrder = createReducer(initCurrentOrder, {
   [ordersActions.getOrderByIdSuccess]: (state, { payload }) => {
     return payload;
   },
-  [ordersActions.choiseContractor]: (state, { payload }) => {
+  [ordersActions.choiseClient]: (state, { payload }) => {
     return {
       ...state,
-      contractorInfo: payload,
+      clientInfo: payload,
     };
   },
   [tabsActions.getDataOfTemporaryStorageLocation]: (state, { payload }) => {
@@ -236,8 +236,8 @@ const currentOrder = createReducer(initCurrentOrder, {
   [ordersActions.saveOrderSuccess]: (state, { payload }) => payload.data,
 });
 
-const filterContractors = createReducer('', {
-  [ordersActions.filterContractors]: (_, { payload }) => payload,
+const filterClients = createReducer('', {
+  [ordersActions.filterClients]: (_, { payload }) => payload,
 });
 
 const temporaryStorageLocation = createReducer(initCurrentOrder, {
@@ -256,7 +256,7 @@ const loader = createReducer(false, {
 export default combineReducers({
   allOrders,
   currentOrder,
-  filterContractors,
+  filterClients,
   temporaryStorageLocation,
   loader,
 });

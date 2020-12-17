@@ -3,7 +3,7 @@ export default {
   HomePage: '/home',
   ExhibitionsPage: '/exhibitions',
   SalesPage: '/sales',
-  ContractorsPage: '/contractors',
+  ClientsPage: '/clients',
   OrdersPage: '/orders',
   NewOrderPage: '/orders/:orderId',
 };

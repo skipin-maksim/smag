@@ -48,9 +48,9 @@ const getOrderByIdRequest = createAction('orders/getOrderByIdRequest');
 const getOrderByIdSuccess = createAction('orders/getOrderByIdSuccess');
 const getOrderByIdError = createAction('orders/getOrderByIdError');
 
-const choiseContractor = createAction('orders/choiseContractor');
+const choiseClient = createAction('orders/choiseClient');
 
-const filterContractors = createAction('orders/filterContractors');
+const filterClients = createAction('orders/filterClients');
 
 export default {
   getAllOrdersRequest,
@@ -91,6 +91,6 @@ export default {
   saveOrderSuccess,
   saveOrderError,
 
-  choiseContractor,
-  filterContractors,
+  choiseClient,
+  filterClients,
 };

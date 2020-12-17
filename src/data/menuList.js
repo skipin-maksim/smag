@@ -29,8 +29,8 @@ export default [
     path: routes.ExhibitionsPage,
   },
   {
-    name: 'Контрагенты',
+    name: 'Клиенты',
     icon: <PeopleOutlineIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.ContractorsPage,
+    path: routes.ClientsPage,
   },
 ];

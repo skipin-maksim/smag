@@ -13,8 +13,8 @@ const AsyncSalesPage = lazy(() =>
 const AsyncExhibitionsPage = lazy(() =>
   import('../views/ExhibitionsPage' /* webpackChunkName: "exhibitions-page" */),
 );
-const AsyncContractorsPage = lazy(() =>
-  import('../views/ContractorsPage' /* webpackChunkName: "contractors-page" */),
+const AsyncClientsPage = lazy(() =>
+  import('../views/ClientsPage' /* webpackChunkName: "clients-page" */),
 );
 const AsyncOrdersPage = lazy(() =>
   import(
@@ -32,7 +32,7 @@ export default {
   AsyncHomePage,
   AsyncSalesPage,
   AsyncExhibitionsPage,
-  AsyncContractorsPage,
+  AsyncClientsPage,
   AsyncOrdersPage,
   AsyncNewOrderPage,
 };

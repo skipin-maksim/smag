@@ -21,7 +21,7 @@ export const initNewOrder = {
     sum: 0,
     remainderPaid: 0,
   },
-  contractorInfo: {
+  clientInfo: {
     firstName: '',
     secondName: '',
     thirdName: '',
@@ -56,7 +56,7 @@ export const initCurrentOrder = {
     sum: 0,
     remainderPaid: 0,
   },
-  contractorInfo: {
+  clientInfo: {
     firstName: '',
     secondName: '',
     thirdName: '',
