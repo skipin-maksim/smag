@@ -27,12 +27,12 @@ const LineOrderProduct = ({
     onCalculateTotalSum,
     onCalculateTotalQuantity,
     onCalculateRemainderPaid,
-    onGetArticlePrice,
+    onGetVendorCodePrice,
     onSaveToTemporaryStorageLocation,
   } = actions;
 
-  const handleQuantity = (artValue, name) => {
-    onChangeInputQuantity({ value: artValue, name });
+  const handleQuantity = (vendorCodeValue, name) => {
+    onChangeInputQuantity({ value: vendorCodeValue, name });
 
     onCalculateSum();
     onCalculateTotalQuantity();
@@ -42,8 +42,8 @@ const LineOrderProduct = ({
     if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
   };
 
-  const handleDiscount = (artValue, name) => {
-    onChangeInput({ value: artValue, name });
+  const handleDiscount = (vendorCodeValue, name) => {
+    onChangeInput({ value: vendorCodeValue, name });
 
     onCalculateSum();
     onCalculateTotalSum();
@@ -53,7 +53,7 @@ const LineOrderProduct = ({
   };
 
   const handleVendorCode = async target => {
-    await onGetArticlePrice(target.value);
+    await onGetVendorCodePrice(target.value);
 
     onCalculateSum();
     onCalculateTotalSum();
@@ -198,7 +198,7 @@ const mDTP = (dispatch, { id }) => ({
       ordersActions.changeLineProductInputQuantity({ id, ...values }),
     );
   },
-  onGetArticlePrice: vendorCode => {
+  onGetVendorCodePrice: vendorCode => {
     return dispatch(ordersOperations.getPriceByArt(vendorCode, id));
   },
 
