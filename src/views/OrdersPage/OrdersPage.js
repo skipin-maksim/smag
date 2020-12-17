@@ -2,12 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Tooltip from '@material-ui/core/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
 import {
   ordersSelectors,
   ordersOperations,
@@ -20,11 +14,10 @@ import LineOrder from '../../components/LineOrder/LineOrder';
 import CheckBox from '../../components/CheckBox/CheckBox';
 
 import s from './OrdersPage.module.scss';
+import AddBtn from '../../components/Buttons/AddBtn/AddBtn';
+import RemoveBtn from '../../components/Buttons/RemoveBtn/RemoveBtn';
+import EditBtn from '../../components/Buttons/EditBtn/EditBtn';
 class OrdersPage extends React.Component {
-  // const onMoveSlideRight = useCallback(
-  //   () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 200)),
-  //   [dispatch, leftPositionLineTabs],
-  // );
   componentDidMount() {
     this.props.allOrders();
   }
@@ -62,52 +55,17 @@ class OrdersPage extends React.Component {
     return (
       <div className={s.orderPage}>
         <div className={s.ordersSettings}>
-          <div className={s.contractorsBlock}>
-            <input type="text" className={s.ordersSearch} />
-            <Tooltip title={'Выбрать контрагента'} arrow>
-              <button
-                type="button"
-                className={`${s.settingButton} ${s.dotsBtn}`}
-              >
-                <MoreHorizIcon style={{ color: '#fff' }} />
-              </button>
-            </Tooltip>
-          </div>
+          <input type="text" className={s.ordersSearch} />
 
           <div className={s.settingButtons}>
-            <Tooltip title={'Добавить заказ'} arrow>
-              <button
-                name={'addNewOrder'}
-                to={'orders/new-order'}
-                onClick={({ target }) => this.handleAddNewOrder(target.name)}
-                className={`${s.settingButton} ${s.addBtn}`}
-              >
-                <AddIcon style={{ color: '#98C379', fontSize: 21 }} />
-                <div className="visually-hidden">Добавить заказ</div>
-              </button>
-            </Tooltip>
+            <AddBtn
+              data={{ isSaved: false }}
+              onCreate={this.handleAddNewOrder}
+            />
 
-            <Tooltip title={'Изменить заказ'} arrow>
-              <button
-                type="button"
-                // onClick={this.handleAddLineProduct}
-                className={`${s.settingButton} ${s.changeBtn}`}
-              >
-                <EditIcon style={{ color: '#D19A66', fontSize: 21 }} />
-                <div className="visually-hidden">Изменить заказ</div>
-              </button>
-            </Tooltip>
+            <EditBtn />
 
-            <Tooltip title={'Удалить заказ'} arrow>
-              <button
-                type="button"
-                // onClick={this.handleAddLineProduct}
-                className={`${s.settingButton} ${s.removeBtn}`}
-              >
-                <DeleteForeverIcon style={{ color: '#DE6A73', fontSize: 21 }} />
-                <div className="visually-hidden">Удалить заказ</div>
-              </button>
-            </Tooltip>
+            <RemoveBtn data={{ isSaved: false }} />
           </div>
         </div>
 

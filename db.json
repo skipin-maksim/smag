@@ -1,7 +1,7 @@
 {
   "numorder": {
-    "valueNum": 19,
-    "valueStr": "00019"
+    "valueNum": 20,
+    "valueStr": "00020"
   },
   "contractors": [
     {
@@ -111,6 +111,45 @@
       "numOrder": "00019",
       "id": "00019",
       "date": "16-12-2020 10:58"
+    },
+    {
+      "items": [
+        {
+          "id": "7096e0ea-209a-44f1-a211-99f5cb395ca9",
+          "checkProduct": false,
+          "vendorCode": "",
+          "color": "",
+          "quantity": "0",
+          "price": "0",
+          "discount": "0",
+          "sum": 0,
+          "note": ""
+        }
+      ],
+      "calculatedTotals": {
+        "positions": 1,
+        "quantity": 0,
+        "averagePrice": 0,
+        "sum": 0,
+        "remainderPaid": 0
+      },
+      "contractorInfo": {
+        "id": 3,
+        "firstName": "Юрий",
+        "secondName": "Филатов",
+        "thirdName": "Иванович",
+        "tel": "+38 066 202 53 90",
+        "email": "fil@gmail.com",
+        "city": "Ивано-Франковск",
+        "post": 2,
+        "debt": -6025
+      },
+      "isSaved": true,
+      "prepayment": 0,
+      "noteForOrder": "",
+      "numOrder": "00020",
+      "id": "00020",
+      "date": "17-12-2020 11:21"
     }
   ]
 }

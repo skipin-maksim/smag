@@ -21,23 +21,28 @@
 }
 
 .ordersSearch {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 .settingButtons {
   display: flex;
   align-items: center;
+
+  & button {
+    margin-right: 20px;
+  }
 }
 
-.settingButton {
+.dotsBtn {
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  width: 55px;
   min-height: 30px;
   border: none;
   border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   background-color: #1c2b4a;
   transition: all 0.25s linear;
   outline: none;
@@ -47,40 +52,10 @@
     background-color: #314775;
   }
 
-  &.addBtn {
-    width: 55px;
-    margin: 0 3px;
-
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
+  &:disabled:hover {
+    background-color: #1c2b4a;
+    cursor: default;
   }
-  &.changeBtn {
-    width: 55px;
-    margin: 0 3px;
-
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
-  }
-  &.removeBtn {
-    width: 55px;
-    margin: 0 3px;
-
-    &:hover {
-      background-color: transparent;
-      border: #1c2b4a 1px solid;
-    }
-  }
-}
-
-.dotsBtn {
-  width: 40px;
-  border: none;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
 
 .orderWrapper {

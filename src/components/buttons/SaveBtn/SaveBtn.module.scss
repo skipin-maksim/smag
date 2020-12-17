@@ -1,0 +1,61 @@
+.labelSaveBtnNotSaved {
+  padding-right: 7px;
+  position: relative;
+  width: 140px;
+  height: 30px;
+  background-color: #de6a73;
+  border-radius: 5px;
+  text-align: right;
+  font-size: 12px;
+  line-height: 30px;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    width: 55px;
+    height: 30px;
+    background: url(../../../assets/images/iconNotSaved.svg), #1c2b4a;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28%;
+    border-radius: 5px;
+  }
+}
+
+.labelSaveBtnIstSaved {
+  padding-left: 16px;
+  position: relative;
+  width: 140px;
+  height: 30px;
+  background-color: #98c379;
+  border-radius: 5px;
+  cursor: default;
+  text-align: left;
+  font-size: 12px;
+  line-height: 30px;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    display: block;
+    width: 55px;
+    height: 30px;
+    background: url(../../../assets/images/iconSaved.svg), #1c2b4a;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28%;
+    border-radius: 5px;
+  }
+}
+
+.saveBtn {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

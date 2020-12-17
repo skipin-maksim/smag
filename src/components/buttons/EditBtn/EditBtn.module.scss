@@ -1,22 +1,8 @@
-.settingButtons {
-  display: flex;
-  align-items: center;
-
-  & span,
-  & label {
-    margin-right: 20px;
-  }
-
-  @media print {
-    display: none;
-  }
-}
-
 .settingButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
+  width: 55px;
   min-height: 30px;
   border: none;
   border-radius: 5px;
@@ -27,14 +13,6 @@
 
   &:hover {
     background-color: #314775;
-  }
-
-  &.removeBtn {
-    width: 55px;
-  }
-
-  &.printBtn {
-    margin-left: 20px;
   }
 
   &:disabled:hover {
