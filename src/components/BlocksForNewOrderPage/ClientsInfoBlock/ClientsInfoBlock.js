@@ -43,9 +43,7 @@ export default function ClientsInfoBlock({
       </div>
       <div className={s.clientInfoInner}>
         <span>{city}</span>
-        <span>
-          {!post ? 'нет данных по доставке' : `Новая Почта № ${post}`}
-        </span>
+        <span>{!post ? 'нет данных по доставке' : post}</span>
         <span>{tel}</span>
       </div>
 

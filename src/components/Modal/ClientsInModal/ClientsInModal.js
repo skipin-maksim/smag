@@ -42,7 +42,7 @@ const ClientsInModal = ({
         <ul className={s.list}>
           {filterContacts.map(contact => (
             <li
-              key={contact.id}
+              key={contact._id}
               onClick={() => {
                 handleCloseModal(contact);
               }}

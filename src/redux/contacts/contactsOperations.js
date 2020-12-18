@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { contactsActions } from './';
 
-const baseUrl = 'http://localhost:2000';
+const baseUrl = 'https://smagserver.herokuapp.com';
 
 const getContacts = () => async dispatch => {
   dispatch(contactsActions.getAllContactsRequest());
@@ -9,7 +9,7 @@ const getContacts = () => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/clients`);
 
-    dispatch(contactsActions.getAllContactsSuccess(data));
+    dispatch(contactsActions.getAllContactsSuccess(data.clients));
   } catch (error) {
     dispatch(contactsActions.getAllContactsError(error));
   }
