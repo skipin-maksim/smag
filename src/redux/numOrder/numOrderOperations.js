@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { numOrderActions } from './';
 
-const baseUrl = 'http://localhost:2000';
+const baseUrl = 'https://smagserver.herokuapp.com';
 
 const getCurrentNumOrder = () => async dispatch => {
   dispatch(numOrderActions.numOrderRequest());
@@ -10,9 +10,7 @@ const getCurrentNumOrder = () => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/numorder`);
 
-    dispatch(numOrderActions.numOrderSuccess(data));
-
-    // axios.patch(`${baseUrl}/numorder`, currentNumOrderObj);
+    dispatch(numOrderActions.numOrderSuccess(...data.numOrder));
   } catch (error) {
     dispatch(numOrderActions.numOrderError());
     console.error(error);

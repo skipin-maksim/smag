@@ -9,7 +9,7 @@ export default function PrintBtn({ onOpenModalPrint }) {
     <button
       type="button"
       onClick={() => {
-        onOpenModalPrint(true);
+        onOpenModalPrint();
       }}
       className={s.settingButton}
     >

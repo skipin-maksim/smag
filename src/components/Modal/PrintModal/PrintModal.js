@@ -4,7 +4,6 @@ import logoImg from '../../../assets/images/logo3.png';
 import s from './PrintModal.module.scss';
 
 export default function PrintModal({ currentOrder }) {
-  console.log(currentOrder);
   return (
     <div className={s.modalPrint}>
       <div className={s.infoBlock}>
@@ -54,7 +53,11 @@ export default function PrintModal({ currentOrder }) {
           <li>
             <span className={s.liTitle}>Остаток:</span>{' '}
             <span>
-              {currentOrder.calculatedTotals.remainderPaid.toLocaleString('ru')}
+              {currentOrder.calculatedTotals.remainderPaid < 0
+                ? 0
+                : currentOrder.calculatedTotals.remainderPaid.toLocaleString(
+                    'ru',
+                  )}
             </span>
           </li>
         </ul>

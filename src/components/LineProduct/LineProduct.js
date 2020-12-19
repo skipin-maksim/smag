@@ -53,7 +53,11 @@ const LineOrderProduct = ({
   };
 
   const handleVendorCode = async target => {
-    await onGetVendorCodePrice(target.value);
+    if (target.value) {
+      await onGetVendorCodePrice(target.value);
+    } else {
+      return;
+    }
 
     onCalculateSum();
     onCalculateTotalSum();

@@ -1,41 +1,5 @@
 {
-  "numorder": {
-    "valueNum": 21,
-    "valueStr": "00021"
-  },
-  "products": [
-    {
-      "id": 10,
-      "vendorCode": "10",
-      "prices": {
-        "retail": 20,
-        "wholesale": 35
-      }
-    },
-    {
-      "id": 20,
-      "vendorCode": "20",
-      "prices": {
-        "retail": 25,
-        "wholesale": 40
-      }
-    },
-    {
-      "id": 30,
-      "vendorCode": "30",
-      "prices": {
-        "retail": 30,
-        "wholesale": 45
-      }
-    },
-    {
-      "id": 40,
-      "vendorCode": "40",
-      "prices": {
-        "retail": 35,
-        "wholesale": 50
-      }
-    }
-  ],
+  "numorder": {},
+  "products": [],
   "orders": []
 }

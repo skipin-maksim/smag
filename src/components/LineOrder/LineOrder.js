@@ -10,9 +10,6 @@ import s from './LineOrder.module.scss';
 
 export default function LineOrder({ idx, order, id }) {
   const widthLineTabs = useSelector(state => state.tabs.positionData.width);
-  const orderItem = useSelector(state =>
-    state.orders.allOrders.find(item => item.id === id),
-  );
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,7 +36,7 @@ export default function LineOrder({ idx, order, id }) {
     }
   };
 
-  const { calculatedTotals, clientInfo, prepayment, noteForOrder } = orderItem;
+  const { calculatedTotals, clientInfo, prepayment, noteForOrder } = order;
 
   return (
     <li

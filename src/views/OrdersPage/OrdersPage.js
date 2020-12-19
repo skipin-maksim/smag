@@ -84,7 +84,12 @@ class OrdersPage extends React.Component {
           <ul className={s.customerOrderList}>
             {ordersList.map((item, idx) => {
               return (
-                <LineOrder key={item.id} idx={idx} id={item.id} order={item} />
+                <LineOrder
+                  key={item._id}
+                  idx={idx}
+                  id={item.numOrder}
+                  order={item}
+                />
               );
             })}
           </ul>

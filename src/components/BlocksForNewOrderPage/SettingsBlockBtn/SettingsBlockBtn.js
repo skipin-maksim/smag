@@ -41,7 +41,7 @@ function SettingsBlockBtn({
   const [isModalPrint, setIsModalPrint] = useState(false);
 
   const createNewOrderNum = prevNum => {
-    const editCustomNumber = value => ('00000' + (value + 1)).substr(-5);
+    const editCustomNumber = value => ('000000' + (value + 1)).substr(-6);
 
     return {
       valueNum: prevNum.valueNum + 1,
@@ -81,6 +81,12 @@ function SettingsBlockBtn({
     onCalculateTotalPositions();
   };
 
+  const handeMoadlPrint = () => {
+    currentOrder.isSaved
+      ? setIsModalPrint(true)
+      : alert('Заказ не сохранен!!! Для печати, сохраните заказ');
+  };
+
   return (
     <>
       <div className={s.settingButtons}>
@@ -90,7 +96,7 @@ function SettingsBlockBtn({
 
         <SaveBtn data={currentOrder} onSave={handleSaveBtn} />
 
-        <PrintBtn onOpenModalPrint={setIsModalPrint} />
+        <PrintBtn onOpenModalPrint={handeMoadlPrint} />
       </div>
       {isModalPrint && (
         <Modal
