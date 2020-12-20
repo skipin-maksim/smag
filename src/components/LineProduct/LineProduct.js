@@ -183,7 +183,7 @@ const LineOrderProduct = ({
         name="note"
         value={getProductLineById.note}
         className={s.noteSpan}
-        disabled={!getProductLineById.vendorCode}
+        disabled={currentOrder.isSaved || !getProductLineById.vendorCode}
       />
     </li>
   );

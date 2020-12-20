@@ -52,7 +52,8 @@ export default function LineOrder({ idx, order, id }) {
       <span>{calculatedTotals.sum}</span>
       <span>{prepayment}</span>
       <span>{order.date}</span>
-      <span>{noteForOrder}</span>
+      <span>статус</span>
+      <span className={s.noteForOrder}>{noteForOrder}</span>
     </li>
   );
 }

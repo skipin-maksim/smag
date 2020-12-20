@@ -86,6 +86,7 @@ class OrdersPage extends React.Component {
           <span>Сумма</span>
           <span>Предоплата</span>
           <span>Дата</span>
+          <span>Статус</span>
           <span>Заметки</span>
         </div>
 

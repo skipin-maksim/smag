@@ -1,6 +1,7 @@
 .orderPage {
   position: relative;
   padding: 36px;
+  font-size: 14px;
 }
 
 .ordersSettings {
@@ -157,4 +158,8 @@
   padding: 5px 10px;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+
+  &:disabled {
+    color: #1c2b4a;
+  }
 }
