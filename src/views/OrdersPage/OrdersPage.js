@@ -53,12 +53,17 @@ class OrdersPage extends React.Component {
   };
 
   render() {
-    const { ordersList } = this.props;
+    const { visibleOrders, filterOrderValue, onFilterOrders } = this.props;
 
     return (
       <div className={s.orderPage}>
         <div className={s.ordersSettings}>
-          <input type="text" className={s.ordersSearch} />
+          <input
+            type="text"
+            className={s.ordersSearch}
+            value={filterOrderValue}
+            onChange={({ target }) => onFilterOrders(target.value)}
+          />
 
           <div className={s.settingButtons}>
             <AddBtn
@@ -93,7 +98,7 @@ class OrdersPage extends React.Component {
             }}
           >
             <ul className={s.customerOrderList}>
-              {ordersList
+              {visibleOrders
                 .map((item, idx) => {
                   return (
                     <LineOrder
@@ -121,6 +126,8 @@ const mSTP = state => ({
     state,
   ),
   widthLineTabs: tabsSelectors.getWidthLineTabs(state),
+  filterOrderValue: ordersSelectors.getFilterOrdersValue(state),
+  visibleOrders: ordersSelectors.getVisibleOrders(state),
 });
 
 const mDTP = {
@@ -129,6 +136,7 @@ const mDTP = {
   addTab: tabsActions.addTabOrder,
   allOrders: ordersOperations.getAllOrders,
   onClearTemporaryStorageLocation: ordersActions.clearTemporaryStorageLocation,
+  onFilterOrders: ordersActions.filterOrders,
 };
 
 export default withRouter(connect(mSTP, mDTP)(OrdersPage));

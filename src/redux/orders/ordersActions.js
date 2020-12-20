@@ -48,6 +48,8 @@ const choiseClient = createAction('orders/choiseClient');
 
 const filterClients = createAction('orders/filterClients');
 
+const filterOrders = createAction('orders/filterOrders');
+
 export default {
   getAllOrdersRequest,
   getAllOrdersSuccess,
@@ -89,4 +91,5 @@ export default {
 
   choiseClient,
   filterClients,
+  filterOrders,
 };

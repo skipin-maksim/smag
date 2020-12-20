@@ -240,6 +240,10 @@ const filterClients = createReducer('', {
   [ordersActions.filterClients]: (_, { payload }) => payload,
 });
 
+const filterOrders = createReducer('', {
+  [ordersActions.filterOrders]: (_, { payload }) => payload,
+});
+
 const temporaryStorageLocation = createReducer(initCurrentOrder, {
   [tabsActions.saveToTemporaryStorageLocation]: (state, { payload }) => payload,
   [ordersActions.clearTemporaryStorageLocation]: (state, { payload }) => {
@@ -257,6 +261,7 @@ export default combineReducers({
   allOrders,
   currentOrder,
   filterClients,
+  filterOrders,
   temporaryStorageLocation,
   loader,
 });

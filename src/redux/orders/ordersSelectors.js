@@ -27,6 +27,8 @@ const getProductLineById = (state, id) => {
 
 const getFilterValue = state => state.orders.filterClients;
 
+const getFilterOrdersValue = state => state.orders.filterOrders;
+
 const getAllContactsList = state => state.contacts.allContacts;
 
 const getVisibleClients = createSelector(
@@ -35,6 +37,17 @@ const getVisibleClients = createSelector(
     return clients.filter(client =>
       client.secondName.toLowerCase().includes(filterValue),
     );
+  },
+);
+
+const getVisibleOrders = createSelector(
+  [getOrdersList, getFilterOrdersValue],
+  (orders, filterValue) => {
+    return orders.filter(order => {
+      return order.clientInfo.secondName
+        .toLowerCase()
+        .includes(filterValue.toLowerCase());
+    });
   },
 );
 
@@ -56,4 +69,6 @@ export default {
   getAllContactsList,
   getVisibleClients,
   getDataOfTemporaryStorageLocation,
+  getFilterOrdersValue,
+  getVisibleOrders,
 };
