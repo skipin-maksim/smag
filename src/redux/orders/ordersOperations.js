@@ -3,6 +3,8 @@ import moment from 'moment';
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
+import routes from '../../routes';
+
 const baseUrl = 'https://smagserver.herokuapp.com';
 const dateNow = moment().format('DD-MM-YYYY hh:mm');
 
@@ -53,7 +55,7 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
   const createTabForNewOrder = tabsActions.addTab({
     name: `Заказ №${numOrder.valueStr}`,
-    path: `/orders/${numOrder.valueStr}`,
+    path: `${routes.OrdersPage}/${numOrder.valueStr}`,
   });
 
   try {

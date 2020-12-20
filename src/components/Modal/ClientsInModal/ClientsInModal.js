@@ -63,7 +63,6 @@ const mSTP = state => ({
   filterValue: ordersSelectors.getFilterValue(state),
 });
 const mDTP = {
-  // onCloseModal: modalActions.closeModal,
   onChoiseClient: ordersActions.choiseClient,
   onFilterClients: ordersActions.filterClients,
 };

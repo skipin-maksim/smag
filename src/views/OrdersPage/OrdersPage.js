@@ -17,6 +17,8 @@ import s from './OrdersPage.module.scss';
 import AddBtn from '../../components/Buttons/AddBtn/AddBtn';
 import RemoveBtn from '../../components/Buttons/RemoveBtn/RemoveBtn';
 import EditBtn from '../../components/Buttons/EditBtn/EditBtn';
+
+import routes from '../../routes';
 class OrdersPage extends React.Component {
   componentDidMount() {
     this.props.allOrders();
@@ -33,7 +35,7 @@ class OrdersPage extends React.Component {
     } else {
       this.props.addTab({
         name: 'Заказ № ***?',
-        path: '/orders/new-order',
+        path: `${routes.OrdersPage}/new-order`,
       });
 
       if (this.props.widthLineTabs > 1300) {
@@ -45,7 +47,7 @@ class OrdersPage extends React.Component {
 
       this.props.getCurrentNumOrder();
 
-      this.props.history.replace('/orders/new-order');
+      this.props.history.replace('orders/new-order');
     }
   };
 

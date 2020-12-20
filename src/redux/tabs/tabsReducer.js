@@ -4,7 +4,9 @@ import { createReducer } from '@reduxjs/toolkit';
 import { tabsActions } from './';
 import ordersActions from '../orders/ordersActions';
 
-const initialStateItem = [{ name: 'Главная', path: '/home' }];
+import routes from '../../routes';
+
+const initialStateItem = [{ name: 'Главная', path: routes.HomePage }];
 
 const addTab = (state, payload) => {
   const isTabs = state.find(item => item.name === payload.name);
@@ -26,7 +28,9 @@ const items = createReducer(initialStateItem, {
   [tabsActions.removeTab]: (state, { payload }) => removeTab(state, payload),
   [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-    const newState = state.filter(item => item.path !== '/orders/new-order');
+    const newState = state.filter(
+      item => item.path !== `${routes.OrdersPage}/new-order`,
+    );
 
     return [...newState, payload.createTabForNewOrder.payload];
   },
@@ -43,7 +47,7 @@ const positionData = createReducer(
     },
   },
 );
-// getPositionLeft
+
 export default combineReducers({
   items,
   positionData,

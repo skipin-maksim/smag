@@ -30,12 +30,12 @@ class NewOrderPage extends React.Component {
 
     this.props.onCalculateTotalPositions();
 
-    if (this.props.history.location.pathname.slice(8) === 'new-order') {
+    if (this.props.history.location.pathname.slice(12) === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(
         this.props.dataOfTemporaryStorageLocation,
       );
-    } else if (Number(this.props.history.location.pathname.slice(8))) {
-      this.props.onGetOrderById(this.props.history.location.pathname.slice(8));
+    } else if (Number(this.props.history.location.pathname.slice(12))) {
+      this.props.onGetOrderById(this.props.history.location.pathname.slice(12));
     }
   }
 

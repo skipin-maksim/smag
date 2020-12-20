@@ -10,8 +10,6 @@ import LineListTabs from './LineListTabs';
 
 import s from './HeaderComponent.module.scss';
 
-//TODO Попробовать сдеать так, чтоб слайдер перелыстывался после добавления нового заказа!!!
-
 export default function HeaderComponent() {
   const tabsList = useSelector(state => state.tabs.items);
   const widthLineTabs = useSelector(state => state.tabs.positionData.width);

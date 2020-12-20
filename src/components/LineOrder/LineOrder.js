@@ -6,6 +6,8 @@ import { tabsActions } from '../../redux/tabs';
 import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 
+import routes from '../../routes';
+
 import s from './LineOrder.module.scss';
 
 export default function LineOrder({ idx, order, id }) {
@@ -25,10 +27,10 @@ export default function LineOrder({ idx, order, id }) {
   const handleOpenOrder = () => {
     onAddTab({
       name: `Заказ №${id}`,
-      path: `/orders/${id}`,
+      path: `${routes.OrdersPage}/${id}`,
     });
 
-    history.replace(`/orders/${id}`);
+    history.replace(`${routes.OrdersPage}/${id}`);
 
     if (widthLineTabs > 1300) {
       const futurePositionLeft = widthLineTabs - 1212;

@@ -12,7 +12,6 @@
   margin: 0 auto;
   width: 1500px;
   display: flex;
-  // grid-template-columns: repeat(7, 200px);
   justify-content: flex-start;
   align-items: flex-end;
   overflow: hidden;
@@ -48,7 +47,6 @@
 .lineListTabs {
   position: relative;
   display: flex;
-  // grid-template-columns: repeat(7, 200px);
   justify-content: flex-start;
   align-items: flex-end;
   grid-column-gap: 2px;

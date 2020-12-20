@@ -40,10 +40,6 @@ const calculateRemainderPaid = createAction('orders/calculateRemainderPaid');
 
 const changePrepaymentInput = createAction('orders/changePrepaymentInput');
 
-// const numOrderRequest = createAction('orders/numOrderRequest');
-// const numOrderSuccess = createAction('orders/numOrderSuccess');
-// const numOrderError = createAction('orders/numOrderError');
-
 const getOrderByIdRequest = createAction('orders/getOrderByIdRequest');
 const getOrderByIdSuccess = createAction('orders/getOrderByIdSuccess');
 const getOrderByIdError = createAction('orders/getOrderByIdError');

@@ -1,9 +1,10 @@
 export default {
-  root: '/',
-  HomePage: '/home',
-  ExhibitionsPage: '/exhibitions',
-  SalesPage: '/sales',
-  ClientsPage: '/clients',
-  OrdersPage: '/orders',
-  NewOrderPage: '/orders/:orderId',
+  RootPage: '/',
+  AppPage: '/app',
+  HomePage: '/app/home',
+  ExhibitionsPage: '/app/exhibitions',
+  SalesPage: '/app/sales',
+  ClientsPage: '/app/clients',
+  OrdersPage: '/app/orders',
+  NewOrderPage: '/app/orders/:orderId',
 };

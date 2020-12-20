@@ -11,6 +11,8 @@ import {
 
 import CloseBtn from '../Buttons/CloseBtn';
 
+import routes from '../../routes';
+
 import s from './HeaderComponent.module.scss';
 class Tab extends React.Component {
   handleOnCloseTab = (name, path, idxItem) => {
@@ -21,7 +23,7 @@ class Tab extends React.Component {
     */
     this.props.tabsList.reduce((previous, current) => {
       if (idxItem === 0 && this.props.tabsList.length === 1) {
-        this.props.history.replace('/home');
+        this.props.history.replace(routes.HomePage);
         this.props.removeTab(name);
         return current;
       }
@@ -34,8 +36,8 @@ class Tab extends React.Component {
       if (current.path === path && pathname === path) {
         this.props.history.replace(previous.path);
 
-        if (Number(previous.path.slice(8))) {
-          this.props.onGetOrderById(previous.path.slice(8));
+        if (Number(previous.path.slice(12))) {
+          this.props.onGetOrderById(previous.path.slice(12));
         }
         this.props.removeTab(name);
         return current;
@@ -51,7 +53,7 @@ class Tab extends React.Component {
   };
 
   getDataOrderById = tabId => {
-    const currentId = tabId.slice(8);
+    const currentId = tabId.slice(12);
 
     if (currentId === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(

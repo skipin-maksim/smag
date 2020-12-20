@@ -19,6 +19,8 @@ import {
   numOrderSelectors,
 } from '../../../redux/numOrder/';
 
+import routes from '../../../routes';
+
 import s from './SettingsBlockBtn.module.scss';
 
 function SettingsBlockBtn({
@@ -66,7 +68,7 @@ function SettingsBlockBtn({
       // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
       onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
 
-      history.replace(`/orders/${currentNumOrderObj.valueStr}`);
+      history.replace(`${routes.OrdersPage}/${currentNumOrderObj.valueStr}`);
     } else {
       alert('Вы не выбрали клиента');
     }
