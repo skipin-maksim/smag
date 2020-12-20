@@ -66,6 +66,7 @@ export const initCurrentOrder = {
     debt: 0,
   },
   isSaved: false,
+  isEdit: false,
   prepayment: 0,
   noteForOrder: '',
 };

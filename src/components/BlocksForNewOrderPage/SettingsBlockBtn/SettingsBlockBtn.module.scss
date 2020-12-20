@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 
-  & span,
+  & button,
   & label {
     margin-right: 20px;
   }
@@ -27,14 +27,6 @@
 
   &:hover {
     background-color: #314775;
-  }
-
-  &.removeBtn {
-    width: 55px;
-  }
-
-  &.printBtn {
-    margin-left: 20px;
   }
 
   &:disabled:hover {

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Modal from '../../Modal/Modal';
 import PrintModal from '../../Modal/PrintModal/PrintModal';
+import EditBtn from '../../Buttons/EditBtn/EditBtn';
 import SaveBtn from '../../Buttons/SaveBtn/SaveBtn';
 import PrintBtn from '../../Buttons/PrintBtn/PrintBtn';
 import AddBtn from '../../Buttons/AddBtn/AddBtn';
@@ -38,6 +39,8 @@ function SettingsBlockBtn({
   onCalculateTotalPositions,
   onCalculateRemainderPaid,
 
+  onEditOrderClick,
+
   currentClientInfo,
 }) {
   const [isModalPrint, setIsModalPrint] = useState(false);
@@ -59,6 +62,11 @@ function SettingsBlockBtn({
     onCalculateAveragePrice();
     onCalculateTotalPositions();
     onCalculateRemainderPaid();
+  };
+
+  const handleEdit = () => {
+    console.log(currentOrder.isSaved);
+    onEditOrderClick({ isSaved: false, isEdit: false });
   };
 
   const handleSaveBtn = () => {
@@ -96,6 +104,12 @@ function SettingsBlockBtn({
 
         <RemoveBtn data={currentOrder} onRemove={handleDelete} />
 
+        <EditBtn
+          data={currentOrder}
+          onEdit={handleEdit}
+          isEdit={currentOrder.isEdit}
+        />
+
         <SaveBtn data={currentOrder} onSave={handleSaveBtn} />
 
         <PrintBtn onOpenModalPrint={handeMoadlPrint} />
@@ -128,6 +142,7 @@ const mDTP = {
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
   onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
   onSaveOrder: ordersOperations.postOrder,
+  onEditOrderClick: ordersActions.editOrder,
 };
 
 export default withRouter(connect(mSTP, mDTP)(SettingsBlockBtn));

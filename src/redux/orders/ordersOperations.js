@@ -47,6 +47,7 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   const postData = {
     ...currentOrder,
     isSaved: true,
+    isEdit: true,
     clientInfo: newClientInfo,
     numOrder: numOrder.valueStr,
     id: numOrder.valueStr,
