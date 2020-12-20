@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 const AsyncRootPage = lazy(() =>
-  import('../views/RootPage' /* webpackChunkName: "root-page" */),
+  import('../views/RootPage/RootPage' /* webpackChunkName: "root-page" */),
 );
 const AsyncAppPage = lazy(() =>
   import('../components/App/App' /* webpackChunkName: "app-page" */),

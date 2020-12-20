@@ -1,0 +1,30 @@
+.rootWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c2b4a;
+}
+
+.rootInner {
+  width: 300px;
+  padding: 40px 30px 80px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.input {
+  margin-bottom: 30px;
+  min-height: 38px;
+}
+
+.login {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  background-color: #1c2b4a;
+  border-radius: 5px;
+}
