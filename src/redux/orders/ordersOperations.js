@@ -30,9 +30,13 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
     dispatch(ordersActions.calculateSum({ id }));
     dispatch(ordersActions.calculateAveragePrice());
   } catch (error) {
-    console.error(error);
+    if (error.message === 'Request failed with status code 404') {
+      console.log(`Артикул ${vendorCode} не найден!`);
+      alert(`Артикул ${vendorCode} не найден!`);
+      return;
+    }
+    console.log(error);
     dispatch(ordersActions.getPriceByArtError(error));
-    alert('Нет такого артикула');
   }
 };
 
@@ -75,6 +79,52 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   }
 };
 
+const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
+  dispatch(ordersActions.patchOrderRequest());
+
+  console.log(currentOrder);
+  console.log(clientInfo.debt - currentOrder.calculatedTotals.remainderPaid);
+  console.log(clientInfo.debt + currentOrder.prepayment);
+
+  const newClientInfo = {
+    ...clientInfo,
+    debt: clientInfo.debt + currentOrder.calculatedTotals.remainderPaid,
+  };
+
+  const postData = {
+    ...currentOrder,
+    isSaved: true,
+    isEdit: true,
+    clientInfo: newClientInfo,
+    date: dateNow,
+  };
+
+  // const createTabForNewOrder = tabsActions.addTab({
+  //   name: `Заказ №${numOrder.valueStr}`,
+  //   path: `${routes.OrdersPage}/${numOrder.valueStr}`,
+  // });
+
+  try {
+    const { data } = await axios.patch(
+      `${baseUrl}/orders/${currentOrder._id}`,
+      postData,
+    );
+
+    // const { data: dataOrder } = await axios.post(`${baseUrl}/orders`, postData);
+
+    // const data = dataOrder.order;
+
+    dispatch(ordersActions.patchOrderSuccess(data.order));
+
+    // axios.patch(`${baseUrl}/numorder/5fde67cfb0a5f803a8e092ae`, numOrder);
+
+    // axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+  } catch (error) {
+    dispatch(ordersActions.patchOrderError());
+    console.error(error);
+  }
+};
+
 const getOrderById = id => async dispatch => {
   dispatch(ordersActions.getOrderByIdRequest());
 
@@ -100,5 +150,6 @@ export default {
   getAllOrders,
   getPriceByArt,
   postOrder,
+  patchOrder,
   getOrderById,
 };

@@ -15,6 +15,10 @@ const saveOrderRequest = createAction('orders/saveOrderRequest');
 const saveOrderSuccess = createAction('orders/saveOrderSuccess');
 const saveOrderError = createAction('orders/saveOrderError');
 
+const patchOrderRequest = createAction('orders/patchOrderRequest');
+const patchOrderSuccess = createAction('orders/patchOrderSuccess');
+const patchOrderError = createAction('orders/patchOrderError');
+
 const clearCurrentOrder = createAction('orders/clearCurrentOrder');
 const clearTemporaryStorageLocation = createAction(
   'orders/clearTemporaryStorageLocation',
@@ -85,9 +89,14 @@ export default {
 
   removeOrder,
   editOrder,
+
   saveOrderRequest,
   saveOrderSuccess,
   saveOrderError,
+
+  patchOrderRequest,
+  patchOrderSuccess,
+  patchOrderError,
 
   choiseClient,
   filterClients,

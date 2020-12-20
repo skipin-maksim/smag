@@ -29,9 +29,13 @@ function SettingsBlockBtn({
   currentOrder,
   currentNumOrder,
 
+  getCurrentNumOrder,
+  onGetOrderById,
+
   onCreateLineProduct,
   onDeleteLineSelectedProduct,
   onSaveOrder,
+  onPatchOrder,
 
   onCalculateTotalQuantity,
   onCalculateTotalSum,
@@ -65,18 +69,27 @@ function SettingsBlockBtn({
   };
 
   const handleEdit = () => {
-    console.log(currentOrder.isSaved);
+    getCurrentNumOrder();
+
     onEditOrderClick({ isSaved: false, isEdit: false });
   };
 
-  const handleSaveBtn = () => {
+  const handleSaveBtn = async () => {
+    const currentPath = history.location.pathname.slice(12);
+
     if (currentClientInfo.firstName) {
-      const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
+      if (currentPath === 'new-order') {
+        const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
 
-      // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
-      onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
+        // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
+        onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
 
-      history.replace(`${routes.OrdersPage}/${currentNumOrderObj.valueStr}`);
+        history.replace(`${routes.OrdersPage}/${currentNumOrderObj.valueStr}`);
+      } else {
+        //TODO запрос за заказом
+
+        onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
+      }
     } else {
       alert('Вы не выбрали клиента');
     }
@@ -131,6 +144,7 @@ const mSTP = state => ({
 });
 const mDTP = {
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
+  onGetOrderById: ordersOperations.getOrderById,
 
   onCreateLineProduct: ordersActions.createLineProduct,
   onCreateLineProductCopy: ordersActions.createLineProductCopy,
@@ -142,6 +156,7 @@ const mDTP = {
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
   onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
   onSaveOrder: ordersOperations.postOrder,
+  onPatchOrder: ordersOperations.patchOrder,
   onEditOrderClick: ordersActions.editOrder,
 };
 

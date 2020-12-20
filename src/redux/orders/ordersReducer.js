@@ -234,10 +234,8 @@ const currentOrder = createReducer(initCurrentOrder, {
     return { ...payload };
   },
   [ordersActions.saveOrderSuccess]: (state, { payload }) => payload.data,
-  [ordersActions.editOrder]: (state, { payload }) => {
-    console.log('->', payload);
-    return { ...state, ...payload };
-  },
+  [ordersActions.patchOrderSuccess]: (state, { payload }) => payload,
+  [ordersActions.editOrder]: (state, { payload }) => ({ ...state, ...payload }),
 });
 
 const filterClients = createReducer('', {
