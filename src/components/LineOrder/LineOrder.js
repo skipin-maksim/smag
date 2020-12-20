@@ -41,13 +41,10 @@ export default function LineOrder({ idx, order, id }) {
   const { calculatedTotals, clientInfo, prepayment, noteForOrder } = order;
 
   return (
-    <li
-      className={`${s.customerOrderItem} ${lineColorPick(idx)}`}
-      onClick={handleOpenOrder}
-    >
+    <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
       <CheckBox />
       <span>{order.numOrder}</span>
-      <span>
+      <span className={s.nameClient} onDoubleClick={handleOpenOrder}>
         {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}
       </span>
       <span>{calculatedTotals.positions}</span>

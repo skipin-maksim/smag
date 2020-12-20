@@ -34,22 +34,32 @@ const ClientsInModal = ({
         type="text"
         placeholder="поиск"
         className={s.searchInput}
-        onChange={({ target }) => onFilterClients(target.value)}
+        onChange={({ target }) => onFilterClients(target.value.toLowerCase())}
         value={filterValue}
       />
 
       <Scrollbar style={{ width: 549, height: 299 }}>
         <ul className={s.list}>
-          {filterContacts.map(contact => (
-            <li
-              key={contact._id}
-              onClick={() => {
-                handleCloseModal(contact);
-              }}
-            >
-              {` ${contact.secondName} ${contact.firstName}  ${contact.thirdName}`}
-            </li>
-          ))}
+          {filterContacts
+            .map(contact => (
+              <li
+                key={contact._id}
+                onClick={() => {
+                  handleCloseModal(contact);
+                }}
+              >
+                {` ${contact.secondName} ${contact.firstName}  ${contact.thirdName}`}
+              </li>
+            ))
+            .sort(function (a, b) {
+              if (a.props.children > b.props.children) {
+                return 1;
+              }
+              if (a.props.children < b.props.children) {
+                return -1;
+              }
+              return 0;
+            })}
         </ul>
       </Scrollbar>
       {isLoading && <Spinner />}

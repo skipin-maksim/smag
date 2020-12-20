@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Scrollbar } from 'react-scrollbars-custom';
 
 import {
   ordersSelectors,
@@ -82,19 +83,30 @@ class OrdersPage extends React.Component {
           <span>Дата</span>
           <span>Заметки</span>
         </div>
+
         <div className={s.windowOrders}>
-          <ul className={s.customerOrderList}>
-            {ordersList.map((item, idx) => {
-              return (
-                <LineOrder
-                  key={item._id}
-                  idx={idx}
-                  id={item.numOrder}
-                  order={item}
-                />
-              );
-            })}
-          </ul>
+          <Scrollbar
+            style={{
+              width: 1567,
+              height: 550,
+              boxShadow: '0 0 5px rgba(0, 0, 0, 0.233)',
+            }}
+          >
+            <ul className={s.customerOrderList}>
+              {ordersList
+                .map((item, idx) => {
+                  return (
+                    <LineOrder
+                      key={item._id}
+                      idx={idx}
+                      id={item.numOrder}
+                      order={item}
+                    />
+                  );
+                })
+                .reverse()}
+            </ul>
+          </Scrollbar>
         </div>
       </div>
     );
