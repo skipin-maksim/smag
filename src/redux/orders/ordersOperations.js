@@ -82,22 +82,18 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   dispatch(ordersActions.patchOrderRequest());
 
-  console.log(currentOrder);
-  console.log(clientInfo.debt - currentOrder.calculatedTotals.remainderPaid);
-  console.log(clientInfo.debt + currentOrder.prepayment);
+  // const newClientInfo = {
+  //   ...clientInfo,
+  //   debt: clientInfo.debt + currentOrder.calculatedTotals.remainderPaid,
+  // };
 
-  const newClientInfo = {
-    ...clientInfo,
-    debt: clientInfo.debt + currentOrder.calculatedTotals.remainderPaid,
-  };
-
-  const postData = {
-    ...currentOrder,
-    isSaved: true,
-    isEdit: true,
-    clientInfo: newClientInfo,
-    date: dateNow,
-  };
+  // const postData = {
+  //   ...currentOrder,
+  //   isSaved: true,
+  //   isEdit: true,
+  //   clientInfo: newClientInfo,
+  //   date: dateNow,
+  // };
 
   // const createTabForNewOrder = tabsActions.addTab({
   //   name: `Заказ №${numOrder.valueStr}`,
@@ -105,10 +101,34 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   // });
 
   try {
+    const { data: serverOrderData } = await axios(
+      `${baseUrl}/orders/${currentOrder.numOrder}`,
+    );
+
+    const resetDebtWithoutCurrentOrderRemainderPaid =
+      clientInfo.debt + serverOrderData.order.calculatedTotals.remainderPaid;
+
+    const newClientInfo = {
+      ...clientInfo,
+      debt:
+        resetDebtWithoutCurrentOrderRemainderPaid -
+        currentOrder.calculatedTotals.remainderPaid,
+    };
+
+    const postData = {
+      ...currentOrder,
+      isSaved: true,
+      isEdit: true,
+      clientInfo: newClientInfo,
+      date: dateNow,
+    };
+
     const { data } = await axios.patch(
       `${baseUrl}/orders/${currentOrder._id}`,
       postData,
     );
+
+    console.log(data);
 
     // const { data: dataOrder } = await axios.post(`${baseUrl}/orders`, postData);
 
@@ -118,7 +138,7 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
     // axios.patch(`${baseUrl}/numorder/5fde67cfb0a5f803a8e092ae`, numOrder);
 
-    // axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+    axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
   } catch (error) {
     dispatch(ordersActions.patchOrderError());
     console.error(error);
@@ -127,6 +147,8 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
 const getOrderById = id => async dispatch => {
   dispatch(ordersActions.getOrderByIdRequest());
+
+  console.log(id);
 
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);

@@ -30,7 +30,6 @@ function SettingsBlockBtn({
   currentNumOrder,
 
   getCurrentNumOrder,
-  onGetOrderById,
 
   onCreateLineProduct,
   onDeleteLineSelectedProduct,
@@ -86,8 +85,6 @@ function SettingsBlockBtn({
 
         history.replace(`${routes.OrdersPage}/${currentNumOrderObj.valueStr}`);
       } else {
-        //TODO запрос за заказом
-
         onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
       }
     } else {
@@ -144,7 +141,6 @@ const mSTP = state => ({
 });
 const mDTP = {
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
-  onGetOrderById: ordersOperations.getOrderById,
 
   onCreateLineProduct: ordersActions.createLineProduct,
   onCreateLineProductCopy: ordersActions.createLineProductCopy,

@@ -7,7 +7,11 @@ const getCurrentClientInfo = state => {
 };
 
 const getOrderById = (state, id) => {
-  return state.orders.allOrders.find(item => item.id === id);
+  return state.orders.allOrders.find(item => {
+    console.log('id', id);
+    console.log('_id', item._id);
+    return item._id === id;
+  });
 };
 
 const getIsLoader = state => state.orders.loader;
