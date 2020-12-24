@@ -19,6 +19,8 @@ import AddBtn from '../../components/Buttons/AddBtn/AddBtn';
 import RemoveBtn from '../../components/Buttons/RemoveBtn/RemoveBtn';
 import EditBtn from '../../components/Buttons/EditBtn/EditBtn';
 
+import notification from 'toastr';
+
 import routes from '../../routes';
 class OrdersPage extends React.Component {
   componentDidMount() {
@@ -31,7 +33,10 @@ class OrdersPage extends React.Component {
     );
 
     if (isTab) {
-      alert('Перед созданием нового заказа, сохраните предыдущий заказ');
+      notification.warning(
+        'Перед созданием нового заказа, сохраните предыдущий заказ',
+        'Предупреждение',
+      );
       return;
     } else {
       this.props.addTab({

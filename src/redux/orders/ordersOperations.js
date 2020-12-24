@@ -1,5 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
+import notification from 'toastr';
+
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
@@ -31,8 +33,11 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
     dispatch(ordersActions.calculateAveragePrice());
   } catch (error) {
     if (error.message === 'Request failed with status code 404') {
-      console.log(`Артикул ${vendorCode} не найден!`);
-      alert(`Артикул ${vendorCode} не найден!`);
+      notification.error(
+        `Такого артикула, не существует в базе данных!!!`,
+        `Артикул ${vendorCode} не найден`,
+      );
+
       return;
     }
     console.log(error);
@@ -70,6 +75,11 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
+    notification.success(
+      `Заказ №${numOrder.valueStr} создан и сохранен`,
+      'Сохранен!',
+    );
+
     axios.patch(`${baseUrl}/numorder/5fde67cfb0a5f803a8e092ae`, numOrder);
 
     axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
@@ -81,24 +91,6 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
 const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   dispatch(ordersActions.patchOrderRequest());
-
-  // const newClientInfo = {
-  //   ...clientInfo,
-  //   debt: clientInfo.debt + currentOrder.calculatedTotals.remainderPaid,
-  // };
-
-  // const postData = {
-  //   ...currentOrder,
-  //   isSaved: true,
-  //   isEdit: true,
-  //   clientInfo: newClientInfo,
-  //   date: dateNow,
-  // };
-
-  // const createTabForNewOrder = tabsActions.addTab({
-  //   name: `Заказ №${numOrder.valueStr}`,
-  //   path: `${routes.OrdersPage}/${numOrder.valueStr}`,
-  // });
 
   try {
     const { data: serverOrderData } = await axios(
@@ -128,17 +120,21 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
       postData,
     );
 
-    console.log(data);
-
-    // const { data: dataOrder } = await axios.post(`${baseUrl}/orders`, postData);
-
-    // const data = dataOrder.order;
-
     dispatch(ordersActions.patchOrderSuccess(data.order));
 
-    // axios.patch(`${baseUrl}/numorder/5fde67cfb0a5f803a8e092ae`, numOrder);
+    notification.success(
+      `Заказ №${numOrder.valueStr} успешно изменен`,
+      'Изменен!',
+    );
 
-    axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+    try {
+      await axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+
+      notification.info(``, 'Долг клиента обновлен!');
+    } catch (error) {
+      notification.error(``, 'Долг клиента не обновлен!');
+      console.error(error);
+    }
   } catch (error) {
     dispatch(ordersActions.patchOrderError());
     console.error(error);

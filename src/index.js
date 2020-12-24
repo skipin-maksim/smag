@@ -12,6 +12,7 @@ import path from './helpers/allAsyncViews';
 
 import 'modern-normalize/modern-normalize.css';
 import './main.scss';
+import './helpers/toastrSetting';
 
 ReactDOM.render(
   <BrowserRouter>

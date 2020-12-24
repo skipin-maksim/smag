@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import notification from 'toastr';
 
 import Modal from '../../Modal/Modal';
 import PrintModal from '../../Modal/PrintModal/PrintModal';
@@ -71,6 +72,8 @@ function SettingsBlockBtn({
     getCurrentNumOrder();
 
     onEditOrderClick({ isSaved: false, isEdit: false });
+
+    notification.info(`Заказ в стадии изменения`, 'Изменение!!!');
   };
 
   const handleSaveBtn = async () => {
@@ -88,7 +91,8 @@ function SettingsBlockBtn({
         onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
       }
     } else {
-      alert('Вы не выбрали клиента');
+      notification.warning('Вы не выбрали клиента', 'Предупреждение');
+      return;
     }
   };
 
