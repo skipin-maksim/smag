@@ -58,10 +58,10 @@ const SettingsBlockBtn = ({
     () => dispatch(ordersActions.createLineProduct()),
     [dispatch],
   );
-  const onCreateLineProductCopy = useCallback(
-    () => dispatch(ordersActions.createLineProductCopy()),
-    [dispatch],
-  );
+  // const onCreateLineProductCopy = useCallback(
+  //   () => dispatch(ordersActions.createLineProductCopy()),
+  //   [dispatch],
+  // );
   const onDeleteLineSelectedProduct = useCallback(
     () => dispatch(ordersActions.deleteLineSelectedProduct()),
     [dispatch],
@@ -104,6 +104,7 @@ const SettingsBlockBtn = ({
     const editCustomNumber = value => ('000000' + (value + 1)).substr(-6);
 
     return {
+      ...prevNum,
       valueNum: prevNum.valueNum + 1,
       valueStr: editCustomNumber(prevNum.valueNum),
     };
@@ -137,7 +138,7 @@ const SettingsBlockBtn = ({
         // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
         onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
 
-        history.replace(`orders/${currentNumOrderObj.valueStr}`);
+        history.replace(`/orders/${currentNumOrderObj.valueStr}`);
       } else {
         onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
       }

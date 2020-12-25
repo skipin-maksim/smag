@@ -41,7 +41,7 @@ class OrdersPage extends React.Component {
     } else {
       this.props.addTab({
         name: 'Заказ № ***?',
-        path: `orders/new-order`,
+        path: `/orders/new-order`,
       });
 
       if (this.props.widthLineTabs > 1300) {
@@ -53,7 +53,7 @@ class OrdersPage extends React.Component {
 
       this.props.getCurrentNumOrder();
 
-      this.props.history.replace('orders/new-order');
+      this.props.history.replace('/orders/new-order');
     }
   };
 

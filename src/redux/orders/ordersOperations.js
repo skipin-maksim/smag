@@ -65,7 +65,7 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
   const createTabForNewOrder = tabsActions.addTab({
     name: `Заказ №${numOrder.valueStr}`,
-    path: `${routes.OrdersPage}/${numOrder.valueStr}`,
+    path: `/orders/${numOrder.valueStr}`,
   });
 
   try {
