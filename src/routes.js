@@ -6,5 +6,5 @@ export default {
   SalesPage: '/app/sales',
   ClientsPage: '/app/clients',
   OrdersPage: '/app/orders',
-  NewOrderPage: '/app/orders/:orderId',
+  CurrentOrder: '/app/orders/:orderId',
 };

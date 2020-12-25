@@ -23,8 +23,8 @@ export default function MainComponent() {
 
           <Route
             exact
-            path={routes.NewOrderPage}
-            component={path.AsyncNewOrderPage}
+            path={routes.CurrentOrder}
+            component={path.AsyncCurrentOrder}
           />
 
           <Route

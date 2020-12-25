@@ -9,7 +9,7 @@ import {
   ordersSelectors,
 } from '../../redux/orders';
 
-import CloseBtn from '../Buttons/CloseBtn';
+import CloseBtn from '../Buttons/CloseBtn/CloseBtn';
 
 import routes from '../../routes';
 

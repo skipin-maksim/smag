@@ -5,7 +5,7 @@ import { Scrollbar } from 'react-scrollbars-custom';
 import { contactsSelectors } from '../../../redux/contacts';
 import { ordersActions, ordersSelectors } from '../../../redux/orders';
 
-import CloseBtn from '../../Buttons/CloseBtn';
+import CloseBtn from '../../Buttons/CloseBtn/CloseBtn';
 import Spinner from '../../Spinner/Spinner';
 
 import s from './ClientsInModal.module.scss';

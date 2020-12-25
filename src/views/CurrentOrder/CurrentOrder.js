@@ -2,27 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { tabsActions } from '../../redux/tabs/';
+import { tabsActions } from '../../redux/tabs';
 import {
   ordersActions,
   ordersOperations,
   ordersSelectors,
-} from '../../redux/orders/';
-import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder/';
+} from '../../redux/orders';
+import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder';
 import { contactsOperations } from '../../redux/contacts';
 
 import Spinner from '../../components/Spinner/Spinner';
-import SettingsBlockBtn from '../../components/BlocksForNewOrderPage/SettingsBlockBtn/SettingsBlockBtn';
+import SettingsBlockBtn from '../../components/BlocksForCurrentOrder/SettingsBlockBtn/SettingsBlockBtn';
 import Modal from '../../components/Modal/Modal';
 import ClientsInModal from '../../components/Modal/ClientsInModal/ClientsInModal';
-import ClientsInfoBlock from '../../components/BlocksForNewOrderPage/ClientsInfoBlock/ClientsInfoBlock';
-import TableTitletLineBlock from '../../components/BlocksForNewOrderPage/TableTitletLineBlock/TableTitletLineBlock';
-import MoneyBlock from '../../components/BlocksForNewOrderPage/MoneyBlock/MoneyBlock';
-import WindowOrdersBlock from '../../components/BlocksForNewOrderPage/WindowOrdersBlock/WindowOrdersBlock';
+import ClientsInfoBlock from '../../components/BlocksForCurrentOrder/ClientsInfoBlock/ClientsInfoBlock';
+import TableTitletLineBlock from '../../components/BlocksForCurrentOrder/TableTitletLineBlock/TableTitletLineBlock';
+import MoneyBlock from '../../components/BlocksForCurrentOrder/MoneyBlock/MoneyBlock';
+import WindowOrdersBlock from '../../components/BlocksForCurrentOrder/WindowOrdersBlock/WindowOrdersBlock';
 
-import s from './NewOrderPage.module.scss';
+import s from './CurrentOrder.module.scss';
 
-class NewOrderPage extends React.Component {
+class CurrentOrder extends React.Component {
   state = { isCheckAll: false, isModal: false };
 
   componentDidMount() {
@@ -221,4 +221,4 @@ const mDTP = {
     tabsActions.getDataOfTemporaryStorageLocation,
 };
 
-export default withRouter(connect(mSTP, mDTP)(NewOrderPage));
+export default withRouter(connect(mSTP, mDTP)(CurrentOrder));
