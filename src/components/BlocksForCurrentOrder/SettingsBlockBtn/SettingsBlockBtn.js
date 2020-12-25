@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
 import Modal from '../../Modal/Modal';
@@ -11,37 +11,15 @@ import PrintBtn from '../../Buttons/PrintBtn/PrintBtn';
 import AddBtn from '../../Buttons/AddBtn/AddBtn';
 import RemoveBtn from '../../Buttons/RemoveBtn/RemoveBtn';
 
-import {
-  ordersActions,
-  ordersOperations,
-  ordersSelectors,
-} from '../../../redux/orders/';
-import {
-  numOrderOperations,
-  numOrderSelectors,
-} from '../../../redux/numOrder/';
-
-// import routes from '../../../routes';
+import { ordersActions, ordersOperations } from '../../../redux/orders/';
+import { numOrderOperations } from '../../../redux/numOrder/';
 
 import s from './SettingsBlockBtn.module.scss';
 
-const SettingsBlockBtn = ({
-  history,
-
-  // onCreateLineProduct,
-  // onDeleteLineSelectedProduct,
-  // onSaveOrder,
-  // onPatchOrder,
-
-  // onCalculateTotalQuantity,
-  // onCalculateTotalSum,
-  // onCalculateAveragePrice,
-  // onCalculateTotalPositions,
-  // onCalculateRemainderPaid,
-
-  // onEditOrderClick,
-}) => {
+export default function SettingsBlockBtn() {
   const [isModalPrint, setIsModalPrint] = useState(false);
+
+  const history = useHistory();
 
   const currentOrder = useSelector(state => state.orders.currentOrder);
   const currentClientInfo = useSelector(
@@ -188,6 +166,4 @@ const SettingsBlockBtn = ({
       )}
     </>
   );
-};
-
-export default withRouter(connect()(SettingsBlockBtn));
+}

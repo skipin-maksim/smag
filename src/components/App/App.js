@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useCallback } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { Beforeunload } from 'react-beforeunload';
 
 import { ordersOperations } from '../../redux/orders/';
@@ -13,7 +13,7 @@ import PublicRoute from '../PublicRoute';
 
 import routes from '../../routes';
 
-const App = () => {
+export default function App() {
   const dispatch = useDispatch();
 
   const getAllOrders = useCallback(
@@ -52,6 +52,4 @@ const App = () => {
     </BrowserRouter>
     // </Beforeunload>
   );
-};
-
-export default connect()(App);
+}
