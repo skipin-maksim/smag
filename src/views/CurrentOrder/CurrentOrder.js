@@ -68,11 +68,11 @@ class CurrentOrder extends React.Component {
     }
 
     if (e.code === 'Enter' && e.ctrlKey && e.shiftKey) {
-      const lastItem = this.props.currentOrderItems.find(
+      const prevItem = this.props.currentOrderItems.find(
         (item, idx) => idx === this.props.currentOrderItems.length - 1,
       );
 
-      this.props.onCreateLineProductCopy(lastItem);
+      this.props.onCreateLineProductCopy(prevItem);
       this.props.onCalculateTotalPositions();
     }
   };

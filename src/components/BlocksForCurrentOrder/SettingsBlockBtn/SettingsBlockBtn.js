@@ -5,10 +5,11 @@ import notification from 'toastr';
 
 import Modal from '../../Modal/Modal';
 import PrintModal from '../../Modal/PrintModal/PrintModal';
+import AddBtn from '../../Buttons/AddBtn/AddBtn';
+import AddWithCopyBtn from '../../Buttons/AddWithCopyBtn/AddWithCopyBtn';
 import EditBtn from '../../Buttons/EditBtn/EditBtn';
 import SaveBtn from '../../Buttons/SaveBtn/SaveBtn';
 import PrintBtn from '../../Buttons/PrintBtn/PrintBtn';
-import AddBtn from '../../Buttons/AddBtn/AddBtn';
 import RemoveBtn from '../../Buttons/RemoveBtn/RemoveBtn';
 
 import { ordersActions, ordersOperations } from '../../../redux/orders/';
@@ -36,10 +37,10 @@ export default function SettingsBlockBtn() {
     () => dispatch(ordersActions.createLineProduct()),
     [dispatch],
   );
-  // const onCreateLineProductCopy = useCallback(
-  //   () => dispatch(ordersActions.createLineProductCopy()),
-  //   [dispatch],
-  // );
+  const onCreateLineProductCopy = useCallback(
+    prevItem => dispatch(ordersActions.createLineProductCopy(prevItem)),
+    [dispatch],
+  );
   const onDeleteLineSelectedProduct = useCallback(
     () => dispatch(ordersActions.deleteLineSelectedProduct()),
     [dispatch],
@@ -70,11 +71,12 @@ export default function SettingsBlockBtn() {
     [dispatch],
   );
   const onPatchOrder = useCallback(
-    () => dispatch(ordersOperations.patchOrder()),
+    (order, client, num) =>
+      dispatch(ordersOperations.patchOrder(order, client, num)),
     [dispatch],
   );
   const onEditOrderClick = useCallback(
-    () => dispatch(ordersActions.editOrder()),
+    newDataOrder => dispatch(ordersActions.editOrder(newDataOrder)),
     [dispatch],
   );
 
@@ -135,6 +137,18 @@ export default function SettingsBlockBtn() {
     onCalculateTotalPositions();
   };
 
+  const lastProductItem = useSelector(state => {
+    const arrItems = state.orders.currentOrder.items;
+
+    return arrItems.find((item, idx) => idx === arrItems.length - 1);
+  });
+
+  const onCreateLineWithCopy = () => {
+    console.log(lastProductItem);
+    onCreateLineProductCopy(lastProductItem);
+    onCalculateTotalPositions();
+  };
+
   const handeMoadlPrint = () => {
     currentOrder.isSaved
       ? setIsModalPrint(true)
@@ -145,6 +159,8 @@ export default function SettingsBlockBtn() {
     <>
       <div className={s.settingButtons}>
         <AddBtn data={currentOrder} onCreate={onCreateLine} />
+
+        <AddWithCopyBtn data={currentOrder} onCreate={onCreateLineWithCopy} />
 
         <RemoveBtn data={currentOrder} onRemove={handleDelete} />
 
