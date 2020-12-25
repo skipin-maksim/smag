@@ -21,7 +21,7 @@ import {
   numOrderSelectors,
 } from '../../../redux/numOrder/';
 
-import routes from '../../../routes';
+// import routes from '../../../routes';
 
 import s from './SettingsBlockBtn.module.scss';
 
@@ -77,7 +77,7 @@ function SettingsBlockBtn({
   };
 
   const handleSaveBtn = async () => {
-    const currentPath = history.location.pathname.slice(12);
+    const currentPath = history.location.pathname.slice(8);
 
     if (currentClientInfo.firstName) {
       if (currentPath === 'new-order') {
@@ -86,7 +86,7 @@ function SettingsBlockBtn({
         // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
         onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
 
-        history.replace(`${routes.OrdersPage}/${currentNumOrderObj.valueStr}`);
+        history.replace(`orders/${currentNumOrderObj.valueStr}`);
       } else {
         onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
       }

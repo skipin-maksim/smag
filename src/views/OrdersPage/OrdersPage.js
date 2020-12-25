@@ -21,7 +21,7 @@ import EditBtn from '../../components/Buttons/EditBtn/EditBtn';
 
 import notification from 'toastr';
 
-import routes from '../../routes';
+// import routes from '../../routes';
 class OrdersPage extends React.Component {
   componentDidMount() {
     this.props.allOrders();
@@ -41,7 +41,7 @@ class OrdersPage extends React.Component {
     } else {
       this.props.addTab({
         name: 'Заказ № ***?',
-        path: `${routes.OrdersPage}/new-order`,
+        path: `orders/new-order`,
       });
 
       if (this.props.widthLineTabs > 1300) {

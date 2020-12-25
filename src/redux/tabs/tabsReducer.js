@@ -4,9 +4,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { tabsActions } from './';
 import ordersActions from '../orders/ordersActions';
 
-import routes from '../../routes';
-
-const initialStateItem = [{ name: 'Главная', path: routes.HomePage }];
+const initialStateItem = [];
 
 const addTab = (state, payload) => {
   const isTabs = state.find(item => item.name === payload.name);
@@ -16,9 +14,9 @@ const addTab = (state, payload) => {
   return state;
 };
 const removeTab = (state, payload) => {
-  if (state.length === 1) {
-    return initialStateItem;
-  }
+  // if (state.length === 1) {
+  //   return initialStateItem;
+  // }
 
   return state.filter(item => item.name !== payload);
 };
@@ -28,9 +26,7 @@ const items = createReducer(initialStateItem, {
   [tabsActions.removeTab]: (state, { payload }) => removeTab(state, payload),
   [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-    const newState = state.filter(
-      item => item.path !== `${routes.OrdersPage}/new-order`,
-    );
+    const newState = state.filter(item => item.path !== `/orders/new-order`);
 
     return [...newState, payload.createTabForNewOrder.payload];
   },

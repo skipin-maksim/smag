@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter, useRouteMatch } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
@@ -10,8 +10,6 @@ import {
 } from '../../redux/orders';
 
 import CloseBtn from '../Buttons/CloseBtn/CloseBtn';
-
-import routes from '../../routes';
 
 import s from './HeaderComponent.module.scss';
 
@@ -29,8 +27,6 @@ const Tab = ({
   onSaveToTemporaryStorageLocation,
   onGetDataOfTemporaryStorageLocation,
 }) => {
-  const match = useRouteMatch();
-
   const handleOnCloseTab = (name, path, idxItem) => {
     const { pathname } = history.location;
     /*
@@ -39,7 +35,7 @@ const Tab = ({
     */
     tabsList.reduce((previous, current) => {
       if (idxItem === 0 && tabsList.length === 1) {
-        history.replace(routes.HomePage);
+        history.replace('/');
         removeTab(name);
         return current;
       }
@@ -52,8 +48,8 @@ const Tab = ({
       if (current.path === path && pathname === path) {
         history.replace(previous.path);
 
-        if (Number(previous.path.slice(12))) {
-          onGetOrderById(previous.path.slice(12));
+        if (Number(previous.path.slice(8))) {
+          onGetOrderById(previous.path.slice(8));
         }
         removeTab(name);
         return current;
@@ -69,8 +65,7 @@ const Tab = ({
   };
 
   const getDataOrderById = tabId => {
-    console.log(match);
-    const currentId = tabId.slice(12);
+    const currentId = tabId.slice(8);
 
     if (currentId === 'new-order') {
       onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);

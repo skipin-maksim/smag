@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import route from '../../routes';
-
-import s from './PootPage.module.scss';
+import s from './LoginPage.module.scss';
 
 export default function RootViews() {
   return (
@@ -11,7 +9,7 @@ export default function RootViews() {
       <div className={s.rootInner}>
         <input className={s.input} type={'text'} />
         <input className={s.input} type={'password'} />
-        <Link className={s.login} to={route.HomePage}>
+        <Link className={s.login} to={'/'}>
           Перейти к приложению
         </Link>
       </div>

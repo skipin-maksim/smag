@@ -5,32 +5,30 @@ import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
-import routes from '../routes';
-
 export default [
   {
     name: 'Главная',
     icon: <StoreIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.HomePage,
+    path: '/',
   },
   {
     name: 'Продажи',
     icon: <MonetizationOnIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.SalesPage,
+    path: '/sales',
   },
   {
     name: 'Заказы',
     icon: <ListAlt className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.OrdersPage,
+    path: '/orders',
   },
   {
     name: 'Выставка',
     icon: <FolderOpenIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.ExhibitionsPage,
+    path: '/exhibitions',
   },
   {
     name: 'Клиенты',
     icon: <PeopleOutlineIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: routes.ClientsPage,
+    path: '/clients',
   },
 ];

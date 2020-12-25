@@ -8,8 +8,6 @@ const getCurrentClientInfo = state => {
 
 const getOrderById = (state, id) => {
   return state.orders.allOrders.find(item => {
-    console.log('id', id);
-    console.log('_id', item._id);
     return item._id === id;
   });
 };

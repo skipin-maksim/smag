@@ -144,8 +144,6 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 const getOrderById = id => async dispatch => {
   dispatch(ordersActions.getOrderByIdRequest());
 
-  console.log(id);
-
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);
     const { data: dataContact } = await axios(
