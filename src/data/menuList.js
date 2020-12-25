@@ -9,7 +9,7 @@ export default [
   {
     name: 'Главная',
     icon: <StoreIcon className="iconItem" style={{ fontSize: 22 }} />,
-    path: '/',
+    path: '/home',
   },
   {
     name: 'Продажи',

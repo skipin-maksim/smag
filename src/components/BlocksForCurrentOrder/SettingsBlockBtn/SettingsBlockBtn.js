@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useCallback } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import notification from 'toastr';
 
@@ -25,29 +25,80 @@ import {
 
 import s from './SettingsBlockBtn.module.scss';
 
-function SettingsBlockBtn({
+const SettingsBlockBtn = ({
   history,
-  currentOrder,
-  currentNumOrder,
 
-  getCurrentNumOrder,
+  // onCreateLineProduct,
+  // onDeleteLineSelectedProduct,
+  // onSaveOrder,
+  // onPatchOrder,
 
-  onCreateLineProduct,
-  onDeleteLineSelectedProduct,
-  onSaveOrder,
-  onPatchOrder,
+  // onCalculateTotalQuantity,
+  // onCalculateTotalSum,
+  // onCalculateAveragePrice,
+  // onCalculateTotalPositions,
+  // onCalculateRemainderPaid,
 
-  onCalculateTotalQuantity,
-  onCalculateTotalSum,
-  onCalculateAveragePrice,
-  onCalculateTotalPositions,
-  onCalculateRemainderPaid,
-
-  onEditOrderClick,
-
-  currentClientInfo,
-}) {
+  // onEditOrderClick,
+}) => {
   const [isModalPrint, setIsModalPrint] = useState(false);
+
+  const currentOrder = useSelector(state => state.orders.currentOrder);
+  const currentClientInfo = useSelector(
+    state => state.orders.currentOrder.clientInfo,
+  );
+  const currentNumOrder = useSelector(state => state.numOrder.numOrder);
+
+  const dispatch = useDispatch();
+  const onGetCurrentNumOrder = useCallback(
+    () => dispatch(numOrderOperations.getCurrentNumOrder()),
+    [dispatch],
+  );
+  const onCreateLineProduct = useCallback(
+    () => dispatch(ordersActions.createLineProduct()),
+    [dispatch],
+  );
+  const onCreateLineProductCopy = useCallback(
+    () => dispatch(ordersActions.createLineProductCopy()),
+    [dispatch],
+  );
+  const onDeleteLineSelectedProduct = useCallback(
+    () => dispatch(ordersActions.deleteLineSelectedProduct()),
+    [dispatch],
+  );
+  const onCalculateTotalQuantity = useCallback(
+    () => dispatch(ordersActions.calculateTotalQuantity()),
+    [dispatch],
+  );
+  const onCalculateTotalSum = useCallback(
+    () => dispatch(ordersActions.calculateAveragePrice()),
+    [dispatch],
+  );
+  const onCalculateAveragePrice = useCallback(
+    () => dispatch(ordersActions.calculateAveragePrice()),
+    [dispatch],
+  );
+  const onCalculateTotalPositions = useCallback(
+    () => dispatch(ordersActions.calculateTotalPositions()),
+    [dispatch],
+  );
+  const onCalculateRemainderPaid = useCallback(
+    () => dispatch(ordersActions.calculateRemainderPaid()),
+    [dispatch],
+  );
+  const onSaveOrder = useCallback(
+    (order, client, num) =>
+      dispatch(ordersOperations.postOrder(order, client, num)),
+    [dispatch],
+  );
+  const onPatchOrder = useCallback(
+    () => dispatch(ordersOperations.patchOrder()),
+    [dispatch],
+  );
+  const onEditOrderClick = useCallback(
+    () => dispatch(ordersActions.editOrder()),
+    [dispatch],
+  );
 
   const createNewOrderNum = prevNum => {
     const editCustomNumber = value => ('000000' + (value + 1)).substr(-6);
@@ -69,7 +120,7 @@ function SettingsBlockBtn({
   };
 
   const handleEdit = () => {
-    getCurrentNumOrder();
+    onGetCurrentNumOrder();
 
     onEditOrderClick({ isSaved: false, isEdit: false });
 
@@ -136,28 +187,6 @@ function SettingsBlockBtn({
       )}
     </>
   );
-}
-
-const mSTP = state => ({
-  currentOrder: ordersSelectors.getCurrentOrder(state),
-  currentClientInfo: ordersSelectors.getCurrentClientInfo(state),
-  currentNumOrder: numOrderSelectors.getCurrentNum(state),
-});
-const mDTP = {
-  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
-
-  onCreateLineProduct: ordersActions.createLineProduct,
-  onCreateLineProductCopy: ordersActions.createLineProductCopy,
-  onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
-
-  onCalculateTotalQuantity: ordersActions.calculateTotalQuantity,
-  onCalculateTotalSum: ordersActions.calculateTotalSum,
-  onCalculateAveragePrice: ordersActions.calculateAveragePrice,
-  onCalculateTotalPositions: ordersActions.calculateTotalPositions,
-  onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
-  onSaveOrder: ordersOperations.postOrder,
-  onPatchOrder: ordersOperations.patchOrder,
-  onEditOrderClick: ordersActions.editOrder,
 };
 
-export default withRouter(connect(mSTP, mDTP)(SettingsBlockBtn));
+export default withRouter(connect()(SettingsBlockBtn));

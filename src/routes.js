@@ -12,15 +12,23 @@ const routes = {
     },
     {
       path: '/',
-      label: 'Test',
+      label: 'RootPage',
       exact: false,
-      component: lazy(() => import('./views/Test')),
+      component: lazy(() => import('./views/RootPage.js')),
       private: true,
       restricted: false,
     },
   ],
 
   secondRoutes: [
+    {
+      path: '/',
+      label: 'RootSecondPage',
+      exact: true,
+      component: lazy(() => import('./views/SupportPage.js')),
+      private: true,
+      restricted: false,
+    },
     {
       path: '/home',
       label: 'Home',

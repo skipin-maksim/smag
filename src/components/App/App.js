@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useCallback } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 // import { Beforeunload } from 'react-beforeunload';
 
 import { ordersOperations } from '../../redux/orders/';
@@ -13,38 +13,45 @@ import PublicRoute from '../PublicRoute';
 
 import routes from '../../routes';
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.allOrders();
-    this.props.allContacts();
-    this.props.getCurrentNumOrder();
-  }
+const App = () => {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      // <Beforeunload onBeforeunload={() => "You'll lose your data!"}>
-      <BrowserRouter>
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            {routes.firstRoutes.map(route =>
-              route.private ? (
-                <PrivateRoute key={route.label} {...route} />
-              ) : (
-                <PublicRoute key={route.label} {...route} />
-              ),
-            )}
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
-      // </Beforeunload>
-    );
-  }
-}
+  const getAllOrders = useCallback(
+    () => dispatch(ordersOperations.getAllOrders()),
+    [dispatch],
+  );
+  const getAllContacts = useCallback(
+    () => dispatch(contactsOperations.getContacts()),
+    [dispatch],
+  );
+  const getCurrentNumOrder = useCallback(
+    () => dispatch(numOrderOperations.getCurrentNumOrder()),
+    [dispatch],
+  );
 
-const mDTP = {
-  allContacts: contactsOperations.getContacts,
-  allOrders: ordersOperations.getAllOrders,
-  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
+  useEffect(() => {
+    getAllOrders();
+    getAllContacts();
+    getCurrentNumOrder();
+  }, [getAllContacts, getAllOrders, getCurrentNumOrder]);
+
+  return (
+    // <Beforeunload onBeforeunload={() => "You'll lose your data!"}>
+    <BrowserRouter>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          {routes.firstRoutes.map(route =>
+            route.private ? (
+              <PrivateRoute key={route.label} {...route} />
+            ) : (
+              <PublicRoute key={route.label} {...route} />
+            ),
+          )}
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
+    // </Beforeunload>
+  );
 };
 
-export default connect(null, mDTP)(App);
+export default connect()(App);

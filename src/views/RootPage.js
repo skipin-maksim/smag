@@ -6,7 +6,7 @@ import AsideComponent from '../components/AsideComponent/AsideComponent';
 import MainComponent from '../components/MainComponent/MainComponent';
 import Layout from '../components/Layout/Layout';
 
-export default function Test() {
+export default function RootPage() {
   return (
     <Layout>
       <AsideComponent />
