@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter, useRouteMatch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
@@ -14,90 +14,95 @@ import CloseBtn from '../Buttons/CloseBtn';
 import routes from '../../routes';
 
 import s from './HeaderComponent.module.scss';
-class Tab extends React.Component {
-  handleOnCloseTab = (name, path, idxItem) => {
-    const { pathname } = this.props.history.location;
+
+const Tab = ({
+  idx,
+  path,
+  name,
+  history,
+  tabsList,
+  removeTab,
+  currentOrder,
+  onGetOrderById,
+  onClearCurrentOrder,
+  dataOfTemporaryStorageLocation,
+  onSaveToTemporaryStorageLocation,
+  onGetDataOfTemporaryStorageLocation,
+}) => {
+  const match = useRouteMatch();
+
+  const handleOnCloseTab = (name, path, idxItem) => {
+    const { pathname } = history.location;
     /*
         Ниже, условия при закрытии Табы. Куда должен перенестись роут.
         Влево от закрываемогоб, вправо или остаться на текущей
     */
-    this.props.tabsList.reduce((previous, current) => {
-      if (idxItem === 0 && this.props.tabsList.length === 1) {
-        this.props.history.replace(routes.HomePage);
-        this.props.removeTab(name);
+    tabsList.reduce((previous, current) => {
+      if (idxItem === 0 && tabsList.length === 1) {
+        history.replace(routes.HomePage);
+        removeTab(name);
         return current;
       }
-      if (idxItem === 0 && this.props.tabsList[1] && pathname === path) {
-        this.props.removeTab(name);
-        this.props.history.replace(this.props.tabsList[1].path);
+      if (idxItem === 0 && tabsList[1] && pathname === path) {
+        removeTab(name);
+        history.replace(tabsList[1].path);
         return current;
       }
 
       if (current.path === path && pathname === path) {
-        this.props.history.replace(previous.path);
+        history.replace(previous.path);
 
         if (Number(previous.path.slice(12))) {
-          this.props.onGetOrderById(previous.path.slice(12));
+          onGetOrderById(previous.path.slice(12));
         }
-        this.props.removeTab(name);
+        removeTab(name);
         return current;
       }
 
       if (current.path !== path && pathname !== path) {
-        this.props.removeTab(name);
+        removeTab(name);
         return current;
       }
 
       return current;
-    }, this.props.tabsList[0]);
+    }, tabsList[0]);
   };
 
-  getDataOrderById = tabId => {
+  const getDataOrderById = tabId => {
+    console.log(match);
     const currentId = tabId.slice(12);
 
     if (currentId === 'new-order') {
-      this.props.onGetDataOfTemporaryStorageLocation(
-        this.props.dataOfTemporaryStorageLocation,
-      );
+      onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
 
       return;
     } else if (currentId === '') {
       return;
     } else {
-      this.props.onClearCurrentOrder();
-      this.props.onGetOrderById(currentId);
+      onClearCurrentOrder();
+      onGetOrderById(currentId);
 
-      if (!this.props.currentOrder.isSaved)
-        this.props.onSaveToTemporaryStorageLocation(this.props.currentOrder);
+      if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
     }
   };
 
-  render() {
-    const { name, idx, path } = this.props;
+  return (
+    <li className={s.tabLi}>
+      <NavLink
+        exact
+        name={path}
+        to={path}
+        className={s.tab}
+        activeClassName={s.tabActive}
+        onClick={({ target }) => getDataOrderById(target.name)}
+      >
+        {name}
+      </NavLink>
 
-    return (
-      <li className={s.tabLi}>
-        <NavLink
-          exact
-          name={path}
-          to={path}
-          className={s.tab}
-          activeClassName={s.tabActive}
-          onClick={({ target }) => this.getDataOrderById(target.name)}
-        >
-          {name}
-        </NavLink>
-
-        <CloseBtn
-          onClick={this.handleOnCloseTab}
-          name={name}
-          path={path}
-          idx={idx}
-        />
-      </li>
-    );
-  }
-}
+      <CloseBtn onClick={handleOnCloseTab} name={name} path={path} idx={idx} />
+    </li>
+  );
+};
 
 const mSTP = (state, ownProps) => ({
   tabsList: tabsSelectors.getTabsList(state),
