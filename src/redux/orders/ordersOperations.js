@@ -5,8 +5,6 @@ import notification from 'toastr';
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
-import routes from '../../routes';
-
 const baseUrl = 'https://smagserver.herokuapp.com';
 const dateNow = moment().format('DD-MM-YYYY hh:mm');
 

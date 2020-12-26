@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import notification from 'toastr';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
 import {
@@ -27,8 +28,9 @@ const Tab = ({
   onSaveToTemporaryStorageLocation,
   onGetDataOfTemporaryStorageLocation,
 }) => {
+  const { pathname } = history.location;
+
   const handleOnCloseTab = (name, path, idxItem) => {
-    const { pathname } = history.location;
     /*
         Ниже, условия при закрытии Табы. Куда должен перенестись роут.
         Влево от закрываемогоб, вправо или остаться на текущей
@@ -64,20 +66,33 @@ const Tab = ({
     }, tabsList[0]);
   };
 
-  const getDataOrderById = tabId => {
-    const currentId = tabId.slice(8);
+  const getDataOrderById = e => {
+    e.preventDefault();
+
+    const currentId = e.target.name.slice(8);
+
+    if (currentOrder.isEdit === 'изменяется') {
+      notification.warning(
+        `Для продолжения, сохраните изменения`,
+        `Заказ в стадии изменения!!!`,
+      );
+      return;
+    }
 
     if (currentId === 'new-order') {
       onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
-
+      history.replace(e.target.name);
       return;
     } else if (currentId === '') {
+      history.replace(e.target.name);
       return;
     } else {
       onClearCurrentOrder();
       onGetOrderById(currentId);
 
       if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
+
+      history.replace(e.target.name);
     }
   };
 
@@ -89,7 +104,7 @@ const Tab = ({
         to={path}
         className={s.tab}
         activeClassName={s.tabActive}
-        onClick={({ target }) => getDataOrderById(target.name)}
+        onClick={e => getDataOrderById(e)}
       >
         {name}
       </NavLink>

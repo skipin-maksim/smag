@@ -103,7 +103,7 @@ export default function SettingsBlockBtn() {
   const handleEdit = () => {
     onGetCurrentNumOrder();
 
-    onEditOrderClick({ isSaved: false, isEdit: false });
+    onEditOrderClick({ isSaved: false, isEdit: 'изменяется' });
 
     notification.info(`Заказ в стадии изменения`, 'Изменение!!!');
   };
