@@ -42,6 +42,7 @@ class OrdersPage extends React.Component {
       this.props.addTab({
         name: 'Заказ № ***?',
         path: `/orders/new-order`,
+        label: 'new-order',
       });
 
       if (this.props.widthLineTabs > 1300) {

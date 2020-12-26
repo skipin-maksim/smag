@@ -28,6 +28,7 @@ export default function LineOrder({ idx, order, id }) {
     onAddTab({
       name: `Заказ №${id}`,
       path: `/orders/${id}`,
+      label: id,
     });
 
     history.replace(`/orders/${id}`);

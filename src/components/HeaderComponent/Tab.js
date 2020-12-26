@@ -18,6 +18,7 @@ const Tab = ({
   idx,
   path,
   name,
+  label,
   history,
   tabsList,
   removeTab,
@@ -50,8 +51,9 @@ const Tab = ({
       if (current.path === path && pathname === path) {
         history.replace(previous.path);
 
-        if (Number(previous.path.slice(8))) {
-          onGetOrderById(previous.path.slice(8));
+        if (Number(previous.label)) {
+          console.log(previous.label);
+          onGetOrderById(previous.label);
         }
         removeTab(name);
         return current;
@@ -66,10 +68,13 @@ const Tab = ({
     }, tabsList[0]);
   };
 
-  const getDataOrderById = e => {
+  const hendleClickOnTab = e => {
     e.preventDefault();
 
     const currentId = e.target.name.slice(8);
+    //TODO ХЗ почему не работает label
+    // const label = e.target.label;
+    // console.log('label', label);
 
     if (currentOrder.isEdit === 'изменяется') {
       notification.warning(
@@ -102,9 +107,10 @@ const Tab = ({
         exact
         name={path}
         to={path}
+        label={label}
         className={s.tab}
         activeClassName={s.tabActive}
-        onClick={e => getDataOrderById(e)}
+        onClick={e => hendleClickOnTab(e)}
       >
         {name}
       </NavLink>

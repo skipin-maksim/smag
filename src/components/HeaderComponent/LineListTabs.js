@@ -12,8 +12,10 @@ function LineListTabs({ tabsList, stylePosition, size, getComponentWidth }) {
 
   return (
     <ul className={s.lineListTabs} style={{ left: stylePosition }}>
-      {tabsList.map(({ name, path }, idx) => {
-        return <Tab key={name} name={name} path={path} idx={idx} />;
+      {tabsList.map(({ name, path, label }, idx) => {
+        return (
+          <Tab key={name} name={name} path={path} idx={idx} label={label} />
+        );
       })}
     </ul>
   );

@@ -16,7 +16,7 @@ const NavMenuItem = ({ item, addTab }) => {
         to={path}
         className={s.navItemLink}
         activeClassName={s.navItemLinkActive}
-        onClick={() => addTab({ name, path })}
+        onClick={() => addTab({ name, path, label: 'text tab' })}
         name={name}
       >
         <div className={s.iconItem}>{icon}</div>
