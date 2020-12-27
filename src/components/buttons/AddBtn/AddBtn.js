@@ -5,7 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import s from './AddBtn.module.scss';
 
-export default function AddBtn({ data, onCreate, onCalculateTotalPositions }) {
+export default function AddBtn({ data, onCreate }) {
   return (
     <Tooltip title={'Ctrl + Enter'} arrow disableHoverListener={data.isSaved}>
       {/* ****** span - для Tooltip-a */}

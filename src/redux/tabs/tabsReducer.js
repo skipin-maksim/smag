@@ -7,6 +7,7 @@ import ordersActions from '../orders/ordersActions';
 const initialStateItem = [];
 
 const addTab = (state, payload) => {
+  console.log('payload', payload);
   const isTabs = state.find(item => item.name === payload.name);
 
   if (!isTabs) return [...state, payload];

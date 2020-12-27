@@ -2,13 +2,13 @@
   padding: 36px;
 }
 
-.ordersSettings {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 500px;
-  margin-bottom: 36px;
-}
+// .ordersControls {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 500px;
+//   margin-bottom: 36px;
+// }
 
 .clientsBlock {
   display: flex;
@@ -20,17 +20,14 @@
   }
 }
 
-.ordersSearch {
-}
+// .settingButtons {
+//   display: flex;
+//   align-items: center;
 
-.settingButtons {
-  display: flex;
-  align-items: center;
-
-  & button {
-    margin-right: 20px;
-  }
-}
+//   & button {
+//     margin-right: 20px;
+//   }
+// }
 
 .dotsBtn {
   width: 40px;
@@ -63,32 +60,27 @@
   background-color: #fff;
 }
 
-.windowOrders {
-  // padding: 0 15px 45px;
-  // border-bottom-left-radius: 5px;
-  // border-bottom-right-radius: 5px;
-  // background-color: #fff;
-  // box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
-  position: relative;
-  padding: 0 15px 55px;
-  margin-bottom: 25px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
-}
+// .windowOrders {
+//   position: relative;
+//   padding: 0 15px 55px;
+//   margin-bottom: 25px;
+//   border-bottom-left-radius: 5px;
+//   border-bottom-right-radius: 5px;
+//   background-color: #fff;
+//   box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
+// }
 
-.tableTitletLine {
-  padding: 15px 30px;
-  display: grid;
-  grid-template-columns: 30px 60px 420px 100px 100px 150px 150px 110px 80px 1fr;
-  align-items: center;
-  text-align: center;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background-color: #1c2b4a;
-  color: #fff;
-}
+// .tableTitletLine {
+//   padding: 15px 30px;
+//   display: grid;
+//   grid-template-columns: 30px 60px 420px 100px 100px 150px 150px 110px 80px 1fr;
+//   align-items: center;
+//   text-align: center;
+//   border-top-left-radius: 5px;
+//   border-top-right-radius: 5px;
+//   background-color: #1c2b4a;
+//   color: #fff;
+// }
 
 .customerOrderList {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.233);

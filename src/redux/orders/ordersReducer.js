@@ -243,7 +243,10 @@ const filterClients = createReducer('', {
 });
 
 const filterOrders = createReducer('', {
-  [ordersActions.filterOrders]: (_, { payload }) => payload,
+  [ordersActions.filterOrders]: (_, { payload }) => {
+    console.log('payload', payload);
+    return payload;
+  },
 });
 
 const temporaryStorageLocation = createReducer(initCurrentOrder, {

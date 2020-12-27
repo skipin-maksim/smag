@@ -1,0 +1,16 @@
+.ordersControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  margin-bottom: 36px;
+}
+
+.controlsButtons {
+  display: flex;
+  align-items: center;
+
+  & button {
+    margin-right: 20px;
+  }
+}
