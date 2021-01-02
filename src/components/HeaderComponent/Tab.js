@@ -10,7 +10,7 @@ import {
   ordersSelectors,
 } from '../../redux/orders';
 
-import CloseBtn from '../Buttons/CloseBtn/CloseBtn';
+import CloseBtn from '../buttons/CloseBtn/CloseBtn';
 
 import s from './HeaderComponent.module.scss';
 
@@ -70,11 +70,9 @@ const Tab = ({
 
   const hendleClickOnTab = e => {
     e.preventDefault();
+    console.log(label);
 
-    const currentId = e.target.name.slice(8);
-    //TODO ХЗ почему не работает label
-    // const label = e.target.label;
-    // console.log('label', label);
+    const currentId = label;
 
     if (currentOrder.isEdit === 'изменяется') {
       notification.warning(
@@ -88,10 +86,10 @@ const Tab = ({
       onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
       history.replace(e.target.name);
       return;
-    } else if (currentId === '') {
+    } else if (currentId === 'text tab') {
       history.replace(e.target.name);
       return;
-    } else {
+    } else if (Number(currentId)) {
       onClearCurrentOrder();
       onGetOrderById(currentId);
 
@@ -107,7 +105,6 @@ const Tab = ({
         exact
         name={path}
         to={path}
-        label={label}
         className={s.tab}
         activeClassName={s.tabActive}
         onClick={e => hendleClickOnTab(e)}

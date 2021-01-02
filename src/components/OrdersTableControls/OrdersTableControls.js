@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
-import { ordersActions } from '../../../redux/orders';
-import { tabsActions } from '../../../redux/tabs';
-import { numOrderOperations } from '../../../redux/numOrder';
+import { ordersActions } from '../../redux/orders';
+import { tabsActions } from '../../redux/tabs';
+import { numOrderOperations } from '../../redux/numOrder';
 
-import AddBtn from '../../Buttons/AddBtn/AddBtn';
-import RemoveBtn from '../../Buttons/RemoveBtn/RemoveBtn';
-import EditBtn from '../../Buttons/EditBtn/EditBtn';
+import AddBtn from '../buttons/AddBtn/AddBtn';
+import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
+import EditBtn from '../buttons/EditBtn/EditBtn';
 
 import s from './OrdersTableControls.module.scss';
 
@@ -48,7 +48,6 @@ export default function OrdersTableControls() {
 
   const handleAddNewOrder = () => {
     const isTab = tabsList.find(item => item.name === 'Заказ № ***?');
-    console.log(isTab);
 
     if (isTab) {
       notification.warning(

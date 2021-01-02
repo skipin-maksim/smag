@@ -4,7 +4,7 @@ import pickUpCurrencyData from '../../services/apiPrivatBank';
 
 import s from './PrivatBankComponent.module.scss';
 import Currency from './Currency';
-import RefreshButton from '../Buttons/RefreshButton/RefreshButton';
+import RefreshButton from '../buttons/RefreshButton/RefreshButton';
 
 const initDataPrivat = {
   usd: { ccy: 'USD', sale: '??', buy: '??' },

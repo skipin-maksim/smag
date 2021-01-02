@@ -9,7 +9,7 @@ import WindowTable from '../../components/WindowTable/WindowTable';
 import s from './OrdersPage.module.scss';
 
 import TitleTableOrders from '../../components/WindowTable/TitleTableOrders/TitleTableOrders';
-import OrdersTableControls from '../../components/WindowTable/OrdersTableControls/OrdersTableControls';
+import OrdersTableControls from '../../components/OrdersTableControls/OrdersTableControls';
 
 export default function OrdersPage() {
   const dispatch = useDispatch();

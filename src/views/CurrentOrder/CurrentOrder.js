@@ -11,6 +11,9 @@ import {
 import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder';
 import { contactsOperations } from '../../redux/contacts';
 
+import WindowTable from '../../components/WindowTable/WindowTable';
+import LineProduct from '../../components/LineProduct/LineProduct';
+import CalculatedBlock from '../../components/BlocksForCurrentOrder/CalculatedBlock/CalculatedBlock';
 import Spinner from '../../components/Spinner/Spinner';
 import SettingsBlockBtn from '../../components/BlocksForCurrentOrder/SettingsBlockBtn/SettingsBlockBtn';
 import Modal from '../../components/Modal/Modal';
@@ -18,10 +21,10 @@ import ClientsInModal from '../../components/Modal/ClientsInModal/ClientsInModal
 import ClientsInfoBlock from '../../components/BlocksForCurrentOrder/ClientsInfoBlock/ClientsInfoBlock';
 import TableTitletLineBlock from '../../components/BlocksForCurrentOrder/TableTitletLineBlock/TableTitletLineBlock';
 import MoneyBlock from '../../components/BlocksForCurrentOrder/MoneyBlock/MoneyBlock';
-import WindowOrdersBlock from '../../components/BlocksForCurrentOrder/WindowOrdersBlock/WindowOrdersBlock';
 
 import s from './CurrentOrder.module.scss';
 
+// const match = useRouteMatch('/orders/:orderId');
 class CurrentOrder extends React.Component {
   state = { isCheckAll: false, isModal: false };
 
@@ -30,12 +33,12 @@ class CurrentOrder extends React.Component {
 
     this.props.onCalculateTotalPositions();
 
-    if (this.props.history.location.pathname.slice(8) === 'new-order') {
+    if (this.props.match.params.orderId === 'new-order') {
       this.props.onGetDataOfTemporaryStorageLocation(
         this.props.dataOfTemporaryStorageLocation,
       );
-    } else if (Number(this.props.history.location.pathname.slice(8))) {
-      this.props.onGetOrderById(this.props.history.location.pathname.slice(8));
+    } else if (Number(this.props.match.params.orderId)) {
+      this.props.onGetOrderById(this.props.match.params.orderId);
     }
   }
 
@@ -158,10 +161,15 @@ class CurrentOrder extends React.Component {
             isCheckAll={this.state.isCheckAll}
           />
 
-          <WindowOrdersBlock
-            currentOrderItems={currentOrderItems}
-            calculatedTotals={calculatedTotals}
-          />
+          <WindowTable
+            otherBlock={<CalculatedBlock totals={calculatedTotals} />}
+          >
+            <ul className={s.customerOrderList}>
+              {currentOrderItems.map((item, idx) => {
+                return <LineProduct key={item.id} id={item.id} idx={idx} />;
+              })}
+            </ul>
+          </WindowTable>
 
           <label className={s.noteForOrderLabel}>
             <span>Заметка</span>

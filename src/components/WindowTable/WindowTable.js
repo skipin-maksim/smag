@@ -3,7 +3,7 @@ import { Scrollbar } from 'react-scrollbars-custom';
 
 import s from './WindowTable.module.scss';
 
-export default function WindowTable({ children }) {
+export default function WindowTable({ children, otherBlock }) {
   return (
     <div className={s.windowOrders}>
       <Scrollbar
@@ -15,6 +15,7 @@ export default function WindowTable({ children }) {
       >
         {children}
       </Scrollbar>
+      {otherBlock}
     </div>
   );
 }

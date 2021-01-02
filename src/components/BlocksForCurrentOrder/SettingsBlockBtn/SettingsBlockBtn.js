@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import notification from 'toastr';
 
 import Modal from '../../Modal/Modal';
 import PrintModal from '../../Modal/PrintModal/PrintModal';
-import AddBtn from '../../Buttons/AddBtn/AddBtn';
-import AddWithCopyBtn from '../../Buttons/AddWithCopyBtn/AddWithCopyBtn';
-import EditBtn from '../../Buttons/EditBtn/EditBtn';
-import SaveBtn from '../../Buttons/SaveBtn/SaveBtn';
-import PrintBtn from '../../Buttons/PrintBtn/PrintBtn';
-import RemoveBtn from '../../Buttons/RemoveBtn/RemoveBtn';
+import AddBtn from '../../buttons/AddBtn/AddBtn';
+import AddWithCopyBtn from '../../buttons/AddWithCopyBtn/AddWithCopyBtn';
+import EditBtn from '../../buttons/EditBtn/EditBtn';
+import SaveBtn from '../../buttons/SaveBtn/SaveBtn';
+import PrintBtn from '../../buttons/PrintBtn/PrintBtn';
+import RemoveBtn from '../../buttons/RemoveBtn/RemoveBtn';
 
 import { ordersActions, ordersOperations } from '../../../redux/orders/';
 import { numOrderOperations } from '../../../redux/numOrder/';
@@ -21,6 +21,7 @@ export default function SettingsBlockBtn() {
   const [isModalPrint, setIsModalPrint] = useState(false);
 
   const history = useHistory();
+  const match = useRouteMatch('/orders/:orderId');
 
   const currentOrder = useSelector(state => state.orders.currentOrder);
   const currentClientInfo = useSelector(
@@ -109,7 +110,7 @@ export default function SettingsBlockBtn() {
   };
 
   const handleSaveBtn = async () => {
-    const currentPath = history.location.pathname.slice(8);
+    const currentPath = match.params.orderId;
 
     if (currentClientInfo.firstName) {
       if (currentPath === 'new-order') {

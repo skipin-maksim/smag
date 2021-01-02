@@ -2,6 +2,7 @@ import React from 'react';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 import LineProduct from '../../LineProduct/LineProduct';
+import CalculatedBlock from '../CalculatedBlock/CalculatedBlock';
 
 import s from './WindowOrdersBlock.module.scss';
 
@@ -25,42 +26,7 @@ export default function WindowOrdersBlock({
         </ul>
       </Scrollbar>
 
-      <div className={s.orderInfo}>
-        <div className={s.numOrder}>
-          <span>Позицый</span>
-          <span className={s.numbers}>
-            {calculatedTotals.positions ? calculatedTotals.positions : 0}
-          </span>
-        </div>
-
-        <div className={s.totalProduct}>
-          <span>Общее кол-во</span>
-          <span className={s.numbers}>
-            {calculatedTotals.quantity
-              ? calculatedTotals.quantity.toLocaleString('ru')
-              : 0}
-          </span>
-        </div>
-
-        <div className={s.averagePrice}>
-          <span>Средняя цена</span>
-          <span className={s.numbers}>
-            {calculatedTotals.averagePrice
-              ? calculatedTotals.averagePrice.toLocaleString('ru').slice(0, 4)
-              : 0}
-          </span>
-        </div>
-
-        <div className={s.totalSum}>
-          <span>Общая сумма</span>
-          <span className={s.numbers}>
-            {' '}
-            {calculatedTotals.sum
-              ? calculatedTotals.sum.toLocaleString('ru')
-              : 0}
-          </span>
-        </div>
-      </div>
+      <CalculatedBlock totals={calculatedTotals} />
     </div>
   );
 }
