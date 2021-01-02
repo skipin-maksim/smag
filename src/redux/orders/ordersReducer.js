@@ -260,6 +260,10 @@ const loader = createReducer(false, {
   [ordersActions.getOrderByIdRequest]: () => true,
   [ordersActions.getOrderByIdSuccess]: () => false,
   [ordersActions.getOrderByIdError]: () => false,
+
+  [ordersActions.getAllOrdersRequest]: () => true,
+  [ordersActions.getAllOrdersSuccess]: () => false,
+  [ordersActions.getAllOrdersError]: () => false,
 });
 
 export default combineReducers({

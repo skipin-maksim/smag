@@ -3,19 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { ordersOperations } from '../../redux/orders';
 
+import Spinner from '../../components/Spinner/Spinner';
+import TitleTableOrders from '../../components/WindowTable/TitleTableOrders/TitleTableOrders';
+import OrdersTableControls from '../../components/OrdersTableControls/OrdersTableControls';
 import LineOrder from '../../components/LineOrder/LineOrder';
 import WindowTable from '../../components/WindowTable/WindowTable';
 
 import s from './OrdersPage.module.scss';
-
-import TitleTableOrders from '../../components/WindowTable/TitleTableOrders/TitleTableOrders';
-import OrdersTableControls from '../../components/OrdersTableControls/OrdersTableControls';
 
 export default function OrdersPage() {
   const dispatch = useDispatch();
 
   const ordersList = useSelector(state => state.orders.allOrders);
   const filterOrdersValue = useSelector(state => state.orders.filterOrders);
+  const isLoading = useSelector(state => state.orders.loader);
 
   const visibleOrders = () => {
     return ordersList.filter(order => {
@@ -36,6 +37,7 @@ export default function OrdersPage() {
 
   return (
     <div className={s.orderPage}>
+      {isLoading && <Spinner />}
       <OrdersTableControls />
 
       <TitleTableOrders />
