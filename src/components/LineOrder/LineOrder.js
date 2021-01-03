@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { ordersActions } from '../../redux/orders/';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -6,12 +7,13 @@ import { tabsActions } from '../../redux/tabs';
 import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 
-// import routes from '../../routes';
-
 import s from './LineOrder.module.scss';
 
 export default function LineOrder({ idx, order, id }) {
   const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  const getCurrentLineOrderById = useSelector(state =>
+    state.orders.allOrders.find(item => item.numOrder === id),
+  );
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -21,6 +23,11 @@ export default function LineOrder({ idx, order, id }) {
   );
   const onAddTab = useCallback(
     data => dispatch(tabsActions.addTabOrder(data)),
+    [dispatch],
+  );
+
+  const checkboxOrderSwitch = useCallback(
+    checkboxValue => dispatch(ordersActions.checkboxOrderSwitch(checkboxValue)),
     [dispatch],
   );
 
@@ -39,11 +46,19 @@ export default function LineOrder({ idx, order, id }) {
     }
   };
 
+  const onChangeCheckbox = ({ name, value }) => {
+    checkboxOrderSwitch({ id, value });
+  };
+
   const { calculatedTotals, clientInfo, prepayment, noteForOrder } = order;
 
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
-      <CheckBox />
+      <CheckBox
+        name="checkOrder"
+        isChecked={getCurrentLineOrderById.isCheckedOrder}
+        onChange={onChangeCheckbox}
+      />
       <span>{order.numOrder}</span>
       <span className={s.nameClient} onDoubleClick={handleOpenOrder}>
         {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}

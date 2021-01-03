@@ -14,7 +14,12 @@ const getAllOrders = () => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/orders`);
 
-    dispatch(ordersActions.getAllOrdersSuccess(data.orders));
+    const updatedOrders = data.orders.map(order => ({
+      ...order,
+      isCheckedOrder: false,
+    }));
+
+    dispatch(ordersActions.getAllOrdersSuccess(updatedOrders));
   } catch (error) {
     dispatch(ordersActions.getAllOrdersError(error));
   }

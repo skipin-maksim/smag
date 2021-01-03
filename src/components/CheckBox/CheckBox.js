@@ -2,7 +2,12 @@ import React from 'react';
 
 import s from './CheckBox.module.scss';
 
-export default function CheckBox({ name, isChecked, onChange, isDisabled }) {
+export default function CheckBox({
+  name,
+  onChange,
+  isChecked = false,
+  isDisabled = false,
+}) {
   return (
     <label className={s.checkboxOther}>
       <input

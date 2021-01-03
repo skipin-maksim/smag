@@ -9,7 +9,6 @@ import { numOrderOperations } from '../../redux/numOrder';
 
 import AddBtn from '../buttons/AddBtn/AddBtn';
 import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
-import EditBtn from '../buttons/EditBtn/EditBtn';
 
 import s from './OrdersTableControls.module.scss';
 
@@ -85,8 +84,6 @@ export default function OrdersTableControls() {
 
       <div className={s.controlsButtons}>
         <AddBtn data={{ isSaved: false }} onCreate={handleAddNewOrder} />
-
-        <EditBtn />
 
         <RemoveBtn data={{ isSaved: false }} />
       </div>

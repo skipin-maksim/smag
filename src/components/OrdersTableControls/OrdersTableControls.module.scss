@@ -1,9 +1,12 @@
 .ordersControls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 500px;
   margin-bottom: 36px;
+
+  & input {
+    margin-right: 25px;
+  }
 }
 
 .controlsButtons {

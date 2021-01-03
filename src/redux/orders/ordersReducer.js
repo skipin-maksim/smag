@@ -170,6 +170,13 @@ const allOrders = createReducer([], {
     ...state,
     payload.data,
   ],
+  [ordersActions.checkboxOrderSwitch]: (state, { payload }) => {
+    return state.map(item =>
+      item.numOrder === payload.id
+        ? { ...item, isCheckedOrder: payload.value }
+        : item,
+    );
+  },
 });
 
 const currentOrder = createReducer(initCurrentOrder, {

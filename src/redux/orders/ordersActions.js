@@ -10,6 +10,7 @@ const getPriceByArtError = createAction('orders/getPriceByArtError');
 
 const removeOrder = createAction('orders/removeOrder');
 const editOrder = createAction('orders/editOrder');
+const checkboxOrderSwitch = createAction('orders/checkboxOrderSwitch');
 
 const saveOrderRequest = createAction('orders/saveOrderRequest');
 const saveOrderSuccess = createAction('orders/saveOrderSuccess');
@@ -89,6 +90,7 @@ export default {
 
   removeOrder,
   editOrder,
+  checkboxOrderSwitch,
 
   saveOrderRequest,
   saveOrderSuccess,

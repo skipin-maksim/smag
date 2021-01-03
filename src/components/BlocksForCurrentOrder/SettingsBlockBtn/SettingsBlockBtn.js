@@ -109,7 +109,7 @@ export default function SettingsBlockBtn() {
     notification.info(`Заказ в стадии изменения`, 'Изменение!!!');
   };
 
-  const handleSaveBtn = async () => {
+  const handleSaveBtn = () => {
     const currentPath = match.params.orderId;
 
     if (currentClientInfo.firstName) {
@@ -153,7 +153,10 @@ export default function SettingsBlockBtn() {
   const handeMoadlPrint = () => {
     currentOrder.isSaved
       ? setIsModalPrint(true)
-      : alert('Заказ не сохранен!!! Для печати, сохраните заказ');
+      : notification.warning(
+          `Для печати, сохраните заказ`,
+          'Заказ не сохранен!!!',
+        );
   };
 
   return (
