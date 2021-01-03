@@ -25,6 +25,14 @@
   padding: 10px;
   color: #fff;
   text-align: center;
+  border: none;
   background-color: #1c2b4a;
   border-radius: 5px;
+  outline: none;
+  transition: all 0.25s linear;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #253961;
+  }
 }

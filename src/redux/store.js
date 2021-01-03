@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { authReducer } from './auth';
 import { tabsReducer } from './tabs/';
 import { ordersReducer } from './orders/';
 import { contactsReducer } from './contacts/';
@@ -20,6 +21,13 @@ const tabsPersistConfig = {
   storage,
   whitelist: ['items'],
 };
+
+const authenticatedPersistConfig = {
+  key: 'authenticated',
+  storage,
+  whitelist: ['isAuthenticated'],
+};
+
 const temporaryStorageLocationPersistConfig = {
   key: 'orders',
   storage,
@@ -28,6 +36,7 @@ const temporaryStorageLocationPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    isAuthenticated: persistReducer(authenticatedPersistConfig, authReducer),
     numOrder: numOrderReducer,
     tabs: persistReducer(tabsPersistConfig, tabsReducer),
     orders: persistReducer(
