@@ -18,13 +18,11 @@ export default function OrdersPage() {
   const filterOrdersValue = useSelector(state => state.orders.filterOrders);
   const isLoading = useSelector(state => state.orders.loader);
 
-  const visibleOrders = () => {
-    return ordersList.filter(order => {
-      return order.clientInfo.secondName
-        .toLowerCase()
-        .includes(filterOrdersValue.toLowerCase());
-    });
-  };
+  const visibleOrders = ordersList.filter(order => {
+    return order.clientInfo.secondName
+      .toLowerCase()
+      .includes(filterOrdersValue.toLowerCase());
+  });
 
   const getAllOrders = useCallback(
     () => dispatch(ordersOperations.getAllOrders()),
@@ -38,13 +36,13 @@ export default function OrdersPage() {
   return (
     <div className={s.orderPage}>
       {isLoading && <Spinner />}
-      <OrdersTableControls />
+      <OrdersTableControls visibleOrders={visibleOrders} />
 
       <TitleTableOrders />
 
       <WindowTable>
         <ul className={s.customerOrderList}>
-          {visibleOrders()
+          {visibleOrders
             .map((item, idx) => {
               return (
                 <LineOrder

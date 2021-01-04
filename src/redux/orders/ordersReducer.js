@@ -177,6 +177,10 @@ const allOrders = createReducer([], {
         : item,
     );
   },
+  [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
+    console.log('Эзфндщфв кувгсук', payload);
+    return payload;
+  },
 });
 
 const currentOrder = createReducer(initCurrentOrder, {
@@ -250,10 +254,7 @@ const filterClients = createReducer('', {
 });
 
 const filterOrders = createReducer('', {
-  [ordersActions.filterOrders]: (_, { payload }) => {
-    console.log('payload', payload);
-    return payload;
-  },
+  [ordersActions.filterOrders]: (_, { payload }) => payload,
 });
 
 const temporaryStorageLocation = createReducer(initCurrentOrder, {

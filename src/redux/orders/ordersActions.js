@@ -8,7 +8,10 @@ const getPriceByArtRequest = createAction('orders/getPriceByArtRequest');
 const getPriceByArtSuccess = createAction('orders/getPriceByArtSuccess');
 const getPriceByArtError = createAction('orders/getPriceByArtError');
 
-const removeOrder = createAction('orders/removeOrder');
+const removeOrdersRequest = createAction('orders/removeOrdersRequest');
+const removeOrdersSuccess = createAction('orders/removeOrdersSuccess');
+const removeOrdersError = createAction('orders/removeOrdersError');
+
 const editOrder = createAction('orders/editOrder');
 const checkboxOrderSwitch = createAction('orders/checkboxOrderSwitch');
 
@@ -88,7 +91,10 @@ export default {
 
   changePrepaymentInput,
 
-  removeOrder,
+  removeOrdersRequest,
+  removeOrdersSuccess,
+  removeOrdersError,
+
   editOrder,
   checkboxOrderSwitch,
 

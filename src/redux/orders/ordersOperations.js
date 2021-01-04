@@ -166,10 +166,34 @@ const getOrderById = id => async dispatch => {
   }
 };
 
+const removeOrders = orders => async dispatch => {
+  dispatch(ordersActions.removeOrdersRequest());
+
+  try {
+    const updateOrders = await orders.filter(order => {
+      if (order.isCheckedOrder === true) {
+        axios.delete(`${baseUrl}/orders/${order._id}`);
+
+        // eslint-disable-next-line array-callback-return
+        return;
+      }
+      return order;
+    });
+
+    console.log(updateOrders);
+
+    dispatch(ordersActions.removeOrdersSuccess(updateOrders));
+  } catch (error) {
+    dispatch(ordersActions.removeOrdersError());
+    console.error(error);
+  }
+};
+
 export default {
   getAllOrders,
   getPriceByArt,
   postOrder,
   patchOrder,
   getOrderById,
+  removeOrders,
 };

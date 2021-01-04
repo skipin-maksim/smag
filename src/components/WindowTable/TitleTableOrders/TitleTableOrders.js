@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CheckBox from '../../CheckBox/CheckBox';
+// import CheckBox from '../../CheckBox/CheckBox';
 
 import s from './TitleTableOrders.module.scss';
 
 export default function TitleTableOrders() {
   return (
     <div className={s.tableTitletLine}>
-      <CheckBox choiceOption="checkAllOrders" />
+      <span>^</span>
       <span>№</span>
       <span>Клиент</span>
       <span>Позиций</span>

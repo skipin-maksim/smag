@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
-import { ordersActions } from '../../redux/orders';
+import { ordersActions, ordersOperations } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
 import { numOrderOperations } from '../../redux/numOrder';
 
@@ -12,7 +12,7 @@ import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
 
 import s from './OrdersTableControls.module.scss';
 
-export default function OrdersTableControls() {
+export default function OrdersTableControls({ visibleOrders }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,7 +21,7 @@ export default function OrdersTableControls() {
   const widthLineTabs = useSelector(state => state.tabs.positionData.left);
 
   const onFilterOrders = useCallback(
-    () => dispatch(ordersActions.filterOrders()),
+    value => dispatch(ordersActions.filterOrders(value)),
     [dispatch],
   );
 
@@ -42,6 +42,11 @@ export default function OrdersTableControls() {
 
   const onClearTemporaryStorageLocation = useCallback(
     () => dispatch(ordersActions.clearTemporaryStorageLocation()),
+    [dispatch],
+  );
+
+  const onRemoveOrders = useCallback(
+    ordersList => dispatch(ordersOperations.removeOrders(ordersList)),
     [dispatch],
   );
 
@@ -74,6 +79,11 @@ export default function OrdersTableControls() {
     }
   };
 
+  const handleRemoveLine = () => {
+    console.log('filtered', visibleOrders);
+    onRemoveOrders(visibleOrders);
+  };
+
   return (
     <div className={s.ordersControls}>
       <input
@@ -85,7 +95,7 @@ export default function OrdersTableControls() {
       <div className={s.controlsButtons}>
         <AddBtn data={{ isSaved: false }} onCreate={handleAddNewOrder} />
 
-        <RemoveBtn data={{ isSaved: false }} />
+        <RemoveBtn onRemove={handleRemoveLine} />
       </div>
     </div>
   );

@@ -166,7 +166,7 @@ export default function SettingsBlockBtn() {
 
         <AddWithCopyBtn data={currentOrder} onCreate={onCreateLineWithCopy} />
 
-        <RemoveBtn data={currentOrder} onRemove={handleDelete} />
+        <RemoveBtn disabled={currentOrder.isSaved} onRemove={handleDelete} />
 
         <EditBtn
           data={currentOrder}
