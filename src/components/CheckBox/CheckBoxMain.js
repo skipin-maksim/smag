@@ -9,15 +9,17 @@ export default function CheckBoxMain({
   isDisabled,
 }) {
   return (
-    <label className={s.checkboxOther}>
+    <div className="checkbox-box">
       <input
+        id="checkbox-main"
+        className={s.checkboxInput}
         type="checkbox"
         name={name}
         checked={isChecked}
         onChange={({ target }) => onChange({ name: target.name })}
         disabled={isDisabled}
       />
-      <span></span>
-    </label>
+      <label className={s.checkboxLabel} for="checkbox-main"></label>
+    </div>
   );
 }

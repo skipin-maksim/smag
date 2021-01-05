@@ -1,14 +1,14 @@
 /*Checkboxes styles*/
-label {
+.checkboxLabel {
   width: 15px;
   height: 15px;
 }
 
-input[type='checkbox'] {
+.checkboxInput[type='checkbox'] {
   display: none;
 }
 
-input[type='checkbox'] + label {
+.checkboxInput[type='checkbox'] + .checkboxLabel {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -16,16 +16,13 @@ input[type='checkbox'] + label {
   font: 14px/20px 'Open Sans', Arial, sans-serif;
   color: #ddd;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
-input[type='checkbox'] + label:last-child {
+.checkboxInput[type='checkbox'] + .checkboxLabel:last-child {
   margin-bottom: 0;
 }
 
-input[type='checkbox'] + label:before {
+.checkboxInput[type='checkbox'] + .checkboxLabel:before {
   content: '';
   display: block;
   width: 20px;
@@ -35,11 +32,14 @@ input[type='checkbox'] + label:before {
   left: 5px;
   top: -3px;
   opacity: 0.6;
-  -webkit-transition: all 0.12s, border-color 0.08s;
-  transition: all 0.12s, border-color 0.08s;
+  transition: all 0.25s, border-color 0.25s;
 }
 
-input[type='checkbox']:checked + label:before {
+.checkboxInput[id='checkbox-main'] + .checkboxLabel:before {
+  border: 2px solid #ffffff;
+}
+
+.checkboxInput[type='checkbox']:checked + .checkboxLabel:before {
   width: 10px;
   top: -7px;
   left: 12px;
@@ -47,7 +47,6 @@ input[type='checkbox']:checked + label:before {
   opacity: 1;
   border-top-color: transparent;
   border-left-color: transparent;
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 

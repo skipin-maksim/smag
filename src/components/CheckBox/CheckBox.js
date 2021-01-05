@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './CheckBox.module.scss';
+import s from './CheckBox.module.scss';
 
 export default function CheckBox({
   id,
@@ -12,8 +12,9 @@ export default function CheckBox({
   return (
     <div className="checkbox-box">
       <input
-        type="checkbox"
         id={id}
+        className={s.checkboxInput}
+        type="checkbox"
         name={name}
         checked={isChecked}
         onChange={({ target }) =>
@@ -21,7 +22,7 @@ export default function CheckBox({
         }
         disabled={isDisabled}
       />
-      <label for={id}></label>
+      <label className={s.checkboxLabel} for={id}></label>
     </div>
   );
 }
