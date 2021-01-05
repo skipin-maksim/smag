@@ -55,6 +55,7 @@ export default function LineOrder({ idx, order, id }) {
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
       <CheckBox
+        id={id}
         name="checkOrder"
         isChecked={getCurrentLineOrderById.isCheckedOrder}
         onChange={onChangeCheckbox}

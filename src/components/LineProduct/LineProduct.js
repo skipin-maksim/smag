@@ -83,6 +83,7 @@ const LineOrderProduct = ({
   return (
     <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
       <CheckBox
+        id={id}
         name="checkProduct"
         isChecked={getProductLineById.checkProduct}
         onChange={onChangeInput}

@@ -1,17 +1,19 @@
 import React from 'react';
 
-import s from './CheckBox.module.scss';
+import './CheckBox.module.scss';
 
 export default function CheckBox({
+  id,
   name,
   onChange,
   isChecked = false,
   isDisabled = false,
 }) {
   return (
-    <label className={s.checkboxOther}>
+    <div className="checkbox-box">
       <input
         type="checkbox"
+        id={id}
         name={name}
         checked={isChecked}
         onChange={({ target }) =>
@@ -19,7 +21,22 @@ export default function CheckBox({
         }
         disabled={isDisabled}
       />
-      <span></span>
-    </label>
+      <label for={id}></label>
+    </div>
   );
+}
+
+{
+  /* <label className={s.checkboxOther}>
+  <input
+    type="checkbox"
+    name={name}
+    checked={isChecked}
+    onChange={({ target }) =>
+      onChange({ name: target.name, value: target.checked })
+    }
+    disabled={isDisabled}
+  />
+  <span></span>
+</label>; */
 }
