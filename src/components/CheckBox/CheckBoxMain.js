@@ -19,7 +19,7 @@ export default function CheckBoxMain({
         onChange={({ target }) => onChange({ name: target.name })}
         disabled={isDisabled}
       />
-      <label className={s.checkboxLabel} for="checkbox-main"></label>
+      <label className={s.checkboxLabel} htmlFor="checkbox-main"></label>
     </div>
   );
 }

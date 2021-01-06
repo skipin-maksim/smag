@@ -22,7 +22,7 @@ export default function CheckBox({
         }
         disabled={isDisabled}
       />
-      <label className={s.checkboxLabel} for={id}></label>
+      <label className={s.checkboxLabel} htmlFor={id}></label>
     </div>
   );
 }
