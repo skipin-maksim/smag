@@ -26,18 +26,3 @@ export default function CheckBox({
     </div>
   );
 }
-
-{
-  /* <label className={s.checkboxOther}>
-  <input
-    type="checkbox"
-    name={name}
-    checked={isChecked}
-    onChange={({ target }) =>
-      onChange({ name: target.name, value: target.checked })
-    }
-    disabled={isDisabled}
-  />
-  <span></span>
-</label>; */
-}
