@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { NavLink, withRouter, useHistory } from 'react-router-dom';
+import { connect, useSelector } from 'react-redux';
 import notification from 'toastr';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs/';
@@ -19,7 +19,6 @@ const Tab = ({
   path,
   name,
   label,
-  history,
   tabsList,
   removeTab,
   currentOrder,
@@ -29,6 +28,9 @@ const Tab = ({
   onSaveToTemporaryStorageLocation,
   onGetDataOfTemporaryStorageLocation,
 }) => {
+  const history = useHistory();
+  const isArror = useSelector(state => state.orders.error);
+
   const { pathname } = history.location;
 
   const handleOnCloseTab = (name, path, idxItem) => {
@@ -66,6 +68,18 @@ const Tab = ({
       return current;
     }, tabsList[0]);
   };
+
+  if (isArror !== null) {
+    console.log(isArror.message.slice(-6));
+    if (
+      isArror.message.includes('Not found order id') &&
+      pathname.includes(isArror.message.slice(-6))
+    ) {
+      setTimeout(() => {
+        history.replace('/orders/');
+      }, 0);
+    }
+  }
 
   const hendleClickOnTab = e => {
     e.preventDefault();

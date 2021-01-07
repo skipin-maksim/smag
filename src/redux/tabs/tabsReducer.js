@@ -30,8 +30,38 @@ const items = createReducer(initialStateItem, {
 
     return [...newState, payload.createTabForNewOrder.payload];
   },
-});
+  [ordersActions.getOrderByIdError]: (state, { payload }) => {
+    console.log(payload.id);
+    const newState = state.filter(item => item.label !== payload.id);
 
+    return newState;
+  },
+  [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
+    console.log(payload.tabsOrder);
+
+    const newArr = payload.tabsOrder.map(item => {
+      const filterTabs = state.filter(tab => {
+        if (tab.label === item) {
+          console.log(tab.label, '-------', item);
+          console.log('-------------------ничего------------------------');
+          // eslint-disable-next-line array-callback-return
+          return;
+        }
+        if (tab.label !== item || tab.label === 'text tab') {
+          console.log(tab.label, '++++++', item);
+          console.log('+++++++++++++++', tab, ' +++++++++++++++');
+          return tab;
+        }
+      });
+
+      return filterTabs;
+    });
+
+    console.log(newArr);
+    return newArr;
+  },
+});
+// ordersActions.getOrderByIdError
 const positionData = createReducer(
   { width: 0, left: 0 },
   {

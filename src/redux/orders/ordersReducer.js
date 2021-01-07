@@ -6,6 +6,8 @@ import { ordersActions } from './';
 import { tabsActions } from '../tabs/';
 import { initCurrentOrder } from './initialStateForReducers';
 
+const resetErrorMessage = null;
+
 const changeLineProductInput = (state, payload) => {
   return {
     ...state,
@@ -182,7 +184,10 @@ const allOrders = createReducer([], {
         : item,
     );
   },
-  [ordersActions.removeOrdersSuccess]: (state, { payload }) => payload,
+  [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
+    console.log(payload);
+    return payload.orders;
+  },
 });
 
 const currentOrder = createReducer(initCurrentOrder, {
@@ -276,6 +281,14 @@ const loader = createReducer(false, {
   [ordersActions.getAllOrdersError]: () => false,
 });
 
+const error = createReducer(null, {
+  [ordersActions.getOrderByIdError]: (state, { payload }) => {
+    return payload.error;
+  },
+  [ordersActions.getOrderByIdSuccess]: (state, { payload }) =>
+    resetErrorMessage,
+});
+
 export default combineReducers({
   allOrders,
   currentOrder,
@@ -283,4 +296,5 @@ export default combineReducers({
   filterOrders,
   temporaryStorageLocation,
   loader,
+  error,
 });

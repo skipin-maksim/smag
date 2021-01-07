@@ -164,11 +164,12 @@ const getOrderById = id => async dispatch => {
       }),
     );
   } catch (error) {
-    dispatch(ordersActions.getOrderByIdError());
+    dispatch(
+      ordersActions.getOrderByIdError({ error: error.response.data, id }),
+    );
 
-    if (error.message === 'Request failed with status code 404') {
+    if (error.response.data.message.includes('Not found order id')) {
       notification.error(`Заказ был удален`, `Заказ ${id} не найден!`);
-
       return;
     }
 
@@ -179,10 +180,14 @@ const getOrderById = id => async dispatch => {
 const removeOrders = orders => async dispatch => {
   dispatch(ordersActions.removeOrdersRequest());
 
+  const aarr = [];
+
   try {
     const updateOrders = await orders.filter(order => {
       if (order.isCheckedOrder === true) {
         axios.delete(`${baseUrl}/orders/${order._id}`);
+
+        aarr.push(order.numOrder);
 
         // eslint-disable-next-line array-callback-return
         return;
@@ -190,7 +195,14 @@ const removeOrders = orders => async dispatch => {
       return order;
     });
 
-    dispatch(ordersActions.removeOrdersSuccess(updateOrders));
+    console.log(aarr);
+
+    dispatch(
+      ordersActions.removeOrdersSuccess({
+        orders: updateOrders,
+        tabsOrder: aarr,
+      }),
+    );
   } catch (error) {
     dispatch(ordersActions.removeOrdersError());
     console.error(error);
