@@ -25,11 +25,16 @@ const changeMainCheckbox = (state, payload) => {
   };
 };
 const getPriceByArtSuccess = (state, payload) => {
+  console.log(payload);
   return {
     ...state,
     items: state.items.map(item => {
       return item.vendorCode === payload.vendorCode
-        ? { ...item, price: payload.prices.wholesale }
+        ? {
+            ...item,
+            price: payload.prices.wholesale,
+            provider: payload.provider,
+          }
         : item;
     }),
   };
@@ -177,10 +182,7 @@ const allOrders = createReducer([], {
         : item,
     );
   },
-  [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
-    console.log('Эзфндщфв кувгсук', payload);
-    return payload;
-  },
+  [ordersActions.removeOrdersSuccess]: (state, { payload }) => payload,
 });
 
 const currentOrder = createReducer(initCurrentOrder, {

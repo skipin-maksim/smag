@@ -6,9 +6,10 @@
   text-align: center;
   font-size: 14px;
   transition: all 0.2s linear;
+  border-bottom: 1px solid rgba(28, 43, 74, 0.5);
 
   &:hover {
-    background-color: hsla(220, 45%, 20%, 0.3);
+    background-color: rgba(28, 43, 74, 0.1);
   }
 }
 
@@ -21,4 +22,27 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.status {
+  padding: 5px 2px;
+  font-size: 11px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.processed {
+  background-color: #1c2b4a;
+}
+
+.assembled {
+  background-color: #d19a66;
+}
+
+.notProcessed {
+  background-color: #de6a73;
+}
+
+.givenAway {
+  background-color: #98c379;
 }

@@ -50,7 +50,29 @@ export default function LineOrder({ idx, order, id }) {
     checkboxOrderSwitch({ id, value });
   };
 
-  const { calculatedTotals, clientInfo, prepayment, noteForOrder } = order;
+  const {
+    calculatedTotals,
+    clientInfo,
+    prepayment,
+    noteForOrder,
+    status,
+  } = order;
+
+  const className = () => {
+    switch (status) {
+      case 'Обработан':
+        return s.processed;
+      case 'Не обработан':
+        return s.notProcessed;
+      case 'Собран':
+        return s.assembled;
+      case 'Отдан':
+        return s.givenAway;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
@@ -68,8 +90,8 @@ export default function LineOrder({ idx, order, id }) {
       <span>{calculatedTotals.quantity}</span>
       <span>{calculatedTotals.sum}</span>
       <span>{prepayment}</span>
-      <span>{order.date}</span>
-      <span>статус</span>
+      <span style={{ fontSize: '11px' }}>{order.date}</span>
+      <span className={`${s.status} ${className()}`}>{status}</span>
       <span className={s.noteForOrder}>{noteForOrder}</span>
     </li>
   );

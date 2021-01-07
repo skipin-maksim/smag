@@ -52,7 +52,6 @@ const Tab = ({
         history.replace(previous.path);
 
         if (Number(previous.label)) {
-          console.log(previous.label);
           onGetOrderById(previous.label);
         }
         removeTab(name);
@@ -70,7 +69,6 @@ const Tab = ({
 
   const hendleClickOnTab = e => {
     e.preventDefault();
-    console.log(label);
 
     const currentId = label;
 

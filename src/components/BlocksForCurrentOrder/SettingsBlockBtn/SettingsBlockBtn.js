@@ -145,7 +145,6 @@ export default function SettingsBlockBtn() {
   });
 
   const onCreateLineWithCopy = () => {
-    console.log(lastProductItem);
     onCreateLineProductCopy(lastProductItem);
     onCalculateTotalPositions();
   };

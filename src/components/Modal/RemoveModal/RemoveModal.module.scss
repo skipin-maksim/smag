@@ -1,0 +1,35 @@
+.removeModal {
+  position: relative;
+  padding: 50px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 5px;
+
+  button[datatype='closeBtn'] {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transform: translateY(0);
+    height: 25px;
+  }
+}
+
+.modalTitle {
+  margin-bottom: 30px;
+}
+
+.modalText {
+  margin-bottom: 15px;
+}
+
+.accentText {
+  color: rgb(255, 95, 95);
+}
+
+.blockBtn {
+  width: 200px;
+  margin: 50px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

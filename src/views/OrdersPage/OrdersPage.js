@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ordersOperations } from '../../redux/orders';
@@ -8,10 +8,13 @@ import TitleTableOrders from '../../components/WindowTable/TitleTableOrders/Titl
 import OrdersTableControls from '../../components/OrdersTableControls/OrdersTableControls';
 import LineOrder from '../../components/LineOrder/LineOrder';
 import WindowTable from '../../components/WindowTable/WindowTable';
+import Modal from '../../components/Modal/Modal';
+import RemoveModal from '../../components/Modal/RemoveModal/RemoveModal';
 
 import s from './OrdersPage.module.scss';
 
 export default function OrdersPage() {
+  const [removeModal, setRemoveModal] = useState(false);
   const dispatch = useDispatch();
 
   const ordersList = useSelector(state => state.orders.allOrders);
@@ -29,14 +32,31 @@ export default function OrdersPage() {
     [dispatch],
   );
 
+  const onRemoveOrders = useCallback(
+    ordersList => dispatch(ordersOperations.removeOrders(ordersList)),
+    [dispatch],
+  );
+
   useEffect(() => {
     getAllOrders();
   }, [getAllOrders]);
 
+  const onCloseModal = () => {
+    setRemoveModal(false);
+  };
+
+  const handleRemoveOrders = () => {
+    onRemoveOrders(visibleOrders);
+    onCloseModal();
+  };
+
   return (
     <div className={s.orderPage}>
       {isLoading && <Spinner />}
-      <OrdersTableControls visibleOrders={visibleOrders} />
+      <OrdersTableControls
+        visibleOrders={visibleOrders}
+        handleOpenModal={() => setRemoveModal(true)}
+      />
 
       <TitleTableOrders />
 
@@ -56,6 +76,17 @@ export default function OrdersPage() {
             .reverse()}
         </ul>
       </WindowTable>
+      {removeModal && (
+        <Modal
+          children={
+            <RemoveModal
+              onCloseModal={onCloseModal}
+              onRemoveOrders={handleRemoveOrders}
+            />
+          }
+          onCloseModal={onCloseModal}
+        />
+      )}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
-import { ordersActions, ordersOperations } from '../../redux/orders';
+import { ordersActions } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
 import { numOrderOperations } from '../../redux/numOrder';
 
@@ -12,7 +12,7 @@ import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
 
 import s from './OrdersTableControls.module.scss';
 
-export default function OrdersTableControls({ visibleOrders }) {
+export default function OrdersTableControls({ handleOpenModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -45,11 +45,6 @@ export default function OrdersTableControls({ visibleOrders }) {
     [dispatch],
   );
 
-  const onRemoveOrders = useCallback(
-    ordersList => dispatch(ordersOperations.removeOrders(ordersList)),
-    [dispatch],
-  );
-
   const handleAddNewOrder = () => {
     const isTab = tabsList.find(item => item.name === 'Заказ № ***?');
 
@@ -79,11 +74,6 @@ export default function OrdersTableControls({ visibleOrders }) {
     }
   };
 
-  const handleRemoveLine = () => {
-    console.log('filtered', visibleOrders);
-    onRemoveOrders(visibleOrders);
-  };
-
   return (
     <div className={s.ordersControls}>
       <input
@@ -95,7 +85,7 @@ export default function OrdersTableControls({ visibleOrders }) {
       <div className={s.controlsButtons}>
         <AddBtn data={{ isSaved: false }} onCreate={handleAddNewOrder} />
 
-        <RemoveBtn onRemove={handleRemoveLine} />
+        <RemoveBtn onRemove={handleOpenModal} />
       </div>
     </div>
   );

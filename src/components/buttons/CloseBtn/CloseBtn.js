@@ -4,9 +4,9 @@ import s from './CloseBtn.module.scss';
 
 export default function CloseBtn({
   onClick,
-  name,
-  path,
-  idx,
+  name = false,
+  path = false,
+  idx = false,
   additionalClassName,
 }) {
   return (
@@ -18,6 +18,7 @@ export default function CloseBtn({
           : s.tabCloseBtn
       }
       type="button"
+      datatype={'closeBtn'}
     >
       <span className="visually-hidden">close button</span>
     </button>

@@ -43,7 +43,7 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
 
       return;
     }
-    console.log(error);
+
     dispatch(ordersActions.getPriceByArtError(error));
   }
 };
@@ -76,6 +76,9 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
     const { data: dataOrder } = await axios.post(`${baseUrl}/orders`, postData);
 
     const data = dataOrder.order;
+
+    console.log(postData);
+    console.log(data);
 
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
@@ -162,6 +165,13 @@ const getOrderById = id => async dispatch => {
     );
   } catch (error) {
     dispatch(ordersActions.getOrderByIdError());
+
+    if (error.message === 'Request failed with status code 404') {
+      notification.error(`Заказ был удален`, `Заказ ${id} не найден!`);
+
+      return;
+    }
+
     console.error(error);
   }
 };
@@ -179,8 +189,6 @@ const removeOrders = orders => async dispatch => {
       }
       return order;
     });
-
-    console.log(updateOrders);
 
     dispatch(ordersActions.removeOrdersSuccess(updateOrders));
   } catch (error) {

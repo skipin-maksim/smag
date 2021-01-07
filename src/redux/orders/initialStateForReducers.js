@@ -39,6 +39,7 @@ export const initCurrentOrder = {
   items: [
     {
       id: uuidv4(),
+      provider: '',
       checkProduct: false,
       vendorCode: '',
       color: '',
@@ -69,4 +70,5 @@ export const initCurrentOrder = {
   isEdit: false,
   prepayment: 0,
   noteForOrder: '',
+  status: 'Не обработан',
 };
