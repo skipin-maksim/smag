@@ -1,5 +1,5 @@
 import React from 'react';
-import logoImg from '../../../assets/images/logo3.png';
+import logoImg from '../../../assets/images/logo-print.svg';
 
 import s from './PrintModal.module.scss';
 
@@ -9,31 +9,28 @@ export default function PrintModal({ currentOrder }) {
       <div className={s.infoBlock}>
         <img className={s.logo} src={logoImg} alt="logo" />
         <ul className={s.infoMag}>
-          <li>
-            {'моб. (it)'} <span>+39 393 070 62 45</span>
-          </li>
-          <li>
-            {'моб. (ua)'} <span>+38 393 070 62 45</span>
-          </li>
-          <li>
-            {'моб. (ua)'} <span>+38 393 070 62 45</span>
-          </li>
-          <li>
-            email <span>emanuelaferretti.tm@gmail.com</span>
-          </li>
-          <li>
-            www <span>eferretti.com</span>
-          </li>
-          <li>
-            адрес <span>г.Винница</span>
-          </li>
+          <li>+39 393 070 62 45</li>
+          <li>+38 393 070 62 45</li>
+          <li>+38 393 070 62 45</li>
+          <li>emanuelaferretti.tm@gmail.com</li>
+          <li>eferretti.com</li>
+          <li>г.Винница</li>
         </ul>
       </div>
 
       <div className={s.orderInfoBlock}>
-        <div className={s.numOrder}>{`Заказ №${currentOrder.numOrder}`} </div>
+        <ul className={s.clientInfoBlock}>
+          <li>
+            {`${currentOrder.clientInfo.secondName} ${currentOrder.clientInfo.firstName} ${currentOrder.clientInfo.thirdName}`}
+          </li>
+          <li>{currentOrder.clientInfo.city}</li>
+          <li>{currentOrder.clientInfo.email}</li>
+          <li>{currentOrder.clientInfo.tel}</li>
+          <li>{currentOrder.clientInfo.post}</li>
+        </ul>
 
         <ul className={s.calculatedTotals}>
+          <li className={s.numOrder}>{`Заказ №${currentOrder.numOrder}`} </li>
           <li>
             <span className={s.liTitle}>Единиц:</span>
             <span>
@@ -51,7 +48,7 @@ export default function PrintModal({ currentOrder }) {
             <span>{currentOrder.prepayment.toLocaleString('ru')}</span>
           </li>
           <li>
-            <span className={s.liTitle}>Остаток:</span>{' '}
+            <span className={s.liTitle}>Остаток к оплате:</span>{' '}
             <span>
               {currentOrder.calculatedTotals.remainderPaid < 0
                 ? 0
@@ -62,29 +59,6 @@ export default function PrintModal({ currentOrder }) {
           </li>
         </ul>
       </div>
-
-      <ul className={s.clientInfoBlock}>
-        <li>
-          <span className={s.clientInfoTitle}>Клиент:</span>
-          <span>{`${currentOrder.clientInfo.secondName} ${currentOrder.clientInfo.firstName} ${currentOrder.clientInfo.thirdName}`}</span>
-        </li>
-        <li>
-          <span className={s.clientInfoTitle}>Город:</span>
-          <span>{`${currentOrder.clientInfo.city}`}</span>
-        </li>
-        <li>
-          <span className={s.clientInfoTitle}>Email:</span>
-          <span>{`${currentOrder.clientInfo.email}`}</span>
-        </li>
-        <li>
-          <span className={s.clientInfoTitle}>Телефон:</span>
-          <span>{`${currentOrder.clientInfo.tel}`}</span>
-        </li>
-        <li>
-          <span className={s.clientInfoTitle}>Доставка:</span>
-          <span>{`Новая Почта ${currentOrder.clientInfo.post}`}</span>
-        </li>
-      </ul>
 
       <ul className={s.customerOrderList}>
         <li className={`${s.lineProduct}, ${s.lineTitle}`}>
@@ -116,6 +90,8 @@ export default function PrintModal({ currentOrder }) {
           );
         })}
       </ul>
+
+      <div className={s.noteForOrder}>Заметки: {currentOrder.noteForOrder}</div>
     </div>
   );
 }
