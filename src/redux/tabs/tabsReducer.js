@@ -37,31 +37,17 @@ const items = createReducer(initialStateItem, {
     return newState;
   },
   [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
-    console.log(payload.tabsOrder);
+    const removeData = payload.tabsOrders;
+    const stateTabs = state;
 
-    const newArr = payload.tabsOrder.map(item => {
-      const filterTabs = state.filter(tab => {
-        if (tab.label === item) {
-          console.log(tab.label, '-------', item);
-          console.log('-------------------ничего------------------------');
-          // eslint-disable-next-line array-callback-return
-          return;
-        }
-        if (tab.label !== item || tab.label === 'text tab') {
-          console.log(tab.label, '++++++', item);
-          console.log('+++++++++++++++', tab, ' +++++++++++++++');
-          return tab;
-        }
-      });
+    const newArrTabs = stateTabs.filter(
+      ({ label }) => !removeData.includes(label),
+    );
 
-      return filterTabs;
-    });
-
-    console.log(newArr);
-    return newArr;
+    return newArrTabs;
   },
 });
-// ordersActions.getOrderByIdError
+
 const positionData = createReducer(
   { width: 0, left: 0 },
   {

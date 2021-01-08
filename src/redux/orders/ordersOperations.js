@@ -77,9 +77,6 @@ const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
     const data = dataOrder.order;
 
-    console.log(postData);
-    console.log(data);
-
     dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
 
     notification.success(
@@ -195,12 +192,10 @@ const removeOrders = orders => async dispatch => {
       return order;
     });
 
-    console.log(aarr);
-
     dispatch(
       ordersActions.removeOrdersSuccess({
         orders: updateOrders,
-        tabsOrder: aarr,
+        tabsOrders: aarr,
       }),
     );
   } catch (error) {
