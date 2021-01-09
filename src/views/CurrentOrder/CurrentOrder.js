@@ -129,20 +129,12 @@ export default function CurrentOrder2({ match }) {
   const handleCheckAll = name => {
     setIsCheckAll(!isCheckAll);
 
-    // onChangeMainCheckbox({
-    //   ...name,
-    //   value: isCheckAll,
-    // });
+    onChangeMainCheckbox({
+      ...name,
+      value: !isCheckAll,
+      // было isCheckAll поставил !isCheckAll ((((()))))
+    });
   };
-  useEffect(
-    name => {
-      onChangeMainCheckbox({
-        ...name,
-        value: isCheckAll,
-      });
-    },
-    [isCheckAll, onChangeMainCheckbox],
-  );
 
   const handleNoteForOrder = () => {
     if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
@@ -157,11 +149,6 @@ export default function CurrentOrder2({ match }) {
 
     // onCalculateTotalPositions();
 
-    // if (match.params.orderId === 'new-order') {
-    //   onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
-    // } else if (Number(match.params.orderId)) {
-    //   onGetOrderById(match.params.orderId);
-    // }
     return () => {
       window.removeEventListener('keydown', handlePressKeyNewLine);
     };
@@ -169,14 +156,17 @@ export default function CurrentOrder2({ match }) {
 
   useEffect(() => {
     if (match.params.orderId === 'new-order') {
-      console.log('log из эффекта');
+      console.log(
+        'log из эффекта --> забрать данные из dataOfTemporaryStorageLocation',
+      );
       onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
     }
 
     if (Number(match.params.orderId)) {
       onGetOrderById(match.params.orderId);
     }
-  }, [dataOfTemporaryStorageLocation, match, onGetDataOfTemporaryStorageLocation, onGetOrderById]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match]);
 
   useEffect(() => {
     if (!isSomeUncheked && !isCheckAll) {

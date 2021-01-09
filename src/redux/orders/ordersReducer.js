@@ -27,7 +27,6 @@ const changeMainCheckbox = (state, payload) => {
   };
 };
 const getPriceByArtSuccess = (state, payload) => {
-  console.log(payload);
   return {
     ...state,
     items: state.items.map(item => {
