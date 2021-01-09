@@ -23,7 +23,7 @@ import MoneyBlock from '../../components/BlocksForCurrentOrder/MoneyBlock/MoneyB
 
 import s from './CurrentOrder.module.scss';
 
-export default function CurrentOrder2({ match }) {
+export default function CurrentOrder({ match }) {
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isModal, setIsModal] = useState(false);
 
