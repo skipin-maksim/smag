@@ -23,7 +23,6 @@ const allOrders = createReducer([], {
     );
   },
   [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
-    console.log(payload);
     return payload.orders;
   },
 });
