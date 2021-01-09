@@ -64,6 +64,8 @@ const getDataOfTemporaryStorageLocation = state => {
   return state.orders.temporaryStorageLocation;
 };
 
+const getIsError = state => state.orders.error;
+
 export default {
   getOrdersList,
   getCurrentClientInfo,
@@ -81,4 +83,5 @@ export default {
   getDataOfTemporaryStorageLocation,
   getFilterOrdersValue,
   getVisibleOrders,
+  getIsError,
 };

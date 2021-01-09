@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { NavLink, withRouter, useHistory } from 'react-router-dom';
+import { connect, useSelector } from 'react-redux';
 import notification from 'toastr';
 
 import { tabsSelectors, tabsActions } from '../../redux/tabs';
@@ -14,44 +14,24 @@ import CloseBtn from '../buttons/CloseBtn/CloseBtn';
 
 import s from './HeaderComponent.module.scss';
 
-export default function Tab({ idx, path, name, label }) {
-  const dispatch = useDispatch();
+const Tab = ({
+  idx,
+  path,
+  name,
+  label,
+  tabsList,
+  removeTab,
+  currentOrder,
+  onGetOrderById,
+  onClearCurrentOrder,
+  dataOfTemporaryStorageLocation,
+  onSaveToTemporaryStorageLocation,
+  onGetDataOfTemporaryStorageLocation,
+}) => {
   const history = useHistory();
+  const isArror = useSelector(state => state.orders.error);
+
   const { pathname } = history.location;
-
-  const isError = useSelector(ordersSelectors.getIsError);
-  const tabsList = useSelector(tabsSelectors.getTabsList);
-  const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
-  const dataOfTemporaryStorageLocation = useSelector(
-    ordersSelectors.getDataOfTemporaryStorageLocation,
-  );
-
-  const onRemoveTab = useCallback(
-    name => dispatch(tabsActions.removeTab(name)),
-    [dispatch],
-  );
-
-  const onClearCurrentOrder = useCallback(
-    () => dispatch(ordersActions.clearCurrentOrder()),
-    [dispatch],
-  );
-
-  const onGetOrderById = useCallback(
-    id => dispatch(ordersOperations.getOrderById(id)),
-    [dispatch],
-  );
-
-  const onSaveToTemporaryStorageLocation = useCallback(
-    currentOrder =>
-      dispatch(tabsActions.saveToTemporaryStorageLocation(currentOrder)),
-    [dispatch],
-  );
-
-  const onGetDataOfTemporaryStorageLocation = useCallback(
-    currentOrderData =>
-      dispatch(tabsActions.getDataOfTemporaryStorageLocation(currentOrderData)),
-    [dispatch],
-  );
 
   const handleOnCloseTab = (name, path, idxItem) => {
     /*
@@ -61,11 +41,11 @@ export default function Tab({ idx, path, name, label }) {
     tabsList.reduce((previous, current) => {
       if (idxItem === 0 && tabsList.length === 1) {
         history.replace('/');
-        onRemoveTab(name);
+        removeTab(name);
         return current;
       }
       if (idxItem === 0 && tabsList[1] && pathname === path) {
-        onRemoveTab(name);
+        removeTab(name);
         history.replace(tabsList[1].path);
         return current;
       }
@@ -76,12 +56,12 @@ export default function Tab({ idx, path, name, label }) {
         if (Number(previous.label)) {
           onGetOrderById(previous.label);
         }
-        onRemoveTab(name);
+        removeTab(name);
         return current;
       }
 
       if (current.path !== path && pathname !== path) {
-        onRemoveTab(name);
+        removeTab(name);
         return current;
       }
 
@@ -89,10 +69,10 @@ export default function Tab({ idx, path, name, label }) {
     }, tabsList[0]);
   };
 
-  if (isError !== null) {
+  if (isArror !== null) {
     if (
-      isError.message.includes('Not found order id') &&
-      pathname.includes(isError.message.slice(-6))
+      isArror.message.includes('Not found order id') &&
+      pathname.includes(isArror.message.slice(-6))
     ) {
       setTimeout(() => {
         history.replace('/orders/');
@@ -146,4 +126,24 @@ export default function Tab({ idx, path, name, label }) {
       <CloseBtn onClick={handleOnCloseTab} name={name} path={path} idx={idx} />
     </li>
   );
-}
+};
+
+const mSTP = (state, ownProps) => ({
+  tabsList: tabsSelectors.getTabsList(state),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
+  dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
+    state,
+  ),
+});
+
+const mDTP = {
+  removeTab: tabsActions.removeTab,
+  onClearCurrentOrder: ordersActions.clearCurrentOrder,
+  onGetOrderById: ordersOperations.getOrderById,
+
+  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
+  onGetDataOfTemporaryStorageLocation:
+    tabsActions.getDataOfTemporaryStorageLocation,
+};
+
+export default withRouter(connect(mSTP, mDTP)(Tab));
