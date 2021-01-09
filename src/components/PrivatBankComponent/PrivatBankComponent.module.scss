@@ -1,3 +1,6 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .privatWrapper {
   position: fixed;
   bottom: 0;
@@ -8,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  background: rgb(236, 236, 236);
+  box-shadow: 0 5px 15px rgba($black-color, 0.5);
+  background: $grey-color;
   overflow: hidden;
 
   @media print {
@@ -46,9 +49,6 @@
       margin-left: 7px;
       font-weight: 700;
     }
-  }
-
-  & .buy {
   }
 
   & .sale {

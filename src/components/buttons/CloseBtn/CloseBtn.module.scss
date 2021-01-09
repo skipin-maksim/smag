@@ -1,3 +1,6 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .tabCloseBtn {
   position: absolute;
   top: 50%;
@@ -12,12 +15,12 @@
   transition: all 0.2s linear;
 
   &:hover::before {
-    background-color: #de6a73;
+    background-color: $main-red-color;
     transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
   }
 
   &:hover::after {
-    background-color: #de6a73;
+    background-color: $main-red-color;
     transform: translate(-50%, -50%) rotate(-45deg) scale(1.2);
   }
 
@@ -30,7 +33,7 @@
     display: block;
     width: 70%;
     height: 1px;
-    background-color: #000;
+    background-color: $black-color;
     transition: all 0.2s linear;
   }
 

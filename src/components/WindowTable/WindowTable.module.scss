@@ -1,11 +1,14 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .windowOrders {
   position: relative;
   padding: 0 15px 55px;
   margin-bottom: 25px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.048);
+  background-color: $white-color;
+  box-shadow: 0 0 5px rgba($black-color, 0.048);
 
   @media print {
     display: none;

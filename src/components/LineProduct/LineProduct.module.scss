@@ -1,3 +1,6 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .lineProduct {
   padding: 10px 15px;
   position: relative;
@@ -6,10 +9,10 @@
   align-items: center;
   text-align: center;
   transition: all 0.2s linear;
-  border-bottom: 1px solid rgba(28, 43, 74, 0.5);
+  border-bottom: 1px solid rgba($main-accent-color, 0.5);
 
   &:hover {
-    background-color: rgba(28, 43, 74, 0.1);
+    background-color: rgba($main-accent-color, 0.1);
   }
 
   & input {
@@ -19,7 +22,7 @@
     text-align: center;
 
     &:disabled {
-      color: #1c2b4a;
+      color: $main-accent-color;
     }
   }
 }

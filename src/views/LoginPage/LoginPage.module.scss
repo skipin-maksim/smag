@@ -1,10 +1,13 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .rootWrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
 }
 
 .rootInner {
@@ -12,7 +15,7 @@
   padding: 40px 30px 80px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: $white-color;
   border-radius: 5px;
 }
 
@@ -23,16 +26,16 @@
 
 .login {
   padding: 10px;
-  color: #fff;
+  color: $white-color;
   text-align: center;
   border: none;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
   border-radius: 5px;
   outline: none;
   transition: all 0.25s linear;
   cursor: pointer;
 
   &:hover {
-    background-color: #253961;
+    background-color: $hover-accent-color;
   }
 }

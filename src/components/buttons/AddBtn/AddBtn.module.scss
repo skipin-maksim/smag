@@ -1,18 +1,19 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .settingButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include content-center-flex;
   width: 40px;
   min-height: 30px;
   border: none;
   border-radius: 5px;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
   transition: all 0.25s linear;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    background-color: #314775;
+    background-color: $hover-accent-color;
   }
 
   &.addBtn {
@@ -20,7 +21,7 @@
   }
 
   &:disabled:hover {
-    background-color: #1c2b4a;
+    background-color: $main-accent-color;
     cursor: default;
   }
 }

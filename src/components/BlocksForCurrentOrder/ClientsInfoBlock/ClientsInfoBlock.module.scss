@@ -1,8 +1,11 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .clientInfo {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+  @include content-between-flex;
 
   @media print {
     display: none;
@@ -21,8 +24,7 @@
 }
 
 .clientInfoInnerDept {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   font-weight: 800;
 
   & span {
@@ -35,10 +37,9 @@
 }
 
 .clientsBlock {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   width: 450px;
-  color: #fff;
+  color: $white-color;
 
   & input {
     width: 90%;
@@ -46,19 +47,15 @@
 }
 
 .settingControls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include content-between-flex();
 }
 
 .moneyBlock {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
 }
 
 .prepaymentLabel {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   margin-right: 50px;
 }
 
@@ -66,7 +63,7 @@
   margin-left: 10px;
   width: 120px;
   border: 1px solid transparent;
-  border-bottom: 1px solid #1c2b4a;
+  border-bottom: 1px solid $main-accent-color;
   border-radius: 0;
   transition: all 0.25s linear;
   font-size: 25px;
@@ -75,7 +72,7 @@
 
   &:active,
   &:focus {
-    border-bottom: 1px solid #1c2b4a;
+    border-bottom: 1px solid $main-accent-color;
     border-radius: 5px;
   }
 
@@ -85,8 +82,7 @@
 }
 
 .remainderPaid {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   font-weight: 800;
 
   & span {
@@ -99,31 +95,29 @@
 }
 
 .clientsBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include content-center-flex;
   width: 120px;
   min-height: 30px;
   font-size: 10px;
-  color: #fff;
+  color: $white-color;
   border: none;
   border-radius: 5px;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
   transition: all 0.25s linear;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    background-color: #314775;
+    background-color: $hover-accent-color;
   }
 
   &:disabled {
-    background-color: #1c2b4a;
+    background-color: $main-accent-color;
     cursor: default;
   }
 }
 
 .clientName {
   margin-left: 20px;
-  color: #1c2b4a;
+  color: $main-accent-color;
 }

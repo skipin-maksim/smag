@@ -1,3 +1,6 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .orderPage {
   position: relative;
   padding: 36px;
@@ -10,9 +13,7 @@
 
 .clientInfo {
   margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include content-between-flex;
 }
 
 .clientInfoInner {
@@ -31,8 +32,7 @@
 }
 
 .clientInfoInnerDept {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
   font-weight: 800;
 
   & span {
@@ -45,10 +45,9 @@
 }
 
 .clientsBlock {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
   width: 450px;
-  color: #fff;
+  color: $white-color;
 
   & input {
     width: 90%;
@@ -56,19 +55,15 @@
 }
 
 .settingControls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include content-between-flex;
 }
 
 .moneyBlock {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
 }
 
 .prepaymentLabel {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
   margin-right: 50px;
 }
 
@@ -76,7 +71,7 @@
   margin-left: 10px;
   width: 120px;
   border: 1px solid transparent;
-  border-bottom: 1px solid #1c2b4a;
+  border-bottom: 1px solid $main-accent-color;
   border-radius: 0;
   transition: all 0.25s linear;
   font-size: 25px;
@@ -85,7 +80,7 @@
 
   &:active,
   &:focus {
-    border-bottom: 1px solid #1c2b4a;
+    border-bottom: 1px solid $main-accent-color;
     border-radius: 5px;
   }
 
@@ -95,8 +90,7 @@
 }
 
 .remainderPaid {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
   font-weight: 800;
 
   & span {
@@ -109,16 +103,14 @@
 }
 
 .clientsBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include content-center-flex;
   width: 120px;
   min-height: 30px;
   font-size: 10px;
-  color: #fff;
+  color: $white-color;
   border: none;
   border-radius: 5px;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
   transition: all 0.25s linear;
   outline: none;
   cursor: pointer;
@@ -130,7 +122,7 @@
 
 .clientName {
   margin-left: 20px;
-  color: #1c2b4a;
+  color: $main-accent-color;
 }
 
 .noteForOrderLabel {
@@ -142,8 +134,8 @@
     justify-content: center;
     padding: 5px;
     width: 100px;
-    background: #1c2b4a;
-    color: #fff;
+    background: $main-accent-color;
+    color: $white-color;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
   }
@@ -160,6 +152,6 @@
   border-top-left-radius: 0;
 
   &:disabled {
-    color: #1c2b4a;
+    color: $main-accent-color;
   }
 }

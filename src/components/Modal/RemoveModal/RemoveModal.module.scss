@@ -1,7 +1,10 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .removeModal {
   position: relative;
   padding: 50px;
-  background-color: #fff;
+  background-color: $white-color;
   text-align: center;
   border-radius: 5px;
 
@@ -23,13 +26,11 @@
 }
 
 .accentText {
-  color: rgb(255, 95, 95);
+  color: $main-red-color;
 }
 
 .blockBtn {
   width: 200px;
   margin: 50px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include content-between-flex;
 }

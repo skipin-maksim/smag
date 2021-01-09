@@ -1,6 +1,8 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .ordersControls {
-  display: flex;
-  align-items: center;
+  @include content-center-flex(ver);
   width: 500px;
   margin-bottom: 36px;
 

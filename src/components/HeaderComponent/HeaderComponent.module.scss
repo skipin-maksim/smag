@@ -1,6 +1,9 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .headerLineTabs {
   position: relative;
-  background-color: #1c2b4a;
+  background-color: $main-accent-color;
 
   @media print {
     display: none;
@@ -40,7 +43,7 @@
   }
 
   &:hover {
-    background-color: #213357;
+    background-color: $hover-slider-color;
   }
 }
 
@@ -63,7 +66,7 @@
   line-height: 30px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  background-color: rgba(239, 239, 239, 0.5);
+  background-color: rgba($main-bg-color, 0.5);
   text-overflow: ellipsis;
   overflow: hidden;
   outline: none;
@@ -77,13 +80,13 @@
 
 .tabActive {
   font-style: normal;
-  background-color: #efefef;
+  background-color: $main-bg-color;
   & + button {
     position: absolute;
     height: 100%;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    background-color: #efefef;
+    background-color: $main-bg-color;
   }
 }

@@ -1,4 +1,6 @@
-/*Checkboxes styles*/
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .checkboxLabel {
   width: 15px;
   height: 15px;
@@ -14,7 +16,7 @@
   padding-left: 35px;
   margin-bottom: 20px;
   font: 14px/20px 'Open Sans', Arial, sans-serif;
-  color: #ddd;
+  color: $input-disabled-color;
   cursor: pointer;
 }
 
@@ -27,7 +29,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #1c2b4a;
+  border: 2px solid $main-accent-color;
   position: absolute;
   left: 5px;
   top: -3px;
@@ -36,7 +38,7 @@
 }
 
 .checkboxInput[id='checkbox-main'] + .checkboxLabel:before {
-  border: 2px solid #ffffff;
+  border: 2px solid $white-color;
 }
 
 .checkboxInput[type='checkbox']:checked + .checkboxLabel:before {

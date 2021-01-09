@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+@import './helpers/scss/variables.scss';
+@import './helpers/scss/mixin.scss';
+
 html {
   box-sizing: border-box;
 }
@@ -14,9 +17,9 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  color: #1c2b4a;
-  background-color: #efefef;
+  font-family: $main-font;
+  color: $main-accent-color;
+  background-color: $main-bg-color;
 }
 
 img {
@@ -31,21 +34,21 @@ ul {
 
 input {
   padding: 5px 10px;
-  border: 1px solid rgb(144, 144, 144);
+  border: 1px solid $input-border-color;
   border-radius: 5px;
   background-color: transparent;
 
   &:focus {
-    border: 1px solid #1c2b4a;
+    border: 1px solid $main-accent-color;
     outline: none;
   }
 
   &:disabled {
     background-color: transparent;
-    color: #dadada;
+    color: $input-disabled-color;
 
     &::placeholder {
-      color: #dadada;
+      color: $input-disabled-color;
     }
   }
 }
@@ -91,10 +94,10 @@ input[type='radio'].visually-hidden {
 }
 
 .red {
-  color: #de6a73;
+  color: $main-red-color;
 }
 .green {
-  color: #98c379;
+  color: $main-green-color;
 }
 
 @media print {
@@ -106,6 +109,7 @@ input[type='radio'].visually-hidden {
 }
 
 .main-wrapper {
+  height: 100vh;
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-template-areas: 'aside mainContent';
@@ -121,15 +125,15 @@ input[type='radio'].visually-hidden {
 }
 
 .whiteLine {
-  background-color: #fff;
+  background-color: $white-color;
 }
 
 .greyLine {
-  background-color: rgba(243, 243, 243, 0.65);
+  background-color: $grey-opacity65;
 }
 
 .Scrollbars {
-  background: #1c2b4a;
+  background: $main-accent-color;
 }
 
 /*
@@ -144,7 +148,7 @@ input[type='radio'].visually-hidden {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: $black-opacity8;
   z-index: 1200;
 
   @media print {
@@ -165,8 +169,3 @@ input[type='radio'].visually-hidden {
 /*
  * Стили компонента Modal
  */
-.ff {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}

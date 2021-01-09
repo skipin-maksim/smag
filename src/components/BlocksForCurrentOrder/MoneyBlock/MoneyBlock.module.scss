@@ -1,6 +1,8 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .moneyBlock {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
 
   @media print {
     display: none;
@@ -8,8 +10,7 @@
 }
 
 .prepaymentLabel {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   margin-right: 50px;
 }
 
@@ -17,7 +18,7 @@
   margin-left: 10px;
   width: 120px;
   border: 1px solid transparent;
-  border-bottom: 1px solid #1c2b4a;
+  border-bottom: 1px solid $main-accent-color;
   border-radius: 0;
   transition: all 0.25s linear;
   font-size: 25px;
@@ -26,7 +27,7 @@
 
   &:active,
   &:focus {
-    border-bottom: 1px solid #1c2b4a;
+    border-bottom: 1px solid $main-accent-color;
     border-radius: 5px;
   }
 
@@ -36,8 +37,7 @@
 }
 
 .remainderPaid {
-  display: flex;
-  align-items: center;
+  @include content-between-flex(ver);
   font-weight: 800;
 
   & span {

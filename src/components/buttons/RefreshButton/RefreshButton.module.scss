@@ -1,7 +1,8 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .btnUpdate {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include content-center-flex;
   border: none;
   background-color: transparent;
   cursor: pointer;

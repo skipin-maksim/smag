@@ -1,3 +1,6 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
 .modalPrint {
   position: absolute;
   padding: 30px;
@@ -6,7 +9,7 @@
   top: 5%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
+  background-color: $white-color;
   font-size: 14px;
   overflow-y: scroll;
 
@@ -28,7 +31,7 @@
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid $black-color;
 
   & .logo {
     width: 400px;
@@ -43,9 +46,7 @@
 }
 
 .orderInfoBlock {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include content-between-flex;
   margin-bottom: 20px;
 
   .numOrder {
@@ -82,9 +83,6 @@
     .pay,
     .pay + span {
       font-weight: 800;
-
-      @media print {
-      }
     }
   }
 }
@@ -115,7 +113,7 @@
     justify-content: center;
     align-items: flex-start;
     text-align: center;
-    border-right: 1px solid #000;
+    border-right: 1px solid $black-color;
   }
 
   & span:last-child {
@@ -127,21 +125,18 @@
 .lineProduct {
   display: grid;
   grid-template-columns: 35px 110px 330px 55px 55px 55px 80px 1fr;
-  border: 1px solid #000;
+  border: 1px solid $black-color;
   border-top: none;
-}
-
-.noteForOrder {
 }
 
 .lineTitle {
   composes: lineProduct;
-  border-top: 1px solid #000;
-  background-color: rgb(221, 221, 221);
+  border-top: 1px solid $black-color;
+  background-color: $grey-color;
   font-size: 12px;
 
   @media print {
-    background-color: rgb(221, 221, 221);
+    background-color: $grey-color;
     color-adjust: exact;
   }
 }

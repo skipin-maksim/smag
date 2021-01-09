@@ -1,0 +1,131 @@
+$col-count: 12;
+@function col($columns) {
+  @return unquote((100 / $col-count) * $columns + '%');
+}
+
+@function rem($px) {
+  @return ($px / 16) + rem;
+}
+// mixins популярных брекпоинтов / вызов @include phones{ background-color: red;}
+@mixin desktop {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+@mixin tablets {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin phones {
+  @media screen and (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin retina2x {
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    @content;
+  }
+}
+
+@mixin retina3x {
+  @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    @content;
+  }
+}
+
+// отцентрировать блочный элемент, не беспокоясь о верхних и нижних отступах, которые уже были применены
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+// Делает обратное
+@mixin push--0 {
+  margin: {
+    left: 0;
+    right: 0;
+  }
+}
+
+@mixin push-tablets {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+
+  @include tablets {
+    margin: {
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+// Центровка абсолютно позиционированных элементов
+@mixin сenter-xy($top: 50%, $left: 50%) {
+  position: absolute;
+  left: $left;
+  top: $top;
+  transform: translate(-$top, -$left);
+}
+
+@mixin сenter-x($left: 50%) {
+  position: absolute;
+  left: $left;
+  transform: translateX(-$left);
+}
+
+@mixin сenter-y($top: 50%) {
+  position: absolute;
+  top: $top;
+  transform: translateY(-$top);
+}
+
+// для псевдоэлементов
+@mixin pseudo($display: block, $content: '') {
+  display: $display;
+  content: $content;
+}
+
+// применит transition с указанными параметрами
+@mixin transition($transition: all 0.2s linear) {
+  transition: $transition;
+}
+
+// all - применит все
+// hor - flex и j-c: center
+// ver - flex и a-i: center
+@mixin content-center-flex($type: 'all') {
+  display: flex;
+  @if $type== 'all' {
+    justify-content: center;
+    align-items: center;
+  } @else if $type== 'hor' {
+    justify-content: center;
+  } @else if $type== 'ver' {
+    align-items: center;
+  }
+}
+
+// all - применит все
+// hor - flex и j-c: space-between
+// ver - flex и a-i: center
+@mixin content-between-flex($type: 'all') {
+  display: flex;
+  @if $type== 'all' {
+    justify-content: space-between;
+    align-items: center;
+  } @else if $type== 'hor' {
+    justify-content: space-between;
+  } @else if $type== 'ver' {
+    align-items: center;
+  }
+}
