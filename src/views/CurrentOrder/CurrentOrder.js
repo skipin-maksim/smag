@@ -8,7 +8,7 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders';
-import { contactsOperations } from '../../redux/contacts';
+import { clientsOperations } from '../../redux/clients';
 
 import WindowTable from '../../components/WindowTable/WindowTable';
 import LineProduct from '../../components/LineProduct/LineProduct';
@@ -43,8 +43,8 @@ export default function CurrentOrder({ match }) {
     () => dispatch(ordersActions.choiseClient()),
     [dispatch],
   );
-  const allContacts = useCallback(
-    () => dispatch(contactsOperations.getContacts()),
+  const allClients = useCallback(
+    () => dispatch(clientsOperations.getClients()),
     [dispatch],
   );
   const onCreateLineProduct = useCallback(
@@ -192,7 +192,7 @@ export default function CurrentOrder({ match }) {
             currentClientInfo={currentClientInfo}
             currentOrder={currentOrder}
             onChoiseClient={onChoiseClient}
-            allContacts={allContacts}
+            allClients={allClients}
             onOpenModal={toggleModal}
           />
 

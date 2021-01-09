@@ -9,7 +9,7 @@ import {
   ordersSelectors,
 } from '../../redux/orders';
 import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder';
-import { contactsOperations } from '../../redux/contacts';
+import { clientsOperations } from '../../redux/clients';
 
 import WindowTable from '../../components/WindowTable/WindowTable';
 import LineProduct from '../../components/LineProduct/LineProduct';
@@ -108,7 +108,7 @@ class CurrentOrder extends React.Component {
     const {
       isLoading,
       currentOrder,
-      allContacts,
+      allClients,
       currentOrderItems,
       currentClientInfo,
       onChangeInputNoteForOrder,
@@ -136,7 +136,7 @@ class CurrentOrder extends React.Component {
               currentClientInfo={currentClientInfo}
               currentOrder={currentOrder}
               onChoiseClient={onChoiseClient}
-              allContacts={allContacts}
+              allClients={allClients}
               onOpenModal={this.toggleModal}
             />
 
@@ -203,7 +203,7 @@ const mSTP = state => ({
   ),
 });
 const mDTP = {
-  allContacts: contactsOperations.getContacts,
+  allClients: clientsOperations.getClients,
   getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
 
   onCreateLineProduct: ordersActions.createLineProduct,

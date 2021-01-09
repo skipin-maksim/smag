@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { authReducers } from './auth';
 import { tabsReducers } from './tabs/';
 import { ordersReducers } from './orders/';
-import { contactsReducers } from './contacts/';
+import { clientsReducers } from './clients/';
 import { numOrderReducers } from './numOrder/';
 import {
   persistStore,
@@ -43,7 +43,7 @@ export const store = configureStore({
       temporaryStorageLocationPersistConfig,
       ordersReducers,
     ),
-    contacts: contactsReducers,
+    clients: clientsReducers,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

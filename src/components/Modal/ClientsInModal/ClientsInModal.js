@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 
-import { contactsSelectors } from '../../../redux/contacts';
+import { clientsSelectors } from '../../../redux/clients';
 import { ordersActions, ordersSelectors } from '../../../redux/orders';
 
 import CloseBtn from '../../buttons/CloseBtn/CloseBtn';
@@ -11,9 +11,9 @@ import Spinner from '../../Spinner/Spinner';
 import s from './ClientsInModal.module.scss';
 
 export default function ClientsInModal({ onCloseModal }) {
-  const isLoading = useSelector(contactsSelectors.getIsLoading);
+  const isLoading = useSelector(clientsSelectors.getIsLoading);
   const filterValue = useSelector(ordersSelectors.getFilterValue);
-  const filterContacts = useSelector(ordersSelectors.getVisibleClients);
+  const filterClients = useSelector(ordersSelectors.getVisibleClients);
 
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ export default function ClientsInModal({ onCloseModal }) {
 
       <Scrollbar style={{ width: 549, height: 299 }}>
         <ul className={s.list}>
-          {filterContacts
+          {filterClients
             .map(contact => (
               <li
                 key={contact._id}

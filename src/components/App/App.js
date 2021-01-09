@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 // import { Beforeunload } from 'react-beforeunload';
 
 import { ordersOperations } from '../../redux/orders/';
-import { contactsOperations } from '../../redux/contacts';
+import { clientsOperations } from '../../redux/clients';
 import { numOrderOperations } from '../../redux/numOrder';
 
 import Spinner from '../Spinner/Spinner';
@@ -20,8 +20,8 @@ export default function App() {
     () => dispatch(ordersOperations.getAllOrders()),
     [dispatch],
   );
-  const getAllContacts = useCallback(
-    () => dispatch(contactsOperations.getContacts()),
+  const getAllClients = useCallback(
+    () => dispatch(clientsOperations.getClients()),
     [dispatch],
   );
   const getCurrentNumOrder = useCallback(
@@ -30,10 +30,10 @@ export default function App() {
   );
 
   useEffect(() => {
-    getAllOrders();
-    getAllContacts();
+    // getAllOrders();
+    // getAllClients();
     getCurrentNumOrder();
-  }, [getAllContacts, getAllOrders, getCurrentNumOrder]);
+  }, [getAllClients, getAllOrders, getCurrentNumOrder]);
 
   return (
     // <Beforeunload onBeforeunload={() => "You'll lose your data!"}>

@@ -83,14 +83,16 @@ export default function LineOrder({ idx, order, id }) {
         onChange={onChangeCheckbox}
       />
       <span>{order.numOrder}</span>
-      <span className={s.nameClient} onDoubleClick={handleOpenOrder}>
+      <span className={s.nameClient} onClick={handleOpenOrder}>
         {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}
       </span>
-      <span>{calculatedTotals.positions}</span>
-      <span>{calculatedTotals.quantity}</span>
-      <span>{calculatedTotals.sum}</span>
-      <span>{prepayment}</span>
-      <span style={{ fontSize: '11px' }}>{order.date}</span>
+      <span>{calculatedTotals.positions.toLocaleString('ru')}</span>
+      <span>{calculatedTotals.quantity.toLocaleString('ru')}</span>
+      <span>{calculatedTotals.sum.toLocaleString('ru')}</span>
+      <span>{prepayment.toLocaleString('ru')}</span>
+      <span style={{ fontSize: '11px' }}>
+        {order.date.toLocaleString('ru')}
+      </span>
       <span className={`${s.status} ${className()}`}>{status}</span>
       <span className={s.noteForOrder}>{noteForOrder}</span>
     </li>

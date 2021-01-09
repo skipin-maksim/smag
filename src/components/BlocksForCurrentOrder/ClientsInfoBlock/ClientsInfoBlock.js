@@ -5,7 +5,7 @@ import s from './ClientsInfoBlock.module.scss';
 export default function ClientsInfoBlock({
   currentClientInfo,
   currentOrder,
-  allContacts,
+  allClients,
   onChoiseClient,
   onOpenModal,
 }) {
@@ -21,7 +21,7 @@ export default function ClientsInfoBlock({
 
   const handleChoiseClients = () => {
     onOpenModal();
-    allContacts();
+    allClients();
   };
 
   return (

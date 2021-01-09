@@ -38,10 +38,10 @@ const getFilterValue = state => state.orders.filterClients;
 
 const getFilterOrdersValue = state => state.orders.filterOrders;
 
-const getAllContactsList = state => state.contacts.allContacts;
+const getAllClientsList = state => state.clients.allClients;
 
 const getVisibleClients = createSelector(
-  [getAllContactsList, getFilterValue],
+  [getAllClientsList, getFilterValue],
   (clients, filterValue) => {
     return clients.filter(client =>
       client.secondName.toLowerCase().includes(filterValue),
@@ -78,7 +78,7 @@ export default {
   getCalculatedTotals,
   getProductLineById,
   getFilterValue,
-  getAllContactsList,
+  getAllClientsList,
   getVisibleClients,
   getDataOfTemporaryStorageLocation,
   getFilterOrdersValue,

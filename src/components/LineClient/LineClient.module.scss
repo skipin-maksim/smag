@@ -1,0 +1,36 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers//scss/mixin.scss';
+
+.clientLine {
+  padding: 10px 15px;
+  display: grid;
+  grid-template-columns: 30px 60px 420px 100px 100px 100px 100px 200px 150px 1fr;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.2s linear;
+  border-bottom: 1px solid $main-accent-color-opacity5;
+
+  &:hover {
+    background-color: rgba($main-accent-color, 0.1);
+  }
+
+  span {
+    padding: 0 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.debt {
+  font-weight: 500;
+
+  &.badDebt {
+    color: $main-red-color;
+  }
+
+  &.goodDebt {
+    color: $main-green-color;
+  }
+}
