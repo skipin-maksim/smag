@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 import { contactsSelectors } from '../../../redux/contacts';
@@ -10,14 +10,27 @@ import Spinner from '../../Spinner/Spinner';
 
 import s from './ClientsInModal.module.scss';
 
-const ClientsInModal = ({
-  filterContacts,
-  onCloseModal,
-  onChoiseClient,
-  onFilterClients,
-  filterValue,
-  isLoading,
-}) => {
+export default function ClientsInModal({ onCloseModal }) {
+  const isLoading = useSelector(contactsSelectors.getIsLoading);
+  const filterValue = useSelector(ordersSelectors.getFilterValue);
+  const filterContacts = useSelector(ordersSelectors.getVisibleClients);
+
+  const dispatch = useDispatch();
+
+  const onChoiseClient = useCallback(
+    contact => {
+      dispatch(ordersActions.choiseClient(contact));
+    },
+    [dispatch],
+  );
+
+  const onFilterClients = useCallback(
+    value => {
+      dispatch(ordersActions.filterClients(value));
+    },
+    [dispatch],
+  );
+
   const handleCloseModal = contact => {
     onChoiseClient(contact);
     onCloseModal();
@@ -65,16 +78,4 @@ const ClientsInModal = ({
       {isLoading && <Spinner />}
     </div>
   );
-};
-
-const mSTP = state => ({
-  isLoading: contactsSelectors.getIsLoading(state),
-  filterContacts: ordersSelectors.getVisibleClients(state),
-  filterValue: ordersSelectors.getFilterValue(state),
-});
-const mDTP = {
-  onChoiseClient: ordersActions.choiseClient,
-  onFilterClients: ordersActions.filterClients,
-};
-
-export default connect(mSTP, mDTP)(ClientsInModal);
+}
