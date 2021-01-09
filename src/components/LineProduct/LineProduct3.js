@@ -1,71 +1,35 @@
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   ordersActions,
   ordersOperations,
   ordersSelectors,
 } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
+
 import lineColorPick from '../../helpers/lineColorPick';
-import colorsList from '../../data/colorsList';
-
 import { CheckBox } from '../CheckBox';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import colorsList from '../../data/colorsList';
 import s from './LineProduct.module.scss';
 
-export default function LineOrderProduct({ id, idx }) {
-  const dispatch = useDispatch();
-
-  const getProductLineById = useSelector(state => {
-    return ordersSelectors.getProductLineById(state, id);
-  });
-  const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
-
-  const onChangeInputQuantity = useCallback(
-    values => {
-      dispatch(ordersActions.changeLineProductInputQuantity({ id, ...values }));
-    },
-    [dispatch, id],
-  );
-
-  const onChangeInput = useCallback(
-    values => {
-      dispatch(ordersActions.changeLineProductInput({ id, ...values }));
-    },
-    [dispatch, id],
-  );
-
-  const onGetVendorCodePrice = useCallback(
-    vendorCode => {
-      dispatch(ordersOperations.getPriceByVendorCode(vendorCode, id));
-    },
-    [dispatch, id],
-  );
-
-  const onCalculateSum = useCallback(() => {
-    dispatch(ordersActions.calculateSum({ id }));
-  }, [dispatch, id]);
-
-  const onSaveToTemporaryStorageLocation = useCallback(
-    data => {
-      dispatch(tabsActions.saveToTemporaryStorageLocation(data));
-    },
-    [dispatch],
-  );
-
-  const onCalculateTotalSum = useCallback(() => {
-    dispatch(ordersActions.calculateTotalSum());
-  }, [dispatch]);
-
-  const onCalculateTotalQuantity = useCallback(() => {
-    dispatch(ordersActions.calculateTotalQuantity());
-  }, [dispatch]);
-
-  const onCalculateRemainderPaid = useCallback(() => {
-    dispatch(ordersActions.calculateRemainderPaid());
-  }, [dispatch]);
+const LineOrderProduct = ({
+  id,
+  idx,
+  getProductLineById,
+  currentOrder,
+  ...actions
+}) => {
+  const {
+    onChangeInput,
+    onChangeInputQuantity,
+    onCalculateSum,
+    onCalculateTotalSum,
+    onCalculateTotalQuantity,
+    onCalculateRemainderPaid,
+    onGetVendorCodePrice,
+    onSaveToTemporaryStorageLocation,
+  } = actions;
 
   const handleQuantity = (vendorCodeValue, name) => {
     onChangeInputQuantity({ value: vendorCodeValue, name });
@@ -224,4 +188,40 @@ export default function LineOrderProduct({ id, idx }) {
       />
     </li>
   );
-}
+};
+
+const mSTP = (state, { id }) => ({
+  getProductLineById: ordersSelectors.getProductLineById(state, id),
+  currentOrder: ordersSelectors.getCurrentOrder(state),
+});
+const mDTP = (dispatch, { id }) => ({
+  onChangeInput: values => {
+    return dispatch(ordersActions.changeLineProductInput({ id, ...values }));
+  },
+  onChangeInputQuantity: values => {
+    return dispatch(
+      ordersActions.changeLineProductInputQuantity({ id, ...values }),
+    );
+  },
+  onGetVendorCodePrice: vendorCode => {
+    return dispatch(ordersOperations.getPriceByVendorCode(vendorCode, id));
+  },
+
+  onCalculateSum: () => {
+    return dispatch(ordersActions.calculateSum({ id }));
+  },
+  onCalculateTotalQuantity: () => {
+    return dispatch(ordersActions.calculateTotalQuantity());
+  },
+  onCalculateTotalSum: () => {
+    return dispatch(ordersActions.calculateTotalSum());
+  },
+  onCalculateRemainderPaid: () => {
+    return dispatch(ordersActions.calculateRemainderPaid());
+  },
+  onSaveToTemporaryStorageLocation: data => {
+    return dispatch(tabsActions.saveToTemporaryStorageLocation(data));
+  },
+});
+
+export default connect(mSTP, mDTP)(LineOrderProduct);
