@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { tabsSelectors, tabsActions } from '../../redux/tabs/';
+import { tabsActions } from '../../redux/tabs/';
 
 import s from './NavMenu.module.scss';
 
-const NavMenuItem = ({ item, addTab }) => {
+const NavMenuItem = ({ item }) => {
   const { name, path, icon } = item;
+  const dispatch = useDispatch();
+
+  const addTab = useCallback(
+    tabData => {
+      dispatch(tabsActions.addTab(tabData));
+    },
+    [dispatch],
+  );
 
   return (
     <li className={s.navMenuItem}>
@@ -26,12 +34,4 @@ const NavMenuItem = ({ item, addTab }) => {
   );
 };
 
-const mSTP = state => ({
-  tabsList: tabsSelectors.getTabsList(state),
-});
-
-const mDTP = {
-  addTab: tabsActions.addTab,
-};
-
-export default connect(mSTP, mDTP)(NavMenuItem);
+export default NavMenuItem;

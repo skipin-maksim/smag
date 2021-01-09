@@ -1,63 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import pickUpCurrencyData from '../../services/apiPrivatBank';
 
-import s from './PrivatBankComponent.module.scss';
 import Currency from './Currency';
 import RefreshButton from '../buttons/RefreshButton/RefreshButton';
 
-const initDataPrivat = {
-  usd: { ccy: 'USD', sale: '??', buy: '??' },
-  eur: { ccy: 'EUR', sale: '??', buy: '??' },
-};
-class PrivatComponent extends Component {
-  state = {
-    useDataPrivatBank: { ...initDataPrivat },
-    isLoader: false,
+import s from './PrivatBankComponent.module.scss';
+
+export default function PrivatBankComponent3() {
+  const initDataPrivat = {
+    usd: { ccy: 'USD', sale: '??', buy: '??' },
+    eur: { ccy: 'EUR', sale: '??', buy: '??' },
   };
 
-  componentDidMount() {
-    this.getExchangeRatesData();
-  }
+  const [useDataPrivatBank, setUseDataPrivatBank] = useState({
+    ...initDataPrivat,
+  });
 
-  getExchangeRatesData = async () => {
-    this.setState({ isLoader: true });
+  const [isLoader, setIsLoader] = useState(false);
+
+  const getExchangeRatesData = useCallback(async () => {
+    setIsLoader(true);
 
     const exchangeRatesData = await pickUpCurrencyData();
 
-    this.setState({
-      useDataPrivatBank: { ...initDataPrivat, ...exchangeRatesData },
-      isLoader: false,
-    });
-  };
+    setUseDataPrivatBank({ ...initDataPrivat, ...exchangeRatesData });
 
-  render() {
-    const { useDataPrivatBank, isLoader } = this.state;
+    setIsLoader(false);
+  }, [initDataPrivat]);
 
-    return (
-      <>
-        <div className={s.privatWrapper}>
-          <div className={s.privatBlock}>
-            {!isLoader && (
-              <>
-                <Currency viewDetails={useDataPrivatBank.usd} />
-                <Currency viewDetails={useDataPrivatBank.eur} />
-              </>
-            )}
+  useEffect(() => {
+    getExchangeRatesData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-            {isLoader && 'Загрузка...'}
-          </div>
+  return (
+    <div className={s.privatWrapper}>
+      <div className={s.privatBlock}>
+        {!isLoader && (
+          <>
+            <Currency viewDetails={useDataPrivatBank.usd} />
+            <Currency viewDetails={useDataPrivatBank.eur} />
+          </>
+        )}
 
-          <RefreshButton
-            onRefreshFunction={this.getExchangeRatesData}
-            size={20}
-            tooltipText="Обновить курс"
-            isRotate={isLoader}
-          />
-        </div>
-      </>
-    );
-  }
+        {isLoader && 'Загрузка...'}
+      </div>
+
+      <RefreshButton
+        onRefreshFunction={getExchangeRatesData}
+        size={20}
+        tooltipText="Обновить курс"
+        isRotate={isLoader}
+      />
+    </div>
+  );
 }
-
-export default PrivatComponent;
