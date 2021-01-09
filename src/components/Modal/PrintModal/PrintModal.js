@@ -48,7 +48,7 @@ export default function PrintModal({ currentOrder }) {
             <span>{currentOrder.prepayment.toLocaleString('ru')}</span>
           </li>
           <li>
-            <span className={s.liTitle}>Остаток к оплате:</span>{' '}
+            <span className={`${s.liTitle} ${s.pay}`}>Остаток к оплате:</span>{' '}
             <span>
               {currentOrder.calculatedTotals.remainderPaid < 0
                 ? 0
