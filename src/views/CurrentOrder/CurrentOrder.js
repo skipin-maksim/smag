@@ -1,14 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+// import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { tabsActions } from '../../redux/tabs';
-import {
-  ordersActions,
-  ordersOperations,
-  ordersSelectors,
-} from '../../redux/orders';
-import { numOrderOperations, numOrderSelectors } from '../../redux/numOrder';
+import { ordersActions, ordersOperations } from '../../redux/orders';
 import { contactsOperations } from '../../redux/contacts';
 
 import WindowTable from '../../components/WindowTable/WindowTable';
@@ -24,209 +19,239 @@ import MoneyBlock from '../../components/BlocksForCurrentOrder/MoneyBlock/MoneyB
 
 import s from './CurrentOrder.module.scss';
 
-// const match = useRouteMatch('/orders/:orderId');
-class CurrentOrder extends React.Component {
-  state = { isCheckAll: false, isModal: false };
+export default function CurrentOrder2({ match }) {
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isModal, setIsModal] = useState(false);
 
-  componentDidMount() {
-    window.addEventListener('keydown', this.handlePressKeyNewLine);
+  const dispatch = useDispatch();
 
-    this.props.onCalculateTotalPositions();
+  const onChoiseClient = useCallback(
+    () => dispatch(ordersActions.choiseClient()),
+    [dispatch],
+  );
+  const isLoading = useSelector(state => {
+    return state.orders.loader;
+  });
+  const currentOrderItems = useSelector(state => {
+    return state.orders.currentOrder.items;
+  });
+  const currentOrder = useSelector(state => {
+    return state.orders.currentOrder;
+  });
+  const calculatedTotals = useSelector(state => {
+    return state.orders.currentOrder.calculatedTotals;
+  });
+  const isSomeUncheked = useSelector(state => {
+    return state.orders.currentOrder.items.some(item => !item.checkProduct);
+  });
+  const currentClientInfo = useSelector(state => {
+    return state.orders.currentOrder.clientInfo;
+  });
+  const dataOfTemporaryStorageLocation = useSelector(state => {
+    return state.orders.temporaryStorageLocation;
+  });
 
-    if (this.props.match.params.orderId === 'new-order') {
-      this.props.onGetDataOfTemporaryStorageLocation(
-        this.props.dataOfTemporaryStorageLocation,
-      );
-    } else if (Number(this.props.match.params.orderId)) {
-      this.props.onGetOrderById(this.props.match.params.orderId);
-    }
-  }
+  const allContacts = useCallback(
+    () => dispatch(contactsOperations.getContacts()),
+    [dispatch],
+  );
+  const onCreateLineProduct = useCallback(
+    () => dispatch(ordersActions.createLineProduct()),
+    [dispatch],
+  );
+  const onCreateLineProductCopy = useCallback(
+    prevLine => dispatch(ordersActions.createLineProductCopy(prevLine)),
+    [dispatch],
+  );
+  const onChangeMainCheckbox = useCallback(
+    data => dispatch(ordersActions.changeMainCheckbox(data)),
+    [dispatch],
+  );
+  const onChangeInputNoteForOrder = useCallback(
+    value => dispatch(ordersActions.changeInputNoteForOrder(value)),
+    [dispatch],
+  );
+  const onCalculateAveragePrice = useCallback(
+    () => dispatch(onCalculateAveragePrice()),
+    [dispatch],
+  );
+  const onCalculateTotalPositions = useCallback(
+    () => dispatch(ordersActions.calculateTotalPositions()),
+    [dispatch],
+  );
+  const onCalculateRemainderPaid = useCallback(
+    () => dispatch(ordersActions.calculateRemainderPaid()),
+    [dispatch],
+  );
+  const onChangePrepaymentInput = useCallback(
+    () => dispatch(ordersActions.changePrepaymentInput()),
+    [dispatch],
+  );
+  const onGetOrderById = useCallback(
+    id => dispatch(ordersOperations.getOrderById(id)),
+    [dispatch],
+  );
+  const onSaveToTemporaryStorageLocation = useCallback(
+    currentOrder =>
+      dispatch(tabsActions.saveToTemporaryStorageLocation(currentOrder)),
+    [dispatch],
+  );
+  const onGetDataOfTemporaryStorageLocation = useCallback(
+    dataInStorage =>
+      dispatch(tabsActions.getDataOfTemporaryStorageLocation(dataInStorage)),
+    [dispatch],
+  );
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.props.isSomeUncheked && !prevState.isCheckAll) {
-      this.setState({
-        isCheckAll: true,
-      });
+  const handlePressKeyNewLine = useCallback(
+    e => {
+      if (e.code === 'Enter' && e.ctrlKey && !e.shiftKey) {
+        onCreateLineProduct();
+        onCalculateTotalPositions();
+      }
 
-      return;
-    }
+      if (e.code === 'Enter' && e.ctrlKey && e.shiftKey) {
+        const prevItem = currentOrderItems.find(
+          (_item, idx) => idx === currentOrderItems.length - 1,
+        );
 
-    if (this.props.isSomeUncheked && prevState.isCheckAll) {
-      this.setState({
-        isCheckAll: false,
-      });
-
-      return;
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handlePressKeyNewLine);
-  }
-
-  handlePressKeyNewLine = e => {
-    if (e.code === 'Enter' && e.ctrlKey && !e.shiftKey) {
-      this.props.onCreateLineProduct();
-      this.props.onCalculateTotalPositions();
-    }
-
-    if (e.code === 'Enter' && e.ctrlKey && e.shiftKey) {
-      const prevItem = this.props.currentOrderItems.find(
-        (item, idx) => idx === this.props.currentOrderItems.length - 1,
-      );
-
-      this.props.onCreateLineProductCopy(prevItem);
-      this.props.onCalculateTotalPositions();
-    }
-  };
-
-  handleCheckAll = name => {
-    this.setState(
-      prevState => ({
-        isCheckAll: !prevState.isCheckAll,
-      }),
-      () =>
-        this.props.onChangeMainCheckbox({
-          ...name,
-          value: this.state.isCheckAll,
-        }),
-    );
-  };
-
-  handleNoteForOrder = () => {
-    if (!this.props.currentOrder.isSaved)
-      this.props.onSaveToTemporaryStorageLocation(this.props.currentOrder);
-  };
-
-  toggleModal = () => {
-    this.setState(prevState => ({
-      isModal: !prevState.isModal,
-    }));
-  };
-
-  render() {
-    const {
-      isLoading,
-      currentOrder,
-      allContacts,
+        onCreateLineProductCopy(prevItem);
+        onCalculateTotalPositions();
+      }
+    },
+    [
       currentOrderItems,
-      currentClientInfo,
-      onChangeInputNoteForOrder,
-      onChangePrepaymentInput,
-      calculatedTotals,
-      onCalculateRemainderPaid,
-      onSaveToTemporaryStorageLocation,
-      onChoiseClient,
-    } = this.props;
+      onCalculateTotalPositions,
+      onCreateLineProduct,
+      onCreateLineProductCopy,
+    ],
+  );
 
-    return (
-      <>
-        {this.state.isModal && (
-          <Modal
-            onCloseModal={this.toggleModal}
-            children={<ClientsInModal onCloseModal={this.toggleModal} />}
-          />
-        )}
+  const handleCheckAll = name => {
+    setIsCheckAll(!isCheckAll);
 
-        <div className={s.orderPage}>
-          {isLoading && <Spinner />}
+    // onChangeMainCheckbox({
+    //   ...name,
+    //   value: isCheckAll,
+    // });
+  };
+  useEffect(
+    name => {
+      onChangeMainCheckbox({
+        ...name,
+        value: isCheckAll,
+      });
+    },
+    [isCheckAll, onChangeMainCheckbox],
+  );
 
-          <div className={s.ordersSettings}>
-            <ClientsInfoBlock
-              currentClientInfo={currentClientInfo}
-              currentOrder={currentOrder}
-              onChoiseClient={onChoiseClient}
-              allContacts={allContacts}
-              onOpenModal={this.toggleModal}
-            />
+  const handleNoteForOrder = () => {
+    if (!currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
+  };
 
-            <div className={s.settingControls}>
-              <SettingsBlockBtn />
+  const toggleModal = () => {
+    setIsModal(!isModal);
+  };
 
-              <MoneyBlock
-                currentOrder={currentOrder}
-                onChangePrepaymentInput={onChangePrepaymentInput}
-                calculatedTotals={calculatedTotals}
-                onCalculateRemainderPaid={onCalculateRemainderPaid}
-                onSaveToTemporaryStorageLocation={
-                  onSaveToTemporaryStorageLocation
-                }
-              />
-            </div>
-          </div>
+  useEffect(() => {
+    window.addEventListener('keydown', handlePressKeyNewLine);
 
-          <TableTitletLineBlock
+    // onCalculateTotalPositions();
+
+    // if (match.params.orderId === 'new-order') {
+    //   onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
+    // } else if (Number(match.params.orderId)) {
+    //   onGetOrderById(match.params.orderId);
+    // }
+    return () => {
+      window.removeEventListener('keydown', handlePressKeyNewLine);
+    };
+  }, [handlePressKeyNewLine]);
+
+  useEffect(() => {
+    if (match.params.orderId === 'new-order') {
+      console.log('log из эффекта');
+      onGetDataOfTemporaryStorageLocation(dataOfTemporaryStorageLocation);
+    }
+
+    if (Number(match.params.orderId)) {
+      onGetOrderById(match.params.orderId);
+    }
+  }, [dataOfTemporaryStorageLocation, match, onGetDataOfTemporaryStorageLocation, onGetOrderById]);
+
+  useEffect(() => {
+    if (!isSomeUncheked && !isCheckAll) {
+      setIsCheckAll(true);
+      return;
+    }
+
+    if (isSomeUncheked && isCheckAll) {
+      setIsCheckAll(false);
+      return;
+    }
+  }, [isCheckAll, isSomeUncheked]);
+
+  return (
+    <>
+      {isModal && (
+        <Modal
+          onCloseModal={toggleModal}
+          children={<ClientsInModal onCloseModal={toggleModal} />}
+        />
+      )}
+
+      <div className={s.orderPage}>
+        {isLoading && <Spinner />}
+
+        <div className={s.ordersSettings}>
+          <ClientsInfoBlock
+            currentClientInfo={currentClientInfo}
             currentOrder={currentOrder}
-            handleCheckAll={this.handleCheckAll}
-            isCheckAll={this.state.isCheckAll}
+            onChoiseClient={onChoiseClient}
+            allContacts={allContacts}
+            onOpenModal={toggleModal}
           />
 
-          <WindowTable
-            otherBlock={<CalculatedBlock totals={calculatedTotals} />}
-          >
-            <ul className={s.customerOrderList}>
-              {currentOrderItems.map((item, idx) => {
-                return <LineProduct key={item.id} id={item.id} idx={idx} />;
-              })}
-            </ul>
-          </WindowTable>
+          <div className={s.settingControls}>
+            <SettingsBlockBtn />
 
-          <label className={s.noteForOrderLabel}>
-            <span>Заметка</span>
-            <input
-              className={s.noteForOrder}
-              type="text"
-              value={currentOrder.noteForOrder}
-              onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
-              onBlur={this.handleNoteForOrder}
-              disabled={currentOrder.isSaved}
+            <MoneyBlock
+              currentOrder={currentOrder}
+              onChangePrepaymentInput={onChangePrepaymentInput}
+              calculatedTotals={calculatedTotals}
+              onCalculateRemainderPaid={onCalculateRemainderPaid}
+              onSaveToTemporaryStorageLocation={
+                onSaveToTemporaryStorageLocation
+              }
             />
-          </label>
+          </div>
         </div>
-      </>
-    );
-  }
+
+        <TableTitletLineBlock
+          currentOrder={currentOrder}
+          handleCheckAll={handleCheckAll}
+          isCheckAll={isCheckAll}
+        />
+
+        <WindowTable otherBlock={<CalculatedBlock totals={calculatedTotals} />}>
+          <ul className={s.customerOrderList}>
+            {currentOrderItems.map((item, idx) => {
+              return <LineProduct key={item.id} id={item.id} idx={idx} />;
+            })}
+          </ul>
+        </WindowTable>
+
+        <label className={s.noteForOrderLabel}>
+          <span>Заметка</span>
+          <input
+            className={s.noteForOrder}
+            type="text"
+            value={currentOrder.noteForOrder}
+            onChange={({ target }) => onChangeInputNoteForOrder(target.value)}
+            onBlur={handleNoteForOrder}
+            disabled={currentOrder.isSaved}
+          />
+        </label>
+      </div>
+    </>
+  );
 }
-
-const mSTP = state => ({
-  isLoading: ordersSelectors.getIsLoader(state),
-  currentNumOrder: numOrderSelectors.getCurrentNum(state),
-
-  currentOrderItems: ordersSelectors.getCurrentOrderItems(state),
-  currentOrder: ordersSelectors.getCurrentOrder(state),
-  allOrders: ordersSelectors.getOrdersList(state),
-  calculatedTotals: ordersSelectors.getCalculatedTotals(state),
-  isSomeUncheked: ordersSelectors.getIsSomeUnchecked(state),
-  currentClientInfo: ordersSelectors.getCurrentClientInfo(state),
-  dataOfTemporaryStorageLocation: ordersSelectors.getDataOfTemporaryStorageLocation(
-    state,
-  ),
-});
-const mDTP = {
-  allContacts: contactsOperations.getContacts,
-  getCurrentNumOrder: numOrderOperations.getCurrentNumOrder,
-
-  onCreateLineProduct: ordersActions.createLineProduct,
-  onCreateLineProductCopy: ordersActions.createLineProductCopy,
-  onDeleteLineSelectedProduct: ordersActions.deleteLineSelectedProduct,
-  onChangeInput: ordersActions.changeLineProductInput,
-  onChangeMainCheckbox: ordersActions.changeMainCheckbox,
-  onChangeInputNoteForOrder: ordersActions.changeInputNoteForOrder,
-
-  onCalculateTotalQuantity: ordersActions.calculateTotalQuantity,
-  onCalculateTotalSum: ordersActions.calculateTotalSum,
-  onCalculateAveragePrice: ordersActions.calculateAveragePrice,
-  onCalculateTotalPositions: ordersActions.calculateTotalPositions,
-  onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
-  onSaveOrder: ordersOperations.postOrder,
-
-  onChangePrepaymentInput: ordersActions.changePrepaymentInput,
-
-  onGetOrderById: ordersOperations.getOrderById,
-
-  onSaveToTemporaryStorageLocation: tabsActions.saveToTemporaryStorageLocation,
-  onGetDataOfTemporaryStorageLocation:
-    tabsActions.getDataOfTemporaryStorageLocation,
-};
-
-export default withRouter(connect(mSTP, mDTP)(CurrentOrder));

@@ -70,7 +70,6 @@ const Tab = ({
   };
 
   if (isArror !== null) {
-    console.log(isArror.message.slice(-6));
     if (
       isArror.message.includes('Not found order id') &&
       pathname.includes(isArror.message.slice(-6))
