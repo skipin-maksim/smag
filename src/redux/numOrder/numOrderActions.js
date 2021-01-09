@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const numOrderRequest = createAction('orders/numOrderRequest');
-const numOrderSuccess = createAction('orders/numOrderSuccess');
-const numOrderError = createAction('orders/numOrderError');
+const numOrderRequest = createAction('NUMORDER_numOrderRequest');
+const numOrderSuccess = createAction('NUMORDER_numOrderSuccess');
+const numOrderError = createAction('NUMORDER_numOrderError');
 
 export default {
   numOrderRequest,

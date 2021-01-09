@@ -1,37 +1,27 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 
-import { tabsActions } from './';
+import { tabsActions, func } from '.';
 import ordersActions from '../orders/ordersActions';
 
 const initialStateItem = [];
 
-const addTab = (state, payload) => {
-  const isTabs = state.find(item => item.name === payload.name);
-
-  if (!isTabs) return [...state, payload];
-
-  return state;
-};
-const removeTab = (state, payload) => {
-  // if (state.length === 1) {
-  //   return initialStateItem;
-  // }
-
-  return state.filter(item => item.name !== payload);
-};
-
 const items = createReducer(initialStateItem, {
-  [tabsActions.addTab]: (state, { payload }) => addTab(state, payload),
-  [tabsActions.removeTab]: (state, { payload }) => removeTab(state, payload),
-  [tabsActions.addTabOrder]: (state, { payload }) => addTab(state, payload),
+  [tabsActions.addTab]: (state, { payload }) => {
+    return func.addTab(state, payload);
+  },
+  [tabsActions.removeTab]: (state, { payload }) => {
+    return func.removeTab(state, payload);
+  },
+  [tabsActions.addTabOrder]: (state, { payload }) => {
+    return func.addTab(state, payload);
+  },
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
     const newState = state.filter(item => item.path !== `/orders/new-order`);
 
     return [...newState, payload.createTabForNewOrder.payload];
   },
   [ordersActions.getOrderByIdError]: (state, { payload }) => {
-    console.log(payload.id);
     const newState = state.filter(item => item.label !== payload.id);
 
     return newState;

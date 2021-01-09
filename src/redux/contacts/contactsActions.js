@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const getAllContactsRequest = createAction('contacts/getAllContactsRequest');
-const getAllContactsSuccess = createAction('contacts/getAllContactsSuccess');
-const getAllContactsError = createAction('contacts/getAllContactsError');
+const getAllContactsRequest = createAction('CONTACTS_getAllContactsRequest');
+const getAllContactsSuccess = createAction('CONTACTS_getAllContactsSuccess');
+const getAllContactsError = createAction('CONTACTS_getAllContactsError');
 
 export default {
   getAllContactsRequest,

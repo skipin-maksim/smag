@@ -1,71 +1,77 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const getAllOrdersRequest = createAction('orders/getAllOrderRequest');
-const getAllOrdersSuccess = createAction('orders/getAllOrderSuccess');
-const getAllOrdersError = createAction('orders/getAllOrderError');
+const getAllOrdersRequest = createAction('ORDERS_getAllOrderRequest');
+const getAllOrdersSuccess = createAction('ORDERS_getAllOrderSuccess');
+const getAllOrdersError = createAction('ORDERS_getAllOrderError');
 
-const getPriceByArtRequest = createAction('orders/getPriceByArtRequest');
-const getPriceByArtSuccess = createAction('orders/getPriceByArtSuccess');
-const getPriceByArtError = createAction('orders/getPriceByArtError');
+const getPriceByVendorCodeRequest = createAction(
+  'ORDERS_getPriceByVendorCodeRequest',
+);
+const getPriceByVendorCodeSuccess = createAction(
+  'ORDERS_getPriceByVendorCodeSuccess',
+);
+const getPriceByVendorCodeError = createAction(
+  'ORDERS_getPriceByVendorCodeError',
+);
 
-const removeOrdersRequest = createAction('orders/removeOrdersRequest');
-const removeOrdersSuccess = createAction('orders/removeOrdersSuccess');
-const removeOrdersError = createAction('orders/removeOrdersError');
+const removeOrdersRequest = createAction('ORDERS_removeOrdersRequest');
+const removeOrdersSuccess = createAction('ORDERS_removeOrdersSuccess');
+const removeOrdersError = createAction('ORDERS_removeOrdersError');
 
-const editOrder = createAction('orders/editOrder');
-const checkboxOrderSwitch = createAction('orders/checkboxOrderSwitch');
+const editOrder = createAction('ORDERS_editOrder');
+const checkboxOrderSwitch = createAction('ORDERS_checkboxOrderSwitch');
 
-const saveOrderRequest = createAction('orders/saveOrderRequest');
-const saveOrderSuccess = createAction('orders/saveOrderSuccess');
-const saveOrderError = createAction('orders/saveOrderError');
+const saveOrderRequest = createAction('ORDERS_saveOrderRequest');
+const saveOrderSuccess = createAction('ORDERS_saveOrderSuccess');
+const saveOrderError = createAction('ORDERS_saveOrderError');
 
-const patchOrderRequest = createAction('orders/patchOrderRequest');
-const patchOrderSuccess = createAction('orders/patchOrderSuccess');
-const patchOrderError = createAction('orders/patchOrderError');
+const patchOrderRequest = createAction('ORDERS_patchOrderRequest');
+const patchOrderSuccess = createAction('ORDERS_patchOrderSuccess');
+const patchOrderError = createAction('ORDERS_patchOrderError');
 
-const clearCurrentOrder = createAction('orders/clearCurrentOrder');
+const clearCurrentOrder = createAction('ORDERS_clearCurrentOrder');
 const clearTemporaryStorageLocation = createAction(
   'orders/clearTemporaryStorageLocation',
 );
 
-const createLineProduct = createAction('orders/createLineProduct');
-const createLineProductCopy = createAction('orders/createLineProductCopy');
+const createLineProduct = createAction('ORDERS_createLineProduct');
+const createLineProductCopy = createAction('ORDERS_createLineProductCopy');
+
 const deleteLineSelectedProduct = createAction(
-  'order/deleteLineSelectedProduct',
+  'ORDERS_deleteLineSelectedProduct',
 );
-const changeLineProductInput = createAction('orders/changeLineProductInput');
+const changeLineProductInput = createAction('ORDERS_changeLineProductInput');
 const changeLineProductInputQuantity = createAction(
-  'orders/changeLineProductInputQuantity',
+  'ORDERS_changeLineProductInputQuantity',
 );
-const changeInputNoteForOrder = createAction('orders/changeInputNoteForOrder');
-const changeMainCheckbox = createAction('orders/changeMainCheckbox');
-const calculateSum = createAction('orders/calculateSum');
-const calculateTotalPositions = createAction('orders/calculateTotalPositions');
-const calculateTotalQuantity = createAction('orders/calculateTotalQuantity');
-const calculateTotalSum = createAction('orders/calculateTotalSum');
-const calculateAveragePrice = createAction('orders/calculateAveragePrice');
-const calculateRemainderPaid = createAction('orders/calculateRemainderPaid');
+const changeInputNoteForOrder = createAction('ORDERS_changeInputNoteForOrder');
+const changeMainCheckbox = createAction('ORDERS_changeMainCheckbox');
+const changePrepaymentInput = createAction('ORDERS_changePrepaymentInput');
 
-const changePrepaymentInput = createAction('orders/changePrepaymentInput');
+const calculateSum = createAction('ORDERS_calculateSum');
+const calculateTotalPositions = createAction('ORDERS_calculateTotalPositions');
+const calculateTotalQuantity = createAction('ORDERS_calculateTotalQuantity');
+const calculateTotalSum = createAction('ORDERS_calculateTotalSum');
+const calculateAveragePrice = createAction('ORDERS_calculateAveragePrice');
+const calculateRemainderPaid = createAction('ORDERS_calculateRemainderPaid');
 
-const getOrderByIdRequest = createAction('orders/getOrderByIdRequest');
-const getOrderByIdSuccess = createAction('orders/getOrderByIdSuccess');
-const getOrderByIdError = createAction('orders/getOrderByIdError');
+const getOrderByIdRequest = createAction('ORDERS_getOrderByIdRequest');
+const getOrderByIdSuccess = createAction('ORDERS_getOrderByIdSuccess');
+const getOrderByIdError = createAction('ORDERS_getOrderByIdError');
 
-const choiseClient = createAction('orders/choiseClient');
+const choiseClient = createAction('ORDERS_choiseClient');
 
-const filterClients = createAction('orders/filterClients');
-
-const filterOrders = createAction('orders/filterOrders');
+const filterClients = createAction('ORDERS_filterClients');
+const filterOrders = createAction('ORDERS_filterOrders');
 
 export default {
   getAllOrdersRequest,
   getAllOrdersSuccess,
   getAllOrdersError,
 
-  getPriceByArtRequest,
-  getPriceByArtSuccess,
-  getPriceByArtError,
+  getPriceByVendorCodeRequest,
+  getPriceByVendorCodeSuccess,
+  getPriceByVendorCodeError,
 
   getOrderByIdRequest,
   getOrderByIdSuccess,
@@ -76,11 +82,14 @@ export default {
 
   createLineProduct,
   createLineProductCopy,
+
   deleteLineSelectedProduct,
+
   changeLineProductInput,
   changeLineProductInputQuantity,
   changeMainCheckbox,
   changeInputNoteForOrder,
+  changePrepaymentInput,
 
   calculateSum,
   calculateTotalPositions,
@@ -88,8 +97,6 @@ export default {
   calculateTotalQuantity,
   calculateTotalSum,
   calculateRemainderPaid,
-
-  changePrepaymentInput,
 
   removeOrdersRequest,
   removeOrdersSuccess,
@@ -107,6 +114,7 @@ export default {
   patchOrderError,
 
   choiseClient,
+
   filterClients,
   filterOrders,
 };

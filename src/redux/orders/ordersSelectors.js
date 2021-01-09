@@ -1,13 +1,19 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-const getOrdersList = state => state.orders.allOrders;
+const getOrdersList = state => {
+  return state.orders.allOrders;
+};
 
 const getCurrentClientInfo = state => {
   return state.orders.currentOrder.clientInfo;
 };
 
+const getCurrentLineOrderById = (state, id) => {
+  return getOrdersList(state).find(item => item.numOrder === id);
+};
+
 const getOrderById = (state, id) => {
-  return state.orders.allOrders.find(item => {
+  return getOrdersList(state).find(item => {
     return item._id === id;
   });
 };
@@ -21,6 +27,7 @@ const getCurrentOrder = state => state.orders.currentOrder;
 const getIsSomeUnchecked = state => {
   return getCurrentOrderItems(state).some(item => !item.checkProduct);
 };
+
 const getCalculatedTotals = state => state.orders.currentOrder.calculatedTotals;
 
 const getProductLineById = (state, id) => {
@@ -60,6 +67,7 @@ const getDataOfTemporaryStorageLocation = state => {
 export default {
   getOrdersList,
   getCurrentClientInfo,
+  getCurrentLineOrderById,
   getOrderById,
   getIsLoader,
   getCurrentOrder,

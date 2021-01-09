@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
-import { ordersActions } from '../../redux/orders';
-import { tabsActions } from '../../redux/tabs';
+import { ordersActions, ordersSelectors } from '../../redux/orders';
+import { tabsActions, tabsSelectors } from '../../redux/tabs';
 import { numOrderOperations } from '../../redux/numOrder';
 
 import AddBtn from '../buttons/AddBtn/AddBtn';
@@ -16,30 +16,26 @@ export default function OrdersTableControls({ handleOpenModal }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const filterOrderValue = useSelector(state => state.orders.filterOrders);
-  const tabsList = useSelector(state => state.tabs.items);
-  const widthLineTabs = useSelector(state => state.tabs.positionData.left);
+  const filterOrdersValue = useSelector(ordersSelectors.getFilterOrdersValue);
+  const tabsList = useSelector(tabsSelectors.getTabsList);
+  const widthLineTabs = useSelector(tabsSelectors.getLeftPositionLineTabs);
 
   const onFilterOrders = useCallback(
     value => dispatch(ordersActions.filterOrders(value)),
     [dispatch],
   );
-
   const onAddTab = useCallback(
     tabData => dispatch(tabsActions.addTab(tabData)),
     [dispatch],
   );
-
   const onMoveSlideLeft = useCallback(
     () => dispatch(tabsActions.moveSlideLeft()),
     [dispatch],
   );
-
   const onGetCurrentNumOrder = useCallback(
     () => dispatch(numOrderOperations.getCurrentNumOrder()),
     [dispatch],
   );
-
   const onClearTemporaryStorageLocation = useCallback(
     () => dispatch(ordersActions.clearTemporaryStorageLocation()),
     [dispatch],
@@ -78,7 +74,7 @@ export default function OrdersTableControls({ handleOpenModal }) {
     <div className={s.ordersControls}>
       <input
         type="text"
-        value={filterOrderValue}
+        value={filterOrdersValue}
         onChange={({ target }) => onFilterOrders(target.value)}
       />
 

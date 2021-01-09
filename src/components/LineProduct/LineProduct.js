@@ -204,7 +204,7 @@ const mDTP = (dispatch, { id }) => ({
     );
   },
   onGetVendorCodePrice: vendorCode => {
-    return dispatch(ordersOperations.getPriceByArt(vendorCode, id));
+    return dispatch(ordersOperations.getPriceByVendorCode(vendorCode, id));
   },
 
   onCalculateSum: () => {

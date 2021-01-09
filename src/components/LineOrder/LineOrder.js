@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ordersActions } from '../../redux/orders/';
+import { ordersActions, ordersSelectors } from '../../redux/orders/';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,13 +10,14 @@ import CheckBox from '../CheckBox/CheckBox';
 import s from './LineOrder.module.scss';
 
 export default function LineOrder({ idx, order, id }) {
-  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
-  const getCurrentLineOrderById = useSelector(state =>
-    state.orders.allOrders.find(item => item.numOrder === id),
-  );
-
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  const currentLineOrderById = useSelector(state =>
+    ordersSelectors.getCurrentLineOrderById(state, id),
+  );
+
   const onMoveSlideLeft = useCallback(
     data => dispatch(tabsActions.moveSlideLeft(data)),
     [dispatch],
@@ -25,7 +26,6 @@ export default function LineOrder({ idx, order, id }) {
     data => dispatch(tabsActions.addTabOrder(data)),
     [dispatch],
   );
-
   const checkboxOrderSwitch = useCallback(
     checkboxValue => dispatch(ordersActions.checkboxOrderSwitch(checkboxValue)),
     [dispatch],
@@ -79,7 +79,7 @@ export default function LineOrder({ idx, order, id }) {
       <CheckBox
         id={id}
         name="checkOrder"
-        isChecked={getCurrentLineOrderById.isCheckedOrder}
+        isChecked={currentLineOrderById.isCheckedOrder}
         onChange={onChangeCheckbox}
       />
       <span>{order.numOrder}</span>

@@ -1,17 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const addTab = createAction('tabs/addTab');
-const addTabOrder = createAction('/tabs/addTabOrder');
-const removeTab = createAction('tabs/removeTab');
+const addTab = createAction('TABS_addTab');
+const addTabOrder = createAction('TABS_addTabOrder');
+const removeTab = createAction('TABS_removeTab');
 
-const widthLineTabs = createAction('tabs/getWidthLineTabs');
-const moveSlideLeft = createAction('tabs/moveSlideLeft');
+const widthLineTabs = createAction('TABS_getWidthLineTabs');
+const moveSlideLeft = createAction('TABS_moveSlideLeft');
 
 const saveToTemporaryStorageLocation = createAction(
-  'tabs/saveToTemporaryStorageLocation',
+  'TABS_saveToTemporaryStorageLocation',
 );
 const getDataOfTemporaryStorageLocation = createAction(
-  'tabs/getDataOfTemporaryStorageLocation',
+  'TABS_getDataOfTemporaryStorageLocation',
 );
 
 export default {

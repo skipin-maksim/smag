@@ -12,8 +12,15 @@ import SaveBtn from '../../buttons/SaveBtn/SaveBtn';
 import PrintBtn from '../../buttons/PrintBtn/PrintBtn';
 import RemoveBtn from '../../buttons/RemoveBtn/RemoveBtn';
 
-import { ordersActions, ordersOperations } from '../../../redux/orders/';
-import { numOrderOperations } from '../../../redux/numOrder/';
+import {
+  ordersActions,
+  ordersOperations,
+  ordersSelectors,
+} from '../../../redux/orders/';
+import {
+  numOrderOperations,
+  numOrderSelectors,
+} from '../../../redux/numOrder/';
 
 import s from './SettingsBlockBtn.module.scss';
 
@@ -23,11 +30,9 @@ export default function SettingsBlockBtn() {
   const history = useHistory();
   const match = useRouteMatch('/orders/:orderId');
 
-  const currentOrder = useSelector(state => state.orders.currentOrder);
-  const currentClientInfo = useSelector(
-    state => state.orders.currentOrder.clientInfo,
-  );
-  const currentNumOrder = useSelector(state => state.numOrder.numOrder);
+  const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
+  const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
+  const currentNumOrder = useSelector(numOrderSelectors.getCurrentNum);
 
   const dispatch = useDispatch();
   const onGetCurrentNumOrder = useCallback(
@@ -68,7 +73,7 @@ export default function SettingsBlockBtn() {
   );
   const onSaveOrder = useCallback(
     (order, client, num) =>
-      dispatch(ordersOperations.postOrder(order, client, num)),
+      dispatch(ordersOperations.createOrder(order, client, num)),
     [dispatch],
   );
   const onPatchOrder = useCallback(

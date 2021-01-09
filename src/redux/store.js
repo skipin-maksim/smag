@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { authReducer } from './auth';
-import { tabsReducer } from './tabs/';
-import { ordersReducer } from './orders/';
-import { contactsReducer } from './contacts/';
-import { numOrderReducer } from './numOrder/';
+import { authReducers } from './auth';
+import { tabsReducers } from './tabs/';
+import { ordersReducers } from './orders/';
+import { contactsReducers } from './contacts/';
+import { numOrderReducers } from './numOrder/';
 import {
   persistStore,
   persistReducer,
@@ -36,14 +36,14 @@ const temporaryStorageLocationPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    isAuthenticated: persistReducer(authenticatedPersistConfig, authReducer),
-    numOrder: numOrderReducer,
-    tabs: persistReducer(tabsPersistConfig, tabsReducer),
+    isAuthenticated: persistReducer(authenticatedPersistConfig, authReducers),
+    numOrder: numOrderReducers,
+    tabs: persistReducer(tabsPersistConfig, tabsReducers),
     orders: persistReducer(
       temporaryStorageLocationPersistConfig,
-      ordersReducer,
+      ordersReducers,
     ),
-    contacts: contactsReducer,
+    contacts: contactsReducers,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

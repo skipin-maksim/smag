@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ordersOperations } from '../../redux/orders';
+import { ordersOperations, ordersSelectors } from '../../redux/orders';
 
 import Spinner from '../../components/Spinner/Spinner';
 import TitleTableOrders from '../../components/WindowTable/TitleTableOrders/TitleTableOrders';
@@ -17,9 +17,9 @@ export default function OrdersPage() {
   const [removeModal, setRemoveModal] = useState(false);
   const dispatch = useDispatch();
 
-  const ordersList = useSelector(state => state.orders.allOrders);
-  const filterOrdersValue = useSelector(state => state.orders.filterOrders);
-  const isLoading = useSelector(state => state.orders.loader);
+  const ordersList = useSelector(ordersSelectors.getOrdersList);
+  const filterOrdersValue = useSelector(ordersSelectors.getFilterOrdersValue);
+  const isLoading = useSelector(ordersSelectors.getIsLoader);
 
   const visibleOrders = ordersList.filter(order => {
     return order.clientInfo.secondName

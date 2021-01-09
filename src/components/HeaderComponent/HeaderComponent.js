@@ -4,17 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import { tabsActions } from '../../redux/tabs/';
+import { tabsActions, tabsSelectors } from '../../redux/tabs/';
 
 import LineListTabs from './LineListTabs';
 
 import s from './HeaderComponent.module.scss';
 
 export default function HeaderComponent() {
-  const tabsList = useSelector(state => state.tabs.items);
-  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  const tabsList = useSelector(tabsSelectors.getTabsList);
+  const widthLineTabs = useSelector(tabsSelectors.getWidthLineTabs);
   const leftPositionLineTabs = useSelector(
-    state => state.tabs.positionData.left,
+    tabsSelectors.getLeftPositionLineTabs,
   );
 
   const dispatch = useDispatch();

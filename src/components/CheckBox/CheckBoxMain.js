@@ -8,7 +8,6 @@ export default function CheckBoxMain({
   onChange,
   isDisabled,
 }) {
-  // console.log(isChecked);
   return (
     <div className="checkbox-box">
       <input

@@ -218,7 +218,7 @@ const mDTP = {
   onCalculateAveragePrice: ordersActions.calculateAveragePrice,
   onCalculateTotalPositions: ordersActions.calculateTotalPositions,
   onCalculateRemainderPaid: ordersActions.calculateRemainderPaid,
-  onSaveOrder: ordersOperations.postOrder,
+  onSaveOrder: ordersOperations.createOrder,
 
   onChangePrepaymentInput: ordersActions.changePrepaymentInput,
 

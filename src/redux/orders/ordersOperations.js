@@ -25,13 +25,13 @@ const getAllOrders = () => async dispatch => {
   }
 };
 
-const getPriceByArt = (vendorCode, id) => async dispatch => {
-  dispatch(ordersActions.getPriceByArtRequest());
+const getPriceByVendorCode = (vendorCode, id) => async dispatch => {
+  dispatch(ordersActions.getPriceByVendorCodeRequest());
 
   try {
     const { data } = await axios(`${baseUrl}/products/${vendorCode}`);
 
-    dispatch(ordersActions.getPriceByArtSuccess(data.product));
+    dispatch(ordersActions.getPriceByVendorCodeSuccess(data.product));
     dispatch(ordersActions.calculateSum({ id }));
     dispatch(ordersActions.calculateAveragePrice());
   } catch (error) {
@@ -44,11 +44,11 @@ const getPriceByArt = (vendorCode, id) => async dispatch => {
       return;
     }
 
-    dispatch(ordersActions.getPriceByArtError(error));
+    dispatch(ordersActions.getPriceByVendorCodeError(error));
   }
 };
 
-const postOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
+const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
   const newClientInfo = {
@@ -206,8 +206,8 @@ const removeOrders = orders => async dispatch => {
 
 export default {
   getAllOrders,
-  getPriceByArt,
-  postOrder,
+  getPriceByVendorCode,
+  createOrder,
   patchOrder,
   getOrderById,
   removeOrders,

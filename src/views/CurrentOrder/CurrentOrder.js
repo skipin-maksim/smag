@@ -3,7 +3,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { tabsActions } from '../../redux/tabs';
-import { ordersActions, ordersOperations } from '../../redux/orders';
+import {
+  ordersActions,
+  ordersOperations,
+  ordersSelectors,
+} from '../../redux/orders';
 import { contactsOperations } from '../../redux/contacts';
 
 import WindowTable from '../../components/WindowTable/WindowTable';
@@ -25,32 +29,20 @@ export default function CurrentOrder2({ match }) {
 
   const dispatch = useDispatch();
 
+  const isLoading = useSelector(ordersSelectors.getIsLoader);
+  const currentOrderItems = useSelector(ordersSelectors.getCurrentOrderItems);
+  const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
+  const calculatedTotals = useSelector(ordersSelectors.getCalculatedTotals);
+  const isSomeUncheked = useSelector(ordersSelectors.getIsSomeUnchecked);
+  const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
+  const dataOfTemporaryStorageLocation = useSelector(
+    ordersSelectors.getDataOfTemporaryStorageLocation,
+  );
+
   const onChoiseClient = useCallback(
     () => dispatch(ordersActions.choiseClient()),
     [dispatch],
   );
-  const isLoading = useSelector(state => {
-    return state.orders.loader;
-  });
-  const currentOrderItems = useSelector(state => {
-    return state.orders.currentOrder.items;
-  });
-  const currentOrder = useSelector(state => {
-    return state.orders.currentOrder;
-  });
-  const calculatedTotals = useSelector(state => {
-    return state.orders.currentOrder.calculatedTotals;
-  });
-  const isSomeUncheked = useSelector(state => {
-    return state.orders.currentOrder.items.some(item => !item.checkProduct);
-  });
-  const currentClientInfo = useSelector(state => {
-    return state.orders.currentOrder.clientInfo;
-  });
-  const dataOfTemporaryStorageLocation = useSelector(state => {
-    return state.orders.temporaryStorageLocation;
-  });
-
   const allContacts = useCallback(
     () => dispatch(contactsOperations.getContacts()),
     [dispatch],
@@ -84,7 +76,8 @@ export default function CurrentOrder2({ match }) {
     [dispatch],
   );
   const onChangePrepaymentInput = useCallback(
-    () => dispatch(ordersActions.changePrepaymentInput()),
+    prepaymentValue =>
+      dispatch(ordersActions.changePrepaymentInput(prepaymentValue)),
     [dispatch],
   );
   const onGetOrderById = useCallback(
