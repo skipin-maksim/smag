@@ -138,14 +138,15 @@ export default function CurrentOrder2({ match }) {
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handlePressKeyNewLine);
+    if (!currentOrder.isSaved)
+      window.addEventListener('keydown', handlePressKeyNewLine);
 
     // onCalculateTotalPositions();
 
     return () => {
       window.removeEventListener('keydown', handlePressKeyNewLine);
     };
-  }, [handlePressKeyNewLine]);
+  }, [currentOrder.isSaved, handlePressKeyNewLine]);
 
   useEffect(() => {
     if (match.params.orderId === 'new-order') {
@@ -158,8 +159,9 @@ export default function CurrentOrder2({ match }) {
     if (Number(match.params.orderId)) {
       onGetOrderById(match.params.orderId);
     }
+    //была зависимость от match, но она давала ошибку, когда сохраняешь заказ, при переходе от "new-order" к "Зааз №000015"
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match]);
+  }, []);
 
   useEffect(() => {
     if (!isSomeUncheked && !isCheckAll) {
