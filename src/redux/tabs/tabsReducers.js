@@ -19,7 +19,11 @@ const items = createReducer(initialStateItem, {
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
     const newState = state.filter(item => item.path !== `/orders/new-order`);
 
-    return [...newState, payload.createTabForNewOrder.payload];
+    return func.addTab(newState, {
+      name: `Заказ №${payload.numOrderServer}`,
+      path: `/orders/${payload.numOrderServer}`,
+      label: payload.numOrderServer,
+    });
   },
   [ordersActions.getOrderByIdError]: (state, { payload }) => {
     const newState = state.filter(item => item.label !== payload.id);

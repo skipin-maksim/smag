@@ -2,7 +2,7 @@ import React from 'react';
 
 import InnerModal from '../InnerModal/InnerModal';
 
-import s from './AddEditClientModal.module.scss';
+// import s from './AddEditClientModal.module.scss';
 
 export default function AddEditClientModal({ onCloseModal }) {
   return (

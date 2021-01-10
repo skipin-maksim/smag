@@ -1,5 +1,5 @@
-const getCurrentNum = state => state.numOrder.numOrder;
+// const getCurrentNum = state => state.numOrder.numOrder;
 
-export default {
-  getCurrentNum,
-};
+// export default {
+//   getCurrentNum,
+// };

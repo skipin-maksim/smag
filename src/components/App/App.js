@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { ordersOperations } from '../../redux/orders/';
 import { clientsOperations } from '../../redux/clients';
-import { numOrderOperations } from '../../redux/numOrder';
 
 import Spinner from '../Spinner/Spinner';
 import PrivateRoute from '../PrivateRoute';
@@ -24,16 +23,11 @@ export default function App() {
     () => dispatch(clientsOperations.getClients()),
     [dispatch],
   );
-  const getCurrentNumOrder = useCallback(
-    () => dispatch(numOrderOperations.getCurrentNumOrder()),
-    [dispatch],
-  );
 
   useEffect(() => {
     getAllOrders();
     // getAllClients();
-    getCurrentNumOrder();
-  }, [getAllClients, getAllOrders, getCurrentNumOrder]);
+  }, [getAllClients, getAllOrders]);
 
   return (
     // <Beforeunload onBeforeunload={() => "You'll lose your data!"}>

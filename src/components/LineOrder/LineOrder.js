@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { tabsActions } from '../../redux/tabs';
 
-import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
 import Line from '../Line/Line';
 
@@ -82,7 +81,7 @@ export default function LineOrder({ idx, order, id }) {
         isChecked={currentLineOrderById.isCheckedOrder}
         onChange={checkboxOrderSwitch}
       />
-      <span>{order.numOrder}</span>
+      <span>{order.numOrderServer}</span>
       <span className={s.nameClient} onClick={handleOpenOrder}>
         {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}
       </span>

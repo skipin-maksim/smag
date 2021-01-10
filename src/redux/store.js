@@ -3,7 +3,6 @@ import { authReducers } from './auth';
 import { tabsReducers } from './tabs/';
 import { ordersReducers } from './orders/';
 import { clientsReducers } from './clients/';
-import { numOrderReducers } from './numOrder/';
 import {
   persistStore,
   persistReducer,
@@ -37,7 +36,6 @@ const temporaryStorageLocationPersistConfig = {
 export const store = configureStore({
   reducer: {
     isAuthenticated: persistReducer(authenticatedPersistConfig, authReducers),
-    numOrder: numOrderReducers,
     tabs: persistReducer(tabsPersistConfig, tabsReducers),
     orders: persistReducer(
       temporaryStorageLocationPersistConfig,

@@ -5,7 +5,6 @@ import notification from 'toastr';
 
 import { ordersActions, ordersSelectors } from '../../redux/orders';
 import { tabsActions, tabsSelectors } from '../../redux/tabs';
-import { numOrderOperations } from '../../redux/numOrder';
 
 import AddBtn from '../buttons/AddBtn/AddBtn';
 import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
@@ -30,10 +29,6 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
   );
   const onMoveSlideLeft = useCallback(
     () => dispatch(tabsActions.moveSlideLeft()),
-    [dispatch],
-  );
-  const onGetCurrentNumOrder = useCallback(
-    () => dispatch(numOrderOperations.getCurrentNumOrder()),
     [dispatch],
   );
   const onClearTemporaryStorageLocation = useCallback(
@@ -63,8 +58,6 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
       }
 
       onClearTemporaryStorageLocation();
-
-      onGetCurrentNumOrder();
 
       history.replace('/orders/new-order');
     }

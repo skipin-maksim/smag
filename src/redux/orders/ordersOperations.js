@@ -1,8 +1,6 @@
 import axios from 'axios';
 import notification from 'toastr';
-// import momentTimezone from 'moment-timezone';
 
-import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
 const baseUrl = 'https://smagserver.herokuapp.com';
@@ -49,7 +47,7 @@ const getPriceByVendorCode = (vendorCode, id) => async dispatch => {
   }
 };
 
-const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
+const createOrder = (currentOrder, clientInfo) => async dispatch => {
   dispatch(ordersActions.saveOrderRequest());
 
   const newClientInfo = {
@@ -63,40 +61,31 @@ const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
     isSaved: true,
     isEdit: true,
     clientInfo: newClientInfo,
-    numOrder: numOrder.valueStr,
-    // date: dateNow(),
-    // dateUpdate: '',
-    id: numOrder.valueStr,
   };
-
-  const createTabForNewOrder = tabsActions.addTab({
-    name: `Заказ №${numOrder.valueStr}`,
-    path: `/orders/${numOrder.valueStr}`,
-    label: numOrder.valueStr,
-  });
 
   try {
     const { data: dataOrder } = await axios.post(`${baseUrl}/orders`, postData);
 
     const data = dataOrder.order;
 
-    dispatch(ordersActions.saveOrderSuccess({ data, createTabForNewOrder }));
+    dispatch(ordersActions.saveOrderSuccess(data));
 
     notification.success(
-      `Заказ №${numOrder.valueStr} создан и сохранен`,
+      `Заказ №${data.numOrderServer} создан и сохранен`,
       'Сохранен!',
     );
 
-    axios.patch(`${baseUrl}/numorder/5fde67cfb0a5f803a8e092ae`, numOrder);
-
     axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+
+    return data;
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);
+    return { numOrder: '' };
   }
 };
 
-const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
+const patchOrder = (currentOrder, clientInfo) => async dispatch => {
   dispatch(ordersActions.patchOrderRequest());
 
   try {
@@ -120,7 +109,6 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
       isSaved: true,
       isEdit: true,
       clientInfo: newClientInfo,
-      // dateUpdate: dateNow(),
     };
 
     const { data } = await axios.patch(
@@ -131,7 +119,7 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
     dispatch(ordersActions.patchOrderSuccess(data.order));
 
     notification.success(
-      `Заказ №${numOrder.valueStr} успешно изменен`,
+      `Заказ №${currentOrder.numOrderServer} успешно изменен`,
       'Изменен!',
     );
 
@@ -151,17 +139,17 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
 const getOrderById = id => async dispatch => {
   dispatch(ordersActions.getOrderByIdRequest());
-
+  console.log(id);
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);
-    const { data: dataContact } = await axios(
+    const { data: dataClients } = await axios(
       `${baseUrl}/clients/${data.order.clientInfo._id}`,
     );
 
     dispatch(
       ordersActions.getOrderByIdSuccess({
         ...data.order,
-        clientInfo: dataContact.client,
+        clientInfo: dataClients.client,
       }),
     );
   } catch (error) {
@@ -181,14 +169,14 @@ const getOrderById = id => async dispatch => {
 const removeOrders = orders => async dispatch => {
   dispatch(ordersActions.removeOrdersRequest());
 
-  const aarr = [];
+  const arrRemovedOrder = [];
 
   try {
     const updateOrders = await orders.filter(order => {
       if (order.isCheckedOrder === true) {
         axios.delete(`${baseUrl}/orders/${order._id}`);
 
-        aarr.push(order.numOrder);
+        arrRemovedOrder.push(order.numOrderServer);
 
         // eslint-disable-next-line array-callback-return
         return;
@@ -199,7 +187,7 @@ const removeOrders = orders => async dispatch => {
     dispatch(
       ordersActions.removeOrdersSuccess({
         orders: updateOrders,
-        tabsOrders: aarr,
+        tabsOrders: arrRemovedOrder,
       }),
     );
   } catch (error) {

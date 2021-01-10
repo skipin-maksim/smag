@@ -11,13 +11,10 @@ const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
     return [...payload];
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) => [
-    ...state,
-    payload.data,
-  ],
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => [...state, payload],
   [ordersActions.checkboxOrderSwitch]: (state, { payload }) => {
     return state.map(item =>
-      item.numOrder === payload.id
+      item.numOrderServer === payload.id
         ? { ...item, isCheckedOrder: payload.value }
         : item,
     );
@@ -89,7 +86,7 @@ const currentOrder = createReducer(initCurrentOrder, {
     return { ...payload };
   },
   [ordersActions.saveOrderSuccess]: (state, { payload }) => {
-    return payload.data;
+    return payload;
   },
   [ordersActions.patchOrderSuccess]: (state, { payload }) => {
     return payload;

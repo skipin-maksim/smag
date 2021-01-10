@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useHistory } from 'react-router-dom';
 import notification from 'toastr';
 
 import Modal from '../../Modal/Modal';
@@ -17,12 +17,9 @@ import {
   ordersOperations,
   ordersSelectors,
 } from '../../../redux/orders/';
-import {
-  numOrderOperations,
-  numOrderSelectors,
-} from '../../../redux/numOrder/';
 
 import s from './SettingsBlockBtn.module.scss';
+import { tabsSelectors } from '../../../redux/tabs';
 
 export default function SettingsBlockBtn() {
   const [isModalPrint, setIsModalPrint] = useState(false);
@@ -33,13 +30,9 @@ export default function SettingsBlockBtn() {
   const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
   const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
   const isSomeChecked = useSelector(ordersSelectors.getIsSomeChecked);
-  const currentNumOrder = useSelector(numOrderSelectors.getCurrentNum);
+  const tabsList = useSelector(tabsSelectors.getTabsList);
 
   const dispatch = useDispatch();
-  const onGetCurrentNumOrder = useCallback(
-    () => dispatch(numOrderOperations.getCurrentNumOrder()),
-    [dispatch],
-  );
   const onCreateLineProduct = useCallback(
     () => dispatch(ordersActions.createLineProduct()),
     [dispatch],
@@ -87,16 +80,6 @@ export default function SettingsBlockBtn() {
     [dispatch],
   );
 
-  const createNewOrderNum = prevNum => {
-    const editCustomNumber = value => ('000000' + (value + 1)).substr(-6);
-
-    return {
-      ...prevNum,
-      valueNum: prevNum.valueNum + 1,
-      valueStr: editCustomNumber(prevNum.valueNum),
-    };
-  };
-
   const handleDelete = () => {
     onDeleteLineSelectedProduct();
 
@@ -108,26 +91,21 @@ export default function SettingsBlockBtn() {
   };
 
   const handleEdit = () => {
-    onGetCurrentNumOrder();
-
     onEditOrderClick({ isSaved: false, isEdit: 'изменяется' });
 
     notification.info(`Заказ в стадии изменения`, 'Изменение!!!');
   };
 
-  const handleSaveBtn = () => {
+  const handleSaveBtn = async () => {
     const currentPath = match.params.orderId;
 
     if (currentClientInfo.firstName) {
       if (currentPath === 'new-order') {
-        const currentNumOrderObj = createNewOrderNum(currentNumOrder); // прибавляем 1 к полученному номеру заказа
+        const data = await onSaveOrder(currentOrder, currentClientInfo);
 
-        // запускаем сохранение, где мы соберем все в один объект и запишем новый номер заказа на сервер
-        onSaveOrder(currentOrder, currentClientInfo, currentNumOrderObj);
-
-        history.replace(`/orders/${currentNumOrderObj.valueStr}`);
+        history.replace(`/orders/${data.numOrderServer}`);
       } else {
-        onPatchOrder(currentOrder, currentClientInfo, currentNumOrder);
+        onPatchOrder(currentOrder, currentClientInfo);
       }
     } else {
       notification.warning('Вы не выбрали клиента', 'Предупреждение');
