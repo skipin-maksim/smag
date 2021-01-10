@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import lineColorPick from '../../helpers/lineColorPick';
+import { clientsActions, clientsSelectors } from '../../redux/clients';
 import { ordersOperations, ordersSelectors } from '../../redux/orders';
 
 import CheckBox from '../CheckBox/CheckBox';
@@ -22,19 +23,26 @@ export default function LineClient({ client, idx }) {
   } = client;
   const dispatch = useDispatch();
 
+  // const [isChecked, setIsChecked] = useState(false);
+
   const allOrders = useSelector(ordersSelectors.getOrdersList);
+  const onGetClientById = useSelector(state =>
+    clientsSelectors.getClientById(state, _id),
+  );
 
   const getAllOrders = useCallback(() => {
     dispatch(ordersOperations.getAllOrders());
   }, [dispatch]);
 
-  useEffect(() => {
-    getAllOrders();
-  }, [getAllOrders]);
-
   const clientOrders = allOrders.filter(
     ({ clientInfo }) =>
       clientInfo.secondName === secondName && clientInfo.tel === tel,
+  );
+
+  const checkboxClientSwitch = useCallback(
+    checkboxValue =>
+      dispatch(clientsActions.checkboxClientSwitch({ ...checkboxValue, _id })),
+    [dispatch, _id],
   );
 
   const totalOrders = clientOrders.length;
@@ -57,9 +65,9 @@ export default function LineClient({ client, idx }) {
     <li className={`${s.clientLine} ${lineColorPick(idx)}`}>
       <CheckBox
         id={_id}
-        // name="checkOrder"
-        // isChecked={currentLineOrderById.isCheckedOrder}
-        // onChange={onChangeCheckbox}
+        name="checkClient"
+        isChecked={onGetClientById.isChecked}
+        onChange={checkboxClientSwitch}
       />
       <span>{idx + 1}</span>
       <span>{`${secondName} ${firstName} ${thirdName}`}</span>

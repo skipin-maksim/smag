@@ -1,0 +1,36 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
+.settingButtons {
+  @include content-between-flex(ver);
+
+  & button,
+  & label {
+    margin-right: 20px;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+// .settingButton {
+//   @include content-between-flex();
+//   width: 40px;
+//   min-height: 30px;
+//   border: none;
+//   border-radius: 5px;
+//   background-color: $main-accent-color;
+//   transition: all 0.25s linear;
+//   outline: none;
+//   cursor: pointer;
+
+//   &:hover {
+//     background-color: $hover-accent-color;
+//   }
+
+//   &:disabled:hover {
+//     background-color: $main-accent-color;
+//     cursor: default;
+//   }
+// }

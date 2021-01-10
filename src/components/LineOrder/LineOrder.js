@@ -27,8 +27,9 @@ export default function LineOrder({ idx, order, id }) {
     [dispatch],
   );
   const checkboxOrderSwitch = useCallback(
-    checkboxValue => dispatch(ordersActions.checkboxOrderSwitch(checkboxValue)),
-    [dispatch],
+    checkboxValue =>
+      dispatch(ordersActions.checkboxOrderSwitch({ ...checkboxValue, id })),
+    [dispatch, id],
   );
 
   const handleOpenOrder = () => {
@@ -44,10 +45,6 @@ export default function LineOrder({ idx, order, id }) {
       const futurePositionLeft = widthLineTabs - 1212;
       onMoveSlideLeft(-futurePositionLeft);
     }
-  };
-
-  const onChangeCheckbox = ({ name, value }) => {
-    checkboxOrderSwitch({ id, value });
   };
 
   const {
@@ -80,7 +77,7 @@ export default function LineOrder({ idx, order, id }) {
         id={id}
         name="checkOrder"
         isChecked={currentLineOrderById.isCheckedOrder}
-        onChange={onChangeCheckbox}
+        onChange={checkboxOrderSwitch}
       />
       <span>{order.numOrder}</span>
       <span className={s.nameClient} onClick={handleOpenOrder}>

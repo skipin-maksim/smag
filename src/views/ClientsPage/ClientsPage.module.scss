@@ -1,5 +1,18 @@
+@import '../../helpers/scss/variables.scss';
+@import '../../helpers/scss/mixin.scss';
+
 .clientPage {
   position: relative;
   padding: 36px;
   font-size: 14px;
+}
+
+.controlsBlock {
+  @include content-center-flex(ver);
+  margin-bottom: 30px;
+
+  input {
+    margin-right: 20px;
+    padding: 6px 11px;
+  }
 }

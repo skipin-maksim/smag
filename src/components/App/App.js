@@ -30,7 +30,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    // getAllOrders();
+    getAllOrders();
     // getAllClients();
     getCurrentNumOrder();
   }, [getAllClients, getAllOrders, getCurrentNumOrder]);

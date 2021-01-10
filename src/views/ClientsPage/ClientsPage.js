@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TitleTableClient from '../../components/WindowTable/TitleTableClient/TitleTableClient';
@@ -10,8 +10,10 @@ import Spinner from '../../components/Spinner/Spinner';
 import LineClient from '../../components/LineClient/LineClient';
 
 import s from './ClientsPage.module.scss';
+import SettingsBlockBtn from '../../components/BlocksForClientsPage/SettingsBlockBtn/SettingsBlockBtn';
 
 export default function ClientsPage() {
+  const [searchClient, setSearchClient] = useState('');
   const dispatch = useDispatch();
 
   const isLoading = useSelector(clientsSelectors.getIsLoading);
@@ -25,13 +27,26 @@ export default function ClientsPage() {
     getAllClients();
   }, [getAllClients]);
 
+  const visibleClientsList = clientsList.filter(client =>
+    client.secondName.toLowerCase().includes(searchClient),
+  );
+
   return (
     <div className={s.clientPage}>
+      <div className={s.controlsBlock}>
+        <input
+          type="text"
+          value={searchClient}
+          onChange={({ target }) => setSearchClient(target.value)}
+        ></input>
+        <SettingsBlockBtn />
+      </div>
+
       {isLoading && <Spinner />}
       <TitleTableClient />
       <WindowTable>
         <ul>
-          {clientsList.map((client, idx) => {
+          {visibleClientsList.map((client, idx) => {
             return (
               <LineClient
                 key={client._id}

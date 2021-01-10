@@ -4,6 +4,15 @@ import { clientsActions } from '.';
 
 const allClients = createReducer([], {
   [clientsActions.getAllClientsSuccess]: (state, { payload }) => [...payload],
+  [clientsActions.checkboxClientSwitch]: (state, { payload }) => {
+    const checkedClient = state.map(item => {
+      return item._id === payload._id
+        ? { ...item, isChecked: payload.value }
+        : item;
+    });
+
+    return checkedClient;
+  },
 });
 
 const loader = createReducer(false, {
