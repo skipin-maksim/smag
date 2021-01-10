@@ -1,0 +1,27 @@
+@import '../../../helpers/scss/variables.scss';
+@import '../../../helpers/scss/mixin.scss';
+
+.innerModal {
+  position: relative;
+
+  padding: 15px;
+  background-color: $white-color;
+  border-radius: 8px;
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background-color: $white-color;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba($black-color, 0.3);
+}
+
+.closeModalBtn {
+  top: 4px;
+  right: 4px;
+  height: 25px;
+  transform: translateY(0);
+}

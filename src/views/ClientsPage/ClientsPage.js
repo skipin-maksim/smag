@@ -6,6 +6,8 @@ import WindowTable from '../../components/WindowTable/WindowTable';
 
 import { clientsOperations, clientsSelectors } from '../../redux/clients';
 
+import Modal from '../../components/Modal/Modal';
+import AddEditClientModal from '../../components/Modal/AddEditClientModal/AddEditClientModal';
 import Spinner from '../../components/Spinner/Spinner';
 import LineClient from '../../components/LineClient/LineClient';
 
@@ -14,6 +16,8 @@ import SettingsBlockBtn from '../../components/BlocksForClientsPage/SettingsBloc
 
 export default function ClientsPage() {
   const [searchClient, setSearchClient] = useState('');
+  const [isModalClient, setIsModalClient] = useState(false);
+
   const dispatch = useDispatch();
 
   const isLoading = useSelector(clientsSelectors.getIsLoading);
@@ -31,33 +35,45 @@ export default function ClientsPage() {
     client.secondName.toLowerCase().includes(searchClient),
   );
 
-  return (
-    <div className={s.clientPage}>
-      <div className={s.controlsBlock}>
-        <input
-          type="text"
-          value={searchClient}
-          onChange={({ target }) => setSearchClient(target.value)}
-        ></input>
-        <SettingsBlockBtn />
-      </div>
+  const toggleModal = () => {
+    setIsModalClient(!isModalClient);
+  };
 
-      {isLoading && <Spinner />}
-      <TitleTableClient />
-      <WindowTable>
-        <ul>
-          {visibleClientsList.map((client, idx) => {
-            return (
-              <LineClient
-                key={client._id}
-                id={client._id}
-                idx={idx}
-                client={client}
-              />
-            );
-          })}
-        </ul>
-      </WindowTable>
-    </div>
+  return (
+    <>
+      <div className={s.clientPage}>
+        <div className={s.controlsBlock}>
+          <input
+            type="text"
+            value={searchClient}
+            onChange={({ target }) => setSearchClient(target.value)}
+          ></input>
+          <SettingsBlockBtn toggleModal={toggleModal} />
+        </div>
+
+        {isLoading && <Spinner />}
+        <TitleTableClient />
+        <WindowTable>
+          <ul>
+            {visibleClientsList.map((client, idx) => {
+              return (
+                <LineClient
+                  key={client._id}
+                  id={client._id}
+                  idx={idx}
+                  client={client}
+                />
+              );
+            })}
+          </ul>
+        </WindowTable>
+      </div>
+      {isModalClient && (
+        <Modal
+          children={<AddEditClientModal onCloseModal={toggleModal} />}
+          onCloseModal={toggleModal}
+        />
+      )}
+    </>
   );
 }

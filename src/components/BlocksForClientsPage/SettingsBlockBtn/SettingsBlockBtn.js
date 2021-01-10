@@ -1,25 +1,12 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
-import Modal from '../../Modal/Modal';
 import AddBtn from '../../buttons/AddBtn/AddBtn';
 import EditBtn from '../../buttons/EditBtn/EditBtn';
 import RemoveBtn from '../../buttons/RemoveBtn/RemoveBtn';
 
 import s from './SettingsBlockBtn.module.scss';
 
-export default function SettingsBlockBtn() {
-  const [isModalClient, setisModalClient] = useState(false);
-
-  // const dispatch = useDispatch();
-
-  // const onCloseModal = () => {
-  // };
-
-  const toggleModal = () => {
-    setisModalClient(!isModalClient);
-  };
-
+export default function SettingsBlockBtn({ toggleModal }) {
   return (
     <>
       <div className={s.settingButtons}>
@@ -45,16 +32,6 @@ export default function SettingsBlockBtn() {
           isEdit={true}
         />
       </div>
-      {isModalClient && (
-        <Modal
-          children={
-            <>
-              <div>Hello World!!!!</div>
-            </>
-          }
-          onCloseModal={toggleModal}
-        />
-      )}
     </>
   );
 }

@@ -5,8 +5,8 @@ import { Scrollbar } from 'react-scrollbars-custom';
 import { clientsSelectors } from '../../../redux/clients';
 import { ordersActions, ordersSelectors } from '../../../redux/orders';
 
-import CloseBtn from '../../buttons/CloseBtn/CloseBtn';
 import Spinner from '../../Spinner/Spinner';
+import InnerModal from '../InnerModal/InnerModal';
 
 import s from './ClientsInModal.module.scss';
 
@@ -18,8 +18,8 @@ export default function ClientsInModal({ onCloseModal }) {
   const dispatch = useDispatch();
 
   const onChoiseClient = useCallback(
-    contact => {
-      dispatch(ordersActions.choiseClient(contact));
+    client => {
+      dispatch(ordersActions.choiseClient(client));
     },
     [dispatch],
   );
@@ -31,18 +31,13 @@ export default function ClientsInModal({ onCloseModal }) {
     [dispatch],
   );
 
-  const handleCloseModal = contact => {
-    onChoiseClient(contact);
+  const handleCloseModal = client => {
+    onChoiseClient(client);
     onCloseModal();
   };
 
   return (
-    <div className={s.modalClients}>
-      <CloseBtn
-        onClick={onCloseModal}
-        additionalClassName={s.contarctorClose}
-      />
-
+    <InnerModal onCloseModal={onCloseModal}>
       <input
         type="text"
         placeholder="поиск"
@@ -51,17 +46,17 @@ export default function ClientsInModal({ onCloseModal }) {
         value={filterValue}
       />
 
-      <Scrollbar style={{ width: 549, height: 299 }}>
+      <Scrollbar style={{ width: 409, height: 299 }}>
         <ul className={s.list}>
           {filterClients
-            .map(contact => (
+            .map(client => (
               <li
-                key={contact._id}
+                key={client._id}
                 onClick={() => {
-                  handleCloseModal(contact);
+                  handleCloseModal(client);
                 }}
               >
-                {` ${contact.secondName} ${contact.firstName}  ${contact.thirdName}`}
+                {` ${client.secondName} ${client.firstName}  ${client.thirdName}`}
               </li>
             ))
             .sort(function (a, b) {
@@ -76,6 +71,6 @@ export default function ClientsInModal({ onCloseModal }) {
         </ul>
       </Scrollbar>
       {isLoading && <Spinner />}
-    </div>
+    </InnerModal>
   );
 }

@@ -1,40 +1,30 @@
 @import '../../../helpers/scss/variables.scss';
 @import '../../../helpers/scss/mixin.scss';
 
-.modalClients {
-  position: relative;
-  min-width: 550px;
-  height: 450px;
-  position: relative;
-  padding: 40px;
-  background-color: $white-color;
-  border-radius: 8px;
-  overflow: hidden;
+.searchInput {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
 
-  & .searchInput {
-    width: 100%;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 30px;
-  }
+.list {
+  height: 300px;
+  font-size: 14px;
 
-  & .list {
-    height: 300px;
+  li {
+    padding: 5px 0;
+    cursor: pointer;
 
-    & li {
-      padding: 5px 0;
-      cursor: pointer;
-
-      &:hover {
-        background: $grey-color;
-      }
+    &:hover {
+      background: $grey-color;
     }
   }
+}
 
-  & button {
-    top: 4px;
-    right: 4px;
-  }
+button {
+  top: 4px;
+  right: 4px;
 }
 
 .contarctorClose {

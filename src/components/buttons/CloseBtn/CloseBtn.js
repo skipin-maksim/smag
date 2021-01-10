@@ -4,9 +4,9 @@ import s from './CloseBtn.module.scss';
 
 export default function CloseBtn({
   onClick,
-  name = false,
-  path = false,
-  idx = false,
+  name = 'close',
+  path = 'close',
+  idx = 1,
   additionalClassName,
 }) {
   return (
