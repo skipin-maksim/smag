@@ -8,12 +8,14 @@ export default function InnerModal({
   children,
   onCloseModal,
   width = 500,
-  height = 500,
+  height = 'auto',
 }) {
+  const isHeight = height === 'auto' ? 'auto' : height + 'px';
+
   return (
     <div
       className={s.innerModal}
-      style={{ width: width + 'px', height: height + 'px' }}
+      style={{ width: width + 'px', height: isHeight }}
     >
       <div className={s.modalContent}>
         {children}

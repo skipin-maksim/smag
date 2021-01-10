@@ -4,17 +4,7 @@
 .removeModal {
   position: relative;
   padding: 50px;
-  background-color: $white-color;
   text-align: center;
-  border-radius: 5px;
-
-  button[datatype='closeBtn'] {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    transform: translateY(0);
-    height: 25px;
-  }
 }
 
 .modalTitle {
