@@ -18,7 +18,7 @@ import SettingsBlockBtn from '../../components/BlocksForCurrentOrder/SettingsBlo
 import Modal from '../../components/Modal/Modal';
 import ClientsInModal from '../../components/Modal/ClientsInModal/ClientsInModal';
 import ClientsInfoBlock from '../../components/BlocksForCurrentOrder/ClientsInfoBlock/ClientsInfoBlock';
-import TableTitletLineBlock from '../../components/BlocksForCurrentOrder/TableTitletLineBlock/TableTitletLineBlock';
+import TitleTableCurrentOrder from '../../components/WindowTable/TitleTableCurrentOrder/TitleTableCurrentOrder';
 import MoneyBlock from '../../components/BlocksForCurrentOrder/MoneyBlock/MoneyBlock';
 
 import s from './CurrentOrder.module.scss';
@@ -211,7 +211,7 @@ export default function CurrentOrder({ match }) {
           </div>
         </div>
 
-        <TableTitletLineBlock
+        <TitleTableCurrentOrder
           currentOrder={currentOrder}
           handleCheckAll={handleCheckAll}
           isCheckAll={isCheckAll}

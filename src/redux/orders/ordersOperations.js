@@ -1,12 +1,13 @@
 import axios from 'axios';
 import notification from 'toastr';
-import momentTimezone from 'moment-timezone';
+// import momentTimezone from 'moment-timezone';
 
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
 const baseUrl = 'https://smagserver.herokuapp.com';
-const dateNow = momentTimezone().tz('Europe/Kiev').format('DD-MM-YYYY HH:mm');
+// const dateNow = () =>
+//   momentTimezone().tz('Europe/Kiev').format('DD-MM-YYYY HH:mm');
 
 const getAllOrders = () => async dispatch => {
   dispatch(ordersActions.getAllOrdersRequest());
@@ -63,8 +64,8 @@ const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
     isEdit: true,
     clientInfo: newClientInfo,
     numOrder: numOrder.valueStr,
-    date: dateNow,
-    dateUpdate: '',
+    // date: dateNow(),
+    // dateUpdate: '',
     id: numOrder.valueStr,
   };
 
@@ -119,7 +120,7 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
       isSaved: true,
       isEdit: true,
       clientInfo: newClientInfo,
-      dateUpdate: dateNow,
+      // dateUpdate: dateNow(),
     };
 
     const { data } = await axios.patch(

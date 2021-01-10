@@ -4,10 +4,13 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { tabsActions } from '../../redux/tabs';
+
 import lineColorPick from '../../helpers/lineColorPick';
 import CheckBox from '../CheckBox/CheckBox';
+import Line from '../Line/Line';
 
 import s from './LineOrder.module.scss';
+import sw from '../WindowTable/TitleTableOrders/TitleTableOrders.module.scss';
 
 export default function LineOrder({ idx, order, id }) {
   const history = useHistory();
@@ -72,7 +75,7 @@ export default function LineOrder({ idx, order, id }) {
   };
 
   return (
-    <li className={`${s.customerOrderItem} ${lineColorPick(idx)}`}>
+    <Line gridClass={sw.grid} idx={idx}>
       <CheckBox
         id={id}
         name="checkOrder"
@@ -91,7 +94,7 @@ export default function LineOrder({ idx, order, id }) {
         {order.date.toLocaleString('ru')}
       </span>
       <span className={`${s.status} ${className()}`}>{status}</span>
-      <span className={s.noteForOrder}>{noteForOrder}</span>
-    </li>
+      <span>{noteForOrder}</span>
+    </Line>
   );
 }

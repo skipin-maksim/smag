@@ -10,9 +10,9 @@ import Modal from '../../components/Modal/Modal';
 import AddEditClientModal from '../../components/Modal/AddEditClientModal/AddEditClientModal';
 import Spinner from '../../components/Spinner/Spinner';
 import LineClient from '../../components/LineClient/LineClient';
+import SettingsBlockBtn from '../../components/BlocksForClientsPage/SettingsBlockBtn/SettingsBlockBtn';
 
 import s from './ClientsPage.module.scss';
-import SettingsBlockBtn from '../../components/BlocksForClientsPage/SettingsBlockBtn/SettingsBlockBtn';
 
 export default function ClientsPage() {
   const [searchClient, setSearchClient] = useState('');

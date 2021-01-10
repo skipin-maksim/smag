@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { CheckBoxMain } from '../../CheckBox/';
+import { CheckBoxMain } from '../../CheckBox';
 
-import s from './TableTitletLineBlock.module.scss';
+import s from './TitleTableCurrentOrder.module.scss';
 
-export default function TableTitletLineBlock({
+export default function TitleTableCurrentOrder({
   currentOrder,
   isCheckAll,
   handleCheckAll,
 }) {
   return (
-    <div className={s.tableTitletLine}>
+    <div className={`${s.tableTitletLine} ${s.grid}`}>
       <CheckBoxMain
         name="checkProduct"
         isChecked={isCheckAll}

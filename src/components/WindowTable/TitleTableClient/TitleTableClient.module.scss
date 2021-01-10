@@ -1,9 +1,12 @@
 @import '../../../helpers/scss/variables.scss';
 
+.grid {
+  grid-template-columns: 30px 60px 100px 100px 100px 100px 100px 200px 150px 1fr;
+}
+
 .tableTitletLine {
   padding: 15px 30px;
   display: grid;
-  grid-template-columns: 30px 60px 420px 100px 100px 100px 100px 200px 150px 1fr;
   align-items: center;
   text-align: center;
   border-top-left-radius: 5px;

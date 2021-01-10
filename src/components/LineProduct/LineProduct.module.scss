@@ -1,32 +1,6 @@
 @import '../../helpers/scss/variables.scss';
 @import '../../helpers/scss/mixin.scss';
 
-.lineProduct {
-  padding: 10px 15px;
-  position: relative;
-  display: grid;
-  grid-template-columns: 30px 60px 200px 500px 60px 100px 60px 160px 1fr;
-  align-items: center;
-  text-align: center;
-  transition: all 0.2s linear;
-  border-bottom: 1px solid rgba($main-accent-color, 0.5);
-
-  &:hover {
-    background-color: rgba($main-accent-color, 0.1);
-  }
-
-  & input {
-    padding: 0;
-    width: 100%;
-    border: none;
-    text-align: center;
-
-    &:disabled {
-      color: $main-accent-color;
-    }
-  }
-}
-
 .vendorCodeSpan .quantitySpan,
 .colorSpan,
 .priceSpan,

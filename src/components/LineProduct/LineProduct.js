@@ -8,12 +8,13 @@ import {
   ordersSelectors,
 } from '../../redux/orders';
 import { tabsActions } from '../../redux/tabs';
-import lineColorPick from '../../helpers/lineColorPick';
 import colorsList from '../../data/colorsList';
 
+import Line from '../Line/Line';
 import { CheckBox } from '../CheckBox';
 
 import s from './LineProduct.module.scss';
+import sw from '../WindowTable/TitleTableCurrentOrder/TitleTableCurrentOrder.module.scss';
 
 export default function LineOrderProduct({ id, idx }) {
   const dispatch = useDispatch();
@@ -117,7 +118,7 @@ export default function LineOrderProduct({ id, idx }) {
   };
 
   return (
-    <li className={`${lineColorPick(idx)} ${s.lineProduct}`}>
+    <Line gridClass={sw.grid} idx={idx}>
       <CheckBox
         id={id}
         name="checkProduct"
@@ -222,6 +223,6 @@ export default function LineOrderProduct({ id, idx }) {
         className={s.noteSpan}
         disabled={currentOrder.isSaved || !getProductLineById.vendorCode}
       />
-    </li>
+    </Line>
   );
 }

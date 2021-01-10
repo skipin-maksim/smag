@@ -32,7 +32,6 @@ export default function SettingsBlockBtn() {
 
   const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
   const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
-  const currentOrderItems = useSelector(ordersSelectors.getCurrentOrderItems);
   const isSomeChecked = useSelector(ordersSelectors.getIsSomeChecked);
   const currentNumOrder = useSelector(numOrderSelectors.getCurrentNum);
 

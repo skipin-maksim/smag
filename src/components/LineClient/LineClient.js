@@ -1,13 +1,14 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import lineColorPick from '../../helpers/lineColorPick';
 import { clientsActions, clientsSelectors } from '../../redux/clients';
-import { ordersOperations, ordersSelectors } from '../../redux/orders';
+import { ordersSelectors } from '../../redux/orders';
 
 import CheckBox from '../CheckBox/CheckBox';
+import Line from '../Line/Line';
 
 import s from './LineClient.module.scss';
+import sw from '../../components/WindowTable/TitleTableClient/TitleTableClient.module.scss';
 
 export default function LineClient({ client, idx }) {
   const {
@@ -23,16 +24,10 @@ export default function LineClient({ client, idx }) {
   } = client;
   const dispatch = useDispatch();
 
-  // const [isChecked, setIsChecked] = useState(false);
-
   const allOrders = useSelector(ordersSelectors.getOrdersList);
   const onGetClientById = useSelector(state =>
     clientsSelectors.getClientById(state, _id),
   );
-
-  const getAllOrders = useCallback(() => {
-    dispatch(ordersOperations.getAllOrders());
-  }, [dispatch]);
 
   const clientOrders = allOrders.filter(
     ({ clientInfo }) =>
@@ -62,7 +57,8 @@ export default function LineClient({ client, idx }) {
   const isBadDebt = debt < 0 ? s.badDebt : s.goodDebt;
 
   return (
-    <li className={`${s.clientLine} ${lineColorPick(idx)}`}>
+    <Line gridClass={sw.grid} idx={idx}>
+      {/* <li className={`${s.clientLine} ${lineColorPick(idx)} ${sw.grid}`}> */}
       <CheckBox
         id={_id}
         name="checkClient"
@@ -80,36 +76,7 @@ export default function LineClient({ client, idx }) {
       <span>{city}</span>
       <span>{post}</span>
       <span>{email}</span>
-    </li>
+      {/* </li> */}
+    </Line>
   );
 }
-
-// _id
-// :
-// "5fdf2f1d619af701b07c5d46"
-// city
-// :
-// "Полтава"
-// debt
-// :
-// -415
-// email
-// :
-// "vadim@gmail.com"
-// firstName
-// :
-// "Вадим"
-// post
-// :
-// "Новая Почта 20"
-// secondName
-// :
-// "Семенов"
-// tel
-// :
-// "+38 050 521 85 95"
-// thirdName
-// :
-// "Викторович"
-// updatedAt
-// :

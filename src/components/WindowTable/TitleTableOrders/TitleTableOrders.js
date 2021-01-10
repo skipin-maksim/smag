@@ -6,7 +6,7 @@ import s from './TitleTableOrders.module.scss';
 
 export default function TitleTableOrders() {
   return (
-    <div className={s.tableTitletLine}>
+    <div className={`${s.tableTitletLine} ${s.grid}`}>
       <span>^</span>
       <span>№</span>
       <span>Клиент</span>

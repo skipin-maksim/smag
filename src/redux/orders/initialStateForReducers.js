@@ -35,5 +35,4 @@ export const initCurrentOrder = {
   isEdit: false,
   prepayment: 0,
   noteForOrder: '',
-  status: 'Не обработан',
 };
