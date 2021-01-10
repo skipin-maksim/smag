@@ -28,6 +28,10 @@ const getIsSomeUnchecked = state => {
   return getCurrentOrderItems(state).some(item => !item.checkProduct);
 };
 
+const getIsSomeChecked = state => {
+  return getCurrentOrderItems(state).some(item => item.checkProduct);
+};
+
 const getCalculatedTotals = state => state.orders.currentOrder.calculatedTotals;
 
 const getProductLineById = (state, id) => {
@@ -75,6 +79,7 @@ export default {
   getCurrentOrder,
   getCurrentOrderItems,
   getIsSomeUnchecked,
+  getIsSomeChecked,
   getCalculatedTotals,
   getProductLineById,
   getFilterValue,

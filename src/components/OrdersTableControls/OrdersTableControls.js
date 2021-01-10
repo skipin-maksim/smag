@@ -12,7 +12,7 @@ import RemoveBtn from '../buttons/RemoveBtn/RemoveBtn';
 
 import s from './OrdersTableControls.module.scss';
 
-export default function OrdersTableControls({ handleOpenModal }) {
+export default function OrdersTableControls({ handleOpenModal, disabled }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -81,7 +81,7 @@ export default function OrdersTableControls({ handleOpenModal }) {
       <div className={s.controlsButtons}>
         <AddBtn data={{ isSaved: false }} onCreate={handleAddNewOrder} />
 
-        <RemoveBtn onRemove={handleOpenModal} />
+        <RemoveBtn onRemove={handleOpenModal} disabled={disabled} />
       </div>
     </div>
   );

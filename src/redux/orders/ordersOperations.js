@@ -1,12 +1,12 @@
 import axios from 'axios';
-import moment from 'moment';
 import notification from 'toastr';
+import momentTimezone from 'moment-timezone';
 
 import { tabsActions } from '../tabs';
 import { ordersActions } from './';
 
 const baseUrl = 'https://smagserver.herokuapp.com';
-const dateNow = moment().format('DD-MM-YYYY hh:mm');
+const dateNow = momentTimezone().tz('Europe/Kiev').format('DD-MM-YYYY HH:mm');
 
 const getAllOrders = () => async dispatch => {
   dispatch(ordersActions.getAllOrdersRequest());
@@ -58,13 +58,17 @@ const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
   const postData = {
     ...currentOrder,
+    items: currentOrder.items.map(item => ({ ...item, checkProduct: false })),
     isSaved: true,
     isEdit: true,
     clientInfo: newClientInfo,
     numOrder: numOrder.valueStr,
-    id: numOrder.valueStr,
     date: dateNow,
+    dateUpdate: '',
+    id: numOrder.valueStr,
   };
+
+  console.log(postData);
 
   const createTabForNewOrder = tabsActions.addTab({
     name: `Заказ №${numOrder.valueStr}`,
@@ -113,11 +117,14 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
 
     const postData = {
       ...currentOrder,
+      items: currentOrder.items.map(item => ({ ...item, checkProduct: false })),
       isSaved: true,
       isEdit: true,
       clientInfo: newClientInfo,
-      date: dateNow,
+      dateUpdate: dateNow,
     };
+
+    console.log(postData);
 
     const { data } = await axios.patch(
       `${baseUrl}/orders/${currentOrder._id}`,

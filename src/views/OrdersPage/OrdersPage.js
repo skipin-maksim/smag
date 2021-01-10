@@ -50,12 +50,21 @@ export default function OrdersPage() {
     onCloseModal();
   };
 
+  const isCheckedOrder = () => {
+    return visibleOrders.some(order => order.isCheckedOrder === true);
+  };
+
+  const handleOpenModal = () => {
+    if (isCheckedOrder()) setRemoveModal(true);
+  };
+
   return (
     <div className={s.orderPage}>
       {isLoading && <Spinner />}
       <OrdersTableControls
         visibleOrders={visibleOrders}
-        handleOpenModal={() => setRemoveModal(true)}
+        handleOpenModal={handleOpenModal}
+        disabled={!isCheckedOrder()}
       />
 
       <TitleTableOrders />

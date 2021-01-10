@@ -32,6 +32,8 @@ export default function SettingsBlockBtn() {
 
   const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
   const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
+  const currentOrderItems = useSelector(ordersSelectors.getCurrentOrderItems);
+  const isSomeChecked = useSelector(ordersSelectors.getIsSomeChecked);
   const currentNumOrder = useSelector(numOrderSelectors.getCurrentNum);
 
   const dispatch = useDispatch();
@@ -163,6 +165,8 @@ export default function SettingsBlockBtn() {
         );
   };
 
+  console.log(currentOrder.isSaved, '--', !isSomeChecked);
+
   return (
     <>
       <div className={s.settingButtons}>
@@ -170,7 +174,10 @@ export default function SettingsBlockBtn() {
 
         <AddWithCopyBtn data={currentOrder} onCreate={onCreateLineWithCopy} />
 
-        <RemoveBtn disabled={currentOrder.isSaved} onRemove={handleDelete} />
+        <RemoveBtn
+          disabled={currentOrder.isSaved || !isSomeChecked}
+          onRemove={handleDelete}
+        />
 
         <EditBtn
           data={currentOrder}
