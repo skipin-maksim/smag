@@ -17,7 +17,7 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
 
   const filterOrdersValue = useSelector(ordersSelectors.getFilterOrdersValue);
   const tabsList = useSelector(tabsSelectors.getTabsList);
-  const widthLineTabs = useSelector(tabsSelectors.getLeftPositionLineTabs);
+  const widthLineTabs = useSelector(tabsSelectors.getWidthLineTabs);
 
   const onFilterOrders = useCallback(
     value => dispatch(ordersActions.filterOrders(value)),
@@ -28,7 +28,7 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
     [dispatch],
   );
   const onMoveSlideLeft = useCallback(
-    () => dispatch(tabsActions.moveSlideLeft()),
+    positionLeft => dispatch(tabsActions.moveSlideLeft(positionLeft)),
     [dispatch],
   );
   const onClearTemporaryStorageLocation = useCallback(
@@ -52,6 +52,7 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
         label: 'new-order',
       });
 
+      console.log(widthLineTabs);
       if (widthLineTabs > 1300) {
         const futurePositionLeft = widthLineTabs - 1212;
         onMoveSlideLeft(-futurePositionLeft);
