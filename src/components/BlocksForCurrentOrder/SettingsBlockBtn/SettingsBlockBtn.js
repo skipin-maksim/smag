@@ -165,8 +165,6 @@ export default function SettingsBlockBtn() {
         );
   };
 
-  console.log(currentOrder.isSaved, '--', !isSomeChecked);
-
   return (
     <>
       <div className={s.settingButtons}>

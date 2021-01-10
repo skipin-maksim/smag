@@ -68,8 +68,6 @@ const createOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
     id: numOrder.valueStr,
   };
 
-  console.log(postData);
-
   const createTabForNewOrder = tabsActions.addTab({
     name: `Заказ №${numOrder.valueStr}`,
     path: `/orders/${numOrder.valueStr}`,
@@ -123,8 +121,6 @@ const patchOrder = (currentOrder, clientInfo, numOrder) => async dispatch => {
       clientInfo: newClientInfo,
       dateUpdate: dateNow,
     };
-
-    console.log(postData);
 
     const { data } = await axios.patch(
       `${baseUrl}/orders/${currentOrder._id}`,
