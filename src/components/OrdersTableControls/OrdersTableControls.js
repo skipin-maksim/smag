@@ -52,7 +52,6 @@ export default function OrdersTableControls({ handleOpenModal, disabled }) {
         label: 'new-order',
       });
 
-      console.log(widthLineTabs);
       if (widthLineTabs > 1300) {
         const futurePositionLeft = widthLineTabs - 1212;
         onMoveSlideLeft(-futurePositionLeft);

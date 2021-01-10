@@ -20,9 +20,9 @@ const items = createReducer(initialStateItem, {
     const newState = state.filter(item => item.path !== `/orders/new-order`);
 
     return func.addTab(newState, {
-      name: `Заказ №${payload.numOrderServer}`,
-      path: `/orders/${payload.numOrderServer}`,
-      label: payload.numOrderServer,
+      name: `Заказ №${payload.orderNum}`,
+      path: `/orders/${payload.orderNum}`,
+      label: payload.orderNum,
     });
   },
   [ordersActions.getOrderByIdError]: (state, { payload }) => {

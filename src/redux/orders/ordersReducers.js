@@ -14,7 +14,7 @@ const allOrders = createReducer([], {
   [ordersActions.saveOrderSuccess]: (state, { payload }) => [...state, payload],
   [ordersActions.checkboxOrderSwitch]: (state, { payload }) => {
     return state.map(item =>
-      item.numOrderServer === payload.id
+      item.orderNum === payload.id
         ? { ...item, isCheckedOrder: payload.value }
         : item,
     );

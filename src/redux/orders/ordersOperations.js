@@ -71,7 +71,7 @@ const createOrder = (currentOrder, clientInfo) => async dispatch => {
     dispatch(ordersActions.saveOrderSuccess(data));
 
     notification.success(
-      `Заказ №${data.numOrderServer} создан и сохранен`,
+      `Заказ №${data.orderNum} создан и сохранен`,
       'Сохранен!',
     );
 
@@ -81,7 +81,7 @@ const createOrder = (currentOrder, clientInfo) => async dispatch => {
   } catch (error) {
     dispatch(ordersActions.saveOrderError());
     console.error(error);
-    return { numOrder: '' };
+    return { orderNum: '' };
   }
 };
 
@@ -90,7 +90,7 @@ const patchOrder = (currentOrder, clientInfo) => async dispatch => {
 
   try {
     const { data: serverOrderData } = await axios(
-      `${baseUrl}/orders/${currentOrder.numOrder}`,
+      `${baseUrl}/orders/${currentOrder.orderNum}`,
     );
 
     const resetDebtWithoutCurrentOrderRemainderPaid =
@@ -119,7 +119,7 @@ const patchOrder = (currentOrder, clientInfo) => async dispatch => {
     dispatch(ordersActions.patchOrderSuccess(data.order));
 
     notification.success(
-      `Заказ №${currentOrder.numOrderServer} успешно изменен`,
+      `Заказ №${currentOrder.orderNum} успешно изменен`,
       'Изменен!',
     );
 
@@ -139,7 +139,7 @@ const patchOrder = (currentOrder, clientInfo) => async dispatch => {
 
 const getOrderById = id => async dispatch => {
   dispatch(ordersActions.getOrderByIdRequest());
-  console.log(id);
+
   try {
     const { data } = await axios(`${baseUrl}/orders/${id}`);
     const { data: dataClients } = await axios(
@@ -176,7 +176,7 @@ const removeOrders = orders => async dispatch => {
       if (order.isCheckedOrder === true) {
         axios.delete(`${baseUrl}/orders/${order._id}`);
 
-        arrRemovedOrder.push(order.numOrderServer);
+        arrRemovedOrder.push(order.orderNum);
 
         // eslint-disable-next-line array-callback-return
         return;

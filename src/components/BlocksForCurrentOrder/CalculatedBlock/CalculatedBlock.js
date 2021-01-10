@@ -7,7 +7,7 @@ export default function CalculatedBlock({ totals }) {
 
   return (
     <div className={s.orderInfo}>
-      <div className={s.numOrder}>
+      <div className={s.position}>
         <span>Позицый</span>
         <span className={s.numbers}>{positions ? positions : 0}</span>
       </div>

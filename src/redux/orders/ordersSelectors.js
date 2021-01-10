@@ -9,7 +9,7 @@ const getCurrentClientInfo = state => {
 };
 
 const getCurrentLineOrderById = (state, id) => {
-  return getOrdersList(state).find(item => item.numOrderServer === id);
+  return getOrdersList(state).find(item => item.orderNum === id);
 };
 
 const getOrderById = (state, id) => {

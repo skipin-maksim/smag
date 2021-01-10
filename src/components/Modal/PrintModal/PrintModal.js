@@ -30,9 +30,7 @@ export default function PrintModal({ currentOrder }) {
         </ul>
 
         <ul className={s.calculatedTotals}>
-          <li className={s.numOrder}>
-            {`Заказ №${currentOrder.numOrderServer}`}{' '}
-          </li>
+          <li className={s.numOrder}>{`Заказ №${currentOrder.orderNum}`} </li>
           <li>
             <span className={s.liTitle}>Единиц:</span>
             <span>

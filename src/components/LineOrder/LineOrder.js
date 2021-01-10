@@ -81,7 +81,7 @@ export default function LineOrder({ idx, order, id }) {
         isChecked={currentLineOrderById.isCheckedOrder}
         onChange={checkboxOrderSwitch}
       />
-      <span>{order.numOrderServer}</span>
+      <span>{order.orderNum}</span>
       <span className={s.nameClient} onClick={handleOpenOrder}>
         {clientInfo.secondName} {clientInfo.firstName} {clientInfo.thirdName}
       </span>

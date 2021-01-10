@@ -77,7 +77,7 @@ export default function OrdersPage() {
                 <LineOrder
                   key={item._id}
                   idx={idx}
-                  id={item.numOrderServer}
+                  id={item.orderNum}
                   order={item}
                 />
               );

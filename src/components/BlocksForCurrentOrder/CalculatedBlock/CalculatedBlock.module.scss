@@ -8,7 +8,7 @@
   align-items: flex-start;
   text-align: center;
   font-size: 12px;
-  grid-template-areas: 'numOrder . totalProduct averagePrice . totalSum .';
+  grid-template-areas: 'position . totalProduct averagePrice . totalSum .';
 
   & span {
     display: block;
@@ -20,8 +20,8 @@
     font-weight: 600;
   }
 
-  & .numOrder {
-    grid-area: numOrder;
+  & .position {
+    grid-area: position;
   }
 
   & .totalProduct {

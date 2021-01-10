@@ -19,7 +19,6 @@ import {
 } from '../../../redux/orders/';
 
 import s from './SettingsBlockBtn.module.scss';
-import { tabsSelectors } from '../../../redux/tabs';
 
 export default function SettingsBlockBtn() {
   const [isModalPrint, setIsModalPrint] = useState(false);
@@ -30,7 +29,6 @@ export default function SettingsBlockBtn() {
   const currentOrder = useSelector(ordersSelectors.getCurrentOrder);
   const currentClientInfo = useSelector(ordersSelectors.getCurrentClientInfo);
   const isSomeChecked = useSelector(ordersSelectors.getIsSomeChecked);
-  const tabsList = useSelector(tabsSelectors.getTabsList);
 
   const dispatch = useDispatch();
   const onCreateLineProduct = useCallback(
@@ -103,7 +101,7 @@ export default function SettingsBlockBtn() {
       if (currentPath === 'new-order') {
         const data = await onSaveOrder(currentOrder, currentClientInfo);
 
-        history.replace(`/orders/${data.numOrderServer}`);
+        history.replace(`/orders/${data.orderNum}`);
       } else {
         onPatchOrder(currentOrder, currentClientInfo);
       }
