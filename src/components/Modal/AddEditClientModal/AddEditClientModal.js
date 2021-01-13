@@ -18,7 +18,11 @@ export default function AddEditClientModal({ onCloseModal }) {
   );
 
   return (
-    <InnerModal width={600} onCloseModal={onCloseModal}>
+    <InnerModal
+      width={600}
+      onCloseModal={onCloseModal}
+      title={'Создание нового клиента'}
+    >
       <Formik
         initialValues={{
           secondName: '',

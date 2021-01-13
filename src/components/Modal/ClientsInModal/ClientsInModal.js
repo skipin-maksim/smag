@@ -37,7 +37,7 @@ export default function ClientsInModal({ onCloseModal }) {
   };
 
   return (
-    <InnerModal onCloseModal={onCloseModal}>
+    <InnerModal onCloseModal={onCloseModal} title={'Выбор клиента'}>
       <input
         type="text"
         placeholder="поиск"

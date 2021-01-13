@@ -4,9 +4,10 @@
 .innerModal {
   position: relative;
 
-  padding: 15px;
+  padding: 15px 15px 80px;
   background-color: $white-color;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .modalContent {
@@ -17,6 +18,7 @@
   background-color: $white-color;
   border-radius: 5px;
   box-shadow: 0 0 8px rgba($black-color, 0.3);
+  z-index: 10;
 }
 
 .closeModalBtn {
@@ -24,4 +26,39 @@
   right: 4px;
   height: 25px;
   transform: translateY(0);
+}
+
+.titleBlockCircle {
+  position: absolute;
+  bottom: -142px;
+  right: -142px;
+  width: 284px;
+  height: 284px;
+  font-size: 30px;
+  font-weight: 900;
+  border-radius: 50%;
+  background-color: $main-accent-color;
+  color: $white-color;
+  overflow: hidden;
+  z-index: 9;
+
+  & span {
+    position: absolute;
+    right: 192px;
+    bottom: 167px;
+    width: 534px;
+    text-align: right;
+    letter-spacing: 2px;
+  }
+}
+
+.titleBlock {
+  position: absolute;
+  right: 50px;
+  bottom: 25px;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: right;
+  letter-spacing: 2px;
+  color: $main-accent-color;
 }
