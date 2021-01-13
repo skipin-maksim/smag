@@ -11,13 +11,11 @@ const allOrders = createReducer([], {
   [ordersActions.getAllOrdersSuccess]: (state, { payload }) => {
     return [...payload];
   },
-  [ordersActions.saveOrderSuccess]: (state, { payload }) => [...state, payload],
+  [ordersActions.saveOrderSuccess]: (state, { payload }) => {
+    return [...state, payload];
+  },
   [ordersActions.checkboxOrderSwitch]: (state, { payload }) => {
-    return state.map(item =>
-      item.orderNum === payload.id
-        ? { ...item, isCheckedOrder: payload.value }
-        : item,
-    );
+    return func.checkboxOrderSwitch(state, payload);
   },
   [ordersActions.removeOrdersSuccess]: (state, { payload }) => {
     return payload.orders;

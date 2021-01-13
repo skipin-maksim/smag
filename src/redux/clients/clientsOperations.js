@@ -15,4 +15,19 @@ const getClients = () => async dispatch => {
   }
 };
 
-export default { getClients };
+const createClient = postData => async dispatch => {
+  dispatch(clientsActions.createClientRequest());
+
+  try {
+    const { data } = await axios.post(`${baseUrl}/clients`, postData);
+
+    dispatch(clientsActions.createClientSuccess(data.client));
+    return data;
+  } catch (error) {
+    dispatch(clientsActions.createClientError(error.response.data));
+
+    console.error(error);
+  }
+};
+
+export default { getClients, createClient };

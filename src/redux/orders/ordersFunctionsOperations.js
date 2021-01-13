@@ -18,6 +18,13 @@ const changeMainCheckbox = (state, payload) => {
     }),
   };
 };
+const checkboxOrderSwitch = (state, payload) => {
+  return state.map(item =>
+    item.orderNum === payload.id
+      ? { ...item, isCheckedOrder: payload.value }
+      : item,
+  );
+};
 const getPriceByVendorCodeSuccess = (state, payload) => {
   return {
     ...state,
@@ -165,6 +172,7 @@ const calculateTotalPositions = state => {
 export const func = {
   changeLineProductInput,
   changeMainCheckbox,
+  checkboxOrderSwitch,
   getPriceByVendorCodeSuccess,
   changeLineProductInputQuantity,
   deleteLineSelectedProduct,

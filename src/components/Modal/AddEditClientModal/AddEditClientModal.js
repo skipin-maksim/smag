@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Formik } from 'formik';
 
 import InnerModal from '../InnerModal/InnerModal';
@@ -6,18 +6,17 @@ import EditBtn from '../../buttons/EditBtn/EditBtn';
 import DefaultBtn from '../../buttons/DefaultBtn/DefaultBtn';
 
 import s from './AddEditClientModal.module.scss';
-
-// firstName(pin):"Алексей"
-// secondName(pin):"Григоренко"
-// thirdName(pin):"Романович"
-// tel(pin):"+38 066 202 53 90"
-// email(pin):"maks2@gmail.com"
-// city(pin):"Донецк"
-// post(pin):"Новая Почта 42"
-// debt(pin):-3006
-// updatedAt(pin):"2021-01-10T20:41:14.163Z"
+import { useDispatch } from 'react-redux';
+import { clientsOperations } from '../../../redux/clients';
 
 export default function AddEditClientModal({ onCloseModal }) {
+  const dispatch = useDispatch();
+
+  const onCreateClient = useCallback(
+    clientData => dispatch(clientsOperations.createClient(clientData)),
+    [dispatch],
+  );
+
   return (
     <InnerModal width={600} onCloseModal={onCloseModal}>
       <Formik
@@ -48,13 +47,17 @@ export default function AddEditClientModal({ onCloseModal }) {
           if (!values.post) {
             errors.post = 'Обязательное поле';
           }
+          // if (values.debt.includes('e')) {
+          //   errors.debt = 'Вы ввели не число';
+          // }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          setSubmitting(false);
+
+          const data = await onCreateClient(values);
+
+          if (data.code === 201) onCloseModal();
         }}
       >
         {({
@@ -75,10 +78,11 @@ export default function AddEditClientModal({ onCloseModal }) {
               }}
               isEdit={true}
             />
-            <form className={s.clientForm} onSubmit={handleSubmit}>
+            <form className={s.clientForm} onSubmit={handleSubmit} noValidate>
               <label className={s.secondName}>
                 <span className={s.labelTitle}>Фамилия*</span>
                 <input
+                  autoComplete={'off'}
                   type="text"
                   name="secondName"
                   onChange={handleChange}
@@ -93,6 +97,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.firstName}>
                 <span className={s.labelTitle}>Имя*</span>
                 <input
+                  autoComplete={'off'}
                   type="text"
                   name="firstName"
                   onChange={handleChange}
@@ -107,6 +112,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.thirdName}>
                 <span className={s.labelTitle}>Отчество</span>
                 <input
+                  autoComplete={'off'}
                   type="text"
                   name="thirdName"
                   onChange={handleChange}
@@ -121,6 +127,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.tel}>
                 <span className={s.labelTitle}>Телефон*</span>
                 <input
+                  autoComplete={'off'}
                   type="tel"
                   name="tel"
                   onChange={handleChange}
@@ -135,6 +142,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.email}>
                 <span className={s.labelTitle}>E-mail</span>
                 <input
+                  autoComplete={'off'}
                   type="email"
                   name="email"
                   onChange={handleChange}
@@ -149,6 +157,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.city}>
                 <span className={s.labelTitle}>Город*</span>
                 <input
+                  autoComplete={'off'}
                   type="text"
                   name="city"
                   onChange={handleChange}
@@ -163,6 +172,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.post}>
                 <span className={s.labelTitle}>Инфо. по доставке*</span>
                 <input
+                  autoComplete={'off'}
                   type="text"
                   name="post"
                   onChange={handleChange}
@@ -177,6 +187,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.debt}>
                 <span className={s.labelTitle}>Долг</span>
                 <input
+                  autoComplete={'off'}
                   type="number"
                   name="debt"
                   onChange={handleChange}
@@ -191,7 +202,6 @@ export default function AddEditClientModal({ onCloseModal }) {
               <DefaultBtn
                 text={'Создать'}
                 type={'submit'}
-                handleOnClick={() => console.log('Создать клиента')}
                 customClassName={'createClient'}
               />
             </form>
