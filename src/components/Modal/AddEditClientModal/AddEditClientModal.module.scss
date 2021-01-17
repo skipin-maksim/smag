@@ -1,2 +1,69 @@
 @import '../../../helpers/scss/variables.scss';
 @import '../../../helpers/scss/mixin.scss';
+.clientForm {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 15px;
+  row-gap: 40px;
+  grid-template-areas:
+    'secondName secondName firstName firstName '
+    'thirdName thirdName post post'
+    'tel tel email email'
+    'city city debt debt'
+    '. submitBtn submitBtn .';
+
+  label {
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .labelTitle {
+    position: absolute;
+    left: 7px;
+    top: -15px;
+    font-size: 11px;
+    cursor: text;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .secondName {
+    grid-area: secondName;
+  }
+  .firstName {
+    grid-area: firstName;
+  }
+  .thirdName {
+    grid-area: thirdName;
+  }
+  .tel {
+    grid-area: tel;
+  }
+  .email {
+    grid-area: email;
+  }
+  .city {
+    grid-area: city;
+  }
+  .post {
+    grid-area: post;
+  }
+  .debt {
+    grid-area: debt;
+  }
+
+  button[type='submit'] {
+    grid-area: submitBtn;
+  }
+
+  .error {
+    position: absolute;
+    bottom: -16px;
+    left: 7px;
+    font-size: 11px;
+    color: $main-red-color;
+  }
+}

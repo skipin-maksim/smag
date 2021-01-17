@@ -25,4 +25,8 @@
     background-color: $main-accent-color;
     color: $white-color;
   }
+
+  &.createClient {
+    background-color: $main-green-color;
+  }
 }

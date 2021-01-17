@@ -17,7 +17,7 @@ export default function ClientsInModal({ onCloseModal }) {
 
   const dispatch = useDispatch();
 
-  const onChoiseClient = useCallback(
+  const onChoiceClient = useCallback(
     client => {
       dispatch(ordersActions.choiseClient(client));
     },
@@ -32,12 +32,12 @@ export default function ClientsInModal({ onCloseModal }) {
   );
 
   const handleCloseModal = client => {
-    onChoiseClient(client);
+    onChoiceClient(client);
     onCloseModal();
   };
 
   return (
-    <InnerModal onCloseModal={onCloseModal}>
+    <InnerModal onCloseModal={onCloseModal} title={'Выбор клиента'}>
       <input
         type="text"
         placeholder="поиск"
@@ -59,7 +59,7 @@ export default function ClientsInModal({ onCloseModal }) {
                 {` ${client.secondName} ${client.firstName}  ${client.thirdName}`}
               </li>
             ))
-            .sort(function (a, b) {
+            .sort((a, b) => {
               if (a.props.children > b.props.children) {
                 return 1;
               }

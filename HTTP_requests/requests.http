@@ -1,0 +1,25 @@
+### GET clients
+GET https://smagserver.herokuapp.com/clients/
+Accept: application/json
+
+
+### GET request by _id
+GET https://smagserver.herokuapp.com/clients/5fdbea17b0a5f803a8e086fe
+Accept: application/json
+
+
+### Send POST request with json body
+POST https://smagserver.herokuapp.com/clients/
+Content-Type: application/json
+
+{
+  "firstName": "Chuck",
+  "secondName": "Norris",
+  "thirdName": "",
+  "tel": "+38 077 333 93 83",
+  "email": "test1@gmail.com",
+  "city": "Chicago",
+  "post": "",
+  "debt": 0,
+  "isChecked": false
+}

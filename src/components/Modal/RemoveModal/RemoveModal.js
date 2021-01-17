@@ -7,7 +7,7 @@ import s from './RemoveModal.module.scss';
 
 export default function RemoveModal({ onCloseModal, onRemoveOrders }) {
   return (
-    <InnerModal onCloseModal={onCloseModal}>
+    <InnerModal onCloseModal={onCloseModal} title={'Удаление'}>
       <div className={s.removeModal}>
         <h2 className={s.modalTitle}>Предупреждение</h2>
         <p className={s.modalText}>

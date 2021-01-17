@@ -9,6 +9,7 @@ export default function InnerModal({
   onCloseModal,
   width = 500,
   height = 'auto',
+  title = '',
 }) {
   const isHeight = height === 'auto' ? 'auto' : height + 'px';
 
@@ -24,6 +25,10 @@ export default function InnerModal({
           additionalClassName={s.closeModalBtn}
         />
       </div>
+      <div className={s.titleBlockCircle}>
+        <span>{title}</span>
+      </div>
+      <div className={s.titleBlock}>{title}</div>
     </div>
   );
 }

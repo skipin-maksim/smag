@@ -107,6 +107,7 @@ export default function SettingsBlockBtn() {
       }
     } else {
       notification.warning('Вы не выбрали клиента', 'Предупреждение');
+      //
       return;
     }
   };
