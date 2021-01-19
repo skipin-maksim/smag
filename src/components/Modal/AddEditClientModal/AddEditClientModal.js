@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Formik } from 'formik';
+import formikConfig from './initialValuesFormik';
 import InputMask from 'react-input-mask';
 
 import InnerModal from '../InnerModal/InnerModal';
@@ -25,38 +26,8 @@ export default function AddEditClientModal({ onCloseModal }) {
       title={'Создание нового клиента'}
     >
       <Formik
-        initialValues={{
-          secondName: '',
-          firstName: '',
-          thirdName: '',
-          tel: '',
-          email: '',
-          city: '',
-          post: '',
-          debt: '',
-        }}
-        validate={values => {
-          const errors = {};
-          if (!values.secondName) {
-            errors.secondName = 'Обязательное поле';
-          }
-          if (!values.firstName) {
-            errors.firstName = 'Обязательное поле';
-          }
-          if (!values.tel) {
-            errors.tel = 'Обязательное поле';
-          }
-          if (!values.city) {
-            errors.city = 'Обязательное поле';
-          }
-          if (!values.post) {
-            errors.post = 'Обязательное поле';
-          }
-          // if (values.debt.includes('e')) {
-          //   errors.debt = 'Вы ввели не число';
-          // }
-          return errors;
-        }}
+        initialValues={formikConfig.initialValues}
+        validate={values => formikConfig.valuesValidator(values)}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
 
@@ -132,7 +103,7 @@ export default function AddEditClientModal({ onCloseModal }) {
               <label className={s.tel}>
                 <span className={s.labelTitle}>Телефон*</span>
                 <InputMask
-                  mask="+3 (999) 99999999"
+                  mask="+99 (999) 999 99 99"
                   autoComplete={'off'}
                   type="tel"
                   name="tel"
