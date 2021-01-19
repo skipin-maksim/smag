@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Formik } from 'formik';
+import InputMask from 'react-input-mask';
 
 import InnerModal from '../InnerModal/InnerModal';
 import EditBtn from '../../buttons/EditBtn/EditBtn';
@@ -130,7 +131,8 @@ export default function AddEditClientModal({ onCloseModal }) {
 
               <label className={s.tel}>
                 <span className={s.labelTitle}>Телефон*</span>
-                <input
+                <InputMask
+                  mask="+3 (999) 99999999"
                   autoComplete={'off'}
                   type="tel"
                   name="tel"
