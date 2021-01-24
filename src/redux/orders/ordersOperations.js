@@ -4,6 +4,7 @@ import notification from 'toastr';
 import { ordersActions } from './';
 
 const baseUrl = 'https://smagserver.herokuapp.com';
+const baseNumOrderId = '600d5c539d5d2f0de8a96286';
 // const dateNow = () =>
 //   momentTimezone().tz('Europe/Kiev').format('DD-MM-YYYY HH:mm');
 
@@ -76,6 +77,10 @@ const createOrder = (currentOrder, clientInfo) => async dispatch => {
     );
 
     axios.patch(`${baseUrl}/clients/${clientInfo._id}`, newClientInfo);
+
+    axios.patch(`${baseUrl}/numorder/${baseNumOrderId}`, {
+      numOrder: data.orderNum,
+    });
 
     return data;
   } catch (error) {
