@@ -23,14 +23,16 @@ const checkboxClientSwitch = (state, payload) => {
 
 const allClients = createReducer([], {
   [clientsActions.getAllClientsSuccess]: (state, { payload }) => {
-    return [...payload];
+    return payload;
   },
   [clientsActions.checkboxClientSwitch]: (state, { payload }) => {
     return checkboxClientSwitch(state, payload);
   },
   [clientsActions.createClientSuccess]: (state, { payload }) => {
-    console.log(payload);
     return [...state, payload];
+  },
+  [clientsActions.removeClientsSuccess]: (state, { payload }) => {
+    return payload;
   },
 });
 

@@ -90,7 +90,7 @@ export default function OrdersPage() {
           children={
             <RemoveModal
               onCloseModal={onCloseModal}
-              onRemoveOrders={handleRemoveOrders}
+              onRemove={handleRemoveOrders}
             />
           }
           onCloseModal={onCloseModal}

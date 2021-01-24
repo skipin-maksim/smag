@@ -5,7 +5,7 @@ import DefaultBtn from '../../buttons/DefaultBtn/DefaultBtn';
 
 import s from './RemoveModal.module.scss';
 
-export default function RemoveModal({ onCloseModal, onRemoveOrders }) {
+export default function RemoveModal({ onCloseModal, onRemove }) {
   return (
     <InnerModal onCloseModal={onCloseModal} title={'Удаление'}>
       <div className={s.removeModal}>
@@ -21,7 +21,7 @@ export default function RemoveModal({ onCloseModal, onRemoveOrders }) {
         <div className={s.blockBtn}>
           <DefaultBtn
             text="Удалить"
-            handleOnClick={onRemoveOrders}
+            handleOnClick={onRemove}
             customClassName={'removeBtn'}
           />
 

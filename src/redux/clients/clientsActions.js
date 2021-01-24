@@ -8,6 +8,10 @@ const createClientRequest = createAction('CLIENTS_createClientRequest');
 const createClientSuccess = createAction('CLIENTS_createClientSuccess');
 const createClientError = createAction('CLIENTS_createClientError');
 
+const removeClientsRequest = createAction('CLIENTS_removeClientsRequest');
+const removeClientsSuccess = createAction('CLIENTS_removeClientsSuccess');
+const removeClientsError = createAction('CLIENTS_removeClientsError');
+
 const checkboxClientSwitch = createAction('CLIENTS_checkboxClientSwitch');
 
 export default {
@@ -18,6 +22,10 @@ export default {
   createClientRequest,
   createClientSuccess,
   createClientError,
+
+  removeClientsRequest,
+  removeClientsSuccess,
+  removeClientsError,
 
   checkboxClientSwitch,
 };

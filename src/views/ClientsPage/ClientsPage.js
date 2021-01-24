@@ -8,6 +8,7 @@ import { clientsOperations, clientsSelectors } from '../../redux/clients';
 
 import Modal from '../../components/Modal/Modal';
 import AddEditClientModal from '../../components/Modal/AddEditClientModal/AddEditClientModal';
+import RemoveModal from '../../components/Modal/RemoveModal/RemoveModal';
 import Spinner from '../../components/Spinner/Spinner';
 import LineClient from '../../components/LineClient/LineClient';
 import SettingsBlockBtn from '../../components/BlocksForClientsPage/SettingsBlockBtn/SettingsBlockBtn';
@@ -17,11 +18,16 @@ import s from './ClientsPage.module.scss';
 export default function ClientsPage() {
   const [searchClient, setSearchClient] = useState('');
   const [isModalClient, setIsModalClient] = useState(false);
+  const [isModalRemoveClient, setIsModalRemoveClient] = useState(false);
 
   const dispatch = useDispatch();
 
   const isLoading = useSelector(clientsSelectors.getIsLoading);
   const clientsList = useSelector(clientsSelectors.getAllClientsList);
+
+  const onRemoveClients = useCallback(() => {
+    dispatch(clientsOperations.removeClients(clientsList));
+  }, [clientsList, dispatch]);
 
   const getAllClients = useCallback(() => {
     dispatch(clientsOperations.getClients());
@@ -35,8 +41,17 @@ export default function ClientsPage() {
     client.secondName.toLowerCase().includes(searchClient),
   );
 
-  const toggleModal = () => {
+  const toggleModalCreateClient = () => {
     setIsModalClient(!isModalClient);
+  };
+
+  const toggleModalRemoveClient = () => {
+    setIsModalRemoveClient(!isModalRemoveClient);
+  };
+
+  const handleRemoveClients = () => {
+    onRemoveClients();
+    toggleModalRemoveClient();
   };
 
   return (
@@ -48,7 +63,10 @@ export default function ClientsPage() {
             value={searchClient}
             onChange={({ target }) => setSearchClient(target.value)}
           />
-          <SettingsBlockBtn toggleModal={toggleModal} />
+          <SettingsBlockBtn
+            createClient={toggleModalCreateClient}
+            removeClient={toggleModalRemoveClient}
+          />
         </div>
 
         {isLoading && <Spinner />}
@@ -80,8 +98,21 @@ export default function ClientsPage() {
       </div>
       {isModalClient && (
         <Modal
-          children={<AddEditClientModal onCloseModal={toggleModal} />}
-          onCloseModal={toggleModal}
+          children={
+            <AddEditClientModal onCloseModal={toggleModalCreateClient} />
+          }
+          onCloseModal={toggleModalCreateClient}
+        />
+      )}
+      {isModalRemoveClient && (
+        <Modal
+          children={
+            <RemoveModal
+              onCloseModal={toggleModalRemoveClient}
+              onRemove={handleRemoveClients}
+            />
+          }
+          onCloseModal={toggleModalRemoveClient}
         />
       )}
     </>
