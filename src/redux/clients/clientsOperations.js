@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { clientsActions } from '.';
+import { clientsActions } from './';
 
 const baseUrl = 'https://smagserver.herokuapp.com';
 

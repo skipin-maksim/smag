@@ -22,9 +22,9 @@ const tabsPersistConfig = {
 };
 
 const authenticatedPersistConfig = {
-  key: 'authenticated',
+  key: 'tokens',
   storage,
-  whitelist: ['isAuthenticated'],
+  whitelist: ['tokens'],
 };
 
 const temporaryStorageLocationPersistConfig = {
@@ -35,7 +35,7 @@ const temporaryStorageLocationPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    isAuthenticated: persistReducer(authenticatedPersistConfig, authReducers),
+    auth: persistReducer(authenticatedPersistConfig, authReducers),
     tabs: persistReducer(tabsPersistConfig, tabsReducers),
     orders: persistReducer(
       temporaryStorageLocationPersistConfig,
