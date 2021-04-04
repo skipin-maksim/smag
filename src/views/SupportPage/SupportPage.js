@@ -8,8 +8,8 @@ export default function SupportPage() {
       <h2 className="testViews">Info Page</h2>
       <div className={s.container}>
         <h3 className={s.title}>Реализовано:</h3>
-        <ul>
-          <li>
+        <ul className={s.ul}>
+          <li className={s.li}>
             Создание, удаление, редактирование заказов. В заказе можно
             использовать артикулы: 00082, 01042, 0101, 0101-1 (на самом деле их
             около 750)
