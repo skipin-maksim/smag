@@ -5,6 +5,7 @@ import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default [
   {
     name: 'Главная',

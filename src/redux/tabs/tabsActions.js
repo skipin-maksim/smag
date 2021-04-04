@@ -14,6 +14,7 @@ const getDataOfTemporaryStorageLocation = createAction(
   'TABS_getDataOfTemporaryStorageLocation',
 );
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   addTab,
   removeTab,

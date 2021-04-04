@@ -9,6 +9,7 @@ const getWidthLineTabs = state => state.tabs.positionData.width;
 
 const getLeftPositionLineTabs = state => state.tabs.positionData.left;
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getTabsList,
   getIsTab,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import pickUpCurrencyData from '../../services/apiPrivatBank';
 
@@ -7,27 +7,40 @@ import RefreshButton from '../buttons/RefreshButton/RefreshButton';
 
 import s from './PrivatBankComponent.module.scss';
 
-export default function PrivatBankComponent3() {
-  const initDataPrivat = {
-    usd: { ccy: 'USD', sale: '??', buy: '??' },
-    eur: { ccy: 'EUR', sale: '??', buy: '??' },
-  };
+const initDataPrivat = {
+  usd: { ccy: 'USD', sale: '??', buy: '??' },
+  eur: { ccy: 'EUR', sale: '??', buy: '??' },
+};
 
+export default function PrivatBankComponent3() {
   const [useDataPrivatBank, setUseDataPrivatBank] = useState({
     ...initDataPrivat,
   });
 
   const [isLoader, setIsLoader] = useState(false);
 
-  const getExchangeRatesData = useCallback(async () => {
-    setIsLoader(true);
+  // const getExchangeRatesData = useCallback(async () => {
+  //   setIsLoader(true);
 
-    const exchangeRatesData = await pickUpCurrencyData();
+  //   const exchangeRatesData = await pickUpCurrencyData();
 
-    setUseDataPrivatBank({ ...initDataPrivat, ...exchangeRatesData });
+  //   setUseDataPrivatBank({ ...initDataPrivat, ...exchangeRatesData });
 
-    setIsLoader(false);
-  }, [initDataPrivat]);
+  //   setIsLoader(false);
+  // }, [initDataPrivat]);
+
+  const getExchangeRatesData = useMemo(
+    () => async () => {
+      setIsLoader(true);
+
+      const exchangeRatesData = await pickUpCurrencyData();
+
+      setUseDataPrivatBank({ ...initDataPrivat, ...exchangeRatesData });
+
+      setIsLoader(false);
+    },
+    [],
+  );
 
   useEffect(() => {
     getExchangeRatesData();
