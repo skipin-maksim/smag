@@ -10,8 +10,20 @@ function LineListTabs({ tabsList, stylePosition, size, getComponentWidth }) {
     getComponentWidth(size.width);
   }, [getComponentWidth, size]);
 
+  const scrollTabsList = e => {
+    e.currentTarget.scrollTo({
+      top: 0,
+      left: e.currentTarget.scrollLeft + e.deltaY,
+      behaviour: 'smooth',
+    });
+  };
+
   return (
-    <ul className={s.lineListTabs} style={{ left: stylePosition }}>
+    <ul
+      className={s.lineListTabs}
+      style={{ left: stylePosition }}
+      onWheel={scrollTabsList}
+    >
       {tabsList.map(({ name, path, label }, idx) => {
         return (
           <Tab key={name} name={name} path={path} idx={idx} label={label} />

@@ -4,8 +4,11 @@
 .companyBlock {
   min-height: 70px;
   padding: 10px;
-  @include content-between-flex;
   border-bottom: 1px solid $grey-opacity65;
+
+  & .logoBlock {
+    @include content-between-flex;
+  }
 
   & .logoWrapper {
     margin-right: 15px;
@@ -23,7 +26,7 @@
 }
 
 .companyName {
-  width: 120px;
+  margin-top: 15px;
   font-size: 18px;
 }
 

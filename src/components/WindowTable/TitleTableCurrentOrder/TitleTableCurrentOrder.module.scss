@@ -2,7 +2,7 @@
 @import '../../../helpers/scss/mixin.scss';
 
 .grid {
-  grid-template-columns: 30px 60px 200px 500px 60px 100px 60px 160px 1fr;
+  grid-template-columns: 1fr 1fr 3fr 9fr 1fr 1fr 1fr 2fr 4fr;
   font-size: 12px;
 }
 

@@ -25,11 +25,14 @@ export default function CompanyBlock() {
 
   return (
     <div className={s.companyBlock}>
-      <Logo />
+      <div className={s.logoBlock}>
+        <Logo />
+        <button type={'button'} className={s.logoutBtn} onClick={handleLogout}>
+          <ExitToAppIcon style={{ color: '#fff' }} />
+        </button>
+      </div>
+
       <h2 className={s.companyName}>Emanuela Ferretti</h2>
-      <button type={'button'} className={s.logoutBtn} onClick={handleLogout}>
-        <ExitToAppIcon style={{ color: '#fff' }} />
-      </button>
     </div>
   );
 }
