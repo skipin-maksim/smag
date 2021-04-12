@@ -48,26 +48,16 @@ export default function ClientsInModal({ onCloseModal }) {
 
       <Scrollbar style={{ width: 409, height: 299 }}>
         <ul className={s.list}>
-          {filterClients
-            .map(client => (
-              <li
-                key={client._id}
-                onClick={() => {
-                  handleCloseModal(client);
-                }}
-              >
-                {` ${client.secondName} ${client.firstName}  ${client.thirdName}`}
-              </li>
-            ))
-            .sort((a, b) => {
-              if (a.props.children > b.props.children) {
-                return 1;
-              }
-              if (a.props.children < b.props.children) {
-                return -1;
-              }
-              return 0;
-            })}
+          {filterClients.map(client => (
+            <li
+              key={client._id}
+              onClick={() => {
+                handleCloseModal(client);
+              }}
+            >
+              {` ${client.secondName} ${client.firstName}  ${client.thirdName}`}
+            </li>
+          ))}
         </ul>
       </Scrollbar>
       {isLoading && <Spinner />}
