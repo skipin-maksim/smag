@@ -10,6 +10,7 @@ const createClientError = createAction('CLIENTS_createClientError');
 
 const checkboxClientSwitch = createAction('CLIENTS_checkboxClientSwitch');
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getAllClientsRequest,
   getAllClientsSuccess,

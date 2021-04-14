@@ -3,8 +3,6 @@
 
 .clientInfo {
   margin-bottom: 20px;
-  display: flex;
-
   @include content-between-flex;
 
   @media print {
@@ -13,7 +11,7 @@
 }
 
 .clientInfoInner {
-  width: 850px;
+  width: 33%;
   & span {
     display: inline-block;
 
@@ -25,6 +23,8 @@
 
 .clientInfoInnerDept {
   @include content-between-flex(ver);
+  justify-content: flex-end;
+  width: 25%;
   font-weight: 800;
 
   & span {
@@ -38,7 +38,7 @@
 
 .clientsBlock {
   @include content-between-flex(ver);
-  width: 450px;
+  width: 41%;
   color: $white-color;
 
   & input {

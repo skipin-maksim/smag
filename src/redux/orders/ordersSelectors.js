@@ -70,6 +70,7 @@ const getDataOfTemporaryStorageLocation = state => {
 
 const getIsError = state => state.orders.error;
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getOrdersList,
   getCurrentClientInfo,

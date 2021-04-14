@@ -11,13 +11,14 @@
 }
 
 .wrapperLineListTabs {
+  position: relative;
   min-height: 45px;
-  margin: 0 auto;
-  width: 1500px;
+  margin: 0 50px;
+  // max-width: 91%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  overflow: hidden;
+  // overflow: auto;
 }
 
 .sliderBtn {
@@ -35,11 +36,11 @@
   cursor: pointer;
 
   &.leftBtn {
-    left: 30px;
+    left: 0;
   }
 
   &.rightBtn {
-    right: 30px;
+    right: 0;
   }
 
   &:hover {
@@ -48,12 +49,22 @@
 }
 
 .lineListTabs {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   grid-column-gap: 2px;
   transition: all 0.3s linear;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent;
+  }
 }
 
 .tabLi {
@@ -68,13 +79,14 @@
   border-top-right-radius: 4px;
   background-color: rgba($main-bg-color, 0.5);
   text-overflow: ellipsis;
-  overflow: hidden;
+  // overflow: hidden;
   outline: none;
 }
 
 .tab {
   padding-left: 9px;
   display: block;
+  border-top-left-radius: 4px;
   cursor: pointer;
 }
 

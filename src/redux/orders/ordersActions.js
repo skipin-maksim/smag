@@ -64,6 +64,7 @@ const choiseClient = createAction('ORDERS_choiseClient');
 const filterClients = createAction('ORDERS_filterClients');
 const filterOrders = createAction('ORDERS_filterOrders');
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getAllOrdersRequest,
   getAllOrdersSuccess,

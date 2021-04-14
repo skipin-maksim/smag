@@ -55,26 +55,16 @@ export default function ClientsPage() {
         <TitleTableClient />
         <WindowTable>
           <ul>
-            {visibleClientsList
-              .map((client, idx) => {
-                return (
-                  <LineClient
-                    key={client._id}
-                    id={client._id}
-                    idx={idx}
-                    client={client}
-                  />
-                );
-              })
-              .sort((a, b) => {
-                if (a.props.client.secondName > b.props.client.secondName) {
-                  return 1;
-                }
-                if (a.props.client.secondName < b.props.client.secondName) {
-                  return -1;
-                }
-                return 0;
-              })}
+            {visibleClientsList.map((client, idx) => {
+              return (
+                <LineClient
+                  key={client._id}
+                  id={client._id}
+                  idx={idx}
+                  client={client}
+                />
+              );
+            })}
           </ul>
         </WindowTable>
       </div>

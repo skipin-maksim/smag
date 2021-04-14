@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import { tabsActions, tabsSelectors } from '../../redux/tabs/';
 
@@ -53,9 +53,9 @@ export default function HeaderComponent() {
 
   return (
     <header className={s.headerLineTabs}>
-      <button className={`${s.sliderBtn} ${s.leftBtn}`} onClick={moveLeft}>
+      {/* <button className={`${s.sliderBtn} ${s.leftBtn}`} onClick={moveLeft}>
         <ChevronLeftIcon style={{ color: '#fff', fontSize: 40 }} />
-      </button>
+      </button> */}
       <div className={s.wrapperLineListTabs}>
         <LineListTabs
           getComponentWidth={getComponentWidth}
@@ -63,9 +63,9 @@ export default function HeaderComponent() {
           stylePosition={leftPositionLineTabs}
         />
       </div>
-      <button className={`${s.sliderBtn} ${s.rightBtn}`} onClick={moveRight}>
+      {/* <button className={`${s.sliderBtn} ${s.rightBtn}`} onClick={moveRight}>
         <ChevronRightIcon style={{ color: '#fff', fontSize: 40 }} />
-      </button>
+      </button> */}
     </header>
   );
 }

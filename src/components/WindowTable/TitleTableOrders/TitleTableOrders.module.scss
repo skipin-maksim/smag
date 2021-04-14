@@ -1,7 +1,7 @@
 @import '../../../helpers/scss/variables.scss';
 
 .grid {
-  grid-template-columns: 30px 60px 420px 100px 100px 150px 150px 110px 80px 1fr;
+  grid-template-columns: 0.5fr 1fr 4fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   font-size: 12px;
 }
 

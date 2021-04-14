@@ -9,9 +9,17 @@ const getClients = () => async dispatch => {
   try {
     const { data } = await axios(`${baseUrl}/clients`);
 
-    //TODO перенести сортировку сюда!
+    const sortClients = data.clients.sort((a, b) => {
+      if (a.secondName > b.secondName) {
+        return 1;
+      }
+      if (a.secondName < b.secondName) {
+        return -1;
+      }
+      return 0;
+    });
 
-    dispatch(clientsActions.getAllClientsSuccess(data.clients));
+    dispatch(clientsActions.getAllClientsSuccess(sortClients));
   } catch (error) {
     dispatch(clientsActions.getAllClientsError(error));
   }
@@ -32,4 +40,5 @@ const createClient = postData => async dispatch => {
   }
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { getClients, createClient };
