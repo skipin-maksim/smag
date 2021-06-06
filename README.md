@@ -39,7 +39,11 @@
 
 2.  Back
 
-    > NodeJs, Express, Mongoose
+    > NodeJs
+
+    > Express
+
+    > Mongoose
 
 ## Приложение в разработке =)
 
