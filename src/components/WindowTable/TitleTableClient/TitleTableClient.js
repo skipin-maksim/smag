@@ -4,7 +4,7 @@ import React from 'react';
 
 import s from './TitleTableClient.module.scss';
 
-export default function TitleTableOrders() {
+export default function TitleTableClients() {
   return (
     <div className={`${s.tableTitletLine} ${s.grid}`}>
       <span>^</span>

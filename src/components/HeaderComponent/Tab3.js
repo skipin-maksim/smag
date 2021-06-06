@@ -85,7 +85,7 @@ const Tab = ({
 
     const currentId = label;
 
-    if (currentOrder.isEdit === 'изменяется') {
+    if (currentOrder.isEdit === 'changes') {
       notification.warning(
         `Для продолжения, сохраните изменения`,
         `Заказ в стадии изменения!!!`,

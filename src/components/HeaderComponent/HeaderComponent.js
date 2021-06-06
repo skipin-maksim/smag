@@ -12,7 +12,7 @@ import s from './HeaderComponent.module.scss';
 
 export default function HeaderComponent() {
   const tabsList = useSelector(tabsSelectors.getTabsList);
-  const widthLineTabs = useSelector(tabsSelectors.getWidthLineTabs);
+  // const widthLineTabs = useSelector(tabsSelectors.getWidthLineTabs);
   const leftPositionLineTabs = useSelector(
     tabsSelectors.getLeftPositionLineTabs,
   );
@@ -26,30 +26,30 @@ export default function HeaderComponent() {
     () => dispatch(tabsActions.moveSlideLeft(leftPositionLineTabs - 202)),
     [dispatch, leftPositionLineTabs],
   );
-  const getComponentWidthDispatch = useCallback(
-    data => dispatch(tabsActions.widthLineTabs(data)),
-    [dispatch],
-  );
+  // const getComponentWidthDispatch = useCallback(
+  //   data => dispatch(tabsActions.widthLineTabs(data)),
+  //   [dispatch],
+  // );
 
-  const moveLeft = () => {
-    if (leftPositionLineTabs === 0) {
-      return;
-    } else {
-      onMoveSlideLeft();
-    }
-  };
+  // const moveLeft = () => {
+  //   if (leftPositionLineTabs === 0) {
+  //     return;
+  //   } else {
+  //     onMoveSlideLeft();
+  //   }
+  // };
 
-  const moveRight = () => {
-    if (widthLineTabs - -leftPositionLineTabs <= 1500) {
-      return;
-    } else if (widthLineTabs > 1500) {
-      onMoveSlideRight();
-    }
-  };
+  // const moveRight = () => {
+  //   if (widthLineTabs - -leftPositionLineTabs <= 1500) {
+  //     return;
+  //   } else if (widthLineTabs > 1500) {
+  //     onMoveSlideRight();
+  //   }
+  // };
 
-  const getComponentWidth = data => {
-    getComponentWidthDispatch(data);
-  };
+  // const getComponentWidth = data => {
+  //   getComponentWidthDispatch(data);
+  // };
 
   return (
     <header className={s.headerLineTabs}>
@@ -58,7 +58,7 @@ export default function HeaderComponent() {
       </button> */}
       <div className={s.wrapperLineListTabs}>
         <LineListTabs
-          getComponentWidth={getComponentWidth}
+          // getComponentWidth={getComponentWidth}
           tabsList={tabsList}
           stylePosition={leftPositionLineTabs}
         />

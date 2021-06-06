@@ -89,7 +89,7 @@ export default function SettingsBlockBtn() {
   };
 
   const handleEdit = () => {
-    onEditOrderClick({ isSaved: false, isEdit: 'изменяется' });
+    onEditOrderClick({ isSaved: false, isEdit: 'changes' });
 
     notification.info(`Заказ в стадии изменения`, 'Изменение!!!');
   };

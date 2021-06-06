@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Formik } from 'formik';
 
 import InnerModal from '../InnerModal/InnerModal';
@@ -9,13 +9,32 @@ import s from './AddEditClientModal.module.scss';
 import { useDispatch } from 'react-redux';
 import { clientsOperations } from '../../../redux/clients';
 
-export default function AddEditClientModal({ onCloseModal }) {
+const initialValues = {
+  secondName: '',
+  firstName: '',
+  thirdName: '',
+  tel: '',
+  email: '',
+  city: '',
+  post: '',
+  debt: '0',
+};
+
+export default function AddEditClientModal({
+  onCloseModal,
+  clientInfo = initialValues,
+}) {
+  const isDisabled = clientInfo.secondName !== '' ? true : false;
+  const [isEdit, setIsEdit] = useState(isDisabled);
+
   const dispatch = useDispatch();
 
   const onCreateClient = useCallback(
     clientData => dispatch(clientsOperations.createClient(clientData)),
     [dispatch],
   );
+
+  const toggleIsEdit = () => setIsEdit(!isEdit);
 
   return (
     <InnerModal
@@ -24,16 +43,7 @@ export default function AddEditClientModal({ onCloseModal }) {
       title={'Создание нового клиента'}
     >
       <Formik
-        initialValues={{
-          secondName: '',
-          firstName: '',
-          thirdName: '',
-          tel: '',
-          email: '',
-          city: '',
-          post: '',
-          debt: '',
-        }}
+        initialValues={clientInfo}
         validate={values => {
           const errors = {};
           if (!values.secondName) {
@@ -60,6 +70,7 @@ export default function AddEditClientModal({ onCloseModal }) {
           setSubmitting(false);
 
           const data = await onCreateClient(values);
+          // TODO тут написать проверку: мы изменяем или создаем? Ипрописать операцию изменения
 
           if (data.code === 201) onCloseModal();
         }}
@@ -75,13 +86,8 @@ export default function AddEditClientModal({ onCloseModal }) {
           /* and other goodies */
         }) => (
           <>
-            <EditBtn
-              data={false}
-              onEdit={() => {
-                console.log('Включить!! Изменение клиента');
-              }}
-              isEdit={true}
-            />
+            <EditBtn data={false} onEdit={toggleIsEdit} isEdit={isEdit} />
+
             <form className={s.clientForm} onSubmit={handleSubmit} noValidate>
               <label className={s.secondName}>
                 <span className={s.labelTitle}>Фамилия*</span>
@@ -92,6 +98,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.secondName}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.secondName && touched.secondName && errors.secondName}
@@ -107,6 +114,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.firstName}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.firstName && touched.firstName && errors.firstName}
@@ -122,6 +130,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.thirdName}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.thirdName && touched.thirdName && errors.thirdName}
@@ -137,6 +146,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.tel}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.tel && touched.tel && errors.tel}
@@ -152,6 +162,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.email && touched.email && errors.email}
@@ -167,6 +178,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.city}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.city && touched.city && errors.city}
@@ -182,6 +194,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.post}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.post && touched.post && errors.post}
@@ -197,6 +210,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.debt}
+                  disabled={isEdit}
                 />
                 <span className={s.error}>
                   {errors.debt && touched.debt && errors.debt}
@@ -207,6 +221,7 @@ export default function AddEditClientModal({ onCloseModal }) {
                 text={'Создать'}
                 type={'submit'}
                 customClassName={'createClient'}
+                isEdit={isEdit}
               />
             </form>
           </>
