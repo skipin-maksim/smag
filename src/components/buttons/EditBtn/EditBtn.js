@@ -4,7 +4,7 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import s from './EditBtn.module.scss';
 
-export default function EditBtn({ data, onEdit, isEdit }) {
+export default function EditBtn({ data, onEdit, isEdit = false }) {
   return (
     <button
       onClick={onEdit}
@@ -13,7 +13,7 @@ export default function EditBtn({ data, onEdit, isEdit }) {
       disabled={!isEdit}
     >
       <EditIcon style={{ color: '#D19A66', fontSize: 21 }} />
-      <div className="visually-hidden">Изменить заказ</div>
+      <div className="visually-hidden">Изменить</div>
     </button>
   );
 }

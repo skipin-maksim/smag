@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
-import sizeMe from 'react-sizeme';
 
 import Tab from './Tab';
 
 import s from './HeaderComponent.module.scss';
 
-function LineListTabs({ tabsList, stylePosition, size, getComponentWidth }) {
-  useEffect(() => {
-    getComponentWidth(size.width);
-  }, [getComponentWidth, size]);
-
+export default function LineListTabs({ tabsList, stylePosition, size }) {
   const scrollTabsList = e => {
     e.currentTarget.scrollTo({
       top: 0,
@@ -32,5 +27,3 @@ function LineListTabs({ tabsList, stylePosition, size, getComponentWidth }) {
     </ul>
   );
 }
-
-export default sizeMe({ monitorHeight: true })(LineListTabs);

@@ -15,7 +15,7 @@ export default function LineOrder({ idx, order, id }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const widthLineTabs = useSelector(state => state.tabs.positionData.width);
+  // const widthLineTabs = useSelector(state => state.tabs.positionData.width);
   const currentLineOrderById = useSelector(state =>
     ordersSelectors.getCurrentLineOrderById(state, id),
   );
@@ -43,10 +43,10 @@ export default function LineOrder({ idx, order, id }) {
 
     history.replace(`/orders/${id}`);
 
-    if (widthLineTabs > 1300) {
-      const futurePositionLeft = widthLineTabs - 1212;
-      onMoveSlideLeft(-futurePositionLeft);
-    }
+    // if (widthLineTabs > 1300) {
+    //   const futurePositionLeft = widthLineTabs - 1212;
+    //   onMoveSlideLeft(-futurePositionLeft);
+    // }
   };
 
   const {

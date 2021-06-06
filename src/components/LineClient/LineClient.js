@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { clientsActions, clientsSelectors } from '../../redux/clients';
@@ -6,6 +6,8 @@ import { ordersSelectors } from '../../redux/orders';
 
 import CheckBox from '../CheckBox/CheckBox';
 import Line from '../Line/Line';
+import Modal from '../Modal/Modal';
+import AddEditClientModal from '../Modal/AddEditClientModal/AddEditClientModal';
 
 import s from './LineClient.module.scss';
 import sw from '../../components/WindowTable/TitleTableClient/TitleTableClient.module.scss';
@@ -22,6 +24,8 @@ export default function LineClient({ client, idx }) {
     tel,
     thirdName,
   } = client;
+
+  const [isModalClient, setIsModalClient] = useState(false);
   const dispatch = useDispatch();
 
   const allOrders = useSelector(ordersSelectors.getOrdersList);
@@ -56,27 +60,47 @@ export default function LineClient({ client, idx }) {
 
   const isBadDebt = debt < 0 ? s.badDebt : s.goodDebt;
 
+  const toggleModal = () => {
+    setIsModalClient(!isModalClient);
+  };
+
   return (
-    <Line gridClass={sw.grid} idx={idx}>
-      {/* <li className={`${s.clientLine} ${lineColorPick(idx)} ${sw.grid}`}> */}
-      <CheckBox
-        id={_id}
-        name="checkClient"
-        isChecked={onGetClientById.isChecked}
-        onChange={checkboxClientSwitch}
-      />
-      <span>{idx + 1}</span>
-      <span>{`${secondName} ${firstName} ${thirdName}`}</span>
-      <span>{totalOrders}</span>
-      <span>{totalDataOfClientOrder.quantity.toLocaleString('ru')}</span>
-      <span>{totalDataOfClientOrder.sum.toLocaleString('ru')}</span>
-      <span className={`${s.debt} ${isBadDebt}`}>
-        {debt.toLocaleString('ru')}
-      </span>
-      <span>{city}</span>
-      <span>{post}</span>
-      <span>{email}</span>
-      {/* </li> */}
-    </Line>
+    <>
+      <Line gridClass={sw.grid} idx={idx}>
+        {/* <li className={`${s.clientLine} ${lineColorPick(idx)} ${sw.grid}`}> */}
+        <CheckBox
+          id={_id}
+          name="checkClient"
+          isChecked={onGetClientById.isChecked}
+          onChange={checkboxClientSwitch}
+        />
+        <span>{idx + 1}</span>
+        <span
+          onClick={toggleModal}
+          className={s.clickableInput}
+        >{`${secondName} ${firstName} ${thirdName}`}</span>
+        <span>{totalOrders}</span>
+        <span>{totalDataOfClientOrder.quantity.toLocaleString('ru')}</span>
+        <span>{totalDataOfClientOrder.sum.toLocaleString('ru')}</span>
+        <span className={`${s.debt} ${isBadDebt}`}>
+          {debt.toLocaleString('ru')}
+        </span>
+        <span>{city}</span>
+        <span>{post}</span>
+        <span>{email}</span>
+        {/* </li> */}
+      </Line>
+      {isModalClient && (
+        <Modal
+          children={
+            <AddEditClientModal
+              clientInfo={client}
+              onCloseModal={toggleModal}
+            />
+          }
+          onCloseModal={toggleModal}
+        />
+      )}
+    </>
   );
 }

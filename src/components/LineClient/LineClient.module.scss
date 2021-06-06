@@ -1,6 +1,9 @@
 @import '../../helpers/scss/variables.scss';
 @import '../../helpers//scss/mixin.scss';
 
+.clickableInput {
+  cursor: pointer;
+}
 .debt {
   font-weight: 500;
 
