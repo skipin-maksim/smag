@@ -31,7 +31,11 @@
 
 1.  Front
 
-    > React Redux (toolkit) Пару компонентов из Material Design
+    > React
+
+    > Redux (toolkit)
+
+    > Пару компонентов из Material Design
 
 2.  Back
 
