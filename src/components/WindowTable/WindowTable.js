@@ -8,7 +8,6 @@ export default function WindowTable({ children, otherBlock }) {
     <div className={s.windowOrders}>
       <Scrollbar
         style={{
-          maxWidth: 1567,
           height: 530,
           boxShadow: '0 0 5px rgba(0, 0, 0, 0.233)',
         }}
