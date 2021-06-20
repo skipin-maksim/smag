@@ -1,15 +1,25 @@
-import React from 'react';
+import { FC } from 'react';
+import { CurrentOrderType } from '../../../redux/orders/initialStateForReducers';
 
 import s from './MoneyBlock.module.scss';
 
-export default function MoneyBlock({
+type PropsType = {
+  currentOrder: CurrentOrderType;
+  calculatedTotals: CurrentOrderType['calculatedTotals'];
+
+  onChangePrepaymentInput: (targetValue: string) => void;
+  onCalculateRemainderPaid: (targetValue: string) => void;
+  onSaveToTemporaryStorageLocation: (currentOrder: Object) => void;
+};
+
+const MoneyBlock: FC<PropsType> = ({
   currentOrder,
   calculatedTotals,
   onChangePrepaymentInput,
   onCalculateRemainderPaid,
   onSaveToTemporaryStorageLocation,
-}) {
-  const handleOnBlurPrepayment = value => {
+}) => {
+  const handleOnBlurPrepayment = (value: string) => {
     if (currentOrder.isSaved) onSaveToTemporaryStorageLocation(currentOrder);
 
     onCalculateRemainderPaid(value);
@@ -40,4 +50,6 @@ export default function MoneyBlock({
       </div>
     </div>
   );
-}
+};
+
+export default MoneyBlock;

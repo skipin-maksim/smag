@@ -1,8 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { authReducers } from './auth';
-import { tabsReducers } from './tabs/';
-import { ordersReducers } from './orders/';
-import { clientsReducers } from './clients/';
+import { tabsReducers } from './tabs';
+import { ordersReducers } from './orders';
+import { clientsReducers } from './clients';
 import {
   persistStore,
   persistReducer,

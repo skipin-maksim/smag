@@ -9,15 +9,8 @@ export default function ClientsInfoBlock({
   onChoiseClient,
   onOpenModal,
 }) {
-  const {
-    secondName,
-    firstName,
-    thirdName,
-    city,
-    post,
-    tel,
-    debt,
-  } = currentClientInfo;
+  const { secondName, firstName, thirdName, city, post, tel, debt } =
+    currentClientInfo;
 
   const handleChoiseClients = () => {
     onOpenModal();

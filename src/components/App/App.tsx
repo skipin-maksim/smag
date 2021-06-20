@@ -3,7 +3,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import { Beforeunload } from 'react-beforeunload';
 
-import { ordersOperations } from '../../redux/orders/';
+import { ordersOperations } from '../../redux/orders';
 import { clientsOperations } from '../../redux/clients';
 
 import Spinner from '../Spinner/Spinner';

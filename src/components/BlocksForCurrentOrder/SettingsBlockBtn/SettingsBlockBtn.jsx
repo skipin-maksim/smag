@@ -16,7 +16,7 @@ import {
   ordersActions,
   ordersOperations,
   ordersSelectors,
-} from '../../../redux/orders/';
+} from '../../../redux/orders';
 
 import s from './SettingsBlockBtn.module.scss';
 

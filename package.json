@@ -32,7 +32,7 @@
     "react-loader-spinner": "^4.0.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-scrollbars-custom": "^4.0.25",
     "react-sizeme": "^3.0.1",
     "react-spinners": "^0.11.0",
@@ -68,6 +68,9 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/toastr": "^2.1.38",
+    "@types/uuid": "^8.3.0",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "prettier": "^2.3.1"

@@ -1,11 +1,16 @@
 import React from 'react';
+import { FC } from 'react';
 
 import AddBtn from '../../buttons/AddBtn/AddBtn';
 import RemoveBtn from '../../buttons/RemoveBtn/RemoveBtn';
 
 import s from './SettingsBlockBtn.module.scss';
 
-export default function SettingsBlockBtn({ toggleModal }) {
+type PropsType = {
+  toggleModal: () => void;
+};
+
+const SettingsBlockBtn: FC<PropsType> = ({ toggleModal }) => {
   return (
     <>
       <div className={s.settingButtons}>
@@ -24,4 +29,6 @@ export default function SettingsBlockBtn({ toggleModal }) {
       </div>
     </>
   );
-}
+};
+
+export default SettingsBlockBtn;

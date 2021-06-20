@@ -1,8 +1,17 @@
-import React from 'react';
+// import React, { FC } from 'react';
 
 import s from './CalculatedBlock.module.scss';
 
-export default function CalculatedBlock({ totals }) {
+// type PropsType = {
+//   totals: [
+//     positions: number,
+//     quantity: number,
+//     averagePrice: number,
+//     sum: number,
+//   ];
+// };
+
+const CalculatedBlock = ({ totals }) => {
   const { positions, quantity, averagePrice, sum } = totals;
 
   return (
@@ -32,4 +41,6 @@ export default function CalculatedBlock({ totals }) {
       </div>
     </div>
   );
-}
+};
+
+export default CalculatedBlock;
